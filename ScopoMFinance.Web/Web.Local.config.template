@@ -1,0 +1,30 @@
+﻿<?xml version="1.0"?>
+
+<!-- 
+    THIS IS A TEMPLATE (SAMPLE) FOR Web.Local.config AND SHOULD NOT BE REFERENCED ANYWHERE IN THE PROJECT
+    YOU SHOULD NOT MODIFY THIS FILE 
+  
+    The purpose of this template is to give you a starting point for your version of the Web.Local.config file.
+    
+    When you first clone this project you won't have a Web.Local.config, just clone this file and rename the clone to Web.Local.config (note the .csproj
+    already has  reference for Web.Local.config, you just need to create it on the file system)
+    
+    Web.Local.config is ignored through a .gitignore rule and is not tracked so you can modify it at will.
+    
+    I've made both Web.Config and Waterton.Data\App.config reference Web.Local.config for the connection strings so your
+    version of the connection strings will be used for both app runtime and Entity Framework edmx management.
+-->
+
+
+<connectionStrings>
+
+  <!-- *** LOCAL DATABASE *** -->
+  <add name="DefaultConnection" connectionString="Data Source=(local);Initial Catalog=Waterton_local;Integrated Security=true" providerName="System.Data.SqlClient"/>
+  <add name="WatertonEntities" connectionString="metadata=res://*/WatertonEntities.csdl|res://*/WatertonEntities.ssdl|res://*/WatertonEntities.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=(local);initial catalog=Waterton_local;persist security info=True;Integrated Security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient"/>
+
+
+  <!-- *** DEV DATABASE *** -->
+  <!--<add name="DefaultConnection" connectionString="Data Source=209.15.212.131;Initial Catalog=Waterton;user id=Waterton_login;Password=devpassword" providerName="System.Data.SqlClient"/>-->
+  <!--<add name="WatertonEntities" connectionString="metadata=res://*/WatertonEntities.csdl|res://*/WatertonEntities.ssdl|res://*/WatertonEntities.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=209.15.212.131;initial catalog=Waterton;persist security info=True;user id=Waterton_login;password=devpassword;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient"/>-->
+
+</connectionStrings>
