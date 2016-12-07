@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[SysGender]
+(
+	[Id] INT NOT NULL IDENTITY,
+	[Name] NVARCHAR(256) NOT NULL,
+	[IsActive] BIT NOT NULL DEFAULT 1, 
+    [IsDeleted] BIT NOT NULL DEFAULT 0,
+	CONSTRAINT [PK_Gender] PRIMARY KEY ([Id])
+)

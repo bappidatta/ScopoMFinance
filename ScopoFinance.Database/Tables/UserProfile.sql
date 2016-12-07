@@ -6,7 +6,7 @@
     [MobileNo] NVARCHAR(14) NOT NULL, 
     [BranchId] INT NOT NULL, 
     [IsActive] BIT NOT NULL, 
-    [CreatedBy] NVARCHAR(50) NOT NULL, 
+    [CreatedBy] NVARCHAR(256) NOT NULL, 
     [CreatedOn] DATETIME NOT NULL,
 	PRIMARY KEY CLUSTERED ([UserId] ASC),
 	CONSTRAINT [UQ_UserProfileMobileNo] UNIQUE ([MobileNo]), 

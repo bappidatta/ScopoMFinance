@@ -19,5 +19,11 @@ Post-Deployment Script Template
 :r ..\PreloadData\AspNetUsers.sql
 :r ..\PreloadData\AspNetRoles.sql
 :r ..\PreloadData\AspNetUserRoles.sql
+:r ..\PreloadData\SysGender.sql
+:r ..\PreloadData\SysDivision.sql
+:r ..\PreloadData\SysDistrict.sql
+:r ..\PreloadData\SysUpazila.sql
+:r ..\PreloadData\SysUnion.sql
+:r ..\PreloadData\SysVillage.sql
 :r ..\PreloadData\Branch.sql
 :r ..\PreloadData\UserProfile.sql

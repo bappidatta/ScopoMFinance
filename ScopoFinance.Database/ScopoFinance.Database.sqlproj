@@ -70,6 +70,15 @@
     <Build Include="Tables\AspNetUserRoles.sql" />
     <Build Include="Tables\Branch.sql" />
     <Build Include="Tables\UserProfile.sql" />
+    <Build Include="Tables\OrgCategory.sql" />
+    <Build Include="Tables\EmployeeType.sql" />
+    <Build Include="Tables\SysGender.sql" />
+    <Build Include="Tables\SysDivision.sql" />
+    <Build Include="Tables\SysDistrict.sql" />
+    <Build Include="Tables\SysUpazila.sql" />
+    <Build Include="Tables\SysUnion.sql" />
+    <Build Include="Tables\SysThana.sql" />
+    <Build Include="Tables\SysVillage.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Common\Variables.sql" />
@@ -80,5 +89,11 @@
     <None Include="PreloadData\Branch.sql" />
     <PostDeploy Include="PostDeployment\PostDeployment.sql" />
     <None Include="ScopoFinance.Database.publish.xml" />
+    <None Include="PreloadData\SysGender.sql" />
+    <None Include="PreloadData\SysDivision.sql" />
+    <None Include="PreloadData\SysDistrict.sql" />
+    <None Include="PreloadData\SysUpazila.sql" />
+    <None Include="PreloadData\SysUnion.sql" />
+    <None Include="PreloadData\SysVillage.sql" />
   </ItemGroup>
 </Project>
