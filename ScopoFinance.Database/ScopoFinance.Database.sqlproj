@@ -80,5 +80,6 @@
     <None Include="PreloadData\Branch.sql" />
     <PostDeploy Include="PostDeployment\PostDeployment.sql" />
     <None Include="ScopoFinance.Database.publish.xml" />
+    <None Include="ScopoFinance.Bappi.Database.publish.xml" />
   </ItemGroup>
 </Project>
