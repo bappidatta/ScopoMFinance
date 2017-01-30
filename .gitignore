@@ -195,5 +195,5 @@ FakesAssemblies/
 # Visual Studio 6 workspace options file
 *.opt
 
-ScopoMFinance.Database/ScopoMFinance.Database.jfm
+ScopoFinance.Database/ScopoFinance.Database.jfm
 ScopoMFinance.Web/Web.Local.config
