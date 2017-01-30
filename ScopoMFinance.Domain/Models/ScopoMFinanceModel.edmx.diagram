@@ -8,6 +8,20 @@
         <EntityTypeShape EntityType="ScopoMFinanceModel.Branch" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ScopoMFinanceModel.UserProfile" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_UserProfile_Branch" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.EmployeeType" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.OrgCategory" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysDistrict" Width="1.5" PointX="8" PointY="2.625" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysDivision" Width="1.5" PointX="5.75" PointY="2.875" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysGender" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysThana" Width="1.5" PointX="14.75" PointY="1.125" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysUnion" Width="1.5" PointX="12.5" PointY="2.625" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysUpazila" Width="1.5" PointX="10.25" PointY="2.625" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysVillage" Width="1.5" PointX="14.75" PointY="4.375" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_District_Division" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Upazila_District" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Thana_Union" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Union_Upazila" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Village_Union" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

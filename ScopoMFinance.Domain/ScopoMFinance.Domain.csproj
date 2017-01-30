@@ -53,6 +53,12 @@
     <Compile Include="Models\Branch.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmployeeType.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrgCategory.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ScopoMFinanceModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -68,10 +74,34 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ScopoMFinanceModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\SysDistrict.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SysDivision.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SysGender.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SysThana.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SysUnion.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SysUpazila.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SysVillage.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserProfile.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

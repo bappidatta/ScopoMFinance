@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ScopoMFinanceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ScopoMFinanceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Branch">
           <Key>
             <PropertyRef Name="Id" />
@@ -14,6 +14,113 @@
           <Property Name="OpenDate" Type="datetime" Nullable="false" />
           <Property Name="Status" Type="bit" Nullable="false" />
           <Property Name="IsHeadOffice" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeeType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OrgCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryCode" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SysDistrict">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DivisionId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SysDivision">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SysGender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SysThana">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UnionId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SysUnion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UpazilaId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SysUpazila">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DistrictId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SysVillage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UnionId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="UserProfile">
           <Key>
@@ -25,9 +132,57 @@
           <Property Name="MobileNo" Type="nvarchar" MaxLength="14" Nullable="false" />
           <Property Name="BranchId" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
         </EntityType>
+        <Association Name="FK_District_Division">
+          <End Role="SysDivision" Type="Self.SysDivision" Multiplicity="1" />
+          <End Role="SysDistrict" Type="Self.SysDistrict" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysDivision">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysDistrict">
+              <PropertyRef Name="DivisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Thana_Union">
+          <End Role="SysUnion" Type="Self.SysUnion" Multiplicity="1" />
+          <End Role="SysThana" Type="Self.SysThana" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysUnion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysThana">
+              <PropertyRef Name="UnionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Union_Upazila">
+          <End Role="SysUpazila" Type="Self.SysUpazila" Multiplicity="1" />
+          <End Role="SysUnion" Type="Self.SysUnion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysUpazila">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysUnion">
+              <PropertyRef Name="UpazilaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Upazila_District">
+          <End Role="SysDistrict" Type="Self.SysDistrict" Multiplicity="1" />
+          <End Role="SysUpazila" Type="Self.SysUpazila" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysDistrict">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysUpazila">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserProfile_Branch">
           <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
@@ -40,16 +195,56 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Village_Union">
+          <End Role="SysUnion" Type="Self.SysUnion" Multiplicity="1" />
+          <End Role="SysVillage" Type="Self.SysVillage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysUnion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysVillage">
+              <PropertyRef Name="UnionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ScopoMFinanceModelStoreContainer">
           <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeType" EntityType="Self.EmployeeType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrgCategory" EntityType="Self.OrgCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysDistrict" EntityType="Self.SysDistrict" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysDivision" EntityType="Self.SysDivision" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysGender" EntityType="Self.SysGender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysThana" EntityType="Self.SysThana" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysUnion" EntityType="Self.SysUnion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysUpazila" EntityType="Self.SysUpazila" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysVillage" EntityType="Self.SysVillage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_District_Division" Association="Self.FK_District_Division">
+            <End Role="SysDivision" EntitySet="SysDivision" />
+            <End Role="SysDistrict" EntitySet="SysDistrict" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Thana_Union" Association="Self.FK_Thana_Union">
+            <End Role="SysUnion" EntitySet="SysUnion" />
+            <End Role="SysThana" EntitySet="SysThana" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Union_Upazila" Association="Self.FK_Union_Upazila">
+            <End Role="SysUpazila" EntitySet="SysUpazila" />
+            <End Role="SysUnion" EntitySet="SysUnion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Upazila_District" Association="Self.FK_Upazila_District">
+            <End Role="SysDistrict" EntitySet="SysDistrict" />
+            <End Role="SysUpazila" EntitySet="SysUpazila" />
+          </AssociationSet>
           <AssociationSet Name="FK_UserProfile_Branch" Association="Self.FK_UserProfile_Branch">
             <End Role="Branch" EntitySet="Branch" />
             <End Role="UserProfile" EntitySet="UserProfile" />
           </AssociationSet>
+          <AssociationSet Name="FK_Village_Union" Association="Self.FK_Village_Union">
+            <End Role="SysUnion" EntitySet="SysUnion" />
+            <End Role="SysVillage" EntitySet="SysVillage" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ScopoMFinanceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -74,7 +269,7 @@
           <Property Name="MobileNo" Type="String" MaxLength="14" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="BranchId" Type="Int32" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Branch" Relationship="Self.FK_UserProfile_Branch" FromRole="UserProfile" ToRole="Branch" />
         </EntityType>
@@ -97,7 +292,213 @@
             <End Role="Branch" EntitySet="Branches" />
             <End Role="UserProfile" EntitySet="UserProfiles" />
           </AssociationSet>
+          <EntitySet Name="EmployeeTypes" EntityType="ScopoMFinanceModel.EmployeeType" />
+          <EntitySet Name="OrgCategories" EntityType="ScopoMFinanceModel.OrgCategory" />
+          <EntitySet Name="SysDistricts" EntityType="ScopoMFinanceModel.SysDistrict" />
+          <EntitySet Name="SysDivisions" EntityType="ScopoMFinanceModel.SysDivision" />
+          <EntitySet Name="SysGenders" EntityType="ScopoMFinanceModel.SysGender" />
+          <EntitySet Name="SysThanas" EntityType="ScopoMFinanceModel.SysThana" />
+          <EntitySet Name="SysUnions" EntityType="ScopoMFinanceModel.SysUnion" />
+          <EntitySet Name="SysUpazilas" EntityType="ScopoMFinanceModel.SysUpazila" />
+          <EntitySet Name="SysVillages" EntityType="ScopoMFinanceModel.SysVillage" />
+          <AssociationSet Name="FK_District_Division" Association="ScopoMFinanceModel.FK_District_Division">
+            <End Role="SysDivision" EntitySet="SysDivisions" />
+            <End Role="SysDistrict" EntitySet="SysDistricts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Upazila_District" Association="ScopoMFinanceModel.FK_Upazila_District">
+            <End Role="SysDistrict" EntitySet="SysDistricts" />
+            <End Role="SysUpazila" EntitySet="SysUpazilas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Thana_Union" Association="ScopoMFinanceModel.FK_Thana_Union">
+            <End Role="SysUnion" EntitySet="SysUnions" />
+            <End Role="SysThana" EntitySet="SysThanas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Union_Upazila" Association="ScopoMFinanceModel.FK_Union_Upazila">
+            <End Role="SysUpazila" EntitySet="SysUpazilas" />
+            <End Role="SysUnion" EntitySet="SysUnions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Village_Union" Association="ScopoMFinanceModel.FK_Village_Union">
+            <End Role="SysUnion" EntitySet="SysUnions" />
+            <End Role="SysVillage" EntitySet="SysVillages" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="EmployeeType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="OrgCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryCode" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SysDistrict">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DivisionId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="SysDivision" Relationship="ScopoMFinanceModel.FK_District_Division" FromRole="SysDistrict" ToRole="SysDivision" />
+          <NavigationProperty Name="SysUpazilas" Relationship="ScopoMFinanceModel.FK_Upazila_District" FromRole="SysDistrict" ToRole="SysUpazila" />
+        </EntityType>
+        <EntityType Name="SysDivision">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="SysDistricts" Relationship="ScopoMFinanceModel.FK_District_Division" FromRole="SysDivision" ToRole="SysDistrict" />
+        </EntityType>
+        <EntityType Name="SysGender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SysThana">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UnionId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="SysUnion" Relationship="ScopoMFinanceModel.FK_Thana_Union" FromRole="SysThana" ToRole="SysUnion" />
+        </EntityType>
+        <EntityType Name="SysUnion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpazilaId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="SysThanas" Relationship="ScopoMFinanceModel.FK_Thana_Union" FromRole="SysUnion" ToRole="SysThana" />
+          <NavigationProperty Name="SysUpazila" Relationship="ScopoMFinanceModel.FK_Union_Upazila" FromRole="SysUnion" ToRole="SysUpazila" />
+          <NavigationProperty Name="SysVillages" Relationship="ScopoMFinanceModel.FK_Village_Union" FromRole="SysUnion" ToRole="SysVillage" />
+        </EntityType>
+        <EntityType Name="SysUpazila">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DistrictId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="SysDistrict" Relationship="ScopoMFinanceModel.FK_Upazila_District" FromRole="SysUpazila" ToRole="SysDistrict" />
+          <NavigationProperty Name="SysUnions" Relationship="ScopoMFinanceModel.FK_Union_Upazila" FromRole="SysUpazila" ToRole="SysUnion" />
+        </EntityType>
+        <EntityType Name="SysVillage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UnionId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="SysUnion" Relationship="ScopoMFinanceModel.FK_Village_Union" FromRole="SysVillage" ToRole="SysUnion" />
+        </EntityType>
+        <Association Name="FK_District_Division">
+          <End Type="ScopoMFinanceModel.SysDivision" Role="SysDivision" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.SysDistrict" Role="SysDistrict" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysDivision">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysDistrict">
+              <PropertyRef Name="DivisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Upazila_District">
+          <End Type="ScopoMFinanceModel.SysDistrict" Role="SysDistrict" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.SysUpazila" Role="SysUpazila" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysDistrict">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysUpazila">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Thana_Union">
+          <End Type="ScopoMFinanceModel.SysUnion" Role="SysUnion" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.SysThana" Role="SysThana" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysUnion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysThana">
+              <PropertyRef Name="UnionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Union_Upazila">
+          <End Type="ScopoMFinanceModel.SysUpazila" Role="SysUpazila" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.SysUnion" Role="SysUnion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysUpazila">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysUnion">
+              <PropertyRef Name="UpazilaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Village_Union">
+          <End Type="ScopoMFinanceModel.SysUnion" Role="SysUnion" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.SysVillage" Role="SysVillage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysUnion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysVillage">
+              <PropertyRef Name="UnionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -126,6 +527,122 @@
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeTypes">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.EmployeeType">
+              <MappingFragment StoreEntitySet="EmployeeType">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrgCategories">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.OrgCategory">
+              <MappingFragment StoreEntitySet="OrgCategory">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysDistricts">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.SysDistrict">
+              <MappingFragment StoreEntitySet="SysDistrict">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysDivisions">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.SysDivision">
+              <MappingFragment StoreEntitySet="SysDivision">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysGenders">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.SysGender">
+              <MappingFragment StoreEntitySet="SysGender">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysThanas">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.SysThana">
+              <MappingFragment StoreEntitySet="SysThana">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UnionId" ColumnName="UnionId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysUnions">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.SysUnion">
+              <MappingFragment StoreEntitySet="SysUnion">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UpazilaId" ColumnName="UpazilaId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysUpazilas">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.SysUpazila">
+              <MappingFragment StoreEntitySet="SysUpazila">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysVillages">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.SysVillage">
+              <MappingFragment StoreEntitySet="SysVillage">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UnionId" ColumnName="UnionId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
