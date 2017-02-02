@@ -83,6 +83,7 @@
     <Build Include="Tables\Project.sql" />
     <Build Include="Tables\ProjectType.sql" />
     <Build Include="Tables\SysDonor.sql" />
+    <Build Include="Tables\BranchWiseProjectMapping.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Common\Variables.sql" />
