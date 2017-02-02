@@ -4,6 +4,7 @@
 	[BranchId] INT NOT NULL, 
 	[EmployeeNo] NVARCHAR(10) NOT NULL,
 	[EmployeeName] NVARCHAR(255) NOT NULL,
+	[IsCreditOfficer] BIT NOT NULL DEFAULT 0,
 	[JoiningDate] DATETIME NOT NULL,
 	[ResignDate] DATETIME NULL, 
     [GenderId] INT NOT NULL, 
