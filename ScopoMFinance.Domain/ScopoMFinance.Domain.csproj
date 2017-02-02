@@ -62,7 +62,13 @@
     <Compile Include="Models\EmployeeType.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Organization.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\OrgCategory.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrgCreditOfficer.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Project.cs">
@@ -85,6 +91,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ScopoMFinanceModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SysColcOption.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SysDistrict.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
