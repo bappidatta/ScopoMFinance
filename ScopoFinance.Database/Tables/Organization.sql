@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [dbo].[Organization]
 (
 	[Id] INT NOT NULL IDENTITY, 
+	[BranchId] INT NOT NULL, 
 	[OrganizationNo] NVARCHAR(4) NOT NULL,
 	[OrganizationName] NVARCHAR(50) NOT NULL,
 	[OrgCategoryId] INT NOT NULL, 
@@ -19,6 +20,7 @@
 	[UpdatedBy] NVARCHAR(256) NULL, 
     [UpdatedOn] DATETIME NULL,
     CONSTRAINT [PK_Organization] PRIMARY KEY ([Id]),
+	CONSTRAINT [FK_Org_Branch] FOREIGN KEY ([BranchId]) REFERENCES [Branch]([Id]),
 	CONSTRAINT [FK_Org_OrgCategory] FOREIGN KEY ([OrgCategoryId]) REFERENCES [OrgCategory]([Id]),
 	CONSTRAINT [FK_Org_Gender] FOREIGN KEY ([GenderId]) REFERENCES [SysGender]([Id]),
 	CONSTRAINT [FK_Org_LoanColc] FOREIGN KEY ([LoanColcOption]) REFERENCES [SysColcOption]([Id]),
