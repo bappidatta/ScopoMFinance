@@ -19,7 +19,16 @@ footer.page-footer {
     padding-top: 0px;
 }
 
+.login-layout {
+    background-image: url(images/login-background.jpg);
+    background-size: cover;
+    min-height: 910px;
+}
+
 .login-box {
-    margin-top: 200px;
-    margin-bottom: 311px;
+    margin-bottom: 0px;
+}
+
+.brand-logo {
+    padding: 100px 20px;
 }
