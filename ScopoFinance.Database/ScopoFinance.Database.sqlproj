@@ -79,6 +79,7 @@
     <Build Include="Tables\SysUnion.sql" />
     <Build Include="Tables\SysThana.sql" />
     <Build Include="Tables\SysVillage.sql" />
+    <Build Include="Tables\Employee.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Common\Variables.sql" />
@@ -96,5 +97,8 @@
     <None Include="PreloadData\SysUnion.sql" />
     <None Include="PreloadData\SysVillage.sql" />
     <None Include="ScopoFinance.Bappi.Database.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="ScopoFinance.Database.refactorlog" />
   </ItemGroup>
 </Project>
