@@ -36,5 +36,10 @@ namespace ScopoMFinance.Domain.Models
         public virtual DbSet<SysUnion> SysUnions { get; set; }
         public virtual DbSet<SysUpazila> SysUpazilas { get; set; }
         public virtual DbSet<SysVillage> SysVillages { get; set; }
+        public virtual DbSet<BranchWiseProjectMapping> BranchWiseProjectMappings { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<Project> Projects { get; set; }
+        public virtual DbSet<ProjectType> ProjectTypes { get; set; }
+        public virtual DbSet<SysDonor> SysDonors { get; set; }
     }
 }

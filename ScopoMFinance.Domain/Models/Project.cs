@@ -12,27 +12,30 @@ namespace ScopoMFinance.Domain.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Branch
+    public partial class Project
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Branch()
+        public Project()
         {
-            this.UserProfiles = new HashSet<UserProfile>();
             this.BranchWiseProjectMappings = new HashSet<BranchWiseProjectMapping>();
-            this.Employees = new HashSet<Employee>();
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
-        public System.DateTime OpenDate { get; set; }
-        public bool Status { get; set; }
-        public bool IsHeadOffice { get; set; }
+        public string ProjectCode { get; set; }
+        public string ProjectName { get; set; }
+        public Nullable<System.DateTime> ProjectDuration { get; set; }
+        public int ProjectTypeId { get; set; }
+        public Nullable<int> DonorId { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
+        public string CreatedBy { get; set; }
+        public System.DateTime CreatedOn { get; set; }
+        public string UpdatedBy { get; set; }
+        public Nullable<System.DateTime> UpdatedOn { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserProfile> UserProfiles { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BranchWiseProjectMapping> BranchWiseProjectMappings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employee> Employees { get; set; }
+        public virtual SysDonor SysDonor { get; set; }
+        public virtual ProjectType ProjectType { get; set; }
     }
 }

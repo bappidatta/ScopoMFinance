@@ -22,6 +22,18 @@
         <AssociationConnector Association="ScopoMFinanceModel.FK_Thana_Union" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_Union_Upazila" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_Village_Union" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.BranchWiseProjectMapping" Width="1.5" PointX="3" PointY="10.5" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.Employee" Width="1.5" PointX="8" PointY="6.875" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.Project" Width="1.5" PointX="0.75" PointY="10.75" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_BranchProject_Branch" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Employee_Branch" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_BranchProject_Project" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Employee_EmployeeType" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Employee_Gender" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.ProjectType" Width="1.5" PointX="0.75" PointY="15.625" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysDonor" Width="1.5" PointX="0.75" PointY="19.125" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Project_Donor" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Project_ProjectType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

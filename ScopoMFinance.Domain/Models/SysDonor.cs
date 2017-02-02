@@ -12,27 +12,24 @@ namespace ScopoMFinance.Domain.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Branch
+    public partial class SysDonor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Branch()
+        public SysDonor()
         {
-            this.UserProfiles = new HashSet<UserProfile>();
-            this.BranchWiseProjectMappings = new HashSet<BranchWiseProjectMapping>();
-            this.Employees = new HashSet<Employee>();
+            this.Projects = new HashSet<Project>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public System.DateTime OpenDate { get; set; }
-        public bool Status { get; set; }
-        public bool IsHeadOffice { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
+        public string CreatedBy { get; set; }
+        public System.DateTime CreatedOn { get; set; }
+        public string UpdatedBy { get; set; }
+        public Nullable<System.DateTime> UpdatedOn { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserProfile> UserProfiles { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BranchWiseProjectMapping> BranchWiseProjectMappings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<Project> Projects { get; set; }
     }
 }
