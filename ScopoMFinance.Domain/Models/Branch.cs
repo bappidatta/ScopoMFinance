@@ -17,9 +17,11 @@ namespace ScopoMFinance.Domain.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Branch()
         {
-            this.UserProfiles = new HashSet<UserProfile>();
             this.BranchWiseProjectMappings = new HashSet<BranchWiseProjectMapping>();
             this.Employees = new HashSet<Employee>();
+            this.Organizations = new HashSet<Organization>();
+            this.OrgCreditOfficers = new HashSet<OrgCreditOfficer>();
+            this.UserProfiles = new HashSet<UserProfile>();
         }
     
         public int Id { get; set; }
@@ -29,10 +31,14 @@ namespace ScopoMFinance.Domain.Models
         public bool IsHeadOffice { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserProfile> UserProfiles { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BranchWiseProjectMapping> BranchWiseProjectMappings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employees { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Organization> Organizations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrgCreditOfficer> OrgCreditOfficers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserProfile> UserProfiles { get; set; }
     }
 }

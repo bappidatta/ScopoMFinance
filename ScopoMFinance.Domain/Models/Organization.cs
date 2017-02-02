@@ -12,26 +12,27 @@ namespace ScopoMFinance.Domain.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Employee
+    public partial class Organization
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Employee()
+        public Organization()
         {
             this.OrgCreditOfficers = new HashSet<OrgCreditOfficer>();
         }
     
         public int Id { get; set; }
         public int BranchId { get; set; }
-        public string EmployeeNo { get; set; }
-        public string EmployeeName { get; set; }
-        public bool IsCreditOfficer { get; set; }
-        public System.DateTime JoiningDate { get; set; }
-        public Nullable<System.DateTime> ResignDate { get; set; }
+        public string OrganizationNo { get; set; }
+        public string OrganizationName { get; set; }
+        public int OrgCategoryId { get; set; }
         public int GenderId { get; set; }
-        public int EmployeeTypeId { get; set; }
-        public string Address { get; set; }
-        public string PhoneNo { get; set; }
-        public string Remarks { get; set; }
+        public System.DateTime SetupDate { get; set; }
+        public int LoanColcOption { get; set; }
+        public int SavColcOption { get; set; }
+        public System.DateTime FirstLoanColcDate { get; set; }
+        public System.DateTime FirstSavColcDate { get; set; }
+        public int ProjectId { get; set; }
+        public Nullable<int> VillageId { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
         public string CreatedBy { get; set; }
@@ -40,8 +41,12 @@ namespace ScopoMFinance.Domain.Models
         public Nullable<System.DateTime> UpdatedOn { get; set; }
     
         public virtual Branch Branch { get; set; }
-        public virtual EmployeeType EmployeeType { get; set; }
         public virtual SysGender SysGender { get; set; }
+        public virtual SysColcOption SysColcOption { get; set; }
+        public virtual OrgCategory OrgCategory { get; set; }
+        public virtual Project Project { get; set; }
+        public virtual SysColcOption SysColcOption1 { get; set; }
+        public virtual SysVillage SysVillage { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrgCreditOfficer> OrgCreditOfficers { get; set; }
     }

@@ -18,6 +18,7 @@ namespace ScopoMFinance.Domain.Models
         public SysGender()
         {
             this.Employees = new HashSet<Employee>();
+            this.Organizations = new HashSet<Organization>();
         }
     
         public int Id { get; set; }
@@ -27,5 +28,7 @@ namespace ScopoMFinance.Domain.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employees { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Organization> Organizations { get; set; }
     }
 }

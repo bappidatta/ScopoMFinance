@@ -12,24 +12,23 @@ namespace ScopoMFinance.Domain.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SysVillage
+    public partial class OrgCreditOfficer
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SysVillage()
-        {
-            this.Organizations = new HashSet<Organization>();
-        }
-    
         public int Id { get; set; }
-        public string Name { get; set; }
-        public int UnionId { get; set; }
+        public int BranchId { get; set; }
+        public int EmployeeId { get; set; }
+        public int OrganizationId { get; set; }
+        public System.DateTime AssignedDate { get; set; }
+        public Nullable<System.DateTime> ReleaseDate { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
         public string CreatedBy { get; set; }
         public System.DateTime CreatedOn { get; set; }
+        public string UpdatedBy { get; set; }
+        public Nullable<System.DateTime> UpdatedOn { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Organization> Organizations { get; set; }
-        public virtual SysUnion SysUnion { get; set; }
+        public virtual Branch Branch { get; set; }
+        public virtual Employee Employee { get; set; }
+        public virtual Organization Organization { get; set; }
     }
 }

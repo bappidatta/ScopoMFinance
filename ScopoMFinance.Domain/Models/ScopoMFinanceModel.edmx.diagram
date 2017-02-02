@@ -5,35 +5,48 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="3825a615b70f4c79894fb290d7c04c9d" Name="Diagram1">
-        <EntityTypeShape EntityType="ScopoMFinanceModel.Branch" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.UserProfile" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
-        <AssociationConnector Association="ScopoMFinanceModel.FK_UserProfile_Branch" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.EmployeeType" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.OrgCategory" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.SysDistrict" Width="1.5" PointX="8" PointY="2.625" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.SysDivision" Width="1.5" PointX="5.75" PointY="2.875" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.SysGender" Width="1.5" PointX="5.75" PointY="6.75" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.SysThana" Width="1.5" PointX="14.75" PointY="1.125" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.SysUnion" Width="1.5" PointX="12.5" PointY="2.625" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.SysUpazila" Width="1.5" PointX="10.25" PointY="2.625" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.SysVillage" Width="1.5" PointX="14.75" PointY="4.375" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.Branch" Width="1.5" PointX="0.75" PointY="11" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.BranchWiseProjectMapping" Width="1.5" PointX="3" PointY="11.375" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.Employee" Width="1.5" PointX="3" PointY="4.75" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.EmployeeType" Width="1.5" PointX="0.75" PointY="4.625" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.Organization" Width="1.5" PointX="6" PointY="9.25" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.OrgCategory" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.OrgCreditOfficer" Width="1.5" PointX="8.25" PointY="8.25" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.Project" Width="1.5" PointX="3.75" PointY="25.5" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.ProjectType" Width="1.5" PointX="1.5" PointY="28" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysColcOption" Width="1.5" PointX="3.75" PointY="31.125" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysDistrict" Width="1.5" PointX="1.5" PointY="36.5" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysDivision" Width="1.5" PointX="1.5" PointY="40.75" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysDonor" Width="1.5" PointX="1.5" PointY="24.5" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysGender" Width="1.5" PointX="0.75" PointY="1.125" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysThana" Width="1.5" PointX="3.75" PointY="35.625" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysUnion" Width="1.5" PointX="1.5" PointY="15.5" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysUpazila" Width="1.5" PointX="1.5" PointY="32.5" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysVillage" Width="1.5" PointX="3.75" PointY="15.5" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.UserProfile" Width="1.5" PointX="3" PointY="20.75" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_BranchProject_Branch" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Employee_Branch" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_Branch" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_OrgCO_Branch" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_UserProfile_Branch" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_BranchProject_Project" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Employee_EmployeeType" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Employee_Gender" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_OrgCO_Employee" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_Gender" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_LoanColc" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_OrgCategory" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_Project" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_SavColc" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_Village" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_OrgCO_Org" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Project_Donor" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Project_ProjectType" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_District_Division" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_Upazila_District" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_Thana_Union" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_Union_Upazila" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_Village_Union" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.BranchWiseProjectMapping" Width="1.5" PointX="3" PointY="10.5" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.Employee" Width="1.5" PointX="8" PointY="6.875" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.Project" Width="1.5" PointX="0.75" PointY="10.75" />
-        <AssociationConnector Association="ScopoMFinanceModel.FK_BranchProject_Branch" />
-        <AssociationConnector Association="ScopoMFinanceModel.FK_Employee_Branch" />
-        <AssociationConnector Association="ScopoMFinanceModel.FK_BranchProject_Project" />
-        <AssociationConnector Association="ScopoMFinanceModel.FK_Employee_EmployeeType" />
-        <AssociationConnector Association="ScopoMFinanceModel.FK_Employee_Gender" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.ProjectType" Width="1.5" PointX="0.75" PointY="15.625" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.SysDonor" Width="1.5" PointX="0.75" PointY="19.125" />
-        <AssociationConnector Association="ScopoMFinanceModel.FK_Project_Donor" />
-        <AssociationConnector Association="ScopoMFinanceModel.FK_Project_ProjectType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

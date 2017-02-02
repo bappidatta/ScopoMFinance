@@ -31,6 +31,7 @@
           <Property Name="BranchId" Type="int" Nullable="false" />
           <Property Name="EmployeeNo" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="EmployeeName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsCreditOfficer" Type="bit" Nullable="false" />
           <Property Name="JoiningDate" Type="datetime" Nullable="false" />
           <Property Name="ResignDate" Type="datetime" />
           <Property Name="GenderId" Type="int" Nullable="false" />
@@ -58,6 +59,30 @@
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
           <Property Name="UpdatedOn" Type="datetime" />
         </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+          <Property Name="OrganizationNo" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="OrganizationName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OrgCategoryId" Type="int" Nullable="false" />
+          <Property Name="GenderId" Type="int" Nullable="false" />
+          <Property Name="SetupDate" Type="datetime" Nullable="false" />
+          <Property Name="LoanColcOption" Type="int" Nullable="false" />
+          <Property Name="SavColcOption" Type="int" Nullable="false" />
+          <Property Name="FirstLoanColcDate" Type="datetime" Nullable="false" />
+          <Property Name="FirstSavColcDate" Type="datetime" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="VillageId" Type="int" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
         <EntityType Name="OrgCategory">
           <Key>
             <PropertyRef Name="Id" />
@@ -65,6 +90,23 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CategoryCode" Type="nvarchar" MaxLength="5" Nullable="false" />
           <Property Name="CategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OrgCreditOfficer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="OrganizationId" Type="int" Nullable="false" />
+          <Property Name="AssignedDate" Type="datetime" Nullable="false" />
+          <Property Name="ReleaseDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
@@ -95,6 +137,19 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SysColcOption">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
@@ -280,6 +335,126 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Org_Branch">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Org_Gender">
+          <End Role="SysGender" Type="Self.SysGender" Multiplicity="1" />
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysGender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Org_LoanColc">
+          <End Role="SysColcOption" Type="Self.SysColcOption" Multiplicity="1" />
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysColcOption">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="LoanColcOption" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Org_OrgCategory">
+          <End Role="OrgCategory" Type="Self.OrgCategory" Multiplicity="1" />
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrgCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="OrgCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Org_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Org_SavColc">
+          <End Role="SysColcOption" Type="Self.SysColcOption" Multiplicity="1" />
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysColcOption">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="SavColcOption" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Org_Village">
+          <End Role="SysVillage" Type="Self.SysVillage" Multiplicity="0..1" />
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysVillage">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="VillageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrgCO_Branch">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
+          <End Role="OrgCreditOfficer" Type="Self.OrgCreditOfficer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrgCreditOfficer">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrgCO_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="OrgCreditOfficer" Type="Self.OrgCreditOfficer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrgCreditOfficer">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrgCO_Org">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="OrgCreditOfficer" Type="Self.OrgCreditOfficer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrgCreditOfficer">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Project_Donor">
           <End Role="SysDonor" Type="Self.SysDonor" Multiplicity="0..1" />
           <End Role="Project" Type="Self.Project" Multiplicity="*" />
@@ -369,9 +544,12 @@
           <EntitySet Name="BranchWiseProjectMapping" EntityType="Self.BranchWiseProjectMapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeeType" EntityType="Self.EmployeeType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrgCategory" EntityType="Self.OrgCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrgCreditOfficer" EntityType="Self.OrgCreditOfficer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectType" EntityType="Self.ProjectType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysColcOption" EntityType="Self.SysColcOption" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SysDistrict" EntityType="Self.SysDistrict" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SysDivision" EntityType="Self.SysDivision" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SysDonor" EntityType="Self.SysDonor" Schema="dbo" store:Type="Tables" />
@@ -404,6 +582,46 @@
           <AssociationSet Name="FK_Employee_Gender" Association="Self.FK_Employee_Gender">
             <End Role="SysGender" EntitySet="SysGender" />
             <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Org_Branch" Association="Self.FK_Org_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Org_Gender" Association="Self.FK_Org_Gender">
+            <End Role="SysGender" EntitySet="SysGender" />
+            <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Org_LoanColc" Association="Self.FK_Org_LoanColc">
+            <End Role="SysColcOption" EntitySet="SysColcOption" />
+            <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Org_OrgCategory" Association="Self.FK_Org_OrgCategory">
+            <End Role="OrgCategory" EntitySet="OrgCategory" />
+            <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Org_Project" Association="Self.FK_Org_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Org_SavColc" Association="Self.FK_Org_SavColc">
+            <End Role="SysColcOption" EntitySet="SysColcOption" />
+            <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Org_Village" Association="Self.FK_Org_Village">
+            <End Role="SysVillage" EntitySet="SysVillage" />
+            <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrgCO_Branch" Association="Self.FK_OrgCO_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="OrgCreditOfficer" EntitySet="OrgCreditOfficer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrgCO_Employee" Association="Self.FK_OrgCO_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="OrgCreditOfficer" EntitySet="OrgCreditOfficer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrgCO_Org" Association="Self.FK_OrgCO_Org">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="OrgCreditOfficer" EntitySet="OrgCreditOfficer" />
           </AssociationSet>
           <AssociationSet Name="FK_Project_Donor" Association="Self.FK_Project_Donor">
             <End Role="SysDonor" EntitySet="SysDonor" />
@@ -438,61 +656,98 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ScopoMFinanceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Branch">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="OpenDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Status" Type="Boolean" Nullable="false" />
-          <Property Name="IsHeadOffice" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="UserProfiles" Relationship="Self.FK_UserProfile_Branch" FromRole="Branch" ToRole="UserProfile" />
-          <NavigationProperty Name="BranchWiseProjectMappings" Relationship="ScopoMFinanceModel.FK_BranchProject_Branch" FromRole="Branch" ToRole="BranchWiseProjectMapping" />
-          <NavigationProperty Name="Employees" Relationship="ScopoMFinanceModel.FK_Employee_Branch" FromRole="Branch" ToRole="Employee" />
-        </EntityType>
-        <EntityType Name="UserProfile">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="MobileNo" Type="String" MaxLength="14" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="BranchId" Type="Int32" Nullable="false" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Branch" Relationship="Self.FK_UserProfile_Branch" FromRole="UserProfile" ToRole="Branch" />
-        </EntityType>
-        <Association Name="FK_UserProfile_Branch">
-          <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Branch">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserProfile">
-              <PropertyRef Name="BranchId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="ScopoMFinanceEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Branches" EntityType="Self.Branch" />
-          <EntitySet Name="UserProfiles" EntityType="Self.UserProfile" />
-          <AssociationSet Name="FK_UserProfile_Branch" Association="Self.FK_UserProfile_Branch">
-            <End Role="Branch" EntitySet="Branches" />
-            <End Role="UserProfile" EntitySet="UserProfiles" />
-          </AssociationSet>
+          <EntitySet Name="Branches" EntityType="ScopoMFinanceModel.Branch" />
+          <EntitySet Name="BranchWiseProjectMappings" EntityType="ScopoMFinanceModel.BranchWiseProjectMapping" />
+          <EntitySet Name="Employees" EntityType="ScopoMFinanceModel.Employee" />
           <EntitySet Name="EmployeeTypes" EntityType="ScopoMFinanceModel.EmployeeType" />
+          <EntitySet Name="Organizations" EntityType="ScopoMFinanceModel.Organization" />
           <EntitySet Name="OrgCategories" EntityType="ScopoMFinanceModel.OrgCategory" />
+          <EntitySet Name="OrgCreditOfficers" EntityType="ScopoMFinanceModel.OrgCreditOfficer" />
+          <EntitySet Name="Projects" EntityType="ScopoMFinanceModel.Project" />
+          <EntitySet Name="ProjectTypes" EntityType="ScopoMFinanceModel.ProjectType" />
+          <EntitySet Name="SysColcOptions" EntityType="ScopoMFinanceModel.SysColcOption" />
           <EntitySet Name="SysDistricts" EntityType="ScopoMFinanceModel.SysDistrict" />
           <EntitySet Name="SysDivisions" EntityType="ScopoMFinanceModel.SysDivision" />
+          <EntitySet Name="SysDonors" EntityType="ScopoMFinanceModel.SysDonor" />
           <EntitySet Name="SysGenders" EntityType="ScopoMFinanceModel.SysGender" />
           <EntitySet Name="SysThanas" EntityType="ScopoMFinanceModel.SysThana" />
           <EntitySet Name="SysUnions" EntityType="ScopoMFinanceModel.SysUnion" />
           <EntitySet Name="SysUpazilas" EntityType="ScopoMFinanceModel.SysUpazila" />
           <EntitySet Name="SysVillages" EntityType="ScopoMFinanceModel.SysVillage" />
+          <EntitySet Name="UserProfiles" EntityType="ScopoMFinanceModel.UserProfile" />
+          <AssociationSet Name="FK_BranchProject_Branch" Association="ScopoMFinanceModel.FK_BranchProject_Branch">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="BranchWiseProjectMapping" EntitySet="BranchWiseProjectMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Branch" Association="ScopoMFinanceModel.FK_Employee_Branch">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Org_Branch" Association="ScopoMFinanceModel.FK_Org_Branch">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrgCO_Branch" Association="ScopoMFinanceModel.FK_OrgCO_Branch">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="OrgCreditOfficer" EntitySet="OrgCreditOfficers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfile_Branch" Association="ScopoMFinanceModel.FK_UserProfile_Branch">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BranchProject_Project" Association="ScopoMFinanceModel.FK_BranchProject_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="BranchWiseProjectMapping" EntitySet="BranchWiseProjectMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_EmployeeType" Association="ScopoMFinanceModel.FK_Employee_EmployeeType">
+            <End Role="EmployeeType" EntitySet="EmployeeTypes" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Gender" Association="ScopoMFinanceModel.FK_Employee_Gender">
+            <End Role="SysGender" EntitySet="SysGenders" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrgCO_Employee" Association="ScopoMFinanceModel.FK_OrgCO_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="OrgCreditOfficer" EntitySet="OrgCreditOfficers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Org_Gender" Association="ScopoMFinanceModel.FK_Org_Gender">
+            <End Role="SysGender" EntitySet="SysGenders" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Org_LoanColc" Association="ScopoMFinanceModel.FK_Org_LoanColc">
+            <End Role="SysColcOption" EntitySet="SysColcOptions" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Org_OrgCategory" Association="ScopoMFinanceModel.FK_Org_OrgCategory">
+            <End Role="OrgCategory" EntitySet="OrgCategories" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Org_Project" Association="ScopoMFinanceModel.FK_Org_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Org_SavColc" Association="ScopoMFinanceModel.FK_Org_SavColc">
+            <End Role="SysColcOption" EntitySet="SysColcOptions" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Org_Village" Association="ScopoMFinanceModel.FK_Org_Village">
+            <End Role="SysVillage" EntitySet="SysVillages" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrgCO_Org" Association="ScopoMFinanceModel.FK_OrgCO_Org">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="OrgCreditOfficer" EntitySet="OrgCreditOfficers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_Donor" Association="ScopoMFinanceModel.FK_Project_Donor">
+            <End Role="SysDonor" EntitySet="SysDonors" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_ProjectType" Association="ScopoMFinanceModel.FK_Project_ProjectType">
+            <End Role="ProjectType" EntitySet="ProjectTypes" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
           <AssociationSet Name="FK_District_Division" Association="ScopoMFinanceModel.FK_District_Division">
             <End Role="SysDivision" EntitySet="SysDivisions" />
             <End Role="SysDistrict" EntitySet="SysDistricts" />
@@ -513,40 +768,59 @@
             <End Role="SysUnion" EntitySet="SysUnions" />
             <End Role="SysVillage" EntitySet="SysVillages" />
           </AssociationSet>
-          <EntitySet Name="BranchWiseProjectMappings" EntityType="ScopoMFinanceModel.BranchWiseProjectMapping" />
-          <EntitySet Name="Employees" EntityType="ScopoMFinanceModel.Employee" />
-          <EntitySet Name="Projects" EntityType="ScopoMFinanceModel.Project" />
-          <AssociationSet Name="FK_BranchProject_Branch" Association="ScopoMFinanceModel.FK_BranchProject_Branch">
-            <End Role="Branch" EntitySet="Branches" />
-            <End Role="BranchWiseProjectMapping" EntitySet="BranchWiseProjectMappings" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employee_Branch" Association="ScopoMFinanceModel.FK_Employee_Branch">
-            <End Role="Branch" EntitySet="Branches" />
-            <End Role="Employee" EntitySet="Employees" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BranchProject_Project" Association="ScopoMFinanceModel.FK_BranchProject_Project">
-            <End Role="Project" EntitySet="Projects" />
-            <End Role="BranchWiseProjectMapping" EntitySet="BranchWiseProjectMappings" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employee_EmployeeType" Association="ScopoMFinanceModel.FK_Employee_EmployeeType">
-            <End Role="EmployeeType" EntitySet="EmployeeTypes" />
-            <End Role="Employee" EntitySet="Employees" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employee_Gender" Association="ScopoMFinanceModel.FK_Employee_Gender">
-            <End Role="SysGender" EntitySet="SysGenders" />
-            <End Role="Employee" EntitySet="Employees" />
-          </AssociationSet>
-          <EntitySet Name="ProjectTypes" EntityType="ScopoMFinanceModel.ProjectType" />
-          <EntitySet Name="SysDonors" EntityType="ScopoMFinanceModel.SysDonor" />
-          <AssociationSet Name="FK_Project_Donor" Association="ScopoMFinanceModel.FK_Project_Donor">
-            <End Role="SysDonor" EntitySet="SysDonors" />
-            <End Role="Project" EntitySet="Projects" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Project_ProjectType" Association="ScopoMFinanceModel.FK_Project_ProjectType">
-            <End Role="ProjectType" EntitySet="ProjectTypes" />
-            <End Role="Project" EntitySet="Projects" />
-          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OpenDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="IsHeadOffice" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="BranchWiseProjectMappings" Relationship="ScopoMFinanceModel.FK_BranchProject_Branch" FromRole="Branch" ToRole="BranchWiseProjectMapping" />
+          <NavigationProperty Name="Employees" Relationship="ScopoMFinanceModel.FK_Employee_Branch" FromRole="Branch" ToRole="Employee" />
+          <NavigationProperty Name="Organizations" Relationship="ScopoMFinanceModel.FK_Org_Branch" FromRole="Branch" ToRole="Organization" />
+          <NavigationProperty Name="OrgCreditOfficers" Relationship="ScopoMFinanceModel.FK_OrgCO_Branch" FromRole="Branch" ToRole="OrgCreditOfficer" />
+          <NavigationProperty Name="UserProfiles" Relationship="ScopoMFinanceModel.FK_UserProfile_Branch" FromRole="Branch" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="BranchWiseProjectMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_BranchProject_Branch" FromRole="BranchWiseProjectMapping" ToRole="Branch" />
+          <NavigationProperty Name="Project" Relationship="ScopoMFinanceModel.FK_BranchProject_Project" FromRole="BranchWiseProjectMapping" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeNo" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsCreditOfficer" Type="Boolean" Nullable="false" />
+          <Property Name="JoiningDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ResignDate" Type="DateTime" Precision="3" />
+          <Property Name="GenderId" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_Employee_Branch" FromRole="Employee" ToRole="Branch" />
+          <NavigationProperty Name="EmployeeType" Relationship="ScopoMFinanceModel.FK_Employee_EmployeeType" FromRole="Employee" ToRole="EmployeeType" />
+          <NavigationProperty Name="SysGender" Relationship="ScopoMFinanceModel.FK_Employee_Gender" FromRole="Employee" ToRole="SysGender" />
+          <NavigationProperty Name="OrgCreditOfficers" Relationship="ScopoMFinanceModel.FK_OrgCO_Employee" FromRole="Employee" ToRole="OrgCreditOfficer" />
+        </EntityType>
         <EntityType Name="EmployeeType">
           <Key>
             <PropertyRef Name="Id" />
@@ -561,6 +835,38 @@
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Employees" Relationship="ScopoMFinanceModel.FK_Employee_EmployeeType" FromRole="EmployeeType" ToRole="Employee" />
         </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationNo" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="OrganizationName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrgCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="GenderId" Type="Int32" Nullable="false" />
+          <Property Name="SetupDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LoanColcOption" Type="Int32" Nullable="false" />
+          <Property Name="SavColcOption" Type="Int32" Nullable="false" />
+          <Property Name="FirstLoanColcDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FirstSavColcDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="VillageId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_Org_Branch" FromRole="Organization" ToRole="Branch" />
+          <NavigationProperty Name="SysGender" Relationship="ScopoMFinanceModel.FK_Org_Gender" FromRole="Organization" ToRole="SysGender" />
+          <NavigationProperty Name="SysColcOption" Relationship="ScopoMFinanceModel.FK_Org_LoanColc" FromRole="Organization" ToRole="SysColcOption" />
+          <NavigationProperty Name="OrgCategory" Relationship="ScopoMFinanceModel.FK_Org_OrgCategory" FromRole="Organization" ToRole="OrgCategory" />
+          <NavigationProperty Name="Project" Relationship="ScopoMFinanceModel.FK_Org_Project" FromRole="Organization" ToRole="Project" />
+          <NavigationProperty Name="SysColcOption1" Relationship="ScopoMFinanceModel.FK_Org_SavColc" FromRole="Organization" ToRole="SysColcOption" />
+          <NavigationProperty Name="SysVillage" Relationship="ScopoMFinanceModel.FK_Org_Village" FromRole="Organization" ToRole="SysVillage" />
+          <NavigationProperty Name="OrgCreditOfficers" Relationship="ScopoMFinanceModel.FK_OrgCO_Org" FromRole="Organization" ToRole="OrgCreditOfficer" />
+        </EntityType>
         <EntityType Name="OrgCategory">
           <Key>
             <PropertyRef Name="Id" />
@@ -574,6 +880,77 @@
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Organizations" Relationship="ScopoMFinanceModel.FK_Org_OrgCategory" FromRole="OrgCategory" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="OrgCreditOfficer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+          <Property Name="AssignedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReleaseDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_OrgCO_Branch" FromRole="OrgCreditOfficer" ToRole="Branch" />
+          <NavigationProperty Name="Employee" Relationship="ScopoMFinanceModel.FK_OrgCO_Employee" FromRole="OrgCreditOfficer" ToRole="Employee" />
+          <NavigationProperty Name="Organization" Relationship="ScopoMFinanceModel.FK_OrgCO_Org" FromRole="OrgCreditOfficer" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectDuration" Type="DateTime" Precision="3" />
+          <Property Name="ProjectTypeId" Type="Int32" Nullable="false" />
+          <Property Name="DonorId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="BranchWiseProjectMappings" Relationship="ScopoMFinanceModel.FK_BranchProject_Project" FromRole="Project" ToRole="BranchWiseProjectMapping" />
+          <NavigationProperty Name="Organizations" Relationship="ScopoMFinanceModel.FK_Org_Project" FromRole="Project" ToRole="Organization" />
+          <NavigationProperty Name="SysDonor" Relationship="ScopoMFinanceModel.FK_Project_Donor" FromRole="Project" ToRole="SysDonor" />
+          <NavigationProperty Name="ProjectType" Relationship="ScopoMFinanceModel.FK_Project_ProjectType" FromRole="Project" ToRole="ProjectType" />
+        </EntityType>
+        <EntityType Name="ProjectType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Projects" Relationship="ScopoMFinanceModel.FK_Project_ProjectType" FromRole="ProjectType" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="SysColcOption">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Organizations" Relationship="ScopoMFinanceModel.FK_Org_LoanColc" FromRole="SysColcOption" ToRole="Organization" />
+          <NavigationProperty Name="Organizations1" Relationship="ScopoMFinanceModel.FK_Org_SavColc" FromRole="SysColcOption" ToRole="Organization" />
         </EntityType>
         <EntityType Name="SysDistrict">
           <Key>
@@ -601,6 +978,20 @@
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="SysDistricts" Relationship="ScopoMFinanceModel.FK_District_Division" FromRole="SysDivision" ToRole="SysDistrict" />
         </EntityType>
+        <EntityType Name="SysDonor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Projects" Relationship="ScopoMFinanceModel.FK_Project_Donor" FromRole="SysDonor" ToRole="Project" />
+        </EntityType>
         <EntityType Name="SysGender">
           <Key>
             <PropertyRef Name="Id" />
@@ -610,6 +1001,7 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Employees" Relationship="ScopoMFinanceModel.FK_Employee_Gender" FromRole="SysGender" ToRole="Employee" />
+          <NavigationProperty Name="Organizations" Relationship="ScopoMFinanceModel.FK_Org_Gender" FromRole="SysGender" ToRole="Organization" />
         </EntityType>
         <EntityType Name="SysThana">
           <Key>
@@ -664,8 +1056,239 @@
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Organizations" Relationship="ScopoMFinanceModel.FK_Org_Village" FromRole="SysVillage" ToRole="Organization" />
           <NavigationProperty Name="SysUnion" Relationship="ScopoMFinanceModel.FK_Village_Union" FromRole="SysVillage" ToRole="SysUnion" />
         </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNo" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_UserProfile_Branch" FromRole="UserProfile" ToRole="Branch" />
+        </EntityType>
+        <Association Name="FK_BranchProject_Branch">
+          <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.BranchWiseProjectMapping" Role="BranchWiseProjectMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BranchWiseProjectMapping">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Branch">
+          <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Org_Branch">
+          <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrgCO_Branch">
+          <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.OrgCreditOfficer" Role="OrgCreditOfficer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrgCreditOfficer">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfile_Branch">
+          <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.UserProfile" Role="UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BranchProject_Project">
+          <End Type="ScopoMFinanceModel.Project" Role="Project" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.BranchWiseProjectMapping" Role="BranchWiseProjectMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BranchWiseProjectMapping">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_EmployeeType">
+          <End Type="ScopoMFinanceModel.EmployeeType" Role="EmployeeType" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="EmployeeTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Gender">
+          <End Type="ScopoMFinanceModel.SysGender" Role="SysGender" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysGender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrgCO_Employee">
+          <End Type="ScopoMFinanceModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.OrgCreditOfficer" Role="OrgCreditOfficer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrgCreditOfficer">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Org_Gender">
+          <End Type="ScopoMFinanceModel.SysGender" Role="SysGender" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysGender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Org_LoanColc">
+          <End Type="ScopoMFinanceModel.SysColcOption" Role="SysColcOption" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysColcOption">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="LoanColcOption" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Org_OrgCategory">
+          <End Type="ScopoMFinanceModel.OrgCategory" Role="OrgCategory" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrgCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="OrgCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Org_Project">
+          <End Type="ScopoMFinanceModel.Project" Role="Project" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Org_SavColc">
+          <End Type="ScopoMFinanceModel.SysColcOption" Role="SysColcOption" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysColcOption">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="SavColcOption" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Org_Village">
+          <End Type="ScopoMFinanceModel.SysVillage" Role="SysVillage" Multiplicity="0..1" />
+          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysVillage">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="VillageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrgCO_Org">
+          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.OrgCreditOfficer" Role="OrgCreditOfficer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrgCreditOfficer">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_Donor">
+          <End Type="ScopoMFinanceModel.SysDonor" Role="SysDonor" Multiplicity="0..1" />
+          <End Type="ScopoMFinanceModel.Project" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysDonor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="DonorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_ProjectType">
+          <End Type="ScopoMFinanceModel.ProjectType" Role="ProjectType" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.Project" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="ProjectTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_District_Division">
           <End Type="ScopoMFinanceModel.SysDivision" Role="SysDivision" Multiplicity="1" />
           <End Type="ScopoMFinanceModel.SysDistrict" Role="SysDistrict" Multiplicity="*" />
@@ -726,174 +1349,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="BranchWiseProjectMapping">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BranchId" Type="Int32" Nullable="false" />
-          <Property Name="ProjectId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_BranchProject_Branch" FromRole="BranchWiseProjectMapping" ToRole="Branch" />
-          <NavigationProperty Name="Project" Relationship="ScopoMFinanceModel.FK_BranchProject_Project" FromRole="BranchWiseProjectMapping" ToRole="Project" />
-        </EntityType>
-        <EntityType Name="Employee">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BranchId" Type="Int32" Nullable="false" />
-          <Property Name="EmployeeNo" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="JoiningDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ResignDate" Type="DateTime" Precision="3" />
-          <Property Name="GenderId" Type="Int32" Nullable="false" />
-          <Property Name="EmployeeTypeId" Type="Int32" Nullable="false" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_Employee_Branch" FromRole="Employee" ToRole="Branch" />
-          <NavigationProperty Name="EmployeeType" Relationship="ScopoMFinanceModel.FK_Employee_EmployeeType" FromRole="Employee" ToRole="EmployeeType" />
-          <NavigationProperty Name="SysGender" Relationship="ScopoMFinanceModel.FK_Employee_Gender" FromRole="Employee" ToRole="SysGender" />
-        </EntityType>
-        <EntityType Name="Project">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProjectCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ProjectDuration" Type="DateTime" Precision="3" />
-          <Property Name="ProjectTypeId" Type="Int32" Nullable="false" />
-          <Property Name="DonorId" Type="Int32" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="BranchWiseProjectMappings" Relationship="ScopoMFinanceModel.FK_BranchProject_Project" FromRole="Project" ToRole="BranchWiseProjectMapping" />
-          <NavigationProperty Name="SysDonor" Relationship="ScopoMFinanceModel.FK_Project_Donor" FromRole="Project" ToRole="SysDonor" />
-          <NavigationProperty Name="ProjectType" Relationship="ScopoMFinanceModel.FK_Project_ProjectType" FromRole="Project" ToRole="ProjectType" />
-        </EntityType>
-        <Association Name="FK_BranchProject_Branch">
-          <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="1" />
-          <End Type="ScopoMFinanceModel.BranchWiseProjectMapping" Role="BranchWiseProjectMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Branch">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="BranchWiseProjectMapping">
-              <PropertyRef Name="BranchId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Employee_Branch">
-          <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="1" />
-          <End Type="ScopoMFinanceModel.Employee" Role="Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Branch">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Employee">
-              <PropertyRef Name="BranchId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BranchProject_Project">
-          <End Type="ScopoMFinanceModel.Project" Role="Project" Multiplicity="1" />
-          <End Type="ScopoMFinanceModel.BranchWiseProjectMapping" Role="BranchWiseProjectMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Project">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="BranchWiseProjectMapping">
-              <PropertyRef Name="ProjectId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Employee_EmployeeType">
-          <End Type="ScopoMFinanceModel.EmployeeType" Role="EmployeeType" Multiplicity="1" />
-          <End Type="ScopoMFinanceModel.Employee" Role="Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EmployeeType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Employee">
-              <PropertyRef Name="EmployeeTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Employee_Gender">
-          <End Type="ScopoMFinanceModel.SysGender" Role="SysGender" Multiplicity="1" />
-          <End Type="ScopoMFinanceModel.Employee" Role="Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SysGender">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Employee">
-              <PropertyRef Name="GenderId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="ProjectType">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Projects" Relationship="ScopoMFinanceModel.FK_Project_ProjectType" FromRole="ProjectType" ToRole="Project" />
-        </EntityType>
-        <EntityType Name="SysDonor">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Projects" Relationship="ScopoMFinanceModel.FK_Project_Donor" FromRole="SysDonor" ToRole="Project" />
-        </EntityType>
-        <Association Name="FK_Project_Donor">
-          <End Type="ScopoMFinanceModel.SysDonor" Role="SysDonor" Multiplicity="0..1" />
-          <End Type="ScopoMFinanceModel.Project" Role="Project" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SysDonor">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Project">
-              <PropertyRef Name="DonorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Project_ProjectType">
-          <End Type="ScopoMFinanceModel.ProjectType" Role="ProjectType" Multiplicity="1" />
-          <End Type="ScopoMFinanceModel.Project" Role="Project" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProjectType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Project">
-              <PropertyRef Name="ProjectTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -902,25 +1358,44 @@
           <EntitySetMapping Name="Branches">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.Branch">
               <MappingFragment StoreEntitySet="Branch">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="OpenDate" ColumnName="OpenDate" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="IsHeadOffice" ColumnName="IsHeadOffice" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="OpenDate" ColumnName="OpenDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserProfiles">
-            <EntityTypeMapping TypeName="ScopoMFinanceModel.UserProfile">
-              <MappingFragment StoreEntitySet="UserProfile">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <EntitySetMapping Name="BranchWiseProjectMappings">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.BranchWiseProjectMapping">
+              <MappingFragment StoreEntitySet="BranchWiseProjectMapping">
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
                 <ScalarProperty Name="BranchId" ColumnName="BranchId" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="EmployeeTypeId" ColumnName="EmployeeTypeId" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="ResignDate" ColumnName="ResignDate" />
+                <ScalarProperty Name="JoiningDate" ColumnName="JoiningDate" />
+                <ScalarProperty Name="IsCreditOfficer" ColumnName="IsCreditOfficer" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmployeeNo" ColumnName="EmployeeNo" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -938,6 +1413,31 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Organizations">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.Organization">
+              <MappingFragment StoreEntitySet="Organization">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="VillageId" ColumnName="VillageId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="FirstSavColcDate" ColumnName="FirstSavColcDate" />
+                <ScalarProperty Name="FirstLoanColcDate" ColumnName="FirstLoanColcDate" />
+                <ScalarProperty Name="SavColcOption" ColumnName="SavColcOption" />
+                <ScalarProperty Name="LoanColcOption" ColumnName="LoanColcOption" />
+                <ScalarProperty Name="SetupDate" ColumnName="SetupDate" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="OrgCategoryId" ColumnName="OrgCategoryId" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="OrganizationNo" ColumnName="OrganizationNo" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="OrgCategories">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.OrgCategory">
               <MappingFragment StoreEntitySet="OrgCategory">
@@ -949,6 +1449,70 @@
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
                 <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrgCreditOfficers">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.OrgCreditOfficer">
+              <MappingFragment StoreEntitySet="OrgCreditOfficer">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+                <ScalarProperty Name="AssignedDate" ColumnName="AssignedDate" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DonorId" ColumnName="DonorId" />
+                <ScalarProperty Name="ProjectTypeId" ColumnName="ProjectTypeId" />
+                <ScalarProperty Name="ProjectDuration" ColumnName="ProjectDuration" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectTypes">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.ProjectType">
+              <MappingFragment StoreEntitySet="ProjectType">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysColcOptions">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.SysColcOption">
+              <MappingFragment StoreEntitySet="SysColcOption">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -969,6 +1533,20 @@
           <EntitySetMapping Name="SysDivisions">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.SysDivision">
               <MappingFragment StoreEntitySet="SysDivision">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysDonors">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.SysDonor">
+              <MappingFragment StoreEntitySet="SysDonor">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
@@ -1040,81 +1618,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="BranchWiseProjectMappings">
-            <EntityTypeMapping TypeName="ScopoMFinanceModel.BranchWiseProjectMapping">
-              <MappingFragment StoreEntitySet="BranchWiseProjectMapping">
-                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <EntitySetMapping Name="UserProfiles">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="BranchId" ColumnName="BranchId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="ScopoMFinanceModel.Employee">
-              <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="EmployeeTypeId" ColumnName="EmployeeTypeId" />
-                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
-                <ScalarProperty Name="ResignDate" ColumnName="ResignDate" />
-                <ScalarProperty Name="JoiningDate" ColumnName="JoiningDate" />
-                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
-                <ScalarProperty Name="EmployeeNo" ColumnName="EmployeeNo" />
-                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Projects">
-            <EntityTypeMapping TypeName="ScopoMFinanceModel.Project">
-              <MappingFragment StoreEntitySet="Project">
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="DonorId" ColumnName="DonorId" />
-                <ScalarProperty Name="ProjectTypeId" ColumnName="ProjectTypeId" />
-                <ScalarProperty Name="ProjectDuration" ColumnName="ProjectDuration" />
-                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
-                <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProjectTypes">
-            <EntityTypeMapping TypeName="ScopoMFinanceModel.ProjectType">
-              <MappingFragment StoreEntitySet="ProjectType">
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SysDonors">
-            <EntityTypeMapping TypeName="ScopoMFinanceModel.SysDonor">
-              <MappingFragment StoreEntitySet="SysDonor">
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
