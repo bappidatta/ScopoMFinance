@@ -84,6 +84,8 @@
     <Build Include="Tables\ProjectType.sql" />
     <Build Include="Tables\SysDonor.sql" />
     <Build Include="Tables\BranchWiseProjectMapping.sql" />
+    <Build Include="Tables\Organization.sql" />
+    <Build Include="Tables\SysColcOption.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Common\Variables.sql" />

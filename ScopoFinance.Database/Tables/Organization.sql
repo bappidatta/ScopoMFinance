@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[Organization]
+(
+	[Id] INT NOT NULL IDENTITY, 
+	[OrganizationNo] NVARCHAR(4) NOT NULL,
+	[OrganizationName] NVARCHAR(50) NOT NULL,
+	[OrgCategoryId] INT NOT NULL, 
+    [GenderId] INT NOT NULL, 
+    [SetupDate] DATETIME NOT NULL, 
+    [LoanColcOption] INT NOT NULL, 
+    [SavColcOption] INT NOT NULL, 
+    [FirstLoanColcDate] DATETIME NOT NULL, 
+    [FirstSavColcDate] DATETIME NOT NULL, 
+    [ProjectId] INT NOT NULL, 
+    [VillageId] INT NULL, 
+	[IsActive] BIT NOT NULL DEFAULT 1, 
+    [IsDeleted] BIT NOT NULL DEFAULT 0, 
+    [CreatedBy] NVARCHAR(256) NOT NULL, 
+    [CreatedOn] DATETIME NOT NULL,
+	[UpdatedBy] NVARCHAR(256) NULL, 
+    [UpdatedOn] DATETIME NULL,
+    CONSTRAINT [PK_Organization] PRIMARY KEY ([Id]),
+	CONSTRAINT [FK_Org_OrgCategory] FOREIGN KEY ([OrgCategoryId]) REFERENCES [OrgCategory]([Id]),
+	CONSTRAINT [FK_Org_Gender] FOREIGN KEY ([GenderId]) REFERENCES [SysGender]([Id]),
+	CONSTRAINT [FK_Org_LoanColc] FOREIGN KEY ([LoanColcOption]) REFERENCES [SysColcOption]([Id]),
+	CONSTRAINT [FK_Org_SavColc] FOREIGN KEY ([SavColcOption]) REFERENCES [SysColcOption]([Id]),
+	CONSTRAINT [FK_Org_Project] FOREIGN KEY ([ProjectId]) REFERENCES [Project]([Id]),
+	CONSTRAINT [FK_Org_Village] FOREIGN KEY ([VillageId]) REFERENCES [SysVillage]([Id])
+)
