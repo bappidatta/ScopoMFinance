@@ -1,133 +1,25 @@
-﻿body{
-    font-family: 'Raleway', sans-serif !important;
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+.app-container {
+    min-height: 0px;
+}
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
 }
 
-.selected{
-    background-color: deepskyblue !important;
+footer.page-footer {
+    padding-top: 0px;
 }
 
-.styleSelected{
-    background-color: #00A65A !important;
-}
-
-form.ng-submitted .ng-invalid{
-    border: 1px solid #ff6a00;
-}
-
-#loading-bar .bar {
-  background: #ff6a00;
-}
-
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-  display: none !important;
-}
-
-.btn-hover:hover{
-    cursor: default;
-}
-
-.lb-custom-font-size{
-    font-size: 15px !important;
-}
-
-.tab-pane {
-   padding: 15px;
-}
-
-.btn-default{
-    /*background: lightcyan !important;*/
-}
-
-.box-solid{
-    border: 1px solid lightblue !important;
-}
-
-.box-header{
-    background: #eee !important;
-    color: #999;        
-}
-
-label{
-    font-weight: normal !important;    
-}
-
-.with-border{
-        border-bottom: 1px solid lightblue !important;
-}
-.skin-black .main-header>.navbar {
-    background-color: #fff;
-    border-bottom: 1px solid lightblue !important;
-}
-
-.box .nav-stacked>li {
-    border-bottom: 1px solid lightblue !important;    
-}
-.text-menu{
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
-    
-}
-
-.text-menu-items{
-
-}
-
-.login-box-body, .register-box-body{
-    border: 1px solid lightblue;
-}
-
-.content {
-    padding: 5px !important;
-}
-
-.row {
-    margin-left: -3px !important;
-    margin-right: -3px !important;
-}
-
-.box {
-    margin-bottom: 0px !important;
-    border-radius: 0px !important;
-}
-
-.column {
-    padding-left: 2.5px !important;
-    padding-right: 2.5px !important;
-}
-
-.nav-stacked>li.active>a, .nav-stacked>li.active>a:hover{
-    background: #fff8e1 !important;
-    color: #333 !important;
-    
-}
-
-.nav-stacked>li.active>a{
-    box-shadow: 0px 0px 3px #fff !important;
-}
-
-.nav-stacked>li>a:hover{
-    box-shadow: 0px 0px 3px #333 !important;
-}
-
-table.no-wrap>tbody>tr>td, table.no-wrap>thead>tr>th{
-    white-space: nowrap !important;    
-}
-
-/*table.selectable>tbody>tr:hover{
-    box-shadow: 0px 0px 3px #333 !important;
-    background: #f7f7f7 !important;
-}*/
-
-.fwSelected{
-    background: #3c8dbc !important;
-    color: #fff !important;
-}
-
-/*.fwSelected:hover{
-    color: #3c8dbc !important;
-}*/
-
-.color-lightblue{
-    color:  	#2F4F4F  !important;
+.login-box {
+    margin-top: 200px;
+    margin-bottom: 311px;
 }
