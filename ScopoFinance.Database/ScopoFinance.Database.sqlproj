@@ -86,6 +86,7 @@
     <Build Include="Tables\BranchWiseProjectMapping.sql" />
     <Build Include="Tables\Organization.sql" />
     <Build Include="Tables\SysColcOption.sql" />
+    <Build Include="Tables\OrgCreditOfficer.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Common\Variables.sql" />
