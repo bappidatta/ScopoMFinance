@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [dbo].[Employee]
 (
 	[Id] INT NOT NULL IDENTITY,
+	[BranchId] INT NOT NULL, 
 	[EmployeeNo] NVARCHAR(10) NOT NULL,
 	[EmployeeName] NVARCHAR(255) NOT NULL,
 	[JoiningDate] DATETIME NOT NULL,
@@ -16,4 +17,9 @@
     [CreatedOn] DATETIME NOT NULL,
 	[UpdatedBy] NVARCHAR(256) NULL, 
     [UpdatedOn] DATETIME NULL,
+	CONSTRAINT [PK_Employee] PRIMARY KEY ([Id]),
+	CONSTRAINT [FK_Employee_EmployeeType] FOREIGN KEY ([EmployeeTypeId]) REFERENCES [EmployeeType]([Id]),
+	CONSTRAINT [FK_Employee_Gender] FOREIGN KEY ([GenderId]) REFERENCES [SysGender]([Id]),
+	CONSTRAINT [FK_Employee_Branch] FOREIGN KEY ([BranchId]) REFERENCES [Branch]([Id]),
+	CONSTRAINT [UQ_EmployeeNo] UNIQUE ([EmployeeNo])
 )
