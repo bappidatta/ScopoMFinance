@@ -49,6 +49,18 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="SimpleInjector, Version=3.3.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.3.3.2\lib\net45\SimpleInjector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SimpleInjector.Integration.Web, Version=3.3.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.Integration.Web.3.3.2\lib\net40\SimpleInjector.Integration.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SimpleInjector.Integration.Web.Mvc, Version=3.3.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.Integration.Web.Mvc.3.3.2\lib\net40\SimpleInjector.Integration.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -166,6 +178,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SimpleInjectorInitializer.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -188,9 +201,19 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\init.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\materialize.js" />
     <Content Include="Scripts\materialize.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -227,7 +250,16 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ScopoMFinance.Core\ScopoMFinance.Core.csproj">
+      <Project>{b133f37b-befb-4ffc-8651-ae8e22fae8b2}</Project>
+      <Name>ScopoMFinance.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ScopoMFinance.Domain\ScopoMFinance.Domain.csproj">
+      <Project>{89c623f6-5d29-48eb-b7ce-945e19a33b90}</Project>
+      <Name>ScopoMFinance.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="fonts\roboto\Roboto-Bold.eot" />

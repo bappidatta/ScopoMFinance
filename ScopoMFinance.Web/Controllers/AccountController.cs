@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ScopoMFinance.Web.Models;
+using ScopoMFinance.Core.Services;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ScopoMFinance.Web.Controllers
 {
@@ -17,15 +19,14 @@ namespace ScopoMFinance.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private BranchService _branchService;
+        private UserProfileService _userProfileService;
 
-        public AccountController()
+        public AccountController(BranchService branchService, UserProfileService userProfileService)
         {
-        }
-
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
+            UserManager = new ApplicationUserManager(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            _branchService = branchService;
+            _userProfileService = userProfileService;
         }
 
         public ApplicationSignInManager SignInManager
@@ -57,6 +58,7 @@ namespace ScopoMFinance.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            ViewBag.BranchDropDown = new SelectList(_branchService.GetBranchDropDown(), "Value", "Text");
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -68,8 +70,17 @@ namespace ScopoMFinance.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            if (ModelState.IsValid)
+            {
+                if(!_userProfileService.IsValidUser(model.BranchId, model.Email))
+                {
+                    ModelState.AddModelError("", "Sorry! You are not user of this branch");
+                }
+            }
+
             if (!ModelState.IsValid)
             {
+                ViewBag.BranchDropDown = new SelectList(_branchService.GetBranchDropDown(), "Value", "Text");
                 return View(model);
             }
 
@@ -86,6 +97,7 @@ namespace ScopoMFinance.Web.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
+                    ViewBag.BranchDropDown = new SelectList(_branchService.GetBranchDropDown(), "Value", "Text");
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }

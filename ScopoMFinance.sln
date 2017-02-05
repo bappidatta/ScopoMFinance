@@ -13,6 +13,10 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ScopoFinance.Database", "Sc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScopoMFinance.Domain", "ScopoMFinance.Domain\ScopoMFinance.Domain.csproj", "{89C623F6-5D29-48EB-B7CE-945E19A33B90}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{C8A85A18-2615-4FC5-9982-12A737CDA021}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScopoMFinance.Core", "ScopoMFinance.Core\ScopoMFinance.Core.csproj", "{B133F37B-BEFB-4FFC-8651-AE8E22FAE8B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +41,10 @@ Global
 		{89C623F6-5D29-48EB-B7CE-945E19A33B90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89C623F6-5D29-48EB-B7CE-945E19A33B90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89C623F6-5D29-48EB-B7CE-945E19A33B90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B133F37B-BEFB-4FFC-8651-AE8E22FAE8B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B133F37B-BEFB-4FFC-8651-AE8E22FAE8B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B133F37B-BEFB-4FFC-8651-AE8E22FAE8B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B133F37B-BEFB-4FFC-8651-AE8E22FAE8B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,5 +52,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{729DFAEA-9046-4CDF-A0AF-4BB826038F28} = {F6315A92-8DA7-41F7-8BD6-46873C3BA179}
 		{89C623F6-5D29-48EB-B7CE-945E19A33B90} = {F6315A92-8DA7-41F7-8BD6-46873C3BA179}
+		{B133F37B-BEFB-4FFC-8651-AE8E22FAE8B2} = {C8A85A18-2615-4FC5-9982-12A737CDA021}
 	EndGlobalSection
 EndGlobal

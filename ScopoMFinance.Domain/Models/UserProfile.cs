@@ -24,5 +24,6 @@ namespace ScopoMFinance.Domain.Models
         public System.DateTime CreatedOn { get; set; }
     
         public virtual Branch Branch { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

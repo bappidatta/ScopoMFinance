@@ -10,5 +10,6 @@
     [CreatedOn] DATETIME NOT NULL,
 	PRIMARY KEY CLUSTERED ([UserId] ASC),
 	CONSTRAINT [UQ_UserProfileMobileNo] UNIQUE ([MobileNo]), 
-	CONSTRAINT [FK_UserProfile_Branch] FOREIGN KEY ([BranchId]) REFERENCES [Branch]([Id])
+	CONSTRAINT [FK_UserProfile_Branch] FOREIGN KEY ([BranchId]) REFERENCES [Branch]([Id]),
+	CONSTRAINT [FK_UserProfile_AspNetUser] FOREIGN KEY ([UserId]) REFERENCES [AspNetUsers]([Id])
 )

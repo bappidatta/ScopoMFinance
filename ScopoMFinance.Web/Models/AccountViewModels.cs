@@ -60,6 +60,10 @@ namespace ScopoMFinance.Web.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+        [Required]
+        [Display(Name = "Branch")]
+        public int BranchId { get; set; }
     }
 
     public class RegisterViewModel

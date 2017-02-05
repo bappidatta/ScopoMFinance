@@ -47,6 +47,10 @@
         <AssociationConnector Association="ScopoMFinanceModel.FK_Thana_Union" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_Union_Upazila" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_Village_Union" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.AspNetRole" Width="1.5" PointX="6.375" PointY="2.25" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.AspNetUser" Width="1.5" PointX="8.625" PointY="1" />
+        <AssociationConnector Association="ScopoMFinanceModel.AspNetUserRoles" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_UserProfile_AspNetUser" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

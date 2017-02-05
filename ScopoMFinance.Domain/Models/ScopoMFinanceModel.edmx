@@ -5,6 +5,41 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ScopoMFinanceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="LastPasswordChangedDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="PasswordResetToken" Type="nvarchar" MaxLength="255" />
+          <Property Name="PasswordResetTokenExpireDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="Branch">
           <Key>
             <PropertyRef Name="Id" />
@@ -287,6 +322,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_District_Division">
           <End Role="SysDivision" Type="Self.SysDivision" Multiplicity="1" />
           <End Role="SysDistrict" Type="Self.SysDistrict" Multiplicity="*" />
@@ -515,6 +578,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserProfile_AspNetUser">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserProfile_Branch">
           <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
@@ -540,6 +615,9 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ScopoMFinanceModelStoreContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BranchWiseProjectMapping" EntityType="Self.BranchWiseProjectMapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
@@ -566,6 +644,14 @@
           <AssociationSet Name="FK_BranchProject_Project" Association="Self.FK_BranchProject_Project">
             <End Role="Project" EntitySet="Project" />
             <End Role="BranchWiseProjectMapping" EntitySet="BranchWiseProjectMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
           <AssociationSet Name="FK_District_Division" Association="Self.FK_District_Division">
             <End Role="SysDivision" EntitySet="SysDivision" />
@@ -642,6 +728,10 @@
           <AssociationSet Name="FK_Upazila_District" Association="Self.FK_Upazila_District">
             <End Role="SysDistrict" EntitySet="SysDistrict" />
             <End Role="SysUpazila" EntitySet="SysUpazila" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfile_AspNetUser" Association="Self.FK_UserProfile_AspNetUser">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
           </AssociationSet>
           <AssociationSet Name="FK_UserProfile_Branch" Association="Self.FK_UserProfile_Branch">
             <End Role="Branch" EntitySet="Branch" />
@@ -767,6 +857,16 @@
           <AssociationSet Name="FK_Village_Union" Association="ScopoMFinanceModel.FK_Village_Union">
             <End Role="SysUnion" EntitySet="SysUnions" />
             <End Role="SysVillage" EntitySet="SysVillages" />
+          </AssociationSet>
+          <EntitySet Name="AspNetRoles" EntityType="ScopoMFinanceModel.AspNetRole" />
+          <EntitySet Name="AspNetUsers" EntityType="ScopoMFinanceModel.AspNetUser" />
+          <AssociationSet Name="AspNetUserRoles" Association="ScopoMFinanceModel.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfile_AspNetUser" Association="ScopoMFinanceModel.FK_UserProfile_AspNetUser">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="UserProfile" EntitySet="UserProfiles" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Branch">
@@ -1072,6 +1172,7 @@
           <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_UserProfile_Branch" FromRole="UserProfile" ToRole="Branch" />
+          <NavigationProperty Name="AspNetUser" Relationship="ScopoMFinanceModel.FK_UserProfile_AspNetUser" FromRole="UserProfile" ToRole="AspNetUser" />
         </EntityType>
         <Association Name="FK_BranchProject_Branch">
           <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="1" />
@@ -1346,6 +1447,52 @@
             </Principal>
             <Dependent Role="SysVillage">
               <PropertyRef Name="UnionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="ScopoMFinanceModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="LastPasswordChangedDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="PasswordResetToken" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordResetTokenExpireDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AspNetRoles" Relationship="ScopoMFinanceModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+          <NavigationProperty Name="UserProfile" Relationship="ScopoMFinanceModel.FK_UserProfile_AspNetUser" FromRole="AspNetUser" ToRole="UserProfile" />
+        </EntityType>
+        <Association Name="AspNetUserRoles">
+          <End Type="ScopoMFinanceModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="ScopoMFinanceModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_UserProfile_AspNetUser">
+          <End Type="ScopoMFinanceModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1632,6 +1779,43 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="PasswordResetTokenExpireDate" ColumnName="PasswordResetTokenExpireDate" />
+                <ScalarProperty Name="PasswordResetToken" ColumnName="PasswordResetToken" />
+                <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="ScopoMFinanceModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
