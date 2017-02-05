@@ -18,8 +18,8 @@
 
 <body>
     <nav class="light-blue darken-4" role="navigation">
-        <div class="nav-wrapper container">
-            <a id="logo-container" href="#" class="brand-logo orange-text text-darken-4"><b class="light-blue-text">Scopo</b>MFinance</a>
+        <div class="nav-wrapper">
+            <a id="logo-container" href="#" class="brand-logo grey-text text-lighten-5"><b>ScopoCredit</b></a>
             @if (Request.IsAuthenticated)
             {
                 string userName = @User.Identity.Name.Split(',')[0];
@@ -37,13 +37,13 @@
         </div>
     </nav>
     <!-- Site wrapper -->
-    <div class="container app-container">
+    <div class="app-container">
         @RenderBody()
     </div>
 
-    <footer class="page-footer orange darken-4">
+    <footer class="page-footer blue-grey darken-4">
         <div class="footer-copyright">
-            <div class="container">
+            <div class="">
                 Made by <a class="orange-text text-lighten-3" href="http://www.ntitas.com">Ntitas IT Limited</a>
             </div>
         </div>

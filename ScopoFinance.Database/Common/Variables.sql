@@ -16,6 +16,8 @@ DECLARE
 	--role---------------------
 	@Role_HOUser		NVARCHAR (128) = 'A82C294F-7240-488B-9353-7DD4EADFE235',
 	@Role_BranchUser	NVARCHAR (128) = 'F069FF9F-403F-48AE-809D-255FE6204897',
+	@Role_BranchManager NVARCHAR (128) = '373A4A4E-7949-4EF5-B480-DF7E90740E5F',
+	@Role_AreaCoordinator NVARCHAR (128) = 'F4C92178-7C87-4CC9-815F-1D313C73A478',
 	---------------------------
 
 	--users---------------------

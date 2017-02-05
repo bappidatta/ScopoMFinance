@@ -6,7 +6,7 @@
  * Made By MaterializeCSS.com
  */
 .app-container {
-    min-height: 0px;
+    min-height: 846px;
 }
 .icon-block {
   padding: 0 15px;
@@ -31,4 +31,13 @@ footer.page-footer {
 
 .brand-logo {
     padding: 100px 20px;
+}
+
+.nav-wrapper, .page-footer {
+    padding: 0px 20px;
+}
+
+.nav-breadcrumb {
+    height: 40px;
+    line-height: 40px;
 }

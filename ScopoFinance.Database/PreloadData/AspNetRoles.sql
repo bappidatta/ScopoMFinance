@@ -1,9 +1,10 @@
 ﻿MERGE [dbo].[AspNetRoles] AS TARGET
 USING
 (
-			SELECT @Role_HOUser		, 'HOUser'
-	UNION	SELECT @Role_BranchUser	, 'BranchUser'
-
+			SELECT @Role_HOUser		, 'superuser'
+	UNION	SELECT @Role_BranchUser	, 'branchuser'
+	UNION	SELECT @Role_BranchManager	, 'branchmanager'
+	UNION	SELECT @Role_AreaCoordinator	, 'areacoordinator'
 ) AS SOURCE ([Id], [Name])
 	ON TARGET.[Id] = SOURCE.[Id]
 WHEN MATCHED THEN
