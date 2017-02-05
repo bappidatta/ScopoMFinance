@@ -36,8 +36,8 @@ namespace ScopoMFinance.Domain.Models
         public string PasswordResetToken { get; set; }
         public Nullable<System.DateTime> PasswordResetTokenExpireDate { get; set; }
     
+        public virtual UserProfile UserProfile { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
-        public virtual UserProfile UserProfile { get; set; }
     }
 }

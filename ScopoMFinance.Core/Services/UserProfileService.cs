@@ -19,7 +19,7 @@ namespace ScopoMFinance.Core.Services
         public bool IsValidUser(int branchId, string username)
         {
             var validUser = from c in _uow.UserProfileRepository.Get()
-                            where c.IsActive == true && c.BranchId == branchId && c.AspNetUser.UserName == username
+                            where c.IsActive == true && c.UserBranches.All(x=>x.BranchId == branchId) && c.AspNetUser.UserName == username
                             select c;
 
             return validUser.SingleOrDefault() != null;

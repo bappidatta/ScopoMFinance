@@ -14,16 +14,25 @@ namespace ScopoMFinance.Domain.Models
     
     public partial class UserProfile
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public UserProfile()
+        {
+            this.UserBranches = new HashSet<UserBranch>();
+        }
+    
         public string UserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string MobileNo { get; set; }
-        public int BranchId { get; set; }
         public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
         public string CreatedBy { get; set; }
         public System.DateTime CreatedOn { get; set; }
+        public string UpdatedBy { get; set; }
+        public Nullable<System.DateTime> UpdatedOn { get; set; }
     
-        public virtual Branch Branch { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserBranch> UserBranches { get; set; }
     }
 }

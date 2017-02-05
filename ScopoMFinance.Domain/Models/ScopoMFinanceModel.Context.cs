@@ -25,6 +25,8 @@ namespace ScopoMFinance.Domain.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Branch> Branches { get; set; }
         public virtual DbSet<BranchWiseProjectMapping> BranchWiseProjectMappings { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
@@ -43,8 +45,7 @@ namespace ScopoMFinance.Domain.Models
         public virtual DbSet<SysUnion> SysUnions { get; set; }
         public virtual DbSet<SysUpazila> SysUpazilas { get; set; }
         public virtual DbSet<SysVillage> SysVillages { get; set; }
+        public virtual DbSet<UserBranch> UserBranches { get; set; }
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
     }
 }

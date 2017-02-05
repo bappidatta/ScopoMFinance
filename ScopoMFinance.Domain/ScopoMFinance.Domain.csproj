@@ -125,6 +125,9 @@
     <Compile Include="Models\SysVillage.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserBranch.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserProfile.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
