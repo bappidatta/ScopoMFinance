@@ -180,6 +180,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SimpleInjectorInitializer.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\BranchUserController.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\SuperUserController.cs" />
+    <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -201,6 +204,10 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\init.js" />
+    <Content Include="Areas\Dashboard\Views\web.config" />
+    <Content Include="Areas\Dashboard\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Dashboard\Views\SuperUser\Index.cshtml" />
+    <Content Include="Areas\Dashboard\Views\BranchUser\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -249,6 +256,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_UserInfo.cshtml" />
+    <Content Include="Views\Shared\_MenuSuperUser.cshtml" />
+    <Content Include="Views\Shared\_MenuBranchManager.cshtml" />
+    <Content Include="Views\Shared\_MenuBranchUser.cshtml" />
+    <Content Include="Views\Shared\_MenuAreaCoordinator.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ScopoMFinance.Core\ScopoMFinance.Core.csproj">
@@ -284,6 +296,10 @@
     <Content Include="fonts\roboto\Roboto-Thin.woff2" />
     <None Include="Project_Readme.html" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\Dashboard\Models\" />
+    <Folder Include="Areas\Dashboard\Views\Shared\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

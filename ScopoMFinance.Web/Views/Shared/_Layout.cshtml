@@ -26,10 +26,43 @@
                 userName = userName.First().ToString().ToUpper() + String.Join("", userName.Skip(1));
                 
                 <ul class="right hide-on-med-and-down">
+                    @if (User.IsInRole(ScopoMFinance.Core.Common.AppRoles.SuperUser))
+                    { 
+                        @Html.Partial("_MenuSuperUser")
+                    }
+                    @if (User.IsInRole(ScopoMFinance.Core.Common.AppRoles.BranchManager))
+                    {
+                        @Html.Partial("_MenuBranchManager")
+                    }
+                    @if (User.IsInRole(ScopoMFinance.Core.Common.AppRoles.BranchUser))
+                    {
+                        @Html.Partial("_MenuBranchUser")
+                    }
+                    @if (User.IsInRole(ScopoMFinance.Core.Common.AppRoles.AreaCoordinator))
+                    {
+                        @Html.Partial("_MenuAreaCoordinator")
+                    }
+                    
                     <li><a href="/Account/LogOff/">Sign out</a></li>
                 </ul>
 
                 <ul id="nav-mobile" class="side-nav">
+                    @if (User.IsInRole(ScopoMFinance.Core.Common.AppRoles.SuperUser))
+                    {
+                        @Html.Partial("_MenuSuperUser")
+                    }
+                    @if (User.IsInRole(ScopoMFinance.Core.Common.AppRoles.BranchManager))
+                    {
+                        @Html.Partial("_MenuBranchManager")
+                    }
+                    @if (User.IsInRole(ScopoMFinance.Core.Common.AppRoles.BranchUser))
+                    {
+                        @Html.Partial("_MenuBranchUser")
+                    }
+                    @if (User.IsInRole(ScopoMFinance.Core.Common.AppRoles.AreaCoordinator))
+                    {
+                        @Html.Partial("_MenuAreaCoordinator")
+                    }
                     <li><a href="/Account/LogOff/">Sign out</a></li>
                 </ul>
                 <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
