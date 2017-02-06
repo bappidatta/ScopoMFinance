@@ -7,4 +7,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="IsActive" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="2ecb95f0-54fb-4516-990a-3a3a46930543" ChangeDateTime="02/06/2017 08:27:20">
+    <Property Name="ElementName" Value="[dbo].[UserLoginAudit].[LoggedInDate]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[UserLoginAudit]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LoggedInTime" />
+  </Operation>
 </Operations>

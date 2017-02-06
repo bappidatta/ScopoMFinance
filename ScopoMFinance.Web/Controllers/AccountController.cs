@@ -19,10 +19,10 @@ namespace ScopoMFinance.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private BranchService _branchService;
-        private UserProfileService _userProfileService;
+        private IBranchService _branchService;
+        private IUserProfileService _userProfileService;
 
-        public AccountController(BranchService branchService, UserProfileService userProfileService)
+        public AccountController(IBranchService branchService, IUserProfileService userProfileService)
         {
             UserManager = new ApplicationUserManager(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             _branchService = branchService;

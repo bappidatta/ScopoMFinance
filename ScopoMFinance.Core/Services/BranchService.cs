@@ -8,7 +8,12 @@ using System.Threading.Tasks;
 
 namespace ScopoMFinance.Core.Services
 {
-    public class BranchService
+    public interface IBranchService
+    {
+        List<DropDownHelper> GetBranchDropDown();
+    }
+
+    public class BranchService : IBranchService
     {
         private UnitOfWork _uow;
 

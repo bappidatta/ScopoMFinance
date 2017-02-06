@@ -88,6 +88,7 @@
     <Build Include="Tables\SysColcOption.sql" />
     <Build Include="Tables\OrgCreditOfficer.sql" />
     <Build Include="Tables\UserBranch.sql" />
+    <Build Include="Tables\UserLoginAudit.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Common\Variables.sql" />

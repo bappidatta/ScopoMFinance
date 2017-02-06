@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using ScopoMFinance.Core.Helpers;
 using ScopoMFinance.Core.Services;
 using ScopoMFinance.Domain.Models;
 using ScopoMFinance.Domain.Repositories;
@@ -37,7 +38,9 @@ namespace ScopoMFinance.Web.App_Start
             container.Register<ScopoMFinanceEntities>(Lifestyle.Scoped);
             container.Register<UnitOfWork>();
 
-            container.Register<BranchService>();
+            container.Register<IBranchService, BranchService>();
+            container.Register<IUserProfileService, UserProfileService>();
+            container.Register<ICookieAccessor, CookieAccessor>();
         }
     }
 }

@@ -1,0 +1,182 @@
+﻿using ScopoMFinance.Core.Services;
+using ScopoMFinance.Domain.ViewModels;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web;
+
+namespace ScopoMFinance.Core.Helpers
+{
+    /// <summary>
+    /// IUserHelper interface to be inherited by UserHelper
+    /// </summary>
+    public interface IUserHelper
+    {
+        /// <summary>
+        /// Returns instance of UserCacheViewModel current user. Reads from cache or creates cache if empty. If not logged in returns null
+        /// </summary>
+        /// <returns>UserCacheViewModel when logged in or null if not</returns>
+        UserCacheViewModel Get();
+
+        /// <summary>
+        /// Returns instance of UserCacheViewModel current user. Reads from cache or creates cache if empty. If not logged in returns null
+        /// </summary>
+        /// <returns>UserCacheViewModel when logged in or null if not</returns>
+        UserCacheViewModel Get(string name);
+
+        /// <summary>
+        /// Invalidated the user cache for the specified <paramref name="username"/>
+        /// </summary>
+        /// <param name="username">user name</param>
+        void InvalidateCache(string username);
+
+        /// <summary>
+        /// Returns the username of the logged-in user
+        /// </summary>
+        /// <returns> Returns the username of the logged-in user </returns>
+        string LoggedinUsername();
+
+
+    }
+
+    /// <summary>
+    /// Class to get UserCacheModel
+    /// </summary>
+    public class UserHelper : IUserHelper
+    {
+        public static IUserHelper Instance { get; set; }
+
+        /// <summary>
+        /// Cache key for the user dictionary
+        /// </summary>
+        private const string USER_CACHE_DICTIONARY = "USER_CACHE_DICTIONARY";
+
+        /// <summary>
+        /// Object is used as a lock when the user cache concurrent dictionary needs to created
+        /// </summary>
+        private static readonly object GET_DICTIONARY_LOCK = new object();
+
+        private ICookieAccessor _cookieAccessor;
+        private IUserProfileService _userProfileService;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="cookieAccessor"></param>
+        /// <param name="userProfileService"></param>
+        public UserHelper(ICookieAccessor cookieAccessor, IUserProfileService userProfileService)
+        {
+            _cookieAccessor = cookieAccessor;
+            _userProfileService = userProfileService;
+        }
+
+        /// <summary>
+        /// Returns dictionary from http cache - if not found creates a new one
+        /// </summary>
+        /// <returns> returns dictionary from http cache - if not found creates a new one </returns>
+        private ConcurrentDictionary<string, UserCacheViewModel> GetDictionary()
+        {
+            try
+            {
+                if (HttpContext.Current.Cache[USER_CACHE_DICTIONARY] == null)
+                {
+                    lock (GET_DICTIONARY_LOCK)
+                    {
+                        if (HttpContext.Current.Cache[USER_CACHE_DICTIONARY] == null)
+                        {
+                            HttpContext.Current.Cache[USER_CACHE_DICTIONARY] = new ConcurrentDictionary<string, UserCacheViewModel>();
+                        }
+                    }
+                }
+
+                return (ConcurrentDictionary<string, UserCacheViewModel>)HttpContext.Current.Cache[USER_CACHE_DICTIONARY];
+            }
+            catch (Exception ex)
+            {
+                // TODO
+                // Should be Log here for debuging in production
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Returns instance of UserCacheModel current user. Reads from cache or creates cache if empty. If not logged in returns null
+        /// </summary>
+        /// <returns>UserCacheModel when logged in or null if not</returns>
+        public virtual UserCacheViewModel Get()
+        {
+            if (!HttpContext.Current.Request.IsAuthenticated)
+                return null;
+
+            return Get(HttpContext.Current.User.Identity.Name);
+        }
+
+        /// <summary>
+        /// Returns the username of the logged-in user
+        /// </summary>
+        /// <returns> Returns the username of the logged-in user </returns>
+        public virtual string LoggedinUsername()
+        {
+            return HttpContext.Current.User.Identity.IsAuthenticated ? HttpContext.Current.User.Identity.Name : null;
+        }
+
+        /// <summary>
+        /// Returns instance of UserCacheModel for specified username. Reads from cache or creates cache if empty
+        /// </summary>
+        /// <param name="userName">Username to retrieve UserCacheModel, defaults to current username</param>
+        /// <returns>UserCacheModel instance based on username</returns>
+        public virtual UserCacheViewModel Get(string userName)
+        {
+            try
+            {
+                ConcurrentDictionary<string, UserCacheViewModel> userCache = GetDictionary();
+                UserCacheViewModel user = null;
+
+                if (!userCache.TryGetValue(userName, out user))
+                {
+
+                    user = _userProfileService.GetUserCache(userName.ToLower());
+
+                    if (user == null)
+                        throw new Exception("UserCacheModel tried to access username that doesn't exist: " + userName);
+
+                    userCache.TryAdd(userName, user);
+                }
+
+                return user;
+            }
+            catch (Exception ex)
+            {
+                // TODO
+                // Should be Log here for debuging in production
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Invalidated the user cache for the specified <paramref name="username"/>
+        /// </summary>
+        /// <param name="username">user name</param>
+        public virtual void InvalidateCache(string username)
+        {
+            if (String.IsNullOrWhiteSpace(username))
+                return;
+
+            try
+            {
+                ConcurrentDictionary<string, UserCacheViewModel> userCache = GetDictionary();
+                UserCacheViewModel removedUser = null;
+
+                userCache.TryRemove(username, out removedUser);
+            }
+            catch (Exception ex)
+            {
+                // TODO
+                // Should be Log here for debuging in production
+            }
+        }
+    }
+}
