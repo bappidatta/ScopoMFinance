@@ -67,6 +67,9 @@ namespace ScopoMFinance.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (Request.IsAuthenticated)
+                return RedirectToAction("Index", new { controller = "Home" });
+
             ViewBag.BranchDropDown = new SelectList(_branchService.GetBranchDropDown(), "Value", "Text");
             ViewBag.ReturnUrl = returnUrl;
             return View();
@@ -95,11 +98,10 @@ namespace ScopoMFinance.Web.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, true, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
-                    _userHelper.InvalidateCache(User.Identity.Name);
                     _userLoginAuditService.insert(model.Email, model.BranchId);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
