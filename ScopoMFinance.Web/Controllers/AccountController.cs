@@ -107,7 +107,7 @@ namespace ScopoMFinance.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    _userLoginAuditService.insert(model.Email, model.BranchId);
+                    _userLoginAuditService.insert(model.Email, _userHelper.Get() != null ? _userHelper.Get().BranchId : model.BranchId);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
