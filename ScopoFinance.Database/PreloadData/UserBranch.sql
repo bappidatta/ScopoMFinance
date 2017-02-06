@@ -6,6 +6,7 @@ USING
 			SELECT 1	, @User_HOUser, @Branch_HO
    UNION	SELECT 2	, @User_BranchUser_101	, @Branch_101
    UNION	SELECT 3	, @User_BranchUser_102	, @Branch_102
+   UNION	SELECT 4	, @User_HOUser	, @Branch_101
 
 ) AS SOURCE ([Id],[UserId],[BranchId])
 	ON TARGET.[Id] = SOURCE.[Id]

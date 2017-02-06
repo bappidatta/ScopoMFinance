@@ -99,6 +99,7 @@ namespace ScopoMFinance.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    _userHelper.InvalidateCache(User.Identity.Name);
                     _userLoginAuditService.insert(model.Email, model.BranchId);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
@@ -158,6 +159,7 @@ namespace ScopoMFinance.Web.Controllers
         public ActionResult LogOff()
         {
             _userLoginAuditService.update(User.Identity.Name, _userHelper.Get().BranchId);
+            _userHelper.InvalidateCache(User.Identity.Name);
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }
