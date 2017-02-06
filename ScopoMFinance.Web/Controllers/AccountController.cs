@@ -21,12 +21,14 @@ namespace ScopoMFinance.Web.Controllers
         private ApplicationUserManager _userManager;
         private IBranchService _branchService;
         private IUserProfileService _userProfileService;
+        private IUserLoginAuditService _userLoginAuditService;
 
-        public AccountController(IBranchService branchService, IUserProfileService userProfileService)
+        public AccountController(IBranchService branchService, IUserProfileService userProfileService, IUserLoginAuditService userLoginAuditService)
         {
             UserManager = new ApplicationUserManager(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             _branchService = branchService;
             _userProfileService = userProfileService;
+            _userLoginAuditService = userLoginAuditService;
         }
 
         public ApplicationSignInManager SignInManager
@@ -90,6 +92,7 @@ namespace ScopoMFinance.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    _userLoginAuditService.insert(model.Email, model.BranchId);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

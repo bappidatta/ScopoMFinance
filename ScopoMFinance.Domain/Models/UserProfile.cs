@@ -18,6 +18,7 @@ namespace ScopoMFinance.Domain.Models
         public UserProfile()
         {
             this.UserBranches = new HashSet<UserBranch>();
+            this.UserLoginAudits = new HashSet<UserLoginAudit>();
         }
     
         public string UserId { get; set; }
@@ -34,5 +35,7 @@ namespace ScopoMFinance.Domain.Models
         public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserBranch> UserBranches { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserLoginAudit> UserLoginAudits { get; set; }
     }
 }

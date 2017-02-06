@@ -46,5 +46,18 @@ namespace ScopoMFinance.Domain.Repositories
                 return userProfileRepo;
             }
         }
+
+        private IRepository<UserLoginAudit> userLoginAuditRepo;
+        public IRepository<UserLoginAudit> UserLoginAuditRepository
+        {
+            get
+            {
+                if (this.userLoginAuditRepo == null)
+                {
+                    this.userLoginAuditRepo = new Repository<UserLoginAudit>(db);
+                }
+                return userLoginAuditRepo;
+            }
+        }
     }
 }

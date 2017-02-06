@@ -128,6 +128,9 @@
     <Compile Include="Models\UserBranch.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserLoginAudit.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserProfile.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
@@ -136,6 +139,7 @@
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
     <Compile Include="ViewModels\UserCacheViewModel.cs" />
+    <Compile Include="ViewModels\UserLoginAuditViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -47,5 +47,6 @@ namespace ScopoMFinance.Domain.Models
         public virtual DbSet<SysVillage> SysVillages { get; set; }
         public virtual DbSet<UserBranch> UserBranches { get; set; }
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
+        public virtual DbSet<UserLoginAudit> UserLoginAudits { get; set; }
     }
 }

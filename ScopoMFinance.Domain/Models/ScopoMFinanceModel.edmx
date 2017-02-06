@@ -293,6 +293,16 @@
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="BranchId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserLoginAudit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+          <Property Name="LoggedInTime" Type="datetime" Nullable="false" />
+          <Property Name="LoggedOutTime" Type="datetime" />
+        </EntityType>
         <EntityType Name="UserProfile">
           <Key>
             <PropertyRef Name="UserId" />
@@ -612,6 +622,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserLogin_Branch">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
+          <End Role="UserLoginAudit" Type="Self.UserLoginAudit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserLoginAudit">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserLogin_User">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+          <End Role="UserLoginAudit" Type="Self.UserLoginAudit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserLoginAudit">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserProfile_AspNetUser">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
@@ -659,6 +693,7 @@
           <EntitySet Name="SysUpazila" EntityType="Self.SysUpazila" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SysVillage" EntityType="Self.SysVillage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserBranch" EntityType="Self.UserBranch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserLoginAudit" EntityType="Self.UserLoginAudit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_BranchProject_Branch" Association="Self.FK_BranchProject_Branch">
             <End Role="Branch" EntitySet="Branch" />
@@ -759,6 +794,14 @@
           <AssociationSet Name="FK_UserBranch_User" Association="Self.FK_UserBranch_User">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="UserBranch" EntitySet="UserBranch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserLogin_Branch" Association="Self.FK_UserLogin_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="UserLoginAudit" EntitySet="UserLoginAudit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserLogin_User" Association="Self.FK_UserLogin_User">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="UserLoginAudit" EntitySet="UserLoginAudit" />
           </AssociationSet>
           <AssociationSet Name="FK_UserProfile_AspNetUser" Association="Self.FK_UserProfile_AspNetUser">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -900,7 +943,16 @@
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="UserLoginAudits" EntityType="ScopoMFinanceModel.UserLoginAudit" />
+          <AssociationSet Name="FK_UserLogin_Branch" Association="ScopoMFinanceModel.FK_UserLogin_Branch">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="UserLoginAudit" EntitySet="UserLoginAudits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserLogin_User" Association="ScopoMFinanceModel.FK_UserLogin_User">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="UserLoginAudit" EntitySet="UserLoginAudits" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
             <PropertyRef Name="Id" />
@@ -945,6 +997,7 @@
           <NavigationProperty Name="Organizations" Relationship="ScopoMFinanceModel.FK_Org_Branch" FromRole="Branch" ToRole="Organization" />
           <NavigationProperty Name="OrgCreditOfficers" Relationship="ScopoMFinanceModel.FK_OrgCO_Branch" FromRole="Branch" ToRole="OrgCreditOfficer" />
           <NavigationProperty Name="UserBranches" Relationship="ScopoMFinanceModel.FK_UserBranch_Branch" FromRole="Branch" ToRole="UserBranch" />
+          <NavigationProperty Name="UserLoginAudits" Relationship="ScopoMFinanceModel.FK_UserLogin_Branch" FromRole="Branch" ToRole="UserLoginAudit" />
         </EntityType>
         <EntityType Name="BranchWiseProjectMapping">
           <Key>
@@ -1247,6 +1300,7 @@
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
           <NavigationProperty Name="AspNetUser" Relationship="ScopoMFinanceModel.FK_UserProfile_AspNetUser" FromRole="UserProfile" ToRole="AspNetUser" />
           <NavigationProperty Name="UserBranches" Relationship="ScopoMFinanceModel.FK_UserBranch_User" FromRole="UserProfile" ToRole="UserBranch" />
+          <NavigationProperty Name="UserLoginAudits" Relationship="ScopoMFinanceModel.FK_UserLogin_User" FromRole="UserProfile" ToRole="UserLoginAudit" />
         </EntityType>
         <Association Name="FK_UserProfile_AspNetUser">
           <End Type="ScopoMFinanceModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
@@ -1551,6 +1605,42 @@
         <Association Name="AspNetUserRoles">
           <End Type="ScopoMFinanceModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="ScopoMFinanceModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityType Name="UserLoginAudit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="LoggedInTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LoggedOutTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_UserLogin_Branch" FromRole="UserLoginAudit" ToRole="Branch" />
+          <NavigationProperty Name="UserProfile" Relationship="ScopoMFinanceModel.FK_UserLogin_User" FromRole="UserLoginAudit" ToRole="UserProfile" />
+        </EntityType>
+        <Association Name="FK_UserLogin_Branch">
+          <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.UserLoginAudit" Role="UserLoginAudit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserLoginAudit">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserLogin_User">
+          <End Type="ScopoMFinanceModel.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.UserLoginAudit" Role="UserLoginAudit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserLoginAudit">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -1883,6 +1973,17 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="UserLoginAudits">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.UserLoginAudit">
+              <MappingFragment StoreEntitySet="UserLoginAudit">
+                <ScalarProperty Name="LoggedOutTime" ColumnName="LoggedOutTime" />
+                <ScalarProperty Name="LoggedInTime" ColumnName="LoggedInTime" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
