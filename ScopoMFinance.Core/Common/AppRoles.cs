@@ -13,4 +13,10 @@ namespace ScopoMFinance.Core.Common
         public const string BranchUser      = "branchuser";
         public const string AreaCoordinator = "areacoordinator";
     }
+
+    public static class BranchInfo
+    {
+        public const string HO = "Head Office";
+    }
+
 }

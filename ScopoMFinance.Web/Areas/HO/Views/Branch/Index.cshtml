@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Branch Setup -- Head Office";
+}
+
+<nav class="nav-breadcrumb">
+    <div class="nav-wrapper blue-grey darken-3">
+        <div class="col s12">
+            @Html.ActionLink("Branch List", "Index", new { area = "HO", controller = "Branch" }, new { @class = "breadcrumb" })
+
+            @{Html.RenderPartial("_UserInfo");}
+        </div>
+    </div>
+</nav>
+

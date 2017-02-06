@@ -6,7 +6,8 @@
     <title>ScopoMFinance | @ViewBag.Title</title>
     
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    @Styles.Render("~/Content/css")
+    <link type="text/css" rel="stylesheet" href="~/Content/materialize.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="~/Content/style.css" media="screen,projection" />
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -42,12 +43,11 @@
                     {
                         @Html.Partial("_MenuAreaCoordinator")
                     }
-                    
                     <li><a href="/Account/LogOff/">Sign out</a></li>
                 </ul>
 
                 <ul id="nav-mobile" class="side-nav">
-                    @if (User.IsInRole(ScopoMFinance.Core.Common.AppRoles.SuperUser))
+                    @*@if (User.IsInRole(ScopoMFinance.Core.Common.AppRoles.SuperUser))
                     {
                         @Html.Partial("_MenuSuperUser")
                     }
@@ -62,7 +62,7 @@
                     @if (User.IsInRole(ScopoMFinance.Core.Common.AppRoles.AreaCoordinator))
                     {
                         @Html.Partial("_MenuAreaCoordinator")
-                    }
+                    }*@
                     <li><a href="/Account/LogOff/">Sign out</a></li>
                 </ul>
                 <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>

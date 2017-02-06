@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B133F37B-BEFB-4FFC-8651-AE8E22FAE8B2}</ProjectGuid>
+    <ProjectGuid>{42AADA26-F118-4F8C-AD52-51213B9265AB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ScopoMFinance.Core</RootNamespace>
-    <AssemblyName>ScopoMFinance.Core</AssemblyName>
+    <RootNamespace>ScopoMFinance.Localization</RootNamespace>
+    <AssemblyName>ScopoMFinance.Localization</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,7 +32,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,26 +39,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\AppRoles.cs" />
-    <Compile Include="Helpers\CookieAccessor.cs" />
-    <Compile Include="Helpers\DropDownHelper.cs" />
-    <Compile Include="Helpers\UserHelper.cs" />
+    <Compile Include="BranchStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BranchStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\BranchService.cs" />
-    <Compile Include="Services\UserLoginAuditService.cs" />
-    <Compile Include="Services\UserProfileService.cs" />
+    <Compile Include="RoleStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RoleStrings.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ScopoMFinance.Domain\ScopoMFinance.Domain.csproj">
-      <Project>{89c623f6-5d29-48eb-b7ce-945e19a33b90}</Project>
-      <Name>ScopoMFinance.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ScopoMFinance.Localization\ScopoMFinance.Localization.csproj">
-      <Project>{42aada26-f118-4f8c-ad52-51213b9265ab}</Project>
-      <Name>ScopoMFinance.Localization</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="BranchStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BranchStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RoleStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RoleStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

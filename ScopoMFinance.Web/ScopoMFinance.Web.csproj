@@ -183,6 +183,8 @@
     <Compile Include="Areas\Dashboard\Controllers\BranchUserController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\SuperUserController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
+    <Compile Include="Areas\HO\Controllers\BranchController.cs" />
+    <Compile Include="Areas\HO\HOAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -200,6 +202,7 @@
     <Content Include="Content\images\login-background.jpg" />
     <Content Include="Content\materialize.css" />
     <Content Include="Content\materialize.min.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -208,10 +211,16 @@
     <Content Include="Areas\Dashboard\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Dashboard\Views\SuperUser\Index.cshtml" />
     <Content Include="Areas\Dashboard\Views\BranchUser\Index.cshtml" />
+    <Content Include="Areas\HO\Views\web.config" />
+    <Content Include="Areas\HO\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\HO\Views\Branch\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-2.1.1.js" />
-    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\jqueray-2.1.1.js" />
+    <Content Include="Scripts\jqueray-2.1.1.min.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-2.1.4.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -300,6 +309,8 @@
   <ItemGroup>
     <Folder Include="Areas\Dashboard\Models\" />
     <Folder Include="Areas\Dashboard\Views\Shared\" />
+    <Folder Include="Areas\HO\Models\" />
+    <Folder Include="Areas\HO\Views\Shared\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

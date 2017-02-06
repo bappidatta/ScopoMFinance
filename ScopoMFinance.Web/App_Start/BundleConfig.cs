@@ -21,7 +21,6 @@ namespace ScopoMFinance.Web
 
             bundles.Add(new ScriptBundle("~/bundles/materialize").Include(
                       "~/Scripts/materialize.js",
-                      "~/Scripts/respond.js",
                       "~/Scripts/init.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
