@@ -42,6 +42,10 @@ namespace ScopoMFinance.Web.App_Start
             container.Register<IUserProfileService, UserProfileService>();
             container.Register<ICookieAccessor, CookieAccessor>();
             container.Register<IUserLoginAuditService, UserLoginAuditService>();
+            container.Register<IUserHelper, UserHelper>();
+
+
+            UserHelper.Instance = container.GetInstance<IUserHelper>();
         }
     }
 }

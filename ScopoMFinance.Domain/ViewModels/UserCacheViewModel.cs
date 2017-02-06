@@ -10,5 +10,8 @@ namespace ScopoMFinance.Domain.ViewModels
     {
         public int BranchId { get; set; }
         public string BranchName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public DateTime LoggedInTime { get; set; }
     }
 }

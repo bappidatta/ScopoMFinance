@@ -15,6 +15,7 @@ namespace ScopoMFinance.Core.Services
         void update(string username, int branchId);
         void clearAllLogin(string username, int branchId);
         UserLoginAuditViewModel GetCurrentLoggedIn(string username);
+        UserCacheViewModel GetUserCache(string username);
     }
 
     public class UserLoginAuditService : IUserLoginAuditService
@@ -73,7 +74,8 @@ namespace ScopoMFinance.Core.Services
                                         where c.BranchId == branchId
                                         && c.UserProfile.AspNetUser.UserName == username
                                         && c.LoggedOutTime == null
-                                        select c).LastOrDefault();
+                                        orderby c.Id
+                                        select c).FirstOrDefault();
 
             userLogin.LoggedOutTime = DateTime.Now;
             _uow.UserLoginAuditRepository.Update(userLogin);
@@ -85,15 +87,34 @@ namespace ScopoMFinance.Core.Services
             UserLoginAuditViewModel userLogin = (from c in _uow.UserLoginAuditRepository.Get()
                                                  where c.UserProfile.AspNetUser.UserName == username
                                                  && c.LoggedOutTime == null
+                                                 orderby c.Id
                                                  select new UserLoginAuditViewModel()
                                                  {
                                                      Id = c.Id,
                                                      BranchId = c.BranchId,
                                                      UserId = c.UserId,
                                                      LoggedInTime = c.LoggedInTime
-                                                 }).LastOrDefault();
+                                                 }).FirstOrDefault();
 
             return userLogin;
+        }
+
+        public UserCacheViewModel GetUserCache(string username) 
+        {
+            UserCacheViewModel userCache = (from c in _uow.UserLoginAuditRepository.Get()
+                                            where c.UserProfile.AspNetUser.UserName == username
+                                            && c.LoggedOutTime == null
+                                            orderby c.Id
+                                            select new UserCacheViewModel()
+                                            {
+                                                BranchId = c.BranchId,
+                                                BranchName = c.Branch.Name,
+                                                FirstName = c.UserProfile.FirstName,
+                                                LastName = c.UserProfile.LastName,
+                                                LoggedInTime = c.LoggedInTime
+                                            }).FirstOrDefault();
+
+            return userCache;
         }
     }
 }

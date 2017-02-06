@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using ScopoMFinance.Web.Models;
 using ScopoMFinance.Core.Services;
 using Microsoft.AspNet.Identity.EntityFramework;
+using ScopoMFinance.Core.Helpers;
 
 namespace ScopoMFinance.Web.Controllers
 {
@@ -22,13 +23,19 @@ namespace ScopoMFinance.Web.Controllers
         private IBranchService _branchService;
         private IUserProfileService _userProfileService;
         private IUserLoginAuditService _userLoginAuditService;
+        private IUserHelper _userHelper;
 
-        public AccountController(IBranchService branchService, IUserProfileService userProfileService, IUserLoginAuditService userLoginAuditService)
+        public AccountController(
+            IBranchService branchService, 
+            IUserProfileService userProfileService, 
+            IUserLoginAuditService userLoginAuditService,
+            IUserHelper userHelper)
         {
             UserManager = new ApplicationUserManager(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             _branchService = branchService;
             _userProfileService = userProfileService;
             _userLoginAuditService = userLoginAuditService;
+            _userHelper = userHelper;
         }
 
         public ApplicationSignInManager SignInManager
@@ -150,6 +157,7 @@ namespace ScopoMFinance.Web.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            _userLoginAuditService.update(User.Identity.Name, _userHelper.Get().BranchId);
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }

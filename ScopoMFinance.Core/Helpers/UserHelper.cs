@@ -60,17 +60,17 @@ namespace ScopoMFinance.Core.Helpers
         private static readonly object GET_DICTIONARY_LOCK = new object();
 
         private ICookieAccessor _cookieAccessor;
-        private IUserProfileService _userProfileService;
+        private IUserLoginAuditService _userLoginAuditService;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="cookieAccessor"></param>
         /// <param name="userProfileService"></param>
-        public UserHelper(ICookieAccessor cookieAccessor, IUserProfileService userProfileService)
+        public UserHelper(ICookieAccessor cookieAccessor, IUserLoginAuditService userLoginAuditService)
         {
             _cookieAccessor = cookieAccessor;
-            _userProfileService = userProfileService;
+            _userLoginAuditService = userLoginAuditService;
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace ScopoMFinance.Core.Helpers
                 if (!userCache.TryGetValue(userName, out user))
                 {
 
-                    user = _userProfileService.GetUserCache(userName.ToLower());
+                    user = _userLoginAuditService.GetUserCache(userName.ToLower());
 
                     if (user == null)
                         throw new Exception("UserCacheModel tried to access username that doesn't exist: " + userName);

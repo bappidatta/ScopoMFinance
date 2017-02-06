@@ -1,4 +1,5 @@
-﻿using ScopoMFinance.Web.App_Start;
+﻿using ScopoMFinance.Core.Helpers;
+using ScopoMFinance.Web.App_Start;
 using System;
 using System.Collections.Generic;
 using System.Linq;
