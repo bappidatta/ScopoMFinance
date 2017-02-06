@@ -68,7 +68,12 @@ namespace ScopoMFinance.Web.Controllers
         public ActionResult Login(string returnUrl)
         {
             if (Request.IsAuthenticated)
+            {
+                if(_userHelper.Get() == null)
+                    AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+
                 return RedirectToAction("Index", new { controller = "Home" });
+            }
 
             ViewBag.BranchDropDown = new SelectList(_branchService.GetBranchDropDown(), "Value", "Text");
             ViewBag.ReturnUrl = returnUrl;
