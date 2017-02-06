@@ -165,7 +165,7 @@ namespace ScopoMFinance.Web.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            _userLoginAuditService.update(User.Identity.Name, _userHelper.Get().BranchId);
+            _userLoginAuditService.clearAllLogin(User.Identity.Name);
             _userHelper.InvalidateCache(User.Identity.Name);
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");

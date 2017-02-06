@@ -12,8 +12,7 @@ namespace ScopoMFinance.Core.Services
     public interface IUserLoginAuditService
     {
         void insert(string username, int branchId);
-        void update(string username, int branchId);
-        void clearAllLogin(string username, int branchId);
+        void clearAllLogin(string username, int branchId = 0);
         UserLoginAuditViewModel GetCurrentLoggedIn(string username);
         UserCacheViewModel GetUserCache(string username);
     }
@@ -36,13 +35,24 @@ namespace ScopoMFinance.Core.Services
             return userId;
         }
 
-        public void clearAllLogin(string username, int branchId)
+        public void clearAllLogin(string username, int branchId = 0)
         {
-            List<UserLoginAudit> userLogins = (from c in _uow.UserLoginAuditRepository.Get()
-                                               where c.BranchId == branchId
-                                               && c.UserProfile.AspNetUser.UserName == username
-                                               && c.LoggedOutTime == null
-                                               select c).ToList();
+            List<UserLoginAudit> userLogins = null;
+            if (branchId > 0)
+            {
+                userLogins = (from c in _uow.UserLoginAuditRepository.Get()
+                              where c.BranchId == branchId
+                              && c.UserProfile.AspNetUser.UserName == username
+                              && c.LoggedOutTime == null
+                              select c).ToList();
+            }
+            else 
+            {
+                userLogins = (from c in _uow.UserLoginAuditRepository.Get()
+                              where c.UserProfile.AspNetUser.UserName == username
+                              && c.LoggedOutTime == null
+                              select c).ToList();
+            }
 
             foreach (var userLogin in userLogins)
             {
@@ -56,7 +66,7 @@ namespace ScopoMFinance.Core.Services
 
         public void insert(string username, int branchId)
         {
-            clearAllLogin(username, branchId);
+            clearAllLogin(username);
             UserLoginAudit model = new UserLoginAudit()
             {
                 BranchId = branchId,
@@ -65,20 +75,6 @@ namespace ScopoMFinance.Core.Services
             };
 
             _uow.UserLoginAuditRepository.Insert(model);
-            _uow.Save();
-        }
-
-        public void update(string username, int branchId)
-        {
-            UserLoginAudit userLogin = (from c in _uow.UserLoginAuditRepository.Get()
-                                        where c.BranchId == branchId
-                                        && c.UserProfile.AspNetUser.UserName == username
-                                        && c.LoggedOutTime == null
-                                        orderby c.Id
-                                        select c).FirstOrDefault();
-
-            userLogin.LoggedOutTime = DateTime.Now;
-            _uow.UserLoginAuditRepository.Update(userLogin);
             _uow.Save();
         }
 
@@ -99,7 +95,7 @@ namespace ScopoMFinance.Core.Services
             return userLogin;
         }
 
-        public UserCacheViewModel GetUserCache(string username) 
+        public UserCacheViewModel GetUserCache(string username)
         {
             UserCacheViewModel userCache = (from c in _uow.UserLoginAuditRepository.Get()
                                             where c.UserProfile.AspNetUser.UserName == username
