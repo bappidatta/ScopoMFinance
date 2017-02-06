@@ -1,6 +1,6 @@
 ﻿using ScopoMFinance.Domain.Models;
 using ScopoMFinance.Domain.Repositories;
-using ScopoMFinance.Domain.ViewModels;
+using ScopoMFinance.Domain.ViewModels.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;

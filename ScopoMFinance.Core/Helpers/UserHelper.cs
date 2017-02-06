@@ -1,5 +1,5 @@
 ﻿using ScopoMFinance.Core.Services;
-using ScopoMFinance.Domain.ViewModels;
+using ScopoMFinance.Domain.ViewModels.User;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;

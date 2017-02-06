@@ -138,8 +138,9 @@
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
-    <Compile Include="ViewModels\UserCacheViewModel.cs" />
-    <Compile Include="ViewModels\UserLoginAuditViewModel.cs" />
+    <Compile Include="ViewModels\Policy\BranchListViewModel.cs" />
+    <Compile Include="ViewModels\User\UserCacheViewModel.cs" />
+    <Compile Include="ViewModels\User\UserLoginAuditViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

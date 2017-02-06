@@ -1,5 +1,6 @@
-﻿@{
-    ViewBag.Title = "Branch Setup -- Head Office";
+﻿@model List<ScopoMFinance.Domain.ViewModels.Policy.BranchListViewModel>
+@{
+    ViewBag.Title = "Branch Setup";
 }
 
 <nav class="nav-breadcrumb">
@@ -12,3 +13,78 @@
     </div>
 </nav>
 
+<div class="row">
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red">
+            <i class="large material-icons">add</i>
+        </a>
+        <ul>
+            <li>
+                <a class="btn-floating red tooltipped" data-position="left" data-tooltip="Create Branch" data-delay="0">
+                    <i class="material-icons">mode_edit</i>
+                </a>
+            </li>
+            <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+            <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+            <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+        </ul>
+    </div>
+    <div class="col s12">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">Branch List</span>
+                <table class="bordered striped responsive-table centered">
+                    <thead>
+                        <tr>
+                            <th>Branch Name</th>
+                            <th>Open Date</th>
+                            <th>Head Office</th>
+                            <th>Active</th>
+                            <th>Organizations</th>
+                            <th>Credit Officers</th>
+                            <th>Projects</th>
+                            <th>Users</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @if (Model.Count() > 0)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Name</td>
+                                    <td>@item.OpenDate.ToShortDateString()</td>
+                                    <td>
+                                        @if (item.IsHeadOffice)
+                                        {
+                                            <i class="small material-icons green-text text-darken-1">done</i>
+                                        }
+                                        else
+                                        {
+                                            <i class="small material-icons deep-orange-text">clear</i>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.Status)
+                                        {
+                                            <i class="small material-icons green-text text-darken-1">done</i>
+                                        }
+                                        else
+                                        {
+                                            <i class="small material-icons deep-orange-text">clear</i>
+                                        }
+                                    </td>
+                                    <td>@item.OrgCount</td>
+                                    <td>@item.COCount</td>
+                                    <td>@item.ProjectCount</td>
+                                    <td>@item.UserCount</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

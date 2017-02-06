@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ScopoMFinance.Domain.ViewModels
+namespace ScopoMFinance.Domain.ViewModels.User
 {
     public class UserCacheViewModel
     {
