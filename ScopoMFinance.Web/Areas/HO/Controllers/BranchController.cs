@@ -1,4 +1,5 @@
-﻿using ScopoMFinance.Core.Common;
+﻿using NtitasCommon.Core.Common;
+using ScopoMFinance.Core.Common;
 using ScopoMFinance.Core.Services;
 using ScopoMFinance.Domain.ViewModels.Policy;
 using ScopoMFinance.Web.Attributes;
@@ -29,9 +30,9 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
-        public ActionResult Index()
+        public ActionResult Index(SortDirection sortDir = SortDirection.Asc, int sortCol = 0)
         {
-            List<BranchListViewModel> branchList = _branchService.GetBranchList();
+            List<BranchListViewModel> branchList = _branchService.GetBranchList(sortDir, sortCol);
             return View(branchList);
         }
     }

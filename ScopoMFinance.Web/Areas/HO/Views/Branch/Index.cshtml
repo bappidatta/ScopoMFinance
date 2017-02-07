@@ -38,14 +38,14 @@
                 <table class="bordered striped responsive-table centered">
                     <thead>
                         <tr>
-                            <th>Branch Name</th>
-                            <th>Open Date</th>
-                            <th>Head Office</th>
-                            <th>Active</th>
-                            <th>Organizations</th>
-                            <th>Credit Officers</th>
-                            <th>Projects</th>
-                            <th>Users</th>
+                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().Name), "Index", null, null, null, 0)</th>
+                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().OpenDate), "Index", null, null, null, 1)</th>
+                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().IsHeadOffice), "Index", null, null, null, 2)</th>
+                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().Status), "Index", null, null, null, 3)</th>
+                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().OrgCount), "Index", null, null, null, 4)</th>
+                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().COCount), "Index", null, null, null, 5)</th>
+                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().ProjectCount), "Index", null, null, null, 6)</th>
+                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().UserCount), "Index", null, null, null, 7)</th>
                         </tr>
                     </thead>
 

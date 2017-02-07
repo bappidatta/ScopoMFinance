@@ -61,6 +61,78 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Branch Name.
+        /// </summary>
+        public static string Branch_List_DN_BranchName {
+            get {
+                return ResourceManager.GetString("Branch_List_DN_BranchName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Date.
+        /// </summary>
+        public static string Branch_List_DN_BranchOpenDate {
+            get {
+                return ResourceManager.GetString("Branch_List_DN_BranchOpenDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        public static string Branch_List_DN_BranchStatus {
+            get {
+                return ResourceManager.GetString("Branch_List_DN_BranchStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Head Office.
+        /// </summary>
+        public static string Branch_List_DN_HeadOffice {
+            get {
+                return ResourceManager.GetString("Branch_List_DN_HeadOffice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Credit Officers.
+        /// </summary>
+        public static string Branch_List_DN_TotalCO {
+            get {
+                return ResourceManager.GetString("Branch_List_DN_TotalCO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Organizations.
+        /// </summary>
+        public static string Branch_List_DN_TotalOrg {
+            get {
+                return ResourceManager.GetString("Branch_List_DN_TotalOrg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Projects.
+        /// </summary>
+        public static string Branch_List_DN_TotalProject {
+            get {
+                return ResourceManager.GetString("Branch_List_DN_TotalProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Users.
+        /// </summary>
+        public static string Branch_List_DN_TotalUser {
+            get {
+                return ResourceManager.GetString("Branch_List_DN_TotalUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Head Office.
         /// </summary>
         public static string HeadOffice {
