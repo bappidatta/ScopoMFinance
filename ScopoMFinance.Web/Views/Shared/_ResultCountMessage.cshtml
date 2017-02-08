@@ -1,0 +1,16 @@
+﻿@model ResultCountHelper
+
+@*This will render out the results found message based the number of items found (to avoid messages like "There were 1 results found")
+    You must pass a ResultCountHelper with a minimum of the ItemCount specified
+    Optionally, you can also pass in custom strings for the single + multi items message, or leave empty for the default.*@
+
+@if (Model.ItemCount == 1)
+{
+    <div class="list-count">@(String.IsNullOrEmpty(Model.SingleItemMessage) ? ScopoMFinance.Localization.PaginationStrings.List_CountSingle : Model.SingleItemMessage)</div>
+    <input type="hidden" id="itemCount" value="1" />
+}
+else
+{
+    <div class="list-count">@String.Format((String.IsNullOrEmpty(Model.MultiItemMessage) ? ScopoMFinance.Localization.PaginationStrings.List_Count : Model.MultiItemMessage), Model.ItemCount)</div>
+    <input type="hidden" id="itemCount" value="@Model.ItemCount" />
+}

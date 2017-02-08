@@ -1,0 +1,80 @@
+﻿@model NtitasCommon.Core.Common.PagerSettings
+
+@if (Model != null && Model.TotalRecords > Model.PageSize)
+{
+    <ul class="pagination col s8">
+        @if (Model.CurrentPage > 0)
+        {
+            <li>
+                <a href="@String.Format(Model.URLFormat, 0)">
+                    <i class="material-icons">chevron_left</i>
+                </a>
+            </li>
+            <li>
+                <a href="@String.Format(Model.URLFormat, Model.CurrentPage - 1)">
+                    Previous
+                </a>
+            </li>
+        }
+        else
+        {
+            <li class="disabled">
+                <a href="javascript:void(0);">
+                    <i class="material-icons">chevron_left</i>
+                </a>
+            </li>
+            <li class="disabled">
+                <a href="javascript:void(0);">
+                    Previous
+                </a>
+            </li>
+        }
+
+        @foreach (int i in Model.PageNumbersToDisplay)
+        {
+            if (Model.CurrentPage == i)
+            {
+                <li class="active">
+                    <a href="javascript:void(0);"> @(i + 1)</a>
+                </li>
+            }
+            else if (i == -1)
+            {
+                <li>..</li>
+            }
+            else
+            {
+                <li class="waves-effect">
+                    <a href="@String.Format(Model.URLFormat, i)"> @(i + 1)</a>
+                </li>
+            }
+        }
+
+        @if (Model.CurrentPage < Model.Pages - 1)
+        {
+            <li>
+                <a href="@String.Format(Model.URLFormat, Model.CurrentPage + 1)" class="next">
+                    Next
+                </a>
+            </li>
+            <li>
+                <a href="@String.Format(Model.URLFormat, Model.Pages - 1)" class="last">
+                    <i class="material-icons">chevron_right</i>
+                </a>
+            </li>
+        }
+        else
+        {
+            <li class="disabled">
+                <a href="javascript:void(0);" class="next">
+                    Next
+                </a>
+            </li>
+            <li class="disabled">
+                <a href="javascript:void(0);" class="last">
+                    <i class="material-icons">chevron_right</i>
+                </a>
+            </li>
+        }
+    </ul>
+}

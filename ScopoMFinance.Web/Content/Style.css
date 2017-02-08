@@ -89,3 +89,11 @@ footer.page-footer {
 .headerSortUp::before {
     content: "\f0de";
 }
+
+.pagination-container {
+    margin-bottom: 0px;
+}
+
+    .pagination-container .pagination {
+        margin-top: 25px;
+    }

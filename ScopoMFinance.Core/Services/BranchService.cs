@@ -16,7 +16,7 @@ namespace ScopoMFinance.Core.Services
     public interface IBranchService
     {
         List<DropDownHelper> GetBranchDropDown();
-        PList<BranchListViewModel> GetBranchList(SortDirection sortDir, int sortCol);
+        PList<BranchListViewModel> GetBranchList(int pageNumber, int pageSize, SortDirection sortDir, int sortCol);
     }
 
     public class BranchService : IBranchService
@@ -41,9 +41,10 @@ namespace ScopoMFinance.Core.Services
             return branchDropDown.ToList();
         }
 
-        public PList<BranchListViewModel> GetBranchList(SortDirection sortDir, int sortCol)
+        public PList<BranchListViewModel> GetBranchList(int pageNumber, int pageSize, SortDirection sortDir, int sortCol)
         {
             Expression<Func<Branch, object>> orderBy = null;
+            PagerSettings psettings = null;
 
             switch (sortCol)
             {
@@ -75,9 +76,9 @@ namespace ScopoMFinance.Core.Services
                                   COCount = c.Employees.Count(e => e.IsActive && !e.IsDeleted && e.IsCreditOfficer),
                                   UserCount = c.UserBranches.Count(u => u.UserProfile.IsActive && !u.UserProfile.IsDeleted),
                                   ProjectCount = c.BranchWiseProjectMappings.Count(p => p.Project.IsActive && !p.Project.IsDeleted)
-                              });
+                              }).Page(pageNumber, pageSize, out psettings);
 
-            return branchList.ToPList();
+            return branchList.ToPList(psettings);
         }
     }
 }

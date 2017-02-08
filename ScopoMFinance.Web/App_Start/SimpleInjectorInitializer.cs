@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using NtitasCommon.Core.Common;
 using ScopoMFinance.Core.Helpers;
 using ScopoMFinance.Core.Services;
 using ScopoMFinance.Domain.Models;
@@ -43,7 +44,7 @@ namespace ScopoMFinance.Web.App_Start
             container.Register<ICookieAccessor, CookieAccessor>();
             container.Register<IUserLoginAuditService, UserLoginAuditService>();
             container.Register<IUserHelper, UserHelper>();
-
+            container.Register<IConfig, Config>();
 
             UserHelper.Instance = container.GetInstance<IUserHelper>();
         }

@@ -1,4 +1,5 @@
-﻿using ScopoMFinance.Core.Services;
+﻿using NtitasCommon.Core.Common;
+using ScopoMFinance.Core.Services;
 using ScopoMFinance.Domain.ViewModels.User;
 using System;
 using System.Collections.Concurrent;
@@ -39,7 +40,10 @@ namespace ScopoMFinance.Core.Helpers
         /// <returns> Returns the username of the logged-in user </returns>
         string LoggedinUsername();
 
-
+        /// <summary>
+        /// Returns the users pagersize cache value or default value from web.config if not set for the user
+        /// </summary>
+        int PagerSize { get; }
     }
 
     /// <summary>
@@ -54,6 +58,8 @@ namespace ScopoMFinance.Core.Helpers
         /// </summary>
         private const string USER_CACHE_DICTIONARY = "USER_CACHE_DICTIONARY";
 
+        private static readonly String pagersize = "pagersize";
+
         /// <summary>
         /// Object is used as a lock when the user cache concurrent dictionary needs to created
         /// </summary>
@@ -61,16 +67,18 @@ namespace ScopoMFinance.Core.Helpers
 
         private ICookieAccessor _cookieAccessor;
         private IUserLoginAuditService _userLoginAuditService;
+        private IConfig _config;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="cookieAccessor"></param>
         /// <param name="userProfileService"></param>
-        public UserHelper(ICookieAccessor cookieAccessor, IUserLoginAuditService userLoginAuditService)
+        public UserHelper(ICookieAccessor cookieAccessor, IUserLoginAuditService userLoginAuditService, IConfig config)
         {
             _cookieAccessor = cookieAccessor;
             _userLoginAuditService = userLoginAuditService;
+            _config = config;
         }
 
         /// <summary>
@@ -176,6 +184,31 @@ namespace ScopoMFinance.Core.Helpers
             {
                 // TODO
                 // Should be Log here for debuging in production
+            }
+        }
+
+        /// <summary>
+        /// Returns the users pagersize cache value or default value from web.config if not set for the user
+        /// </summary>
+        public virtual int PagerSize
+        {
+            get
+            {
+
+                if (_cookieAccessor.requestCookies[pagersize] != null)
+                {
+                    return int.Parse(_cookieAccessor.requestCookies[pagersize].Value);
+                }
+                else
+                {
+                    HttpCookie cookie = new HttpCookie(pagersize, _config.DefaultPageSize.ToString());
+                    cookie.Path = "/";
+
+                    if (_cookieAccessor.responseCookies != null)
+                        _cookieAccessor.responseCookies.Add(cookie);
+
+                    return _config.DefaultPageSize;
+                }
             }
         }
     }

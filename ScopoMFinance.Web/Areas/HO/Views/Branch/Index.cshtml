@@ -1,4 +1,4 @@
-﻿@model List<ScopoMFinance.Domain.ViewModels.Policy.BranchListViewModel>
+﻿@model PList<ScopoMFinance.Domain.ViewModels.Policy.BranchListViewModel>
 @{
     ViewBag.Title = "Branch Setup";
 }
@@ -20,8 +20,8 @@
         </a>
         <ul>
             <li>
-                <a href="@Url.Action("Edit", "Branch", new { area = "HO" })" 
-                   class="btn-floating red tooltipped" 
+                <a href="@Url.Action("Edit", "Branch", new { area = "HO" })"
+                   class="btn-floating red tooltipped"
                    data-position="left" data-tooltip="Create Branch" data-delay="0">
                     <i class="material-icons">mode_edit</i>
                 </a>
@@ -35,6 +35,11 @@
         <div class="card">
             <div class="card-content">
                 <span class="card-title">Branch List</span>
+                <div class="list-count-container">
+                    <div class="list-count">
+                        @Html.Partial("_ResultCountMessage", new ResultCountHelper { ItemCount = Model.Pager.TotalRecords })
+                    </div>
+                </div>
                 <table class="bordered striped responsive-table centered">
                     <thead>
                         <tr>
@@ -86,6 +91,14 @@
                         }
                     </tbody>
                 </table>
+
+                @if (Model != null)
+                {
+                    <div class="row pagination-container">
+                        @Html.Partial("/Views/Shared/_Pagination.cshtml", Model.Pager)
+                        @Html.Partial("/Views/Shared/_PagerSize.cshtml")
+                    </div>
+                }
             </div>
         </div>
     </div>

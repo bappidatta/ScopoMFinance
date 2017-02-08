@@ -30,6 +30,22 @@ DECLARE
 	@Branch_HO	INT = 1,
 	@Branch_101 INT = 2,
 	@Branch_102 INT = 3,
+	@Branch_103 INT = 4,
+	@Branch_104 INT = 5,
+	@Branch_105 INT = 6,
+	@Branch_106 INT = 7,
+	@Branch_107 INT = 8,
+	@Branch_108 INT = 9,
+	@Branch_109 INT = 10,
+	@Branch_110 INT = 11,
+	@Branch_111 INT = 12,
+	@Branch_112 INT = 13,
+	@Branch_113 INT = 14,
+	@Branch_114 INT = 15,
+	@Branch_115 INT = 16,
+	@Branch_116 INT = 17,
+	@Branch_117 INT = 18,
+	@Branch_118 INT = 19,
 	----------------------------
 
 	--Gender--------------------

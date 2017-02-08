@@ -230,6 +230,7 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -237,6 +238,7 @@
     <Content Include="Scripts\materialize.js" />
     <Content Include="Scripts\materialize.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\PagerSize.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -279,6 +281,9 @@
     <Content Include="Views\Shared\_MenuBranchManager.cshtml" />
     <Content Include="Views\Shared\_MenuBranchUser.cshtml" />
     <Content Include="Views\Shared\_MenuAreaCoordinator.cshtml" />
+    <Content Include="Views\Shared\_ResultCountMessage.cshtml" />
+    <Content Include="Views\Shared\_Pagination.cshtml" />
+    <Content Include="Views\Shared\_PagerSize.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NtitasCommon.Core\NtitasCommon.Core.csproj">
