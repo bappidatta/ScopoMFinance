@@ -37,6 +37,9 @@
                                 @Html.LabelFor(m => m.Name)
                                 @Html.ValidationMessageFor(m => m.Name, "", new { @class = "red-text text-darken-1", @data_error = "wrong", @data_success = "right" })
                             </div>
+                        </div>
+
+                        <div class="row">
                             <div class="input-field col s6">
                                 @Html.TextBoxFor(m => m.OpenDate, new { @class = "datepicker", @type = "date" })
                                 @Html.LabelFor(m => m.OpenDate)
@@ -47,20 +50,21 @@
                         <div class="row">
                             <div class="col s3">
                                 <p>
-                                    <input class="filled-in" type="checkbox" name="IsHeadOffice" value="false" id="IsHeadOffice"
-                                           @Html.Raw((Model.IsHeadOffice) ? "checked=\"checked\"" : "") />
-                                   @Html.LabelFor(m => m.IsHeadOffice)
+                                    <input class="filled-in" data-val="true" data-val-required="The Head Office field is required." id="IsHeadOffice" name="IsHeadOffice" type="checkbox" value="true">
+                                    @Html.LabelFor(m => m.IsHeadOffice)
                                 </p>
                             </div>
 
                             <div class="col s3">
                                 <p>
-                                    <input class="filled-in" type="checkbox" name="Status" value="false" id="Status"
-                                           @Html.Raw((Model.Status) ? "checked=\"checked\"" : "") />
+                                    <input class="filled-in" data-val="true" data-val-required="The Status field is required." id="Status" name="Status" type="checkbox" value="true" checked>
                                     @Html.LabelFor(m => m.Status)
                                 </p>
                             </div>
                         </div>
+
+                        <input name="IsHeadOffice" type="hidden" value="false">
+                        <input name="Status" type="hidden" value="false">
 
                         <div class="row">
                             <div class="col s12">
