@@ -138,6 +138,7 @@
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
+    <Compile Include="ViewModels\Policy\BranchEditViewModel.cs" />
     <Compile Include="ViewModels\Policy\BranchListViewModel.cs" />
     <Compile Include="ViewModels\User\UserCacheViewModel.cs" />
     <Compile Include="ViewModels\User\UserLoginAuditViewModel.cs" />

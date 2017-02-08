@@ -1,14 +1,18 @@
 ﻿@model PList<ScopoMFinance.Domain.ViewModels.Policy.BranchListViewModel>
 @{
-    ViewBag.Title = "Branch Setup";
+    ViewBag.Title = "Branch List";
 }
 
 <nav class="nav-breadcrumb">
     <div class="nav-wrapper blue-grey darken-3">
-        <div class="col s12">
-            @Html.ActionLink("Branch List", "Index", new { area = "HO", controller = "Branch" }, new { @class = "breadcrumb" })
-
-            @{Html.RenderPartial("_UserInfo");}
+        <div class="row">
+            <div class="col s8">
+                @Html.ActionLink("Dashboard", "Index", new { area = "Dashboard", controller = "SuperUser" }, new { @class = "breadcrumb" })
+                <a class="breadcrumb" href="javascript:void(0);">Branch List</a>
+            </div>
+            <div class="col s4">
+                @{Html.RenderPartial("_UserInfo");}
+            </div>
         </div>
     </div>
 </nav>

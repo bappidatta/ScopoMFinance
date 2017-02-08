@@ -225,6 +225,7 @@
     <Content Include="Areas\HO\Views\web.config" />
     <Content Include="Areas\HO\Views\_ViewStart.cshtml" />
     <Content Include="Areas\HO\Views\Branch\Index.cshtml" />
+    <Content Include="Areas\HO\Views\Branch\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

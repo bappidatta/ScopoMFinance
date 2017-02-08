@@ -33,6 +33,7 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
+        [HttpGet]
         public ActionResult Index(int index = 0, SortDirection sortDir = SortDirection.Asc, int sortCol = 0)
         {
             int pageSize = _userHelper.PagerSize;
@@ -46,6 +47,45 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
             }
 
             return View(branchList);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            if (!id.HasValue)
+            {
+                return View(new BranchEditViewModel() { Status = true });
+            }
+
+            return View();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vm"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Edit(BranchEditViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _branchService.SaveBranch(vm);
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                { 
+                }
+            }
+
+            return View(vm);
         }
     }
 }
