@@ -1,12 +1,37 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿* {
+    border-radius: 0px !important;
+}
+body {
+    padding-top: 70px;
+    padding-bottom: 50px;
+}
+
+    body.login-body {
+        height: 100vh;
+        padding-top: 0px;
+        padding-bottom: 70px;
+    }
+
+.login-body .navbar-fixed-bottom {
+    background-color: #263238;
+    min-height: 75px;
+}
+
+.login-body .container {
+    width: 100%;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -16,3 +41,97 @@ textarea {
     max-width: 280px;
 }
 
+.login-layout {
+    background-image: url(images/login-background.jpg);
+    background-size: cover;
+    min-height: 100%;
+}
+
+#loginForm {
+    padding: 200px 0;
+}
+
+#loginForm .control-label, #loginForm h1, #loginForm h4 {
+    color: #fff;
+}
+
+.container {
+    width: 100%;
+}
+
+.panel .page-header {
+    padding: 0px;
+    margin: 0px;
+}
+
+.unsorted-header::before,
+.headerSortDown::before,
+.headerSortUp::before {
+    display: inline-block;
+    font-family: 'FontAwesome';
+    -webkit-font-feature-settings: normal;
+    -moz-font-feature-settings: normal;
+    font-feature-settings: normal;
+    -webkit-font-kerning: auto;
+    -moz-font-kerning: auto;
+    font-kerning: auto;
+    -webkit-font-language-override: normal;
+    -moz-font-language-override: normal;
+    font-language-override: normal;
+    font-size: inherit;
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-style: normal;
+    font-synthesis: weight style;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-right: 5px;
+    text-rendering: auto;
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0);
+}
+
+.unsorted-header,
+.headerSortDown,
+.headerSortUp {
+    text-decoration: none !important;
+    color: #263238;
+}
+
+.unsorted-header::before {
+    content: "\f0dc";
+}
+
+.headerSortDown::before {
+    content: "\f0dd";
+}
+
+.headerSortUp::before {
+    content: "\f0de";
+}
+
+.table td, .table th {
+   text-align: center;   
+}
+
+table > thead > tr > th, .table > thead > tr > th, table > tbody > tr > th, .table > tbody > tr > th, table > tfoot > tr > th, .table > tfoot > tr > th, table > thead > tr > td, .table > thead > tr > td, table > tbody > tr > td, .table > tbody > tr > td, table > tfoot > tr > td, .table > tfoot > tr > td {
+    border: none;
+    border-bottom: 1px solid #cfd8dc;
+}
+
+@media only screen and (max-width: 991px) {
+  .list-count-container {
+    margin-top: 10px;
+    width: auto;
+  }
+}
+
+.pagination-container {
+    margin-bottom: 0px;
+}
+
+    .pagination-container .pagination {
+        margin-top: 25px;
+    }

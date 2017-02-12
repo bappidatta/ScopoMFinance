@@ -1,17 +1,14 @@
-﻿using Microsoft.AspNet.Identity;
-using NtitasCommon.Core.Common;
+﻿using NtitasCommon.Core.Common;
 using ScopoMFinance.Core.Helpers;
 using ScopoMFinance.Core.Services;
 using ScopoMFinance.Domain.Models;
 using ScopoMFinance.Domain.Repositories;
-using ScopoMFinance.Web.Models;
 using SimpleInjector;
 using SimpleInjector.Integration.Web;
 using SimpleInjector.Integration.Web.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 

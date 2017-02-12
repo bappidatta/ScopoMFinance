@@ -4,10 +4,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
     <title>ScopoMFinance | @ViewBag.Title</title>
-    
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     @Styles.Render("~/Content/css")
-    
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -16,22 +16,15 @@
     <![endif]-->
 </head>
 
-<body>
+<body class="login-body">
     <!-- Site wrapper -->
-    <div class="app-container login-layout">
+    <div class="container login-layout">
         @RenderBody()
     </div>
-
-    <footer class="page-footer blue-grey darken-4">
-        <div class="footer-copyright">
-            <div class="container">
-                Made by <a class="orange-text text-lighten-3" href="http://www.ntitas.com">Ntitas IT Limited</a>
-            </div>
-        </div>
-    </footer>
+    <div class="navbar navbar-fixed-bottom"></div>
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/materialize")
+    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>

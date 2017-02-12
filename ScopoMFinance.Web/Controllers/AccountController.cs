@@ -10,8 +10,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ScopoMFinance.Web.Models;
 using ScopoMFinance.Core.Services;
-using Microsoft.AspNet.Identity.EntityFramework;
 using ScopoMFinance.Core.Helpers;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ScopoMFinance.Web.Controllers
 {
@@ -26,8 +26,8 @@ namespace ScopoMFinance.Web.Controllers
         private IUserHelper _userHelper;
 
         public AccountController(
-            IBranchService branchService, 
-            IUserProfileService userProfileService, 
+            IBranchService branchService,
+            IUserProfileService userProfileService,
             IUserLoginAuditService userLoginAuditService,
             IUserHelper userHelper)
         {
@@ -44,9 +44,9 @@ namespace ScopoMFinance.Web.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -69,7 +69,7 @@ namespace ScopoMFinance.Web.Controllers
         {
             if (Request.IsAuthenticated)
             {
-                if(_userHelper.Get() == null)
+                if (_userHelper.Get() == null)
                     AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
 
                 return RedirectToAction("Index", new { controller = "Home" });
@@ -89,7 +89,7 @@ namespace ScopoMFinance.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(!_userProfileService.IsValidUser(model.BranchId, model.Email))
+                if (!_userProfileService.IsValidUser(model.BranchId, model.Email))
                 {
                     ModelState.AddModelError("", "Sorry! You are not user of this branch");
                 }
@@ -142,8 +142,8 @@ namespace ScopoMFinance.Web.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

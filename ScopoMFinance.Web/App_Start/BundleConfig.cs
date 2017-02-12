@@ -20,14 +20,25 @@ namespace ScopoMFinance.Web
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/materialize").Include(
-                      "~/Scripts/materialize.js",
-                      "~/Scripts/init.js",
-                      "~/Scripts/PagerSize.js"));
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/respond.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/basescript").Include(
+                      "~/Scripts/PagerSize.js",
+                      "~/Scripts/pickadate/picker.js",
+                      "~/Scripts/pickadate/picker.date.js",
+                      "~/Scripts/pickadate/picker.time.js",
+                      "~/Scripts/init.js"));
+
+            bundles.Add(new StyleBundle("~/Content/basestyle").Include(
+                      "~/Content/pickadate/classic.css",
+                      "~/Content/pickadate/classic.date.css",
+                      "~/Content/pickadate/classic.time.css"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/materialize.css",
-                      "~/Content/style.css"));
+                      "~/Content/bootstrap.css",
+                      "~/Content/site.css"));
         }
     }
 }

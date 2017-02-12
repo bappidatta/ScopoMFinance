@@ -1,5 +1,4 @@
 ﻿using ScopoMFinance.Core.Common;
-using ScopoMFinance.Core.Helpers;
 using ScopoMFinance.Web.Attributes;
 using System;
 using System.Collections.Generic;
@@ -10,17 +9,10 @@ using System.Web.Mvc;
 namespace ScopoMFinance.Web.Areas.Dashboard.Controllers
 {
     [Authorize(Roles = AppRoles.SuperUser)]
-    [LoginAudit()]
+    [LoginAudit]
     public class SuperUserController : Controller
     {
-        private IUserHelper _userHelper;
-
-        public SuperUserController(IUserHelper userHelper)
-        {
-            _userHelper = userHelper;
-        }
-
-        // GET: Dashboard/SuperAdmin
+        // GET: Dashboard/SuperUser
         public ActionResult Index()
         {
             return View();

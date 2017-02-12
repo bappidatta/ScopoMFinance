@@ -5,7 +5,6 @@
     else {
         $("#selectPagerSize").val(50);
     }
-    $('#selectPagerSize').material_select();
     $("#selectPagerSize").change(function () {
         $.cookie("pagersize", $(this).val(), { path: "/" });
 

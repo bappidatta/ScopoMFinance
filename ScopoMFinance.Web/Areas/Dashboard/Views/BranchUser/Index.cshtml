@@ -1,14 +1,3 @@
 ﻿@{
     ViewBag.Title = "Dashboard -- Branch User";
 }
-
-<nav class="nav-breadcrumb">
-    <div class="nav-wrapper blue-grey darken-3">
-        <div class="col s12">
-            @Html.ActionLink("Dashboard", "Index", new { area = "Dashboard", controller = "BranchUser" }, new { @class = "breadcrumb" })
-
-            @{Html.RenderPartial("_UserInfo");}
-        </div>
-    </div>
-</nav>
-

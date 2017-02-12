@@ -93,7 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ScopoMFinance.Web\ScopoMFinance.Web.csproj">
-      <Project>{B2ACBA00-7A5F-408C-8A17-4566E78A9F23}</Project>
+      <Project>{c5c6d8c9-782f-4d9d-ad85-a81132254ba2}</Project>
       <Name>ScopoMFinance.Web</Name>
     </ProjectReference>
   </ItemGroup>

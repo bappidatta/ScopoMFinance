@@ -59,7 +59,7 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
         {
             if (!id.HasValue)
             {
-                return View(new BranchEditViewModel() { Status = true });
+                return View(new BranchEditViewModel() { OpenDate = DateTime.Now, Status = true });
             }
 
             return View();
@@ -81,7 +81,7 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
-                { 
+                {
                 }
             }
 
