@@ -11,7 +11,9 @@ body {
         padding-top: 0px;
         padding-bottom: 70px;
     }
-
+.body-content {
+    min-height: 80vh;
+}
 .login-body .navbar-fixed-bottom {
     background-color: #263238;
     min-height: 75px;
@@ -34,15 +36,8 @@ body {
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
-
 .login-layout {
-    background-image: url(images/login-background.jpg);
+    background-image: url(../images/login-background.jpg);
     background-size: cover;
     min-height: 100%;
 }
@@ -60,8 +55,8 @@ textarea {
 }
 
 .panel .page-header {
-    padding: 0px;
-    margin: 0px;
+    padding: 0 0 5px 0;
+    margin: 0 0 5px 0;
 }
 
 .unsorted-header::before,
@@ -116,11 +111,6 @@ textarea {
    text-align: center;   
 }
 
-table > thead > tr > th, .table > thead > tr > th, table > tbody > tr > th, .table > tbody > tr > th, table > tfoot > tr > th, .table > tfoot > tr > th, table > thead > tr > td, .table > thead > tr > td, table > tbody > tr > td, .table > tbody > tr > td, table > tfoot > tr > td, .table > tfoot > tr > td {
-    border: none;
-    border-bottom: 1px solid #cfd8dc;
-}
-
 @media only screen and (max-width: 991px) {
   .list-count-container {
     margin-top: 10px;
@@ -135,3 +125,34 @@ table > thead > tr > th, .table > thead > tr > th, table > tbody > tr > th, .tab
     .pagination-container .pagination {
         margin-top: 25px;
     }
+
+.navbar-default {
+    background-color: #263238;
+    border-color: #263238;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #FFF;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    color: #777;
+}
+
+.navbar-default .navbar-brand {
+    color: #FFF;
+}
+
+.dropdown-menu > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+
+.dropdown-menu > li:hover {
+    background-color: #263238;
+}

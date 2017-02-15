@@ -32,13 +32,14 @@ namespace ScopoMFinance.Web
                       "~/Scripts/init.js"));
 
             bundles.Add(new StyleBundle("~/Content/basestyle").Include(
-                      "~/Content/pickadate/classic.css",
-                      "~/Content/pickadate/classic.date.css",
-                      "~/Content/pickadate/classic.time.css"));
+                      "~/Content/css/pickadate/classic.css",
+                      "~/Content/css/pickadate/classic.date.css",
+                      "~/Content/css/pickadate/classic.time.css"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/css/bootstrap.css",
+                      "~/Content/css/font-awesome.css",
+                      "~/Content/css/site.css"));
         }
     }
 }

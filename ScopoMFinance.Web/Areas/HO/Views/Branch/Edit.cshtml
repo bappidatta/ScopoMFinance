@@ -8,8 +8,7 @@
     <div class="panel-body">
         <div class="col-md-12">
             <h4 class="page-header">@ViewBag.Title</h4>
-            <hr />
-            @using (Html.BeginForm("Edit", "Branch", new { area = "HO" }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm("Edit", "Branch", new { area = "HO" }, FormMethod.Post, new { @class = "form-horizontal col-md-6", role = "form" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -25,26 +24,29 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.OpenDate, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.OpenDate, "{0:d MMM, yyyy}", new { @class = "form-control datepicker" })
+                        @Html.TextBoxFor(m => m.OpenDate, "{0:d MMMM, yyyy}", new { @class = "form-control datepicker" })
                         @Html.ValidationMessageFor(m => m.OpenDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(m => m.IsHeadOffice, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
+                    <div class="col-md-1">
                         @Html.CheckBoxFor(m => m.IsHeadOffice, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.IsHeadOffice, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(m => m.Status, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
+                    <div class="col-md-1">
                         @Html.CheckBoxFor(m => m.Status, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Status, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
+                    <div class="col-md-offset-8 col-md-2">
+                        @Html.ActionLink("Cancel", "Index", new { area = "HO", controller = "Branch" }, new { @class = "btn btn-default btn-block" })
+                    </div>
+                    <div class="col-md-2">
                         <input type="submit" value="Save" class="btn btn-primary btn-block" />
                     </div>
                 </div>

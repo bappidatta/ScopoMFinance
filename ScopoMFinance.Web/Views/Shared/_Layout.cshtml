@@ -47,17 +47,16 @@
         </div>
     </div>
     <div class="container body-content">
-        
-                @RenderBody()
-            
-        <hr />
-        <footer>
+        @RenderBody()
+    </div>
+    <footer>
+        <div class="container">
             <p>
                 &copy; @DateTime.Now.Year - ScopoCredit
                 <span class="pull-right">Developed and Maintained By <a href="http://www.ntitas.com">Ntitas IT Limited</a></span>
             </p>
-        </footer>
-    </div>
+        </div>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

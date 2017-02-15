@@ -2,11 +2,11 @@
 
 @if (Model != null && Model.TotalRecords > Model.PageSize)
 {
-    <ul class="pager">
+    <ul class="pager pull-left">
         @if (Model.CurrentPage > 0)
         {
             <li>
-                <a href="@String.Format(Model.URLFormat, 0)" class="first" aria-label="First"><i class="zmdi zmdi-chevron-left"></i></a>
+                <a href="@String.Format(Model.URLFormat, 0)" class="first" aria-label="First"><i class="fa fa-angle-double-left"></i></a>
             </li>
             <li>
                 <a href="@String.Format(Model.URLFormat, Model.CurrentPage - 1)" class="previous">Previous</a>
@@ -15,7 +15,7 @@
         else
         {
             <li class="disabled">
-                <span aria-label="First" class="first"><i class="zmdi zmdi-chevron-left"></i></span>
+                <span aria-label="First" class="first"><i class="fa fa-angle-double-left"></i></span>
             </li>
             <li class="disabled">
                 <span>Previous</span>
@@ -48,7 +48,7 @@
                 <a href="@String.Format(Model.URLFormat, Model.CurrentPage + 1)" class="next">Next</a>
             </li>
             <li>
-                <a href="@String.Format(Model.URLFormat, Model.Pages - 1)" class="last" aria-label="Last"><i class="zmdi zmdi-chevron-right"></i></a>
+                <a href="@String.Format(Model.URLFormat, Model.Pages - 1)" class="last" aria-label="Last"><i class="fa fa-angle-double-right"></i></a>
             </li>
         }
         else
@@ -57,7 +57,7 @@
                 <span>Next</span>
             </li>
             <li class="disabled">
-                <span aria-label="Last" class="last"><i class="zmdi zmdi-chevron-right"></i></span>
+                <span aria-label="Last" class="last"><i class="fa fa-angle-double-right"></i></span>
             </li>
         }
     </ul>
