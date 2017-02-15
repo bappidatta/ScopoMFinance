@@ -3,20 +3,17 @@
 }
 body {
     padding-top: 70px;
-    padding-bottom: 50px;
 }
 
     body.login-body {
         height: 100vh;
         padding-top: 0px;
-        padding-bottom: 70px;
     }
 .body-content {
-    min-height: 80vh;
+    min-height: 90vh;
 }
 .login-body .navbar-fixed-bottom {
     background-color: #263238;
-    min-height: 75px;
 }
 
 .login-body .container {
@@ -55,8 +52,8 @@ body {
 }
 
 .panel .page-header {
-    padding: 0 0 5px 0;
-    margin: 0 0 5px 0;
+    padding: 0 0 10px 0;
+    margin: 0 0 10px 0;
 }
 
 .unsorted-header::before,
@@ -143,16 +140,18 @@ body {
     color: #FFF;
 }
 
-.dropdown-menu > li > a {
-    display: block;
-    padding: 3px 20px;
-    clear: both;
-    font-weight: normal;
-    line-height: 1.42857143;
-    color: #333;
-    white-space: nowrap;
+.list-count-container {
+    margin: 10px 0;
+    font-weight: bold;
+    color: #263238;
 }
 
-.dropdown-menu > li:hover {
+footer.internal {
+    padding: 10px 0;
     background-color: #263238;
 }
+
+    footer.internal p {
+        color: #FFFFFF;
+        margin: 0px;
+    }
