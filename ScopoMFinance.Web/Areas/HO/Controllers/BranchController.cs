@@ -59,10 +59,21 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
         {
             if (!id.HasValue)
             {
+                ViewBag.Title = "Create Branch";
                 return View(new BranchEditViewModel() { OpenDate = DateTime.Now, Status = true });
             }
 
-            return View(_branchService.GetBranchById(id.Value));
+            BranchEditViewModel vm = _branchService.GetBranchById(id.Value);
+
+            if (vm != null)
+            {
+                ViewBag.Title = "Edit Branch";
+                return View(vm);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
 
         /// <summary>
@@ -77,7 +88,11 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
             {
                 try
                 {
-                    _branchService.SaveBranch(vm);
+                    if(vm.Id > 0)
+                        _branchService.UpdateBranch(vm);
+                    else
+                        _branchService.SaveBranch(vm);
+                    
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)

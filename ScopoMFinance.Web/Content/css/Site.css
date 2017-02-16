@@ -2,7 +2,7 @@
     border-radius: 0px !important;
 }
 body {
-    padding-top: 70px;
+    padding-top: 50px;
 }
 
     body.login-body {
@@ -163,3 +163,29 @@ footer.internal {
 .icon-inactive {
     color: #e53935;
 }
+
+.navbar {
+    margin-bottom: 0px;
+}
+
+.navbar-userinfo {
+    background-color: #b0bec5;
+    border: 1px solid #b0bec5;
+    margin-bottom: 20px;
+}
+
+.navbar-userinfo .navbar-nav > li {
+    padding: 5px;
+}
+.navbar-userinfo .navbar-nav > li > span {
+    line-height: 19px;
+    font-weight: bold;
+}
+.navbar-userinfo .navbar-nav > li > a {
+    line-height: 19px;
+    font-weight: bold;
+    padding: 0px;
+}
+    .navbar-userinfo .navbar-nav > li > a:hover {
+        background: none;
+    }

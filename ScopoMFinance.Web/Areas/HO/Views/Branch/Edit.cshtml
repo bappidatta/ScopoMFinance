@@ -1,13 +1,8 @@
 ﻿@model ScopoMFinance.Domain.ViewModels.Policy.BranchEditViewModel
 
-@{
-    ViewBag.Title = "Branch Setup";
-}
-
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="col-md-12">
-            <h4 class="page-header">@ViewBag.Title</h4>
             @using (Html.BeginForm("Edit", "Branch", new { area = "HO" }, FormMethod.Post, new { @class = "form-horizontal col-md-6", role = "form" }))
             {
                 @Html.AntiForgeryToken()

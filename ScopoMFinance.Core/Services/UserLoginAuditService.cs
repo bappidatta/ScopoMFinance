@@ -1,5 +1,6 @@
 ﻿using ScopoMFinance.Domain.Models;
 using ScopoMFinance.Domain.Repositories;
+using ScopoMFinance.Domain.ViewModels.Acc;
 using ScopoMFinance.Domain.ViewModels.User;
 using System;
 using System.Collections.Generic;
@@ -103,11 +104,21 @@ namespace ScopoMFinance.Core.Services
                                             orderby c.Id
                                             select new UserCacheViewModel()
                                             {
+                                                UserId = c.UserId,
                                                 BranchId = c.BranchId,
                                                 BranchName = c.Branch.Name,
                                                 FirstName = c.UserProfile.FirstName,
                                                 LastName = c.UserProfile.LastName,
-                                                LoggedInTime = c.LoggedInTime
+                                                LoggedInTime = c.LoggedInTime,
+                                                DayOpenClose = new DayOpenCloseViewModel 
+                                                {
+                                                    SystemDate = c.Branch.AccDayOpenCloses.OrderByDescending(a => a.Id).FirstOrDefault().CurrentDate,
+                                                    ClosedAt = c.Branch.AccDayOpenCloses.OrderByDescending(a => a.Id).FirstOrDefault().ClosedAt,
+                                                    CloseRequestAt = c.Branch.AccDayOpenCloses.OrderByDescending(a => a.Id).FirstOrDefault().CloseRequestAt,
+                                                    IsClosed = c.Branch.AccDayOpenCloses.OrderByDescending(a => a.Id).FirstOrDefault().IsClosed,
+                                                    IsCloseRequest = c.Branch.AccDayOpenCloses.OrderByDescending(a => a.Id).FirstOrDefault().CloseRequest,
+                                                    OpenedAt = c.Branch.AccDayOpenCloses.OrderByDescending(a => a.Id).FirstOrDefault().OpenedAt
+                                                }
                                             }).FirstOrDefault();
 
             return userCache;

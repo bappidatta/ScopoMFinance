@@ -6,7 +6,6 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="col-md-12">
-            <h4 class="page-header">@ViewBag.Title</h4>
             @Html.ActionLink("New Branch", "Edit", new { area = "HO", controller = "Branch" }, new { @class="btn btn-primary" })
             <div class="list-count-container">
                 <div class="list-count">
@@ -32,7 +31,7 @@
                         foreach (var item in Model)
                         {
                             <tr>
-                                <td>@item.Name</td>
+                                <td><a href="/HO/Branch/Edit/@item.Id">@item.Name</a></td>
                                 <td>@item.OpenDate.ToShortDateString()</td>
                                 <td>
                                     @if (item.IsHeadOffice)

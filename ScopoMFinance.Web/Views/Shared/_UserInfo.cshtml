@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <span>Branch: @UserHelper.Instance.Get().BranchName</span>
+        </li>
+        <li>
+            <span>Logged At: @UserHelper.Instance.Get().LoggedInTime</span>
+        </li>
+        <li>
+            @if (@UserHelper.Instance.Get().DayOpenClose.IsClosed)
+            {
+                <a href="/Home/DayOpenClose">Closed Day: @UserHelper.Instance.Get().DayOpenClose.SystemDate.ToString("dd-MMM-yyyy")</a>
+            }
+            else if (@UserHelper.Instance.Get().DayOpenClose.IsCloseRequest)
+            {
+                <a href="/Home/DayOpenClose">Day Close Request: @UserHelper.Instance.Get().DayOpenClose.SystemDate.ToString("dd-MMM-yyyy")</a>
+            }
+            else
+            {
+                <a href="/Home/DayOpenClose">Opened Day: @UserHelper.Instance.Get().DayOpenClose.SystemDate.ToString("dd-MMM-yyyy")</a>
+            }
+        </li>
+    </ul>
+}

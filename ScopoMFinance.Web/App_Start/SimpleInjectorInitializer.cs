@@ -39,15 +39,6 @@ namespace ScopoMFinance.Web.App_Start
             container.Register<UnitOfWork>();
 
             #endregion === DB ===
-            #region === Helpers ===
-
-            container.Register<IUserHelper, UserHelper>();
-            container.Register<IConfig, Config>();
-            container.Register<ICookieAccessor, CookieAccessor>();
-
-            UserHelper.Instance = container.GetInstance<IUserHelper>();
-
-            #endregion === Helpers ===
             #region === Services ===
 
             container.Register<IBranchService, BranchService>();
@@ -56,6 +47,13 @@ namespace ScopoMFinance.Web.App_Start
             container.Register<IOrgCategoryService, OrgCategoryService>();
             container.Register<IGenderService, GenderService>();
             container.Register<IColcOptionService, ColcOptionService>();
+            container.Register<IDayOpenCloseService, DayOpenCloseService>();
+
+            container.Register<IUserHelper, UserHelper>();
+            container.Register<IConfig, Config>();
+            container.Register<ICookieAccessor, CookieAccessor>();
+
+            UserHelper.Instance = container.GetInstance<IUserHelper>();
 
             #endregion === Services ===
         }

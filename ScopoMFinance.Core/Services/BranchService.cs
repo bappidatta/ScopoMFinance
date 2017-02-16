@@ -18,6 +18,7 @@ namespace ScopoMFinance.Core.Services
         List<DropDownHelper> GetBranchDropDown();
         PList<BranchListViewModel> GetBranchList(int pageNumber, int pageSize, SortDirection sortDir, int sortCol);
         void SaveBranch(BranchEditViewModel vm);
+        void UpdateBranch(BranchEditViewModel vm);
         BranchEditViewModel GetBranchById(int branchId);
     }
 
@@ -96,7 +97,22 @@ namespace ScopoMFinance.Core.Services
             _uow.BranchRepository.Insert(branch);
             _uow.Save();
         }
-        
+
+        public void UpdateBranch(BranchEditViewModel vm) 
+        {
+            Branch branch = new Branch
+            {
+                Id = vm.Id,
+                Name = vm.Name,
+                OpenDate = vm.OpenDate,
+                IsHeadOffice = vm.IsHeadOffice,
+                Status = vm.Status
+            };
+
+            _uow.BranchRepository.Update(branch);
+            _uow.Save();
+        }
+
         public BranchEditViewModel GetBranchById(int branchId) 
         {
             return (from c in _uow.BranchRepository.Get()

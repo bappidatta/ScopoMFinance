@@ -98,5 +98,18 @@ namespace ScopoMFinance.Domain.Repositories
                 return colcOptionRepo;
             }
         }
+
+        private IRepository<AccDayOpenClose> dayOpenClose;
+        public IRepository<AccDayOpenClose> DayOpenCloseRepository
+        {
+            get
+            {
+                if (this.dayOpenClose == null)
+                {
+                    this.dayOpenClose = new Repository<AccDayOpenClose>(db);
+                }
+                return dayOpenClose;
+            }
+        }
     }
 }

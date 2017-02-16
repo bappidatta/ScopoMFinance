@@ -30,3 +30,4 @@ Post-Deployment Script Template
 :r ..\PreloadData\UserBranch.sql
 :r ..\PreloadData\OrgCategory.sql
 :r ..\PreloadData\SysColcOption.sql
+:r ..\PreloadData\AccDayOpenClose.sql

@@ -115,6 +115,7 @@
     <None Include="PreloadData\UserBranch.sql" />
     <None Include="PreloadData\OrgCategory.sql" />
     <None Include="PreloadData\SysColcOption.sql" />
+    <None Include="PreloadData\AccDayOpenClose.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="ScopoFinance.Database.refactorlog" />

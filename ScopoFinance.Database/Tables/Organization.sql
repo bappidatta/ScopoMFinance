@@ -15,6 +15,7 @@
     [VillageId] INT NULL, 
 	[IsActive] BIT NOT NULL DEFAULT 1, 
     [IsDeleted] BIT NOT NULL DEFAULT 0, 
+	[SystemDate] DATETIME NOT NULL,
     [CreatedBy] NVARCHAR(256) NOT NULL, 
     [CreatedOn] DATETIME NOT NULL,
 	[UpdatedBy] NVARCHAR(256) NULL, 
