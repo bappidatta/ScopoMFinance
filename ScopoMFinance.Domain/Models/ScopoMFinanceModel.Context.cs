@@ -25,6 +25,9 @@ namespace ScopoMFinance.Domain.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AccDayCloseProcess> AccDayCloseProcesses { get; set; }
+        public virtual DbSet<AccDayCloseProgress> AccDayCloseProgresses { get; set; }
+        public virtual DbSet<AccDayOpenClose> AccDayOpenCloses { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Branch> Branches { get; set; }
@@ -34,8 +37,11 @@ namespace ScopoMFinance.Domain.Models
         public virtual DbSet<Organization> Organizations { get; set; }
         public virtual DbSet<OrgCategory> OrgCategories { get; set; }
         public virtual DbSet<OrgCreditOfficer> OrgCreditOfficers { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductType> ProductTypes { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<ProjectType> ProjectTypes { get; set; }
+        public virtual DbSet<ProjectWiseProductMapping> ProjectWiseProductMappings { get; set; }
         public virtual DbSet<SysColcOption> SysColcOptions { get; set; }
         public virtual DbSet<SysDistrict> SysDistricts { get; set; }
         public virtual DbSet<SysDivision> SysDivisions { get; set; }
@@ -46,13 +52,7 @@ namespace ScopoMFinance.Domain.Models
         public virtual DbSet<SysUpazila> SysUpazilas { get; set; }
         public virtual DbSet<SysVillage> SysVillages { get; set; }
         public virtual DbSet<UserBranch> UserBranches { get; set; }
-        public virtual DbSet<UserProfile> UserProfiles { get; set; }
         public virtual DbSet<UserLoginAudit> UserLoginAudits { get; set; }
-        public virtual DbSet<AccDayCloseProcess> AccDayCloseProcesses { get; set; }
-        public virtual DbSet<AccDayCloseProgress> AccDayCloseProgresses { get; set; }
-        public virtual DbSet<AccDayOpenClose> AccDayOpenCloses { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<ProductType> ProductTypes { get; set; }
-        public virtual DbSet<ProjectWiseProductMapping> ProjectWiseProductMappings { get; set; }
+        public virtual DbSet<UserProfile> UserProfiles { get; set; }
     }
 }

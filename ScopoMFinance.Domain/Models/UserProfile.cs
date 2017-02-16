@@ -17,6 +17,7 @@ namespace ScopoMFinance.Domain.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public UserProfile()
         {
+            this.AccDayOpenCloses = new HashSet<AccDayOpenClose>();
             this.UserBranches = new HashSet<UserBranch>();
             this.UserLoginAudits = new HashSet<UserLoginAudit>();
         }
@@ -32,6 +33,8 @@ namespace ScopoMFinance.Domain.Models
         public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AccDayOpenClose> AccDayOpenCloses { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserBranch> UserBranches { get; set; }

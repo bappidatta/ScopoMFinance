@@ -16,11 +16,13 @@ namespace ScopoMFinance.Web.Controllers
     {
         private IUserHelper _userHelper;
         private IDayOpenCloseService _dayOpenCloseService;
+        private IUserLoginAuditService _loginAuditService;
 
-        public HomeController(IUserHelper userHelper, IDayOpenCloseService dayOpenCloseService)
+        public HomeController(IUserHelper userHelper, IDayOpenCloseService dayOpenCloseService, IUserLoginAuditService loginAuditService)
         {
             _userHelper = userHelper;
             _dayOpenCloseService = dayOpenCloseService;
+            _loginAuditService = loginAuditService;
         }
 
         [AllowAnonymous]
@@ -64,8 +66,35 @@ namespace ScopoMFinance.Web.Controllers
         [HttpPost]
         public ActionResult DayCloseRequest()
         {
-            DayOpenCloseViewModel vm = _dayOpenCloseService.DayCloseRequest(_userHelper.Get().BranchId, _userHelper.Get().UserId);
-            return View("DayOpenClose", vm);
+            _dayOpenCloseService.DayCloseRequest(_userHelper.Get().BranchId, _userHelper.Get().UserId);
+            _userHelper.InvalidateCache(User.Identity.Name);
+            _userHelper.Get();
+
+            return RedirectToAction("DayOpenClose");
+        }
+
+        [Authorize(Roles = AppRoles.SuperUser + "," + AppRoles.BranchUser + "," + AppRoles.BranchManager + "," + AppRoles.AreaCoordinator)]
+        [LoginAudit]
+        [HttpPost]
+        public ActionResult CloseDay()
+        {
+            _dayOpenCloseService.CloseDay(_userHelper.Get().BranchId);
+            _userHelper.InvalidateCache(User.Identity.Name);
+            _userHelper.Get();
+
+            return RedirectToAction("DayOpenClose");
+        }
+
+        [Authorize(Roles = AppRoles.SuperUser + "," + AppRoles.BranchUser + "," + AppRoles.BranchManager + "," + AppRoles.AreaCoordinator)]
+        [LoginAudit]
+        [HttpPost]
+        public ActionResult OpenDay()
+        {
+            _dayOpenCloseService.OpenDay(_userHelper.Get().BranchId);
+            _userHelper.InvalidateCache(User.Identity.Name);
+            _userHelper.Get();
+
+            return RedirectToAction("DayOpenClose");
         }
     }
 }

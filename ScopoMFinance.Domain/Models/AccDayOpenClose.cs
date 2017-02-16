@@ -25,7 +25,7 @@ namespace ScopoMFinance.Domain.Models
         public System.DateTime CurrentDate { get; set; }
         public bool CloseRequest { get; set; }
         public bool IsClosed { get; set; }
-        public Nullable<int> CloseRequestBy { get; set; }
+        public string CloseRequestBy { get; set; }
         public Nullable<System.DateTime> CloseRequestAt { get; set; }
         public System.DateTime OpenedAt { get; set; }
         public Nullable<System.DateTime> ClosedAt { get; set; }
@@ -33,5 +33,6 @@ namespace ScopoMFinance.Domain.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AccDayCloseProgress> AccDayCloseProgresses { get; set; }
         public virtual Branch Branch { get; set; }
+        public virtual UserProfile UserProfile { get; set; }
     }
 }

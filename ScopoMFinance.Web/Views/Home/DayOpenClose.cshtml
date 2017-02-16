@@ -50,8 +50,7 @@
                     </div>
                 }
             }
-            
-            @if (Model.IsCloseRequest)
+            else if (Model.IsCloseRequest)
             {
                 using (Html.BeginForm("CloseDay", "Home", FormMethod.Post, new { @class = "form-horizontal col-md-6", role = "form" }))
                 {

@@ -12,7 +12,9 @@ namespace ScopoMFinance.Core.Services
     public interface IDayOpenCloseService 
     {
         DayOpenCloseViewModel GetDayOpenClose(int branchId);
-        DayOpenCloseViewModel DayCloseRequest(int branchId, string userId);
+        void DayCloseRequest(int branchId, string userId);
+        void CloseDay(int branchId);
+        void OpenDay(int branchId);
     }
 
     public class DayOpenCloseService : IDayOpenCloseService
@@ -34,6 +36,7 @@ namespace ScopoMFinance.Core.Services
                                             Id = c.Id,
                                             ClosedAt = c.ClosedAt,
                                             CloseRequestAt = c.CloseRequestAt,
+                                            CloseRequestBy = c.CloseRequestBy,
                                             IsClosed = c.IsClosed,
                                             IsCloseRequest = c.CloseRequest,
                                             OpenedAt = c.OpenedAt,
@@ -43,17 +46,44 @@ namespace ScopoMFinance.Core.Services
             return vm;
         }
 
-        public DayOpenCloseViewModel DayCloseRequest(int branchId, string userId)
+        public void DayCloseRequest(int branchId, string userId)
         {
             DayOpenCloseViewModel vm = GetDayOpenClose(branchId);
 
             AccDayOpenClose model = _uow.DayOpenCloseRepository.GetById(vm.Id);
             model.CloseRequest = true;
+            model.CloseRequestBy = userId;
+            model.CloseRequestAt = DateTime.Now;
 
             _uow.DayOpenCloseRepository.Update(model);
             _uow.Save();
+        }
 
-            return GetDayOpenClose(branchId);
+        public void CloseDay(int branchId)
+        {
+            DayOpenCloseViewModel vm = GetDayOpenClose(branchId);
+
+            AccDayOpenClose model = _uow.DayOpenCloseRepository.GetById(vm.Id);
+            model.IsClosed = true;
+            model.ClosedAt = DateTime.Now;
+
+            _uow.DayOpenCloseRepository.Update(model);
+            _uow.Save();
+        }
+
+        public void OpenDay(int branchId)
+        {
+            DayOpenCloseViewModel vm = GetDayOpenClose(branchId);
+
+            AccDayOpenClose model = new AccDayOpenClose
+            {
+                BranchId = branchId,
+                CurrentDate = vm.SystemDate.AddDays(1),
+                OpenedAt = DateTime.Now
+            };
+
+            _uow.DayOpenCloseRepository.Insert(model);
+            _uow.Save();
         }
     }
 }
