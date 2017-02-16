@@ -62,7 +62,7 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
                 return View(new BranchEditViewModel() { OpenDate = DateTime.Now, Status = true });
             }
 
-            return View();
+            return View(_branchService.GetBranchById(id.Value));
         }
 
         /// <summary>

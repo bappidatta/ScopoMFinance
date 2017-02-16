@@ -15,4 +15,5 @@
 	CONSTRAINT [PK_Project] PRIMARY KEY ([Id]),
 	CONSTRAINT [FK_Project_ProjectType] FOREIGN KEY ([ProjectTypeId]) REFERENCES [ProjectType]([Id]),
 	CONSTRAINT [FK_Project_Donor] FOREIGN KEY ([DonorId]) REFERENCES [SysDonor]([Id]),
+	CONSTRAINT [UQ_ProjectCode] UNIQUE ([ProjectCode])
 )

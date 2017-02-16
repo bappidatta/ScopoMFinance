@@ -155,3 +155,11 @@ footer.internal {
         color: #FFFFFF;
         margin: 0px;
     }
+
+.icon-active {
+    color: #26a69a;
+}
+
+.icon-inactive {
+    color: #e53935;
+}

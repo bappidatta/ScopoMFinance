@@ -89,6 +89,12 @@
     <Build Include="Tables\OrgCreditOfficer.sql" />
     <Build Include="Tables\UserBranch.sql" />
     <Build Include="Tables\UserLoginAudit.sql" />
+    <Build Include="Tables\Product.sql" />
+    <Build Include="Tables\ProjectWiseProductMapping.sql" />
+    <Build Include="Tables\ProductType.sql" />
+    <Build Include="Tables\AccDayOpenClose.sql" />
+    <Build Include="Tables\AccDayCloseProcess.sql" />
+    <Build Include="Tables\AccDayCloseProgress.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Common\Variables.sql" />
