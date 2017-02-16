@@ -29,3 +29,4 @@ Post-Deployment Script Template
 :r ..\PreloadData\UserProfile.sql
 :r ..\PreloadData\UserBranch.sql
 :r ..\PreloadData\OrgCategory.sql
+:r ..\PreloadData\SysColcOption.sql

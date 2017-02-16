@@ -114,6 +114,7 @@
     <None Include="ScopoFinance.Bappi.Database.publish.xml" />
     <None Include="PreloadData\UserBranch.sql" />
     <None Include="PreloadData\OrgCategory.sql" />
+    <None Include="PreloadData\SysColcOption.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="ScopoFinance.Database.refactorlog" />

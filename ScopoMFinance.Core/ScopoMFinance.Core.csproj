@@ -50,6 +50,8 @@
     <Compile Include="Helpers\UserHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BranchService.cs" />
+    <Compile Include="Services\ColcOptionService.cs" />
+    <Compile Include="Services\GenderService.cs" />
     <Compile Include="Services\OrgCategoryService.cs" />
     <Compile Include="Services\UserLoginAuditService.cs" />
     <Compile Include="Services\UserProfileService.cs" />

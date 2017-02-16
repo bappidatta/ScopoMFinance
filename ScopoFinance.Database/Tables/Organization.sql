@@ -26,5 +26,6 @@
 	CONSTRAINT [FK_Org_LoanColc] FOREIGN KEY ([LoanColcOption]) REFERENCES [SysColcOption]([Id]),
 	CONSTRAINT [FK_Org_SavColc] FOREIGN KEY ([SavColcOption]) REFERENCES [SysColcOption]([Id]),
 	CONSTRAINT [FK_Org_Project] FOREIGN KEY ([ProjectId]) REFERENCES [Project]([Id]),
-	CONSTRAINT [FK_Org_Village] FOREIGN KEY ([VillageId]) REFERENCES [SysVillage]([Id])
+	CONSTRAINT [FK_Org_Village] FOREIGN KEY ([VillageId]) REFERENCES [SysVillage]([Id]),
+	CONSTRAINT [UQ_OrganizationNo] UNIQUE ([OrganizationNo])
 )

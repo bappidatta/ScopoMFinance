@@ -33,18 +33,31 @@ namespace ScopoMFinance.Web.App_Start
 
         private static void InitializeContainer(Container container)
         {
+            #region === DB ===
+
             container.Register<ScopoMFinanceEntities>(Lifestyle.Scoped);
             container.Register<UnitOfWork>();
 
-            container.Register<IBranchService, BranchService>();
-            container.Register<IUserProfileService, UserProfileService>();
-            container.Register<ICookieAccessor, CookieAccessor>();
-            container.Register<IUserLoginAuditService, UserLoginAuditService>();
+            #endregion === DB ===
+            #region === Helpers ===
+
             container.Register<IUserHelper, UserHelper>();
             container.Register<IConfig, Config>();
-            container.Register<IOrgCategoryService, OrgCategoryService>();
+            container.Register<ICookieAccessor, CookieAccessor>();
 
             UserHelper.Instance = container.GetInstance<IUserHelper>();
+
+            #endregion === Helpers ===
+            #region === Services ===
+
+            container.Register<IBranchService, BranchService>();
+            container.Register<IUserProfileService, UserProfileService>();
+            container.Register<IUserLoginAuditService, UserLoginAuditService>();
+            container.Register<IOrgCategoryService, OrgCategoryService>();
+            container.Register<IGenderService, GenderService>();
+            container.Register<IColcOptionService, ColcOptionService>();
+
+            #endregion === Services ===
         }
     }
 }

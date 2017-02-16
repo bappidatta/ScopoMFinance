@@ -72,5 +72,31 @@ namespace ScopoMFinance.Domain.Repositories
                 return orgCategoryRepo;
             }
         }
+
+        private IRepository<SysGender> genderRepo;
+        public IRepository<SysGender> GenderRepository
+        {
+            get
+            {
+                if (this.genderRepo == null)
+                {
+                    this.genderRepo = new Repository<SysGender>(db);
+                }
+                return genderRepo;
+            }
+        }
+
+        private IRepository<SysColcOption> colcOptionRepo;
+        public IRepository<SysColcOption> ColcOptionRepository
+        {
+            get
+            {
+                if (this.colcOptionRepo == null)
+                {
+                    this.colcOptionRepo = new Repository<SysColcOption>(db);
+                }
+                return colcOptionRepo;
+            }
+        }
     }
 }
