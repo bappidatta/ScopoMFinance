@@ -78,7 +78,7 @@ namespace ScopoMFinance.Core.Services
             AccDayOpenClose model = new AccDayOpenClose
             {
                 BranchId = branchId,
-                CurrentDate = vm.SystemDate.AddDays(1),
+                CurrentDate = vm.SystemDate.AddDays(1).Date,
                 OpenedAt = DateTime.Now
             };
 
