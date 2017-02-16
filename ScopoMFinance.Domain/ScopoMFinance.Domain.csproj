@@ -50,6 +50,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\AccDayCloseProcess.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccDayCloseProgress.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccDayOpenClose.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AspNetRole.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
@@ -77,10 +86,19 @@
     <Compile Include="Models\OrgCreditOfficer.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductType.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Project.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProjectType.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjectWiseProductMapping.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ScopoMFinanceModel.Context.cs">

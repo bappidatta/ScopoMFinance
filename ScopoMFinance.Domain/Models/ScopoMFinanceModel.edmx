@@ -5,6 +5,42 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ScopoMFinanceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccDayCloseProcess">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProcessName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="AccDayCloseProgress">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DayCloseProcessId" Type="int" Nullable="false" />
+          <Property Name="DayOpenCloseId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccDayOpenClose">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+          <Property Name="CurrentDate" Type="datetime" Nullable="false" />
+          <Property Name="CloseRequest" Type="bit" Nullable="false" />
+          <Property Name="IsClosed" Type="bit" Nullable="false" />
+          <Property Name="CloseRequestBy" Type="int" />
+          <Property Name="CloseRequestAt" Type="datetime" />
+          <Property Name="OpenedAt" Type="datetime" Nullable="false" />
+          <Property Name="ClosedAt" Type="datetime" />
+        </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -149,6 +185,35 @@
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
           <Property Name="UpdatedOn" Type="datetime" />
         </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="InterestRate" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ProductTypeId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
         <EntityType Name="Project">
           <Key>
             <PropertyRef Name="Id" />
@@ -178,6 +243,14 @@
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
           <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ProjectWiseProductMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SysColcOption">
           <Key>
@@ -318,6 +391,30 @@
           <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
           <Property Name="UpdatedOn" Type="datetime" />
         </EntityType>
+        <Association Name="FK_AccDayCloseProgress_AccDayCloseProcess">
+          <End Role="AccDayCloseProcess" Type="Self.AccDayCloseProcess" Multiplicity="1" />
+          <End Role="AccDayCloseProgress" Type="Self.AccDayCloseProgress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccDayCloseProcess">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccDayCloseProgress">
+              <PropertyRef Name="DayCloseProcessId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccDayCloseProgress_AccDayOpenClose">
+          <End Role="AccDayOpenClose" Type="Self.AccDayOpenClose" Multiplicity="1" />
+          <End Role="AccDayCloseProgress" Type="Self.AccDayCloseProgress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccDayOpenClose">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccDayCloseProgress">
+              <PropertyRef Name="DayOpenCloseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_BranchProject_Branch">
           <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
           <End Role="BranchWiseProjectMapping" Type="Self.BranchWiseProjectMapping" Multiplicity="*" />
@@ -339,6 +436,18 @@
             </Principal>
             <Dependent Role="BranchWiseProjectMapping">
               <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DayOpenClose_Branch">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
+          <End Role="AccDayOpenClose" Type="Self.AccDayOpenClose" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccDayOpenClose">
+              <PropertyRef Name="BranchId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -538,6 +647,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Product_ProductType">
+          <End Role="ProductType" Type="Self.ProductType" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Project_Donor">
           <End Role="SysDonor" Type="Self.SysDonor" Multiplicity="0..1" />
           <End Role="Project" Type="Self.Project" Multiplicity="*" />
@@ -559,6 +680,30 @@
             </Principal>
             <Dependent Role="Project">
               <PropertyRef Name="ProjectTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectProduct_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProjectWiseProductMapping" Type="Self.ProjectWiseProductMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectWiseProductMapping">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectProduct_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="ProjectWiseProductMapping" Type="Self.ProjectWiseProductMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectWiseProductMapping">
+              <PropertyRef Name="ProjectId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -671,6 +816,9 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ScopoMFinanceModelStoreContainer">
+          <EntitySet Name="AccDayCloseProcess" EntityType="Self.AccDayCloseProcess" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccDayCloseProgress" EntityType="Self.AccDayCloseProgress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccDayOpenClose" EntityType="Self.AccDayOpenClose" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
@@ -681,8 +829,11 @@
           <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrgCategory" EntityType="Self.OrgCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrgCreditOfficer" EntityType="Self.OrgCreditOfficer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectType" EntityType="Self.ProjectType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectWiseProductMapping" EntityType="Self.ProjectWiseProductMapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SysColcOption" EntityType="Self.SysColcOption" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SysDistrict" EntityType="Self.SysDistrict" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SysDivision" EntityType="Self.SysDivision" Schema="dbo" store:Type="Tables" />
@@ -695,6 +846,14 @@
           <EntitySet Name="UserBranch" EntityType="Self.UserBranch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserLoginAudit" EntityType="Self.UserLoginAudit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AccDayCloseProgress_AccDayCloseProcess" Association="Self.FK_AccDayCloseProgress_AccDayCloseProcess">
+            <End Role="AccDayCloseProcess" EntitySet="AccDayCloseProcess" />
+            <End Role="AccDayCloseProgress" EntitySet="AccDayCloseProgress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccDayCloseProgress_AccDayOpenClose" Association="Self.FK_AccDayCloseProgress_AccDayOpenClose">
+            <End Role="AccDayOpenClose" EntitySet="AccDayOpenClose" />
+            <End Role="AccDayCloseProgress" EntitySet="AccDayCloseProgress" />
+          </AssociationSet>
           <AssociationSet Name="FK_BranchProject_Branch" Association="Self.FK_BranchProject_Branch">
             <End Role="Branch" EntitySet="Branch" />
             <End Role="BranchWiseProjectMapping" EntitySet="BranchWiseProjectMapping" />
@@ -702,6 +861,10 @@
           <AssociationSet Name="FK_BranchProject_Project" Association="Self.FK_BranchProject_Project">
             <End Role="Project" EntitySet="Project" />
             <End Role="BranchWiseProjectMapping" EntitySet="BranchWiseProjectMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DayOpenClose_Branch" Association="Self.FK_DayOpenClose_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="AccDayOpenClose" EntitySet="AccDayOpenClose" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
@@ -767,6 +930,10 @@
             <End Role="Organization" EntitySet="Organization" />
             <End Role="OrgCreditOfficer" EntitySet="OrgCreditOfficer" />
           </AssociationSet>
+          <AssociationSet Name="FK_Product_ProductType" Association="Self.FK_Product_ProductType">
+            <End Role="ProductType" EntitySet="ProductType" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
           <AssociationSet Name="FK_Project_Donor" Association="Self.FK_Project_Donor">
             <End Role="SysDonor" EntitySet="SysDonor" />
             <End Role="Project" EntitySet="Project" />
@@ -774,6 +941,14 @@
           <AssociationSet Name="FK_Project_ProjectType" Association="Self.FK_Project_ProjectType">
             <End Role="ProjectType" EntitySet="ProjectType" />
             <End Role="Project" EntitySet="Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectProduct_Product" Association="Self.FK_ProjectProduct_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProjectWiseProductMapping" EntitySet="ProjectWiseProductMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectProduct_Project" Association="Self.FK_ProjectProduct_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectWiseProductMapping" EntitySet="ProjectWiseProductMapping" />
           </AssociationSet>
           <AssociationSet Name="FK_Thana_Union" Association="Self.FK_Thana_Union">
             <End Role="SysUnion" EntitySet="SysUnion" />
@@ -952,6 +1127,36 @@
             <End Role="UserProfile" EntitySet="UserProfiles" />
             <End Role="UserLoginAudit" EntitySet="UserLoginAudits" />
           </AssociationSet>
+          <EntitySet Name="AccDayCloseProcesses" EntityType="ScopoMFinanceModel.AccDayCloseProcess" />
+          <EntitySet Name="AccDayCloseProgresses" EntityType="ScopoMFinanceModel.AccDayCloseProgress" />
+          <EntitySet Name="AccDayOpenCloses" EntityType="ScopoMFinanceModel.AccDayOpenClose" />
+          <EntitySet Name="Products" EntityType="ScopoMFinanceModel.Product" />
+          <EntitySet Name="ProductTypes" EntityType="ScopoMFinanceModel.ProductType" />
+          <EntitySet Name="ProjectWiseProductMappings" EntityType="ScopoMFinanceModel.ProjectWiseProductMapping" />
+          <AssociationSet Name="FK_AccDayCloseProgress_AccDayCloseProcess" Association="ScopoMFinanceModel.FK_AccDayCloseProgress_AccDayCloseProcess">
+            <End Role="AccDayCloseProcess" EntitySet="AccDayCloseProcesses" />
+            <End Role="AccDayCloseProgress" EntitySet="AccDayCloseProgresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccDayCloseProgress_AccDayOpenClose" Association="ScopoMFinanceModel.FK_AccDayCloseProgress_AccDayOpenClose">
+            <End Role="AccDayOpenClose" EntitySet="AccDayOpenCloses" />
+            <End Role="AccDayCloseProgress" EntitySet="AccDayCloseProgresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DayOpenClose_Branch" Association="ScopoMFinanceModel.FK_DayOpenClose_Branch">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="AccDayOpenClose" EntitySet="AccDayOpenCloses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ProductType" Association="ScopoMFinanceModel.FK_Product_ProductType">
+            <End Role="ProductType" EntitySet="ProductTypes" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectProduct_Product" Association="ScopoMFinanceModel.FK_ProjectProduct_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProjectWiseProductMapping" EntitySet="ProjectWiseProductMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectProduct_Project" Association="ScopoMFinanceModel.FK_ProjectProduct_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ProjectWiseProductMapping" EntitySet="ProjectWiseProductMappings" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -998,6 +1203,7 @@
           <NavigationProperty Name="OrgCreditOfficers" Relationship="ScopoMFinanceModel.FK_OrgCO_Branch" FromRole="Branch" ToRole="OrgCreditOfficer" />
           <NavigationProperty Name="UserBranches" Relationship="ScopoMFinanceModel.FK_UserBranch_Branch" FromRole="Branch" ToRole="UserBranch" />
           <NavigationProperty Name="UserLoginAudits" Relationship="ScopoMFinanceModel.FK_UserLogin_Branch" FromRole="Branch" ToRole="UserLoginAudit" />
+          <NavigationProperty Name="AccDayOpenCloses" Relationship="ScopoMFinanceModel.FK_DayOpenClose_Branch" FromRole="Branch" ToRole="AccDayOpenClose" />
         </EntityType>
         <EntityType Name="BranchWiseProjectMapping">
           <Key>
@@ -1137,6 +1343,7 @@
           <NavigationProperty Name="Organizations" Relationship="ScopoMFinanceModel.FK_Org_Project" FromRole="Project" ToRole="Organization" />
           <NavigationProperty Name="SysDonor" Relationship="ScopoMFinanceModel.FK_Project_Donor" FromRole="Project" ToRole="SysDonor" />
           <NavigationProperty Name="ProjectType" Relationship="ScopoMFinanceModel.FK_Project_ProjectType" FromRole="Project" ToRole="ProjectType" />
+          <NavigationProperty Name="ProjectWiseProductMappings" Relationship="ScopoMFinanceModel.FK_ProjectProduct_Project" FromRole="Project" ToRole="ProjectWiseProductMapping" />
         </EntityType>
         <EntityType Name="ProjectType">
           <Key>
@@ -1642,6 +1849,161 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AccDayCloseProcess">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProcessName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AccDayCloseProgresses" Relationship="ScopoMFinanceModel.FK_AccDayCloseProgress_AccDayCloseProcess" FromRole="AccDayCloseProcess" ToRole="AccDayCloseProgress" />
+        </EntityType>
+        <EntityType Name="AccDayCloseProgress">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DayCloseProcessId" Type="Int32" Nullable="false" />
+          <Property Name="DayOpenCloseId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AccDayCloseProcess" Relationship="ScopoMFinanceModel.FK_AccDayCloseProgress_AccDayCloseProcess" FromRole="AccDayCloseProgress" ToRole="AccDayCloseProcess" />
+          <NavigationProperty Name="AccDayOpenClose" Relationship="ScopoMFinanceModel.FK_AccDayCloseProgress_AccDayOpenClose" FromRole="AccDayCloseProgress" ToRole="AccDayOpenClose" />
+        </EntityType>
+        <EntityType Name="AccDayOpenClose">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="CurrentDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CloseRequest" Type="Boolean" Nullable="false" />
+          <Property Name="IsClosed" Type="Boolean" Nullable="false" />
+          <Property Name="CloseRequestBy" Type="Int32" />
+          <Property Name="CloseRequestAt" Type="DateTime" Precision="3" />
+          <Property Name="OpenedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ClosedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AccDayCloseProgresses" Relationship="ScopoMFinanceModel.FK_AccDayCloseProgress_AccDayOpenClose" FromRole="AccDayOpenClose" ToRole="AccDayCloseProgress" />
+          <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_DayOpenClose_Branch" FromRole="AccDayOpenClose" ToRole="Branch" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InterestRate" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ProductTypeId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ProductType" Relationship="ScopoMFinanceModel.FK_Product_ProductType" FromRole="Product" ToRole="ProductType" />
+          <NavigationProperty Name="ProjectWiseProductMappings" Relationship="ScopoMFinanceModel.FK_ProjectProduct_Product" FromRole="Product" ToRole="ProjectWiseProductMapping" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Products" Relationship="ScopoMFinanceModel.FK_Product_ProductType" FromRole="ProductType" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ProjectWiseProductMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="ScopoMFinanceModel.FK_ProjectProduct_Product" FromRole="ProjectWiseProductMapping" ToRole="Product" />
+          <NavigationProperty Name="Project" Relationship="ScopoMFinanceModel.FK_ProjectProduct_Project" FromRole="ProjectWiseProductMapping" ToRole="Project" />
+        </EntityType>
+        <Association Name="FK_AccDayCloseProgress_AccDayCloseProcess">
+          <End Type="ScopoMFinanceModel.AccDayCloseProcess" Role="AccDayCloseProcess" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.AccDayCloseProgress" Role="AccDayCloseProgress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccDayCloseProcess">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccDayCloseProgress">
+              <PropertyRef Name="DayCloseProcessId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccDayCloseProgress_AccDayOpenClose">
+          <End Type="ScopoMFinanceModel.AccDayOpenClose" Role="AccDayOpenClose" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.AccDayCloseProgress" Role="AccDayCloseProgress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccDayOpenClose">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccDayCloseProgress">
+              <PropertyRef Name="DayOpenCloseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DayOpenClose_Branch">
+          <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.AccDayOpenClose" Role="AccDayOpenClose" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccDayOpenClose">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ProductType">
+          <End Type="ScopoMFinanceModel.ProductType" Role="ProductType" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectProduct_Product">
+          <End Type="ScopoMFinanceModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.ProjectWiseProductMapping" Role="ProjectWiseProductMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectWiseProductMapping">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectProduct_Project">
+          <End Type="ScopoMFinanceModel.Project" Role="Project" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.ProjectWiseProductMapping" Role="ProjectWiseProductMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectWiseProductMapping">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1980,6 +2342,85 @@
                 <ScalarProperty Name="LoggedInTime" ColumnName="LoggedInTime" />
                 <ScalarProperty Name="BranchId" ColumnName="BranchId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccDayCloseProcesses">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.AccDayCloseProcess">
+              <MappingFragment StoreEntitySet="AccDayCloseProcess">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccDayCloseProgresses">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.AccDayCloseProgress">
+              <MappingFragment StoreEntitySet="AccDayCloseProgress">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DayOpenCloseId" ColumnName="DayOpenCloseId" />
+                <ScalarProperty Name="DayCloseProcessId" ColumnName="DayCloseProcessId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccDayOpenCloses">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.AccDayOpenClose">
+              <MappingFragment StoreEntitySet="AccDayOpenClose">
+                <ScalarProperty Name="ClosedAt" ColumnName="ClosedAt" />
+                <ScalarProperty Name="OpenedAt" ColumnName="OpenedAt" />
+                <ScalarProperty Name="CloseRequestAt" ColumnName="CloseRequestAt" />
+                <ScalarProperty Name="CloseRequestBy" ColumnName="CloseRequestBy" />
+                <ScalarProperty Name="IsClosed" ColumnName="IsClosed" />
+                <ScalarProperty Name="CloseRequest" ColumnName="CloseRequest" />
+                <ScalarProperty Name="CurrentDate" ColumnName="CurrentDate" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ProductTypeId" ColumnName="ProductTypeId" />
+                <ScalarProperty Name="InterestRate" ColumnName="InterestRate" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTypes">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.ProductType">
+              <MappingFragment StoreEntitySet="ProductType">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectWiseProductMappings">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.ProjectWiseProductMapping">
+              <MappingFragment StoreEntitySet="ProjectWiseProductMapping">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -56,6 +56,18 @@
         <EntityTypeShape EntityType="ScopoMFinanceModel.UserLoginAudit" Width="1.5" PointX="6" PointY="16.875" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_UserLogin_Branch" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_UserLogin_User" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.AccDayCloseProcess" Width="1.5" PointX="3" PointY="65.125" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.AccDayCloseProgress" Width="1.5" PointX="5.25" PointY="61.5" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.AccDayOpenClose" Width="1.5" PointX="3" PointY="61" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.Product" Width="1.5" PointX="3.75" PointY="55.75" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.ProductType" Width="1.5" PointX="1.5" PointY="56.125" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.ProjectWiseProductMapping" Width="1.5" PointX="6" PointY="5.5" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_AccDayCloseProgress_AccDayCloseProcess" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_AccDayCloseProgress_AccDayOpenClose" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_DayOpenClose_Branch" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Product_ProductType" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_ProjectProduct_Product" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_ProjectProduct_Project" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
