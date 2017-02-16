@@ -59,5 +59,18 @@ namespace ScopoMFinance.Domain.Repositories
                 return userLoginAuditRepo;
             }
         }
+
+        private IRepository<OrgCategory> orgCategoryRepo;
+        public IRepository<OrgCategory> OrgCategoryRepository
+        {
+            get
+            {
+                if (this.orgCategoryRepo == null)
+                {
+                    this.orgCategoryRepo = new Repository<OrgCategory>(db);
+                }
+                return orgCategoryRepo;
+            }
+        }
     }
 }
