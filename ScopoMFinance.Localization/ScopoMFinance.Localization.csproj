@@ -44,6 +44,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BranchStrings.resx</DependentUpon>
     </Compile>
+    <Compile Include="OrganizationStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrganizationStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="PaginationStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -60,6 +65,10 @@
     <EmbeddedResource Include="BranchStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BranchStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrganizationStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>OrganizationStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="PaginationStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

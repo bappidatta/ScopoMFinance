@@ -14,7 +14,15 @@ namespace ScopoMFinance.Core.Services
 {
     public interface IOrganizationService
     {
-        PList<OrganizationListViewModel> GetOrganizationList(int pageNumber, int pageSize, SortDirection sortDir, int sortCol, Expression<Func<Organization, bool>> filter = null);
+        PList<OrganizationListViewModel> GetOrganizationList(
+            int pageNumber, int pageSize, 
+            SortDirection sortDir, int sortCol, 
+            Expression<Func<Organization, bool>> filter = null);
+
+        OrganizationEditViewModel GetOrganizationById(int orgId);
+
+        void SaveOrganization(OrganizationEditViewModel vm);
+        void UpdateOrganization(OrganizationEditViewModel vm);
     }
 
     public class OrganizationService : IOrganizationService
@@ -26,7 +34,10 @@ namespace ScopoMFinance.Core.Services
             _uow = uow;
         }
 
-        public PList<OrganizationListViewModel> GetOrganizationList(int pageNumber, int pageSize, SortDirection sortDir, int sortCol, Expression<Func<Organization, bool>> filter = null)
+        public PList<OrganizationListViewModel> GetOrganizationList(
+            int pageNumber, int pageSize, 
+            SortDirection sortDir, int sortCol, 
+            Expression<Func<Organization, bool>> filter = null)
         {
             Expression<Func<Organization, object>> orderBy = null;
             PagerSettings psettings = null;
@@ -42,6 +53,24 @@ namespace ScopoMFinance.Core.Services
                     break;
                 case 2:
                     orderBy = x => x.OrganizationName;
+                    break;
+                case 3:
+                    orderBy = x => x.SysGender.Name;
+                    break;
+                case 4:
+                    orderBy = x => x.SetupDate;
+                    break;
+                case 5:
+                    orderBy = x => x.SysColcOptionLoan.Name;
+                    break;
+                case 6:
+                    orderBy = x => x.SysColcOptionSavings.Name;
+                    break;
+                case 7:
+                    orderBy = x => x.FirstLoanColcDate;
+                    break;
+                case 8:
+                    orderBy = x => x.FirstSavColcDate;
                     break;
             }
 
@@ -75,6 +104,56 @@ namespace ScopoMFinance.Core.Services
                                }).Page(pageNumber, pageSize, out psettings);
 
             return orgList.ToPList(psettings);
+        }
+
+        public OrganizationEditViewModel GetOrganizationById(int orgId)
+        {
+            return (from c in _uow.OrganizationRepository.Get()
+                    where c.Id == orgId
+                    select new OrganizationEditViewModel
+                    {
+                        Id = c.Id,
+                        OrganizationNo = c.OrganizationNo,
+                        OrganizationName = c.OrganizationName,
+                        OrgCategoryId = c.OrgCategoryId,
+                        GenderId = c.GenderId,
+                        SetupDate = c.SetupDate,
+                        LoanColcOptionId = c.LoanColcOption,
+                        SavColcOptionId = c.SavColcOption,
+                        FirstLoanColcDate = c.FirstLoanColcDate,
+                        FirstSavColcDate = c.FirstSavColcDate,
+                        VillageId = c.VillageId
+                    }).SingleOrDefault();
+        }
+
+        public void SaveOrganization(OrganizationEditViewModel vm)
+        {
+            Organization org = new Organization
+            {
+                BranchId = vm.BranchId,
+                OrganizationNo = vm.OrganizationNo,
+                OrganizationName = vm.OrganizationName,
+                OrgCategoryId = vm.OrgCategoryId,
+                GenderId = vm.GenderId,
+                SetupDate = vm.SetupDate,
+                LoanColcOption = vm.LoanColcOptionId,
+                SavColcOption = vm.SavColcOptionId,
+                FirstLoanColcDate = vm.FirstLoanColcDate,
+                FirstSavColcDate = vm.FirstSavColcDate,
+                IsActive = vm.IsActive,
+                IsDeleted = false,
+                SystemDate = vm.SetupDate,
+                CreatedBy = vm.CreatedBy,
+                CreatedOn = DateTime.Now
+            };
+
+            _uow.OrganizationRepository.Insert(org);
+            _uow.Save();
+        }
+
+        public void UpdateOrganization(OrganizationEditViewModel vm)
+        {
+ 
         }
     }
 }

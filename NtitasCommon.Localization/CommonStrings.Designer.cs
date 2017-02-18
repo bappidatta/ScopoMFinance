@@ -61,6 +61,15 @@ namespace NtitasCommon.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Currently No Data Found.
+        /// </summary>
+        public static string List_Empty {
+            get {
+                return ResourceManager.GetString("List_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No Records Found.
         /// </summary>
         public static string No_Record {

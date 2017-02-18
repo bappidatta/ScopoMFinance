@@ -1,0 +1,94 @@
+﻿@model ScopoMFinance.Domain.ViewModels.Org.OrganizationEditViewModel
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="col-md-12">
+            @using (Html.BeginForm("Edit", "Organization", new { area = "Branch" }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.OrgCategoryId, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-2">
+                        @Html.DropDownListFor(m => m.OrgCategoryId, ViewBag.OrgCategoryDropDown as SelectList, "Select Category", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.OrgCategoryId, "", new { @class = "text-danger" })
+                    </div>
+
+                    @Html.LabelFor(m => m.GenderId, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-2">
+                        @Html.DropDownListFor(m => m.GenderId, ViewBag.GenderDropDown as SelectList, "Select Gender", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.GenderId, "", new { @class = "text-danger" })
+                    </div>
+
+                    @Html.LabelFor(m => m.SetupDate, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(m => m.SetupDate, "{0:d MMMM, yyyy}", new { @class = "form-control", @disabled = "disabled" })
+                        @Html.ValidationMessageFor(m => m.SetupDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.OrganizationNo, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(m => m.OrganizationNo, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.OrganizationNo, "", new { @class = "text-danger" })
+                    </div>
+
+                    @Html.LabelFor(m => m.OrganizationName, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(m => m.OrganizationName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.OrganizationName, "", new { @class = "text-danger" })
+                    </div>
+
+                    @Html.LabelFor(m => m.IsActive, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-1">
+                        @Html.CheckBoxFor(m => m.IsActive, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.IsActive, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.LoanColcOptionId, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-2">
+                        @Html.DropDownListFor(m => m.LoanColcOptionId, ViewBag.LoanCollectionOptionDropDown as SelectList, "Select Collection Option", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.LoanColcOptionId, "", new { @class = "text-danger" })
+                    </div>
+
+                    @Html.LabelFor(m => m.FirstLoanColcDate, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(m => m.FirstLoanColcDate, "{0:d MMMM, yyyy}", new { @class = "form-control datepicker" })
+                        @Html.ValidationMessageFor(m => m.SavColcOptionId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.SavColcOptionId, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-2">
+                        @Html.DropDownListFor(m => m.SavColcOptionId, ViewBag.SavingsCollectionOptionDropDown as SelectList, "Select Collection Option", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.SavColcOptionId, "", new { @class = "text-danger" })
+                    </div>
+
+                    @Html.LabelFor(m => m.FirstSavColcDate, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(m => m.FirstSavColcDate, "{0:d MMMM, yyyy}", new { @class = "form-control datepicker" })
+                        @Html.ValidationMessageFor(m => m.FirstSavColcDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-8 col-md-2">
+                        @Html.ActionLink("Cancel", "Index", new { area = "Branch", controller = "Organization" }, new { @class = "btn btn-default btn-block" })
+                    </div>
+                    <div class="col-md-2">
+                        <input type="submit" value="Save" class="btn btn-primary btn-block" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

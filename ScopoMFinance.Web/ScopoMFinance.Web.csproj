@@ -245,6 +245,8 @@
     <Content Include="Content\fonts\FontAwesome.otf" />
     <Content Include="Areas\Branch\Views\web.config" />
     <Content Include="Areas\Branch\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Branch\Views\Organization\Index.cshtml" />
+    <Content Include="Areas\Branch\Views\Organization\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\common-system-messages.js" />
     <Content Include="Scripts\init.js" />
@@ -320,7 +322,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Branch\Models\" />
-    <Folder Include="Areas\Branch\Views\Organizations\" />
     <Folder Include="Areas\Branch\Views\Shared\" />
     <Folder Include="Areas\Dashboard\Models\" />
     <Folder Include="Areas\Dashboard\Views\Shared\" />
