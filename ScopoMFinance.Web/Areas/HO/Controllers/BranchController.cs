@@ -1,8 +1,10 @@
 ﻿using NtitasCommon.Core.Common;
+using NtitasCommon.Localization;
 using ScopoMFinance.Core.Common;
 using ScopoMFinance.Core.Helpers;
 using ScopoMFinance.Core.Services;
 using ScopoMFinance.Domain.ViewModels.Policy;
+using ScopoMFinance.Localization;
 using ScopoMFinance.Web.Attributes;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,7 @@ using System.Web.Mvc;
 
 namespace ScopoMFinance.Web.Areas.HO.Controllers
 {
+    [SystemMessages]
     [Authorize(Roles = AppRoles.SuperUser)]
     [LoginAudit]
     public class BranchController : Controller
@@ -72,6 +75,7 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
             }
             else
             {
+                SystemMessages.Add(CommonStrings.No_Record, true, true);
                 return RedirectToAction("Index");
             }
         }
@@ -88,15 +92,22 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
             {
                 try
                 {
-                    if(vm.Id > 0)
+                    if (vm.Id > 0)
+                    {
                         _branchService.UpdateBranch(vm);
+                        SystemMessages.Add(BranchStrings.Branch_Update_Success_Msg, false, true);
+                    }
                     else
+                    {
                         _branchService.SaveBranch(vm);
+                        SystemMessages.Add(BranchStrings.Branch_Add_Success_Msg, false, true);
+                    }
                     
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
                 {
+                    SystemMessages.Add(CommonStrings.Server_Error, true, true);
                 }
             }
 

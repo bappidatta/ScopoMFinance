@@ -242,6 +242,7 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\common-system-messages.js" />
     <Content Include="Scripts\init.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -258,6 +259,10 @@
     <Content Include="Scripts\pickadate\picker.time.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\underscore.js" />
+    <Content Include="Scripts\underscore.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -304,6 +309,9 @@
     <Content Include="Views\Shared\_PagerSize.cshtml" />
     <Content Include="Views\Shared\_UserInfo.cshtml" />
     <Content Include="Views\Home\DayOpenClose.cshtml" />
+    <Content Include="Views\Shared\_CommonSystemMessages.cshtml" />
+    <Content Include="Views\Shared\_CommonScripts.cshtml" />
+    <Content Include="Scripts\underscore.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -323,6 +331,10 @@
     <ProjectReference Include="..\NtitasCommon.Core\NtitasCommon.Core.csproj">
       <Project>{8ce2c96b-1552-4c2b-a4c8-9f3ef08e06b2}</Project>
       <Name>NtitasCommon.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NtitasCommon.Localization\NtitasCommon.Localization.csproj">
+      <Project>{19a8b8c3-0e49-4fa6-8f7b-750bc14f98bd}</Project>
+      <Name>NtitasCommon.Localization</Name>
     </ProjectReference>
     <ProjectReference Include="..\ScopoMFinance.Core\ScopoMFinance.Core.csproj">
       <Project>{b133f37b-befb-4ffc-8651-ae8e22fae8b2}</Project>

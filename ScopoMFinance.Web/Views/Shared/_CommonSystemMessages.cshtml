@@ -1,0 +1,11 @@
+﻿@inherits System.Web.Mvc.WebViewPage
+@using System.Web.Script.Serialization;
+
+<script type="text/javascript">
+
+    /// <summary>
+    /// This collection is used to store all messages that are displayed to the user (including the ones generated through ajax calls or custom js code)
+    /// <summary>
+    var __SYSTEMMESSAGES = @Html.Raw(new JavaScriptSerializer().Serialize(NtitasCommon.Core.Common.SystemMessages.Get()));
+
+</script>

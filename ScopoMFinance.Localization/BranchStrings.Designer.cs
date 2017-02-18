@@ -61,6 +61,15 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Branch is added successfully.
+        /// </summary>
+        public static string Branch_Add_Success_Msg {
+            get {
+                return ResourceManager.GetString("Branch_Add_Success_Msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Branch Name.
         /// </summary>
         public static string Branch_List_DN_BranchName {
@@ -129,6 +138,15 @@ namespace ScopoMFinance.Localization {
         public static string Branch_List_DN_TotalUser {
             get {
                 return ResourceManager.GetString("Branch_List_DN_TotalUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Branch is updated successfully.
+        /// </summary>
+        public static string Branch_Update_Success_Msg {
+            get {
+                return ResourceManager.GetString("Branch_Update_Success_Msg", resourceCulture);
             }
         }
         

@@ -117,37 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Branch_Add_Success_Msg" xml:space="preserve">
-    <value>Branch is added successfully</value>
+  <data name="No_Record" xml:space="preserve">
+    <value>No Records Found</value>
   </data>
-  <data name="Branch_List_DN_BranchName" xml:space="preserve">
-    <value>Branch Name</value>
-  </data>
-  <data name="Branch_List_DN_BranchOpenDate" xml:space="preserve">
-    <value>Open Date</value>
-  </data>
-  <data name="Branch_List_DN_BranchStatus" xml:space="preserve">
-    <value>Active</value>
-  </data>
-  <data name="Branch_List_DN_HeadOffice" xml:space="preserve">
-    <value>Head Office</value>
-  </data>
-  <data name="Branch_List_DN_TotalCO" xml:space="preserve">
-    <value>Total Credit Officers</value>
-  </data>
-  <data name="Branch_List_DN_TotalOrg" xml:space="preserve">
-    <value>Total Organizations</value>
-  </data>
-  <data name="Branch_List_DN_TotalProject" xml:space="preserve">
-    <value>Total Projects</value>
-  </data>
-  <data name="Branch_List_DN_TotalUser" xml:space="preserve">
-    <value>Total Users</value>
-  </data>
-  <data name="Branch_Update_Success_Msg" xml:space="preserve">
-    <value>Branch is updated successfully</value>
-  </data>
-  <data name="HeadOffice" xml:space="preserve">
-    <value>Head Office</value>
+  <data name="Server_Error" xml:space="preserve">
+    <value>Server Error, Please Contact With Ntitas IT Limited</value>
   </data>
 </root>

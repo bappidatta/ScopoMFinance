@@ -25,6 +25,9 @@ namespace ScopoMFinance.Web
                       "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/basescript").Include(
+                      "~/Scripts/common-system-messages.js",
+                      "~/Scripts/underscore.js",
+                      "~/Scripts/toastr.js",
                       "~/Scripts/PagerSize.js",
                       "~/Scripts/pickadate/picker.js",
                       "~/Scripts/pickadate/picker.date.js",
@@ -38,6 +41,7 @@ namespace ScopoMFinance.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css/bootstrap.css",
+                      "~/Content/css/toastr.css",
                       "~/Content/css/font-awesome.css",
                       "~/Content/css/site.css"));
         }

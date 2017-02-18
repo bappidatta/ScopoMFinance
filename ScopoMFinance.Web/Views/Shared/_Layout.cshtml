@@ -70,7 +70,10 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/basescript")
+
+    @Html.Partial("_CommonSystemMessages")
+    @Html.Partial("_CommonScripts")
+    
     @RenderSection("scripts", required: false)
 </body>
 </html>
