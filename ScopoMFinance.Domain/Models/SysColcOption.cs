@@ -17,8 +17,8 @@ namespace ScopoMFinance.Domain.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SysColcOption()
         {
-            this.Organizations = new HashSet<Organization>();
-            this.Organizations1 = new HashSet<Organization>();
+            this.OrganizationsLoan = new HashSet<Organization>();
+            this.OrganizationsSavings = new HashSet<Organization>();
         }
     
         public int Id { get; set; }
@@ -31,8 +31,8 @@ namespace ScopoMFinance.Domain.Models
         public Nullable<System.DateTime> UpdatedOn { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Organization> Organizations { get; set; }
+        public virtual ICollection<Organization> OrganizationsLoan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Organization> Organizations1 { get; set; }
+        public virtual ICollection<Organization> OrganizationsSavings { get; set; }
     }
 }

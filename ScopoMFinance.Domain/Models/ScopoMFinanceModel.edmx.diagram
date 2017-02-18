@@ -14,7 +14,6 @@
         <EntityTypeShape EntityType="ScopoMFinanceModel.BranchWiseProjectMapping" Width="1.5" PointX="3" PointY="13.625" />
         <EntityTypeShape EntityType="ScopoMFinanceModel.Employee" Width="1.5" PointX="3" PointY="17" />
         <EntityTypeShape EntityType="ScopoMFinanceModel.EmployeeType" Width="1.5" PointX="0.75" PointY="18.25" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.Organization" Width="1.5" PointX="6" PointY="11.375" />
         <EntityTypeShape EntityType="ScopoMFinanceModel.OrgCategory" Width="1.5" PointX="3.75" PointY="3" />
         <EntityTypeShape EntityType="ScopoMFinanceModel.OrgCreditOfficer" Width="1.5" PointX="8.25" PointY="17.875" />
         <EntityTypeShape EntityType="ScopoMFinanceModel.Product" Width="1.5" PointX="0.75" PointY="57.875" />
@@ -41,7 +40,6 @@
         <AssociationConnector Association="ScopoMFinanceModel.FK_UserProfile_AspNetUser" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_BranchProject_Branch" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_Employee_Branch" />
-        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_Branch" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_OrgCO_Branch" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_UserBranch_Branch" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_UserLogin_Branch" />
@@ -49,13 +47,6 @@
         <AssociationConnector Association="ScopoMFinanceModel.FK_Employee_EmployeeType" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_Employee_Gender" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_OrgCO_Employee" />
-        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_Gender" />
-        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_LoanColc" />
-        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_OrgCategory" />
-        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_Project" />
-        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_SavColc" />
-        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_Village" />
-        <AssociationConnector Association="ScopoMFinanceModel.FK_OrgCO_Org" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_Product_ProductType" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_ProjectProduct_Product" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_Project_Donor" />
@@ -69,6 +60,14 @@
         <AssociationConnector Association="ScopoMFinanceModel.FK_UserBranch_User" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_UserLogin_User" />
         <AssociationConnector Association="ScopoMFinanceModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.Organization" Width="1.5" PointX="6" PointY="21" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_Branch" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_Gender" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_LoanColc" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_OrgCategory" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_SavColc" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_Village" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_OrgCO_Org" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

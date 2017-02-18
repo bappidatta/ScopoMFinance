@@ -18,7 +18,6 @@ namespace ScopoMFinance.Domain.Models
         public Project()
         {
             this.BranchWiseProjectMappings = new HashSet<BranchWiseProjectMapping>();
-            this.Organizations = new HashSet<Organization>();
             this.ProjectWiseProductMappings = new HashSet<ProjectWiseProductMapping>();
         }
     
@@ -37,8 +36,6 @@ namespace ScopoMFinance.Domain.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BranchWiseProjectMapping> BranchWiseProjectMappings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Organization> Organizations { get; set; }
         public virtual SysDonor SysDonor { get; set; }
         public virtual ProjectType ProjectType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

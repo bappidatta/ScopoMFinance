@@ -28,8 +28,8 @@ namespace ScopoMFinance.Domain.Models
         public string CreatedBy { get; set; }
         public System.DateTime CreatedOn { get; set; }
     
+        public virtual SysUnion SysUnion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Organization> Organizations { get; set; }
-        public virtual SysUnion SysUnion { get; set; }
     }
 }
