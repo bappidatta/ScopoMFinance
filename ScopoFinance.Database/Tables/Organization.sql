@@ -11,7 +11,6 @@
     [SavColcOption] INT NOT NULL, 
     [FirstLoanColcDate] DATETIME NOT NULL, 
     [FirstSavColcDate] DATETIME NOT NULL, 
-    [ProjectId] INT NOT NULL, 
     [VillageId] INT NULL, 
 	[IsActive] BIT NOT NULL DEFAULT 1, 
     [IsDeleted] BIT NOT NULL DEFAULT 0, 
@@ -26,7 +25,6 @@
 	CONSTRAINT [FK_Org_Gender] FOREIGN KEY ([GenderId]) REFERENCES [SysGender]([Id]),
 	CONSTRAINT [FK_Org_LoanColc] FOREIGN KEY ([LoanColcOption]) REFERENCES [SysColcOption]([Id]),
 	CONSTRAINT [FK_Org_SavColc] FOREIGN KEY ([SavColcOption]) REFERENCES [SysColcOption]([Id]),
-	CONSTRAINT [FK_Org_Project] FOREIGN KEY ([ProjectId]) REFERENCES [Project]([Id]),
 	CONSTRAINT [FK_Org_Village] FOREIGN KEY ([VillageId]) REFERENCES [SysVillage]([Id]),
 	CONSTRAINT [UQ_OrganizationNo] UNIQUE ([OrganizationNo])
 )
