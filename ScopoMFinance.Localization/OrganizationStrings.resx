@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Organization_Edit_Add_Success_Msg" xml:space="preserve">
+    <value>New Organization Added Successfully</value>
+  </data>
   <data name="Organization_Edit_Add_Title" xml:space="preserve">
     <value>Create Organization</value>
   </data>
@@ -153,8 +156,14 @@
   <data name="Organization_Edit_DN_OrgVillage" xml:space="preserve">
     <value>Village</value>
   </data>
+  <data name="Organization_Edit_Update_Success_Msg" xml:space="preserve">
+    <value>Organization has been edited successfully</value>
+  </data>
   <data name="Organization_Edit_Update_Title" xml:space="preserve">
     <value>Update Organization</value>
+  </data>
+  <data name="Organization_Edit_Validation_OrgNoUnavailable" xml:space="preserve">
+    <value>Organization No Already Exists</value>
   </data>
   <data name="Organization_List_DN_IsActive" xml:space="preserve">
     <value>Active</value>

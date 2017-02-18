@@ -24,6 +24,7 @@
                         <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().FirstLoanColcDate), "Index", null, null, null, 7)</th>
                         <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().FirstSavColcDate), "Index", null, null, null, 8)</th>
                         <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().IsActive), "Index", null, null, null, 9)</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,13 +52,18 @@
                                         <i class="icon-inactive fa fa-times fa-2x"></i>
                                     }
                                 </td>
+                                <td>
+                                    <a href="/Branch/Organization/Edit/@item.Id" class="__lnkEdit">
+                                        <i class="fa fa-pencil fa-2x" data-toggle="tooltip" title="Edit"></i>
+                                    </a>
+                                </td>
                             </tr>
                         }
                     }
                     else
                     {
                         <tr>
-                            <td colspan="9" class="align-center"><strong>@NtitasCommon.Localization.CommonStrings.List_Empty</strong></td>
+                            <td colspan="10" class="align-center"><strong>@NtitasCommon.Localization.CommonStrings.List_Empty</strong></td>
                         </tr>
                     }
                 </tbody>

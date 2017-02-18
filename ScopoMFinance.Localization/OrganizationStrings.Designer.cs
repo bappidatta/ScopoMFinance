@@ -61,6 +61,15 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Organization Added Successfully.
+        /// </summary>
+        public static string Organization_Edit_Add_Success_Msg {
+            get {
+                return ResourceManager.GetString("Organization_Edit_Add_Success_Msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Organization.
         /// </summary>
         public static string Organization_Edit_Add_Title {
@@ -169,11 +178,29 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Organization has been edited successfully.
+        /// </summary>
+        public static string Organization_Edit_Update_Success_Msg {
+            get {
+                return ResourceManager.GetString("Organization_Edit_Update_Success_Msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update Organization.
         /// </summary>
         public static string Organization_Edit_Update_Title {
             get {
                 return ResourceManager.GetString("Organization_Edit_Update_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Organization No Already Exists.
+        /// </summary>
+        public static string Organization_Edit_Validation_OrgNoUnavailable {
+            get {
+                return ResourceManager.GetString("Organization_Edit_Validation_OrgNoUnavailable", resourceCulture);
             }
         }
         

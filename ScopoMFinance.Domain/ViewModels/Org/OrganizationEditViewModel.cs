@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace ScopoMFinance.Domain.ViewModels.Org
 {
@@ -16,6 +17,7 @@ namespace ScopoMFinance.Domain.ViewModels.Org
 
         [Required]
         [Display(Name = "Organization_Edit_DN_OrgNo", ResourceType = typeof(OrganizationStrings))]
+        [Remote("IsOrgNoAvailable", "Organization", "Branch", ErrorMessageResourceName = "Organization_Edit_Validation_OrgNoUnavailable", ErrorMessageResourceType = typeof(OrganizationStrings), AdditionalFields = "Id")]
         public string OrganizationNo { get; set; }
 
         [Required]

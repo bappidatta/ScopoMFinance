@@ -19,10 +19,11 @@ namespace ScopoMFinance.Core.Services
             SortDirection sortDir, int sortCol, 
             Expression<Func<Organization, bool>> filter = null);
 
-        OrganizationEditViewModel GetOrganizationById(int orgId);
+        OrganizationEditViewModel GetOrganizationById(int orgId, int branchId);
 
-        void SaveOrganization(OrganizationEditViewModel vm);
+        void CreateOrganization(OrganizationEditViewModel vm);
         void UpdateOrganization(OrganizationEditViewModel vm);
+        bool IsOrgNoAvailable(string orgNo, int branchId, int orgId);
     }
 
     public class OrganizationService : IOrganizationService
@@ -109,13 +110,13 @@ namespace ScopoMFinance.Core.Services
             return orgList.ToPList(psettings);
         }
 
-        public OrganizationEditViewModel GetOrganizationById(int orgId)
+        public OrganizationEditViewModel GetOrganizationById(int orgId, int branchId)
         {
-            return (from c in _uow.OrganizationRepository.Get()
-                    where c.Id == orgId
+            return (from c in _uow.OrganizationRepository.Get(x => x.Id == orgId && x.BranchId == branchId)
                     select new OrganizationEditViewModel
                     {
                         Id = c.Id,
+                        BranchId = c.BranchId,
                         OrganizationNo = c.OrganizationNo,
                         OrganizationName = c.OrganizationName,
                         OrgCategoryId = c.OrgCategoryId,
@@ -130,7 +131,7 @@ namespace ScopoMFinance.Core.Services
                     }).SingleOrDefault();
         }
 
-        public void SaveOrganization(OrganizationEditViewModel vm)
+        public void CreateOrganization(OrganizationEditViewModel vm)
         {
             Organization org = new Organization
             {
@@ -157,7 +158,39 @@ namespace ScopoMFinance.Core.Services
 
         public void UpdateOrganization(OrganizationEditViewModel vm)
         {
- 
+            Organization model = (from c in _uow.OrganizationRepository
+                                      .Get(x => x.Id == vm.Id && x.BranchId == vm.BranchId && x.IsDeleted == false)
+                                  select c).SingleOrDefault();
+
+            model.OrgCategoryId = vm.OrgCategoryId;
+            model.GenderId = vm.GenderId;
+            model.OrganizationNo = vm.OrganizationNo;
+            model.OrganizationName = vm.OrganizationName;
+            model.IsActive = vm.IsActive;
+            model.LoanColcOption = vm.LoanColcOptionId;
+            model.SavColcOption = vm.SavColcOptionId;
+            model.FirstSavColcDate = vm.FirstSavColcDate;
+            model.FirstLoanColcDate = vm.FirstLoanColcDate;
+            model.UpdatedBy = vm.CreatedBy;
+            model.UpdatedOn = DateTime.Now;
+
+            _uow.OrganizationRepository.Update(model);
+            _uow.Save();
+        }
+
+        public bool IsOrgNoAvailable(string orgNo, int branchId, int orgId)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(orgNo))
+                    return false;
+
+                return !_uow.OrganizationRepository.Get().Any(x => x.Id != orgId && x.BranchId == branchId && x.OrganizationNo == orgNo);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

@@ -76,11 +76,12 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
                     SetupDate = _userHelper.Get().DayOpenClose.SystemDate,
                     FirstLoanColcDate = _userHelper.Get().DayOpenClose.SystemDate,
                     FirstSavColcDate = _userHelper.Get().DayOpenClose.SystemDate,
-                    IsActive = true
+                    IsActive = true,
+                    BranchId = _userHelper.Get().BranchId
                 });
             }
 
-            OrganizationEditViewModel vm = _orgService.GetOrganizationById(id.Value);
+            OrganizationEditViewModel vm = _orgService.GetOrganizationById(id.Value, _userHelper.Get().BranchId);
 
             if (vm != null)
             {
@@ -104,25 +105,22 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
         public ActionResult Edit(OrganizationEditViewModel vm)
         {
             if (ModelState.IsValid)
-            {
- 
-            }
-
-            if (ModelState.IsValid)
             { 
                 try
                 {
+                    vm.BranchId = _userHelper.Get().BranchId;
+                    vm.SetupDate = _userHelper.Get().DayOpenClose.SystemDate;
+                    vm.CreatedBy = _userHelper.Get().UserId;
+
                     if (vm.Id > 0)
                     {
-
+                        _orgService.UpdateOrganization(vm);
+                        SystemMessages.Add(OrganizationStrings.Organization_Edit_Update_Success_Msg, false, true);
                     }
                     else 
                     {
-                        vm.BranchId = _userHelper.Get().BranchId;
-                        vm.SetupDate = _userHelper.Get().DayOpenClose.SystemDate;
-                        vm.CreatedBy = _userHelper.Get().UserId;
-
-                        _orgService.SaveOrganization(vm);
+                        _orgService.CreateOrganization(vm);
+                        SystemMessages.Add(OrganizationStrings.Organization_Edit_Add_Success_Msg, false, true);
                     }
 
                     return RedirectToAction("Index");
@@ -139,6 +137,12 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
             ViewBag.SavingsCollectionOptionDropDown = new SelectList(_colcOptionService.GetColcOptionDropDown(), "Value", "Text", vm.SavColcOptionId);
 
             return View(vm);
+        }
+
+        [HttpGet]
+        public ActionResult IsOrgNoAvailable(string organizationNo, int id)
+        {
+            return Json(!string.IsNullOrWhiteSpace(organizationNo) && _orgService.IsOrgNoAvailable(organizationNo, _userHelper.Get().BranchId, id) == true, JsonRequestBehavior.AllowGet);
         }
     }
 }
