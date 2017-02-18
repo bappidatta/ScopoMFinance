@@ -24,13 +24,12 @@ namespace ScopoMFinance.Core.Services
 
         public List<DropDownHelper> GetGenderDropDown()
         {
-            var genderDropDown = from c in _uow.GenderRepository.Get()
-                                      where c.IsActive == true && c.IsDeleted == false
-                                      select new DropDownHelper()
-                                      {
-                                          Value = c.Id,
-                                          Text = c.Name
-                                      };
+            var genderDropDown = from c in _uow.GenderRepository.Get(x => x.IsActive == true && x.IsDeleted == false)
+                                 select new DropDownHelper()
+                                 {
+                                     Value = c.Id,
+                                     Text = c.Name
+                                 };
 
             return genderDropDown.ToList();
         }

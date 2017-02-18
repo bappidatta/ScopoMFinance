@@ -33,8 +33,7 @@ namespace ScopoMFinance.Core.Services
 
         public List<DropDownHelper> GetBranchDropDown()
         {
-            var branchDropDown = from c in _uow.BranchRepository.Get()
-                                 where c.Status == true
+            var branchDropDown = from c in _uow.BranchRepository.Get(c => c.Status == true)
                                  select new DropDownHelper()
                                  {
                                      Value = c.Id,

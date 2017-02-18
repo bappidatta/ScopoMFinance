@@ -20,14 +20,19 @@ namespace ScopoMFinance.Domain.Repositories
             this.dbSet = db.Set<TEntity>();
         }
 
-        public virtual IQueryable<TEntity> Get()
+        public virtual IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null)
         {
             IQueryable<TEntity> query = dbSet;
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
 
             return query;
         }
 
-        public virtual IEnumerable<TEntity> Get(
+        public virtual IEnumerable<TEntity> GetEnumerable(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "")

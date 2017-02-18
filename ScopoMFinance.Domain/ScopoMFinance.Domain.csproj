@@ -157,6 +157,7 @@
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
     <Compile Include="ViewModels\Acc\DayOpenCloseViewModel.cs" />
+    <Compile Include="ViewModels\Org\OrganizationListViewModel.cs" />
     <Compile Include="ViewModels\Policy\BranchEditViewModel.cs" />
     <Compile Include="ViewModels\Policy\BranchListViewModel.cs" />
     <Compile Include="ViewModels\User\UserCacheViewModel.cs" />

@@ -99,16 +99,29 @@ namespace ScopoMFinance.Domain.Repositories
             }
         }
 
-        private IRepository<AccDayOpenClose> dayOpenClose;
+        private IRepository<AccDayOpenClose> dayOpenCloseRepo;
         public IRepository<AccDayOpenClose> DayOpenCloseRepository
         {
             get
             {
-                if (this.dayOpenClose == null)
+                if (this.dayOpenCloseRepo == null)
                 {
-                    this.dayOpenClose = new Repository<AccDayOpenClose>(db);
+                    this.dayOpenCloseRepo = new Repository<AccDayOpenClose>(db);
                 }
-                return dayOpenClose;
+                return dayOpenCloseRepo;
+            }
+        }
+
+        private IRepository<Organization> organizationRepo;
+        public IRepository<Organization> OrganizationRepository
+        {
+            get
+            {
+                if (this.organizationRepo == null)
+                {
+                    this.organizationRepo = new Repository<Organization>(db);
+                }
+                return organizationRepo;
             }
         }
     }

@@ -48,6 +48,7 @@ namespace ScopoMFinance.Web.App_Start
             container.Register<IGenderService, GenderService>();
             container.Register<IColcOptionService, ColcOptionService>();
             container.Register<IDayOpenCloseService, DayOpenCloseService>();
+            container.Register<IOrganizationService, OrganizationService>();
 
             container.Register<IUserHelper, UserHelper>();
             container.Register<IConfig, Config>();

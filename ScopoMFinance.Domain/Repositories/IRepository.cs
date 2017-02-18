@@ -9,8 +9,8 @@ namespace ScopoMFinance.Domain.Repositories
 {
     public interface IRepository<TEntity> where TEntity : class
     {
-        IQueryable<TEntity> Get();
-        IEnumerable<TEntity> Get(
+        IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null);
+        IEnumerable<TEntity> GetEnumerable(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "");
