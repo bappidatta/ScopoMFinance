@@ -70,6 +70,15 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        public static string Organization_Edit_DN_IsActive {
+            get {
+                return ResourceManager.GetString("Organization_Edit_DN_IsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Organization Category.
         /// </summary>
         public static string Organization_Edit_DN_OrgCategory {
@@ -165,6 +174,15 @@ namespace ScopoMFinance.Localization {
         public static string Organization_Edit_Update_Title {
             get {
                 return ResourceManager.GetString("Organization_Edit_Update_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        public static string Organization_List_DN_IsActive {
+            get {
+                return ResourceManager.GetString("Organization_List_DN_IsActive", resourceCulture);
             }
         }
         

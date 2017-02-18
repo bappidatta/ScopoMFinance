@@ -24,7 +24,7 @@
 
                     @Html.LabelFor(m => m.SetupDate, new { @class = "col-md-2 control-label" })
                     <div class="col-md-2">
-                        @Html.TextBoxFor(m => m.SetupDate, "{0:d MMMM, yyyy}", new { @class = "form-control", @disabled = "disabled" })
+                        @Html.TextBoxFor(m => m.SetupDate, "{0:" + NtitasCommon.Localization.CommonStrings.Date_Format + "}", new { @class = "form-control", @disabled = "disabled" })
                         @Html.ValidationMessageFor(m => m.SetupDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -58,8 +58,8 @@
 
                     @Html.LabelFor(m => m.FirstLoanColcDate, new { @class = "col-md-2 control-label" })
                     <div class="col-md-2">
-                        @Html.TextBoxFor(m => m.FirstLoanColcDate, "{0:d MMMM, yyyy}", new { @class = "form-control datepicker" })
-                        @Html.ValidationMessageFor(m => m.SavColcOptionId, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(m => m.FirstLoanColcDate, "{0:" + NtitasCommon.Localization.CommonStrings.Date_Format + "}", new { @class = "form-control datepicker" })
+                        @Html.ValidationMessageFor(m => m.FirstLoanColcDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -72,7 +72,7 @@
 
                     @Html.LabelFor(m => m.FirstSavColcDate, new { @class = "col-md-2 control-label" })
                     <div class="col-md-2">
-                        @Html.TextBoxFor(m => m.FirstSavColcDate, "{0:d MMMM, yyyy}", new { @class = "form-control datepicker" })
+                        @Html.TextBoxFor(m => m.FirstSavColcDate, "{0:" + NtitasCommon.Localization.CommonStrings.Date_Format + "}", new { @class = "form-control datepicker" })
                         @Html.ValidationMessageFor(m => m.FirstSavColcDate, "", new { @class = "text-danger" })
                     </div>
                 </div>

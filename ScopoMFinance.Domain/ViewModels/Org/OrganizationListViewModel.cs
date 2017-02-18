@@ -49,6 +49,8 @@ namespace ScopoMFinance.Domain.ViewModels.Org
         public System.DateTime FirstSavColcDate { get; set; }
         public Nullable<int> VillageId { get; set; }
         public string Village { get; set; }
+
+        [Display(Name = "Organization_List_DN_IsActive", ResourceType = typeof(OrganizationStrings))]
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
         public System.DateTime SystemDate { get; set; }

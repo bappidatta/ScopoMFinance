@@ -32,7 +32,7 @@
                         {
                             <tr>
                                 <td><a href="/HO/Branch/Edit/@item.Id">@item.Name</a></td>
-                                <td>@item.OpenDate.ToShortDateString()</td>
+                                <td>@item.OpenDate.ToString(NtitasCommon.Localization.CommonStrings.Date_Format)</td>
                                 <td>
                                     @if (item.IsHeadOffice)
                                     {

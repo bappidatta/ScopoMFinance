@@ -61,6 +61,15 @@ namespace NtitasCommon.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to d MMMM, yyyy.
+        /// </summary>
+        public static string Date_Format {
+            get {
+                return ResourceManager.GetString("Date_Format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Currently No Data Found.
         /// </summary>
         public static string List_Empty {

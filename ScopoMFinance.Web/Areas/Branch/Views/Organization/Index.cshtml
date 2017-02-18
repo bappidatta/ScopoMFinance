@@ -23,6 +23,7 @@
                         <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().SavColcOption), "Index", null, null, null, 6)</th>
                         <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().FirstLoanColcDate), "Index", null, null, null, 7)</th>
                         <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().FirstSavColcDate), "Index", null, null, null, 8)</th>
+                        <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().IsActive), "Index", null, null, null, 9)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,11 +36,21 @@
                                 <td>@item.OrganizationNo</td>
                                 <td>@item.OrganizationName</td>
                                 <td>@item.Gender</td>
-                                <td>@item.SetupDate</td>
+                                <td>@item.SetupDate.ToString(NtitasCommon.Localization.CommonStrings.Date_Format)</td>
                                 <td>@item.LoanColcOption</td>
                                 <td>@item.SavColcOption</td>
-                                <td>@item.FirstLoanColcDate</td>
-                                <td>@item.FirstSavColcDate</td>
+                                <td>@item.FirstLoanColcDate.ToString(NtitasCommon.Localization.CommonStrings.Date_Format)</td>
+                                <td>@item.FirstSavColcDate.ToString(NtitasCommon.Localization.CommonStrings.Date_Format)</td>
+                                <td>
+                                    @if (item.IsActive)
+                                    {
+                                        <i class="icon-active fa fa-check-circle fa-2x"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="icon-inactive fa fa-times fa-2x"></i>
+                                    }
+                                </td>
                             </tr>
                         }
                     }

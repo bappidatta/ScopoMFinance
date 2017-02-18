@@ -120,6 +120,9 @@
   <data name="Organization_Edit_Add_Title" xml:space="preserve">
     <value>Create Organization</value>
   </data>
+  <data name="Organization_Edit_DN_IsActive" xml:space="preserve">
+    <value>Active</value>
+  </data>
   <data name="Organization_Edit_DN_OrgCategory" xml:space="preserve">
     <value>Organization Category</value>
   </data>
@@ -152,6 +155,9 @@
   </data>
   <data name="Organization_Edit_Update_Title" xml:space="preserve">
     <value>Update Organization</value>
+  </data>
+  <data name="Organization_List_DN_IsActive" xml:space="preserve">
+    <value>Active</value>
   </data>
   <data name="Organization_List_DN_OrgCategory" xml:space="preserve">
     <value>Category</value>

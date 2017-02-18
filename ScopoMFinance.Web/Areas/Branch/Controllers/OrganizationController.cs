@@ -47,7 +47,7 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
             int pageSize = _userHelper.PagerSize;
             int branchId = _userHelper.Get().BranchId;
 
-            Expression<Func<Organization, bool>> filter = x => x.BranchId == branchId && x.IsActive == true && x.IsDeleted == false;
+            Expression<Func<Organization, bool>> filter = x => x.BranchId == branchId && x.IsDeleted == false;
 
             PList<OrganizationListViewModel> orgList = _orgService.GetOrganizationList(index, pageSize, sortDir, sortCol, filter);
 
@@ -103,6 +103,11 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
         [HttpPost]
         public ActionResult Edit(OrganizationEditViewModel vm)
         {
+            if (ModelState.IsValid)
+            {
+ 
+            }
+
             if (ModelState.IsValid)
             { 
                 try

@@ -72,6 +72,9 @@ namespace ScopoMFinance.Core.Services
                 case 8:
                     orderBy = x => x.FirstSavColcDate;
                     break;
+                case 9:
+                    orderBy = x => x.IsActive;
+                    break;
             }
 
             var orgList = (from c in _uow.OrganizationRepository.Get(filter)
@@ -122,7 +125,8 @@ namespace ScopoMFinance.Core.Services
                         SavColcOptionId = c.SavColcOption,
                         FirstLoanColcDate = c.FirstLoanColcDate,
                         FirstSavColcDate = c.FirstSavColcDate,
-                        VillageId = c.VillageId
+                        VillageId = c.VillageId,
+                        IsActive = c.IsActive
                     }).SingleOrDefault();
         }
 

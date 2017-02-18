@@ -53,6 +53,7 @@ namespace ScopoMFinance.Domain.ViewModels.Org
         [Display(Name = "Organization_Edit_DN_OrgVillage", ResourceType = typeof(OrganizationStrings))]
         public Nullable<int> VillageId { get; set; }
 
+        [Display(Name = "Organization_Edit_DN_IsActive", ResourceType = typeof(OrganizationStrings))]
         public bool IsActive { get; set; }
 
         public string CreatedBy { get; set; }
