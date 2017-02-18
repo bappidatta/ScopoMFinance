@@ -112,7 +112,7 @@ namespace ScopoMFinance.Core.Services
 
         public OrganizationEditViewModel GetOrganizationById(int orgId, int branchId)
         {
-            return (from c in _uow.OrganizationRepository.Get(x => x.Id == orgId && x.BranchId == branchId)
+            return (from c in _uow.OrganizationRepository.Get(x => x.Id == orgId && x.BranchId == branchId && x.IsDeleted == false)
                     select new OrganizationEditViewModel
                     {
                         Id = c.Id,
