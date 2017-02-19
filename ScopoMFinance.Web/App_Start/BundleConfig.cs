@@ -21,7 +21,8 @@ namespace ScopoMFinance.Web
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
+                      "~/Content/assets/vendors/tether/dist/js/tether.min.js",
+                      "~/Content/assets/vendors/bootstrap/dist/js/bootstrap.min.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/basescript").Include(
@@ -41,7 +42,8 @@ namespace ScopoMFinance.Web
                       "~/Content/css/pickadate/classic.time.css"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/css/bootstrap.css",
+                      "~/Content/assets/vendors/bootstrap/dist/css/bootstrap.min.css",
+                      "~/Content/assets/common/css/source/main.css",
                       "~/Content/css/toastr.css",
                       "~/Content/css/font-awesome.css",
                       "~/Content/css/site.css"));
