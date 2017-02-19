@@ -25,6 +25,7 @@ namespace ScopoMFinance.Web
                       "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/basescript").Include(
+                      "~/Scripts/jquery.unobtrusive-ajax.js",
                       "~/Scripts/common-system-messages.js",
                       "~/Scripts/underscore.js",
                       "~/Scripts/toastr.js",
@@ -44,6 +45,10 @@ namespace ScopoMFinance.Web
                       "~/Content/css/toastr.css",
                       "~/Content/css/font-awesome.css",
                       "~/Content/css/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Branch/Scripts/Organization/Index").Include(
+                    "~/Areas/Branch/Scripts/Organization/Index.js"
+              ));
         }
     }
 }

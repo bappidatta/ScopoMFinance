@@ -99,6 +99,8 @@
     <Compile Include="Helpers\IQueryableExtensions.cs" />
     <Compile Include="Helpers\PageNumberHelper.cs" />
     <Compile Include="Helpers\ResultCountHelper.cs" />
+    <Compile Include="Helpers\XHR_JSON_Redirect.cs" />
+    <Compile Include="Helpers\XHR_JSON_Result.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,9 @@
+﻿@model ScopoMFinance.Domain.ViewModels.Org.OrganizationEditViewModel
+
+@{
+    string task = "Delete";
+    string deleteTitle = "Organization";
+    string itemName = "(" + Model.OrganizationNo + ") " + Model.OrganizationName;
+}
+
+@Html.BootstrapConfirmationDialog(deleteTitle, string.Format("Are you sure want to delete the organization {0}", itemName))

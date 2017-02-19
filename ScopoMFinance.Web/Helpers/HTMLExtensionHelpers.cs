@@ -150,5 +150,24 @@ namespace ScopoMFinance.Web.Helpers
             string decodedText = HttpUtility.HtmlDecode(linkText.ToHtmlString());
             return SortableHeaderActionLink(html, decodedText, actionName, null, null, null, sortColumn);
         }
+
+        /// <summary>
+        /// This method wraps the dialog text in bootstrap dialog layout
+        /// </summary>
+        /// <param name="html">Extension instance</param>
+        /// <param name="title">Title of the dialog</param>
+        /// <param name="dialogText">Content of the dialog</param>
+        /// <returns></returns>
+        public static MvcHtmlString BootstrapConfirmationDialog(this HtmlHelper html, string title, string dialogText)
+        {
+            html.ViewData.Add("areaName", html.ViewContext.RouteData.DataTokens["area"]);
+            html.ViewData.Add("controllerName", html.ViewContext.RouteData.GetRequiredString("controller"));
+            html.ViewData.Add("actionName", html.ViewContext.RouteData.GetRequiredString("action"));
+            html.ViewData.Add("label", title);
+            html.ViewData.Add("dialogText", dialogText);
+            html.ViewData.Add("queryString", HttpContext.Current.Request.QueryString);
+
+            return html.Partial("_CommonBootstrapDialogConfirmation", html.ViewData.Model, html.ViewData);
+        }
     }
 }

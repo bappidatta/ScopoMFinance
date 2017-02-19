@@ -126,6 +126,9 @@
   <data name="No_Record" xml:space="preserve">
     <value>No Records Found</value>
   </data>
+  <data name="POST_NoID" xml:space="preserve">
+    <value>No ID Provided</value>
+  </data>
   <data name="Server_Error" xml:space="preserve">
     <value>Server Error, Please Contact With Ntitas IT Limited</value>
   </data>

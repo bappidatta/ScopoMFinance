@@ -189,3 +189,7 @@ footer.internal {
     .navbar-userinfo .navbar-nav > li > a:hover {
         background: none;
     }
+
+.__lnkDelete, .__lnkEdit {
+    color: #000000;
+}
