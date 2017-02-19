@@ -124,5 +124,31 @@ namespace ScopoMFinance.Domain.Repositories
                 return organizationRepo;
             }
         }
+
+        private IRepository<EmployeeType> employeeTypeRepo;
+        public IRepository<EmployeeType> EmployeeTypeRepository
+        {
+            get
+            {
+                if (this.employeeTypeRepo == null)
+                {
+                    this.employeeTypeRepo = new Repository<EmployeeType>(db);
+                }
+                return employeeTypeRepo;
+            }
+        }
+
+        private IRepository<Employee> employeeRepo;
+        public IRepository<Employee> EmployeeRepository
+        {
+            get
+            {
+                if (this.employeeRepo == null)
+                {
+                    this.employeeRepo = new Repository<Employee>(db);
+                }
+                return employeeRepo;
+            }
+        }
     }
 }

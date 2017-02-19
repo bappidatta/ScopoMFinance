@@ -52,6 +52,7 @@
     <Compile Include="Services\BranchService.cs" />
     <Compile Include="Services\ColcOptionService.cs" />
     <Compile Include="Services\DayOpenCloseService.cs" />
+    <Compile Include="Services\EmployeeTypeService.cs" />
     <Compile Include="Services\GenderService.cs" />
     <Compile Include="Services\OrganizationService.cs" />
     <Compile Include="Services\OrgCategoryService.cs" />
