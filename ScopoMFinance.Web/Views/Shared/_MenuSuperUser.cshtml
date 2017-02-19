@@ -1,20 +1,35 @@
-﻿<li>@Html.ActionLink("Dashboard", "Index", new { area = "Dashboard", controller = "SuperUser" })</li>
+﻿<li class="left-menu-list-separator"><!-- --></li>
+<li>
+    <a class="left-menu-link" href="/Dashboard/SuperUser/Index">
+        <i class="left-menu-link-icon icmn-font-size"><!-- --></i>
+        Dashboard
+    </a>
+</li>
+
 @if (UserHelper.Instance.Get().BranchName == BranchInfo.HO)
 {
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Policy Configuration <span class="caret"></span></a>
-        <ul class="dropdown-menu" role="menu">
-            <li>@Html.ActionLink("Branch Management", "Index", new { area = "HO", controller = "Branch" })</li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+    <li class="left-menu-list-separator"><!-- --></li>
+    <li class="left-menu-list-submenu">
+        <a class="left-menu-link" href="javascript: void(0);">
+            <i class="left-menu-link-icon icmn-files-empty2"><!-- --></i>
+            Policy Configuration
+        </a>
+        <ul class="left-menu-list list-unstyled">
+            <li>
+                <a class="left-menu-link" href="/HO/Branch/Index">
+                    Branch Management
+                </a>
+            </li>
         </ul>
     </li>
 }
 @if (UserHelper.Instance.Get().BranchName != BranchInfo.HO)
 {
-    <li>@Html.ActionLink("Organizations", "Index", new { area = "Branch", controller = "Organization" })</li>
+    <li class="left-menu-list-separator"><!-- --></li>
+    <li>
+        <a class="left-menu-link" href="/Branch/Organization/Index">
+            <i class="left-menu-link-icon icmn-font-size"><!-- --></i>
+            Organizations
+        </a>
+    </li>
 }
