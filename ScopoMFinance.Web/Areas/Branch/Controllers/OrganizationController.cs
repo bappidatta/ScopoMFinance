@@ -1,4 +1,5 @@
 ﻿using NtitasCommon.Core.Common;
+using NtitasCommon.Core.Helpers;
 using NtitasCommon.Localization;
 using ScopoMFinance.Core.Common;
 using ScopoMFinance.Core.Helpers;
@@ -143,6 +144,45 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
         public ActionResult IsOrgNoAvailable(string organizationNo, int id)
         {
             return Json(!string.IsNullOrWhiteSpace(organizationNo) && _orgService.IsOrgNoAvailable(organizationNo, _userHelper.Get().BranchId, id) == true, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            if (id > 0)
+            {
+                OrganizationEditViewModel vm = _orgService.GetOrganizationById(id, _userHelper.Get().BranchId);
+                if (vm == null)
+                {
+                    SystemMessages.Add(CommonStrings.No_Record, SystemMessageType.Error, true);
+                    return RedirectToAction("Index");
+                }
+                return PartialView("_Delete", vm);
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection fc)
+        {
+            if (id > 0)
+            {
+                try
+                {
+                    _orgService.DeleteOrganization(id, _userHelper.Get().BranchId);
+                    SystemMessages.Add(OrganizationStrings.Organization_Delete_Success_Msg, false, true);
+                }
+                catch (Exception ex)
+                {
+                    SystemMessages.Add(CommonStrings.Server_Error, true, true);
+                }
+            }
+            else
+            {
+                SystemMessages.Add(CommonStrings.POST_NoID, SystemMessageType.Error, true);
+            }
+
+            return new XHR_JSON_Redirect();
         }
     }
 }

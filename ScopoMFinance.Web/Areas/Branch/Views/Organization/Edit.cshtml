@@ -10,70 +10,72 @@
                 @Html.HiddenFor(model => model.Id)
 
                 <div class="form-group">
-                    @Html.LabelFor(m => m.OrgCategoryId, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-2">
+                    @Html.LabelFor(m => m.OrgCategoryId, new { @class = "col-md-3 control-label" })
+                    <div class="col-md-3">
                         @Html.DropDownListFor(m => m.OrgCategoryId, ViewBag.OrgCategoryDropDown as SelectList, "Select Category", new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.OrgCategoryId, "", new { @class = "text-danger" })
                     </div>
 
-                    @Html.LabelFor(m => m.GenderId, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-2">
+                    @Html.LabelFor(m => m.GenderId, new { @class = "col-md-3 control-label" })
+                    <div class="col-md-3">
                         @Html.DropDownListFor(m => m.GenderId, ViewBag.GenderDropDown as SelectList, "Select Gender", new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.GenderId, "", new { @class = "text-danger" })
-                    </div>
-
-                    @Html.LabelFor(m => m.SetupDate, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-2">
-                        @Html.TextBoxFor(m => m.SetupDate, "{0:" + NtitasCommon.Localization.CommonStrings.Date_Format + "}", new { @class = "form-control", @disabled = "disabled" })
-                        @Html.ValidationMessageFor(m => m.SetupDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(m => m.OrganizationNo, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-2">
+                    @Html.LabelFor(m => m.OrganizationNo, new { @class = "col-md-3 control-label" })
+                    <div class="col-md-3">
                         @Html.TextBoxFor(m => m.OrganizationNo, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.OrganizationNo, "", new { @class = "text-danger" })
                     </div>
 
-                    @Html.LabelFor(m => m.OrganizationName, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-2">
+                    @Html.LabelFor(m => m.OrganizationName, new { @class = "col-md-3 control-label" })
+                    <div class="col-md-3">
                         @Html.TextBoxFor(m => m.OrganizationName, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.OrganizationName, "", new { @class = "text-danger" })
-                    </div>
-
-                    @Html.LabelFor(m => m.IsActive, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-1">
-                        @Html.CheckBoxFor(m => m.IsActive, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.IsActive, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(m => m.LoanColcOptionId, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-2">
+                    @Html.LabelFor(m => m.LoanColcOptionId, new { @class = "col-md-3 control-label" })
+                    <div class="col-md-3">
                         @Html.DropDownListFor(m => m.LoanColcOptionId, ViewBag.LoanCollectionOptionDropDown as SelectList, "Select Collection Option", new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.LoanColcOptionId, "", new { @class = "text-danger" })
                     </div>
 
-                    @Html.LabelFor(m => m.FirstLoanColcDate, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-2">
+                    @Html.LabelFor(m => m.FirstLoanColcDate, new { @class = "col-md-3 control-label" })
+                    <div class="col-md-3">
                         @Html.TextBoxFor(m => m.FirstLoanColcDate, "{0:" + NtitasCommon.Localization.CommonStrings.Date_Format + "}", new { @class = "form-control datepicker" })
                         @Html.ValidationMessageFor(m => m.FirstLoanColcDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(m => m.SavColcOptionId, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-2">
+                    @Html.LabelFor(m => m.SavColcOptionId, new { @class = "col-md-3 control-label" })
+                    <div class="col-md-3">
                         @Html.DropDownListFor(m => m.SavColcOptionId, ViewBag.SavingsCollectionOptionDropDown as SelectList, "Select Collection Option", new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.SavColcOptionId, "", new { @class = "text-danger" })
                     </div>
 
-                    @Html.LabelFor(m => m.FirstSavColcDate, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-2">
+                    @Html.LabelFor(m => m.FirstSavColcDate, new { @class = "col-md-3 control-label" })
+                    <div class="col-md-3">
                         @Html.TextBoxFor(m => m.FirstSavColcDate, "{0:" + NtitasCommon.Localization.CommonStrings.Date_Format + "}", new { @class = "form-control datepicker" })
                         @Html.ValidationMessageFor(m => m.FirstSavColcDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.SetupDate, new { @class = "col-md-3 control-label" })
+                    <div class="col-md-3">
+                        @Html.TextBoxFor(m => m.SetupDate, "{0:" + NtitasCommon.Localization.CommonStrings.Date_Format + "}", new { @class = "form-control", @disabled = "disabled" })
+                        @Html.ValidationMessageFor(m => m.SetupDate, "", new { @class = "text-danger" })
+                    </div>
+
+                    @Html.LabelFor(m => m.IsActive, new { @class = "col-md-3 control-label" })
+                    <div class="col-md-1">
+                        @Html.CheckBoxFor(m => m.IsActive, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.IsActive, "", new { @class = "text-danger" })
                     </div>
                 </div>
 

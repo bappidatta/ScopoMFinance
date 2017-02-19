@@ -53,6 +53,9 @@
                                     }
                                 </td>
                                 <td>
+                                    <a href="#" data-toggle="modal" class="__lnkDelete __dialog m-right-10" data-url="/Branch/Organization/Delete/@item.Id">
+                                        <i class="fa fa-archive fa-2x" data-toggle="tooltip" title="Delete"></i>
+                                    </a>
                                     <a href="/Branch/Organization/Edit/@item.Id" class="__lnkEdit">
                                         <i class="fa fa-pencil fa-2x" data-toggle="tooltip" title="Edit"></i>
                                     </a>
@@ -84,3 +87,9 @@
         </div>
     </div>
 </div>
+
+<div id="dialog-container" class="modal fade" role="dialog" aria-hidden="true"></div>
+@section scripts
+{
+    @System.Web.Optimization.Scripts.Render("~/bundles/Branch/Scripts/Organization/Index")
+}

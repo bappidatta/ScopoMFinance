@@ -15,14 +15,15 @@ namespace ScopoMFinance.Core.Services
     public interface IOrganizationService
     {
         PList<OrganizationListViewModel> GetOrganizationList(
-            int pageNumber, int pageSize, 
-            SortDirection sortDir, int sortCol, 
+            int pageNumber, int pageSize,
+            SortDirection sortDir, int sortCol,
             Expression<Func<Organization, bool>> filter = null);
 
         OrganizationEditViewModel GetOrganizationById(int orgId, int branchId);
 
         void CreateOrganization(OrganizationEditViewModel vm);
         void UpdateOrganization(OrganizationEditViewModel vm);
+        void DeleteOrganization(int orgId, int branchId);
         bool IsOrgNoAvailable(string orgNo, int branchId, int orgId);
     }
 
@@ -36,8 +37,8 @@ namespace ScopoMFinance.Core.Services
         }
 
         public PList<OrganizationListViewModel> GetOrganizationList(
-            int pageNumber, int pageSize, 
-            SortDirection sortDir, int sortCol, 
+            int pageNumber, int pageSize,
+            SortDirection sortDir, int sortCol,
             Expression<Func<Organization, bool>> filter = null)
         {
             Expression<Func<Organization, object>> orderBy = null;
@@ -80,32 +81,33 @@ namespace ScopoMFinance.Core.Services
 
             var orgList = (from c in _uow.OrganizationRepository.Get(filter)
                                .Order(orderBy, sortDir)
-                               select new OrganizationListViewModel{
-                                   Id = c.Id,
-                                   BranchId = c.BranchId,
-                                   OrganizationNo = c.OrganizationNo,
-                                   OrganizationName = c.OrganizationName,
-                                   OrgCategoryId = c.OrgCategoryId,
-                                   OrgCategoryName = c.OrgCategory.CategoryName,
-                                   GenderId = c.GenderId,
-                                   Gender = c.SysGender.Name,
-                                   SetupDate = c.SetupDate,
-                                   LoanColcOptionId = c.LoanColcOption,
-                                   LoanColcOption = c.SysColcOptionLoan.Name,
-                                   SavColcOptionId = c.SavColcOption,
-                                   SavColcOption = c.SysColcOptionSavings.Name,
-                                   FirstLoanColcDate = c.FirstLoanColcDate,
-                                   FirstSavColcDate = c.FirstSavColcDate,
-                                   VillageId = c.VillageId,
-                                   Village = c.SysVillage.Name,
-                                   IsActive = c.IsActive,
-                                   IsDeleted = c.IsDeleted,
-                                   SystemDate = c.SystemDate,
-                                   CreatedBy = c.CreatedBy,
-                                   CreatedOn = c.CreatedOn,
-                                   UpdatedBy = c.UpdatedBy,
-                                   UpdatedOn = c.UpdatedOn
-                               }).Page(pageNumber, pageSize, out psettings);
+                           select new OrganizationListViewModel
+                           {
+                               Id = c.Id,
+                               BranchId = c.BranchId,
+                               OrganizationNo = c.OrganizationNo,
+                               OrganizationName = c.OrganizationName,
+                               OrgCategoryId = c.OrgCategoryId,
+                               OrgCategoryName = c.OrgCategory.CategoryName,
+                               GenderId = c.GenderId,
+                               Gender = c.SysGender.Name,
+                               SetupDate = c.SetupDate,
+                               LoanColcOptionId = c.LoanColcOption,
+                               LoanColcOption = c.SysColcOptionLoan.Name,
+                               SavColcOptionId = c.SavColcOption,
+                               SavColcOption = c.SysColcOptionSavings.Name,
+                               FirstLoanColcDate = c.FirstLoanColcDate,
+                               FirstSavColcDate = c.FirstSavColcDate,
+                               VillageId = c.VillageId,
+                               Village = c.SysVillage.Name,
+                               IsActive = c.IsActive,
+                               IsDeleted = c.IsDeleted,
+                               SystemDate = c.SystemDate,
+                               CreatedBy = c.CreatedBy,
+                               CreatedOn = c.CreatedOn,
+                               UpdatedBy = c.UpdatedBy,
+                               UpdatedOn = c.UpdatedOn
+                           }).Page(pageNumber, pageSize, out psettings);
 
             return orgList.ToPList(psettings);
         }
@@ -173,6 +175,18 @@ namespace ScopoMFinance.Core.Services
             model.FirstLoanColcDate = vm.FirstLoanColcDate;
             model.UpdatedBy = vm.CreatedBy;
             model.UpdatedOn = DateTime.Now;
+
+            _uow.OrganizationRepository.Update(model);
+            _uow.Save();
+        }
+
+        public void DeleteOrganization(int orgId, int branchId)
+        {
+            Organization model = (from c in _uow.OrganizationRepository
+                                                 .Get(x => x.Id == orgId && x.BranchId == branchId && x.IsDeleted == false)
+                                  select c).SingleOrDefault();
+
+            model.IsDeleted = true;
 
             _uow.OrganizationRepository.Update(model);
             _uow.Save();

@@ -61,6 +61,15 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Organization is deleted successfully.
+        /// </summary>
+        public static string Organization_Delete_Success_Msg {
+            get {
+                return ResourceManager.GetString("Organization_Delete_Success_Msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Organization Added Successfully.
         /// </summary>
         public static string Organization_Edit_Add_Success_Msg {

@@ -88,6 +88,15 @@ namespace NtitasCommon.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No ID Provided.
+        /// </summary>
+        public static string POST_NoID {
+            get {
+                return ResourceManager.GetString("POST_NoID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Server Error, Please Contact With Ntitas IT Limited.
         /// </summary>
         public static string Server_Error {

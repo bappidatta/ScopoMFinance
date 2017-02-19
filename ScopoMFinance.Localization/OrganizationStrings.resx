@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Organization_Delete_Success_Msg" xml:space="preserve">
+    <value>Organization is deleted successfully</value>
+  </data>
   <data name="Organization_Edit_Add_Success_Msg" xml:space="preserve">
     <value>New Organization Added Successfully</value>
   </data>

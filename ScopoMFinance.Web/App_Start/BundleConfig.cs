@@ -44,6 +44,10 @@ namespace ScopoMFinance.Web
                       "~/Content/css/toastr.css",
                       "~/Content/css/font-awesome.css",
                       "~/Content/css/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Branch/Scripts/Organization/Index").Include(
+                    "~/Areas/Branch/Scripts/Organization/Index.js"
+              ));
         }
     }
 }
