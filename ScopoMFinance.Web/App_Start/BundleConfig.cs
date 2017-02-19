@@ -25,6 +25,7 @@ namespace ScopoMFinance.Web
                       "~/Scripts/respond.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/basescript").Include(
+                      "~/Scripts/jquery.unobtrusive-ajax.js",
                       "~/Scripts/common-system-messages.js",
                       "~/Scripts/underscore.js",
                       "~/Scripts/toastr.js",
