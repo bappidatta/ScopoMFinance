@@ -1,7 +1,8 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    <ul class="nav navbar-nav navbar-right">
+
+    @*<ul class="nav navbar-nav navbar-right">
         <li>
             <span>Branch: @UserHelper.Instance.Get().BranchName</span>
         </li>
@@ -22,5 +23,56 @@
                 <a href="/Home/DayOpenClose">Opened Day: @UserHelper.Instance.Get().DayOpenClose.SystemDate.ToString(NtitasCommon.Localization.CommonStrings.Date_Format)</a>
             }
         </li>
-    </ul>
+    </ul>*@
+
+    <div class="menu-user-block">
+        <div class="dropdown">
+            <a href="javascript: void(0);" class="dropdown-inline-button">
+                <span class="hidden-lg-down">Branch: @UserHelper.Instance.Get().BranchName</span>
+            </a>
+        </div>
+
+        <div class="dropdown">
+            <a href="javascript: void(0);" class="dropdown-inline-button">
+                <span class="hidden-lg-down">@UserHelper.Instance.Get().LoggedInTime</span>
+            </a>
+        </div>
+
+        <div class="dropdown">
+            @if (@UserHelper.Instance.Get().DayOpenClose.IsClosed)
+            {
+                <a href="/Home/DayOpenClose" class="dropdown-inline-button">
+                    <span class="hidden-lg-down">Closed Day: @UserHelper.Instance.Get().DayOpenClose.SystemDate.ToString(NtitasCommon.Localization.CommonStrings.Date_Format)</span>
+                </a>
+            }
+            else if (@UserHelper.Instance.Get().DayOpenClose.IsCloseRequest)
+            {
+                <a href="/Home/DayOpenClose" class="dropdown-inline-button">
+                    <span class="hidden-lg-down">Day Close Request: @UserHelper.Instance.Get().DayOpenClose.SystemDate.ToString(NtitasCommon.Localization.CommonStrings.Date_Format)</span>
+                </a>
+            }
+            else
+            {
+                <a href="/Home/DayOpenClose" class="dropdown-inline-button">
+                    <span class="hidden-lg-down">Opened Day: @UserHelper.Instance.Get().DayOpenClose.SystemDate.ToString(NtitasCommon.Localization.CommonStrings.Date_Format)</span>
+                </a>
+            }
+        </div>
+
+        <div class="dropdown dropdown-avatar">
+            <a href="javascript: void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <span class="avatar" href="javascript:void(0);">
+                    <img src="~/Content/assets/common/img/temp/avatars/1.jpg" alt="Alternative text to the image">
+                </span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="" role="menu">
+                <a class="dropdown-item" href="javascript:void(0)"><i class="dropdown-icon icmn-user"></i> Profile</a>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-header">Home</div>
+                <a class="dropdown-item" href="javascript:void(0)"><i class="dropdown-icon icmn-circle-right"></i> System Dashboard</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="javascript:void(0)"><i class="dropdown-icon icmn-exit"></i> Logout</a>
+            </ul>
+        </div>
+    </div>
 }
