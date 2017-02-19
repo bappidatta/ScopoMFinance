@@ -2,8 +2,11 @@
 @{
     ViewBag.Title = "Organization List";
 }
-<div class="panel panel-default">
-    <div class="panel-body">
+<section class="panel">
+    <div class="panel-heading">
+        <h3>@ViewBag.Title</h3>
+    </div>
+    <div class="panel-body row">
         <div class="col-md-12">
             @Html.ActionLink("New Organization", "Edit", new { area = "Branch", controller = "Organization" }, new { @class = "btn btn-primary" })
             <div class="list-count-container">
@@ -29,9 +32,9 @@
                 </thead>
                 <tbody>
                     @if (Model.Count() > 0)
+                {
+                    foreach (var item in Model)
                     {
-                        foreach (var item in Model)
-                        {
                             <tr>
                                 <td>@item.OrgCategoryName</td>
                                 <td>@item.OrganizationNo</td>
@@ -44,13 +47,13 @@
                                 <td>@item.FirstSavColcDate.ToString(NtitasCommon.Localization.CommonStrings.Date_Format)</td>
                                 <td>
                                     @if (item.IsActive)
-                                    {
+                                {
                                         <i class="icon-active fa fa-check-circle fa-2x"></i>
-                                    }
-                                    else
-                                    {
+                                }
+                                else
+                                {
                                         <i class="icon-inactive fa fa-times fa-2x"></i>
-                                    }
+                                }
                                 </td>
                                 <td>
                                     <a href="#" data-toggle="modal" class="__lnkDelete __dialog m-right-10" data-url="/Branch/Organization/Delete/@item.Id">
@@ -61,19 +64,18 @@
                                     </a>
                                 </td>
                             </tr>
-                        }
                     }
-                    else
-                    {
+                }
+                else
+                {
                         <tr>
                             <td colspan="10" class="align-center"><strong>@NtitasCommon.Localization.CommonStrings.List_Empty</strong></td>
                         </tr>
-                    }
+                }
                 </tbody>
             </table>
-
             @if (Model != null && Model.Count() > 0)
-            {
+        {
                 <div class="row">
                     <div class="col-md-10">
                         @Html.Partial("/Views/Shared/_Pagination.cshtml", Model.Pager)
@@ -82,11 +84,11 @@
                         @Html.Partial("/Views/Shared/_PagerSize.cshtml")
                     </div>
                 </div>
-            }
-            
+        }
+
         </div>
     </div>
-</div>
+</section>
 
 <div id="dialog-container" class="modal fade" role="dialog" aria-hidden="true"></div>
 @section scripts
