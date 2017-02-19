@@ -56,6 +56,10 @@
     <Compile Include="Services\GenderService.cs" />
     <Compile Include="Services\OrganizationService.cs" />
     <Compile Include="Services\OrgCategoryService.cs" />
+    <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Services\ProductTypeService.cs" />
+    <Compile Include="Services\ProjectService.cs" />
+    <Compile Include="Services\ProjectTypeService.cs" />
     <Compile Include="Services\UserLoginAuditService.cs" />
     <Compile Include="Services\UserProfileService.cs" />
   </ItemGroup>

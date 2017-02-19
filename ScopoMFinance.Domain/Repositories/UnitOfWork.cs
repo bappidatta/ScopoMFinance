@@ -150,5 +150,84 @@ namespace ScopoMFinance.Domain.Repositories
                 return employeeRepo;
             }
         }
+
+        private IRepository<ProjectType> projectTypeRepo;
+        public IRepository<ProjectType> ProjectTypeRepository
+        {
+            get
+            {
+                if (this.projectTypeRepo == null)
+                {
+                    this.projectTypeRepo = new Repository<ProjectType>(db);
+                }
+                return projectTypeRepo;
+            }
+        }
+
+        private IRepository<Project> projectRepo;
+        public IRepository<Project> ProjectRepository
+        {
+            get
+            {
+                if (this.projectRepo == null)
+                {
+                    this.projectRepo = new Repository<Project>(db);
+                }
+                return projectRepo;
+            }
+        }
+
+        private IRepository<BranchWiseProjectMapping> branchWiseProjectMappingRepo;
+        public IRepository<BranchWiseProjectMapping> branchWiseProjectMappingRepository
+        {
+            get
+            {
+                if (this.branchWiseProjectMappingRepo == null)
+                {
+                    this.branchWiseProjectMappingRepo = new Repository<BranchWiseProjectMapping>(db);
+                }
+                return branchWiseProjectMappingRepo;
+            }
+        }
+
+        private IRepository<ProductType> productTypeRepo;
+        public IRepository<ProductType> ProductTypeRepository
+        {
+            get
+            {
+                if (this.productTypeRepo == null)
+                {
+                    this.productTypeRepo = new Repository<ProductType>(db);
+                }
+                return productTypeRepo;
+            }
+        }
+
+        private IRepository<Product> productRepo;
+        public IRepository<Product> ProductRepository
+        {
+            get
+            {
+                if (this.productRepo == null)
+                {
+                    this.productRepo = new Repository<Product>(db);
+                }
+                return productRepo;
+            }
+        }
+
+        private IRepository<ProjectWiseProductMapping> projectWiseProductRepo;
+        public IRepository<ProjectWiseProductMapping> ProjectWiseProductRepository
+        {
+            get
+            {
+                if (this.projectWiseProductRepo == null)
+                {
+                    this.projectWiseProductRepo = new Repository<ProjectWiseProductMapping>(db);
+                }
+                return projectWiseProductRepo;
+            }
+        }
+
     }
 }

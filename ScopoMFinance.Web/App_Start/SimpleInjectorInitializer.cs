@@ -50,6 +50,10 @@ namespace ScopoMFinance.Web.App_Start
             container.Register<IDayOpenCloseService, DayOpenCloseService>();
             container.Register<IOrganizationService, OrganizationService>();
             container.Register<IEmployeeTypeService, EmployeeTypeService>();
+            container.Register<IProjectTypeService, ProjectTypeService>();
+            container.Register<IProjectService, ProjectService>();
+            container.Register<IProductTypeService, ProductTypeService>();
+            container.Register<IProductService, ProductService>();
 
             container.Register<IUserHelper, UserHelper>();
             container.Register<IConfig, Config>();
