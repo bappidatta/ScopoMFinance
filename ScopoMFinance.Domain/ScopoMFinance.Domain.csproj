@@ -189,6 +189,8 @@
     <Compile Include="ViewModels\Org\OrganizationListViewModel.cs" />
     <Compile Include="ViewModels\Policy\BranchEditViewModel.cs" />
     <Compile Include="ViewModels\Policy\BranchListViewModel.cs" />
+    <Compile Include="ViewModels\Policy\ProjectTypeListViewModel.cs" />
+    <Compile Include="ViewModels\Policy\ProjectTypeSetupViewModel.cs" />
     <Compile Include="ViewModels\User\UserCacheViewModel.cs" />
     <Compile Include="ViewModels\User\UserLoginAuditViewModel.cs" />
   </ItemGroup>

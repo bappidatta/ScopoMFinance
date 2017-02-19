@@ -797,7 +797,7 @@
     <Content Include="Views\Shared\_CommonScripts.cshtml" />
     <Content Include="Scripts\underscore.min.map" />
     <Content Include="Views\Shared\_CommonBootstrapDialogConfirmation.cshtml" />
-	<Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
