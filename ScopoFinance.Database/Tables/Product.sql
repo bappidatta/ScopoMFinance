@@ -7,10 +7,9 @@
 	[ProductTypeId] INT NOT NULL,
 	[IsActive] BIT NOT NULL DEFAULT 1, 
     [IsDeleted] BIT NOT NULL DEFAULT 0, 
-    [CreatedBy] NVARCHAR(256) NOT NULL, 
-    [CreatedOn] DATETIME NOT NULL,
-	[UpdatedBy] NVARCHAR(256) NULL, 
-    [UpdatedOn] DATETIME NULL,
+    [UserId] NVARCHAR(128) NOT NULL, 
+	[SystemDate] DATETIME NOT NULL,
+    [SetDate] DATETIME NOT NULL,
 	CONSTRAINT [PK_Product] PRIMARY KEY ([Id]),
 	CONSTRAINT [FK_Product_ProductType] FOREIGN KEY ([ProductTypeId]) REFERENCES [ProductType]([Id]),
 	CONSTRAINT [UQ_ProductCode] UNIQUE ([ProductCode])

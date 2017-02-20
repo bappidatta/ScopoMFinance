@@ -5,8 +5,9 @@
 	[UnionId] INT NOT NULL,
     [IsActive] BIT NOT NULL DEFAULT 1, 
     [IsDeleted] BIT NOT NULL DEFAULT 0, 
-    [CreatedBy] NVARCHAR(256) NOT NULL DEFAULT 'ScopoMFinance', 
-    [CreatedOn] DATETIME NOT NULL DEFAULT GETDATE(),
+    [UserId] NVARCHAR(128) NOT NULL, 
+	[SystemDate] DATETIME NOT NULL,
+    [SetDate] DATETIME NOT NULL,
 	CONSTRAINT [PK_Thana] PRIMARY KEY ([Id]),
 	CONSTRAINT [FK_Thana_Union] FOREIGN KEY ([UnionId]) REFERENCES [SysUnion]([Id])
 )
