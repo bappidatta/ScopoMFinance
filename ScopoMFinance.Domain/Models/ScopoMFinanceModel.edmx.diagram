@@ -5,34 +5,35 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="3825a615b70f4c79894fb290d7c04c9d" Name="Diagram1">
-        <EntityTypeShape EntityType="ScopoMFinanceModel.AccDayCloseProcess" Width="1.5" PointX="9" PointY="9.25" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.AccDayCloseProgress" Width="1.5" PointX="11.25" PointY="13.5" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.AccDayOpenClose" Width="1.5" PointX="9" PointY="13" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.AspNetRole" Width="1.5" PointX="1.5" PointY="23.75" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.AspNetUser" Width="1.5" PointX="1.5" PointY="1.5" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.Branch" Width="1.5" PointX="0.75" PointY="13" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.BranchWiseProjectMapping" Width="1.5" PointX="3" PointY="13.625" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.Employee" Width="1.5" PointX="3" PointY="17" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.EmployeeType" Width="1.5" PointX="0.75" PointY="18.25" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.OrgCategory" Width="1.5" PointX="3.75" PointY="3" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.OrgCreditOfficer" Width="1.5" PointX="8.25" PointY="17.875" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.Product" Width="1.5" PointX="0.75" PointY="57.875" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.ProductType" Width="1.5" PointX="1.5" PointY="62.25" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.Project" Width="1.5" PointX="0.75" PointY="28.5" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.ProjectType" Width="1.5" PointX="1.5" PointY="34.5" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.ProjectWiseProductMapping" Width="1.5" PointX="3" PointY="30.625" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.SysColcOption" Width="1.5" PointX="3.75" PointY="23.625" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.SysDistrict" Width="1.5" PointX="1.5" PointY="50.375" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.SysDivision" Width="1.5" PointX="1.5" PointY="54.625" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.SysDonor" Width="1.5" PointX="1.5" PointY="38" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.SysGender" Width="1.5" PointX="3.75" PointY="27.375" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.SysThana" Width="1.5" PointX="3.75" PointY="46.5" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.SysUnion" Width="1.5" PointX="1.5" PointY="42.25" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.SysUpazila" Width="1.5" PointX="1.5" PointY="46.375" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.SysVillage" Width="1.5" PointX="3.75" PointY="42.375" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.UserBranch" Width="1.5" PointX="3" PointY="10.625" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.UserLoginAudit" Width="1.5" PointX="3" PointY="7.375" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.UserProfile" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.AccDayCloseProcess" Width="1.5" PointX="6" PointY="6.25" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.AccDayCloseProgress" Width="1.5" PointX="8.25" PointY="10.5" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.AccDayOpenClose" Width="1.5" PointX="6" PointY="9.875" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.AspNetRole" Width="1.5" PointX="1.5" PointY="0.75" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.AspNetUser" Width="1.5" PointX="1.5" PointY="3.375" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.Branch" Width="1.5" PointX="0.75" PointY="13.875" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.BranchWiseProjectMapping" Width="1.5" PointX="6" PointY="14.5" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.Employee" Width="1.5" PointX="3" PointY="13" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.EmployeeType" Width="1.5" PointX="0.75" PointY="30" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.Organization" Width="1.5" PointX="6" PointY="17.75" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.OrgCategory" Width="1.5" PointX="3.75" PointY="5.5" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.OrgCreditOfficer" Width="1.5" PointX="8.25" PointY="16.375" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.Product" Width="1.5" PointX="3.75" PointY="49.875" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.ProductType" Width="1.5" PointX="1.5" PointY="50.25" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.Project" Width="1.5" PointX="3.75" PointY="23.625" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.ProjectType" Width="1.5" PointX="1.5" PointY="22.625" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.ProjectWiseProductMapping" Width="1.5" PointX="6" PointY="24.5" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysColcOption" Width="1.5" PointX="3.75" PointY="28.875" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysDistrict" Width="1.5" PointX="1.5" PointY="42.125" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysDivision" Width="1.5" PointX="1.5" PointY="46.25" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysDonor" Width="1.5" PointX="1.5" PointY="25.875" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysGender" Width="1.5" PointX="0.75" PointY="18.5" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysThana" Width="1.5" PointX="3.75" PointY="38.125" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysUnion" Width="1.5" PointX="1.5" PointY="34" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysUpazila" Width="1.5" PointX="1.5" PointY="38.125" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.SysVillage" Width="1.5" PointX="3.75" PointY="34.125" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.UserBranch" Width="1.5" PointX="3" PointY="9.5" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.UserLoginAudit" Width="1.5" PointX="3" PointY="19.375" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.UserProfile" Width="1.5" PointX="0.75" PointY="8.75" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_AccDayCloseProgress_AccDayCloseProcess" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_AccDayCloseProgress_AccDayOpenClose" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_DayOpenClose_Branch" />
@@ -40,6 +41,7 @@
         <AssociationConnector Association="ScopoMFinanceModel.FK_UserProfile_AspNetUser" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_BranchProject_Branch" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_Employee_Branch" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_Branch" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_OrgCO_Branch" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_UserBranch_Branch" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_UserLogin_Branch" />
@@ -47,6 +49,12 @@
         <AssociationConnector Association="ScopoMFinanceModel.FK_Employee_EmployeeType" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_Employee_Gender" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_OrgCO_Employee" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_Gender" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_LoanColc" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_OrgCategory" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_SavColc" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_Village" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_OrgCO_Org" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_Product_ProductType" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_ProjectProduct_Product" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_Project_Donor" />
@@ -60,14 +68,6 @@
         <AssociationConnector Association="ScopoMFinanceModel.FK_UserBranch_User" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_UserLogin_User" />
         <AssociationConnector Association="ScopoMFinanceModel.AspNetUserRoles" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.Organization" Width="1.5" PointX="6" PointY="21" />
-        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_Branch" />
-        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_Gender" />
-        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_LoanColc" />
-        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_OrgCategory" />
-        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_SavColc" />
-        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_Village" />
-        <AssociationConnector Association="ScopoMFinanceModel.FK_OrgCO_Org" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

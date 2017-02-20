@@ -13,10 +13,9 @@
           <Property Name="ProcessName" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
-          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
-          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SystemDate" Type="datetime" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="AccDayCloseProgress">
           <Key>
@@ -112,10 +111,9 @@
           <Property Name="Remarks" Type="nvarchar(max)" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
-          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
-          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SystemDate" Type="datetime" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="EmployeeType">
           <Key>
@@ -125,10 +123,9 @@
           <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
-          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
-          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SystemDate" Type="datetime" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Organization">
           <Key>
@@ -148,11 +145,9 @@
           <Property Name="VillageId" Type="int" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="SystemDate" Type="datetime" Nullable="false" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
-          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
-          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="OrgCategory">
           <Key>
@@ -163,10 +158,9 @@
           <Property Name="CategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
-          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
-          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SystemDate" Type="datetime" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="OrgCreditOfficer">
           <Key>
@@ -180,10 +174,9 @@
           <Property Name="ReleaseDate" Type="datetime" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
-          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
-          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SystemDate" Type="datetime" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -196,10 +189,9 @@
           <Property Name="ProductTypeId" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
-          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
-          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SystemDate" Type="datetime" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
@@ -209,10 +201,9 @@
           <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
-          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
-          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SystemDate" Type="datetime" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
@@ -226,10 +217,9 @@
           <Property Name="DonorId" Type="int" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
-          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
-          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SystemDate" Type="datetime" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="ProjectType">
           <Key>
@@ -239,10 +229,9 @@
           <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
-          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
-          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SystemDate" Type="datetime" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="ProjectWiseProductMapping">
           <Key>
@@ -260,10 +249,9 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
-          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
-          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SystemDate" Type="datetime" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="SysDistrict">
           <Key>
@@ -274,8 +262,9 @@
           <Property Name="DivisionId" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SystemDate" Type="datetime" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="SysDivision">
           <Key>
@@ -285,8 +274,9 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SystemDate" Type="datetime" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="SysDonor">
           <Key>
@@ -296,10 +286,9 @@
           <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
-          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
-          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SystemDate" Type="datetime" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="SysGender">
           <Key>
@@ -309,6 +298,9 @@
           <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SystemDate" Type="datetime" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="SysThana">
           <Key>
@@ -319,8 +311,9 @@
           <Property Name="UnionId" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SystemDate" Type="datetime" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="SysUnion">
           <Key>
@@ -331,8 +324,9 @@
           <Property Name="UpazilaId" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SystemDate" Type="datetime" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="SysUpazila">
           <Key>
@@ -343,8 +337,9 @@
           <Property Name="DistrictId" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SystemDate" Type="datetime" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="SysVillage">
           <Key>
@@ -355,8 +350,9 @@
           <Property Name="UnionId" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SystemDate" Type="datetime" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="UserBranch">
           <Key>
@@ -386,10 +382,9 @@
           <Property Name="MobileNo" Type="nvarchar" MaxLength="14" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
-          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="256" />
-          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="ResUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SystemDate" Type="datetime" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="FK_AccDayCloseProgress_AccDayCloseProcess">
           <End Role="AccDayCloseProcess" Type="Self.AccDayCloseProcess" Multiplicity="1" />
@@ -1001,6 +996,7 @@
           <EntitySet Name="BranchWiseProjectMappings" EntityType="ScopoMFinanceModel.BranchWiseProjectMapping" />
           <EntitySet Name="Employees" EntityType="ScopoMFinanceModel.Employee" />
           <EntitySet Name="EmployeeTypes" EntityType="ScopoMFinanceModel.EmployeeType" />
+          <EntitySet Name="Organizations" EntityType="ScopoMFinanceModel.Organization" />
           <EntitySet Name="OrgCategories" EntityType="ScopoMFinanceModel.OrgCategory" />
           <EntitySet Name="OrgCreditOfficers" EntityType="ScopoMFinanceModel.OrgCreditOfficer" />
           <EntitySet Name="Products" EntityType="ScopoMFinanceModel.Product" />
@@ -1048,6 +1044,10 @@
             <End Role="Branch" EntitySet="Branches" />
             <End Role="Employee" EntitySet="Employees" />
           </AssociationSet>
+          <AssociationSet Name="FK_Org_Branch" Association="ScopoMFinanceModel.FK_Org_Branch">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
           <AssociationSet Name="FK_OrgCO_Branch" Association="ScopoMFinanceModel.FK_OrgCO_Branch">
             <End Role="Branch" EntitySet="Branches" />
             <End Role="OrgCreditOfficer" EntitySet="OrgCreditOfficers" />
@@ -1074,6 +1074,30 @@
           </AssociationSet>
           <AssociationSet Name="FK_OrgCO_Employee" Association="ScopoMFinanceModel.FK_OrgCO_Employee">
             <End Role="Employee" EntitySet="Employees" />
+            <End Role="OrgCreditOfficer" EntitySet="OrgCreditOfficers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Org_Gender" Association="ScopoMFinanceModel.FK_Org_Gender">
+            <End Role="SysGender" EntitySet="SysGenders" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Org_LoanColc" Association="ScopoMFinanceModel.FK_Org_LoanColc">
+            <End Role="SysColcOption" EntitySet="SysColcOptions" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Org_OrgCategory" Association="ScopoMFinanceModel.FK_Org_OrgCategory">
+            <End Role="OrgCategory" EntitySet="OrgCategories" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Org_SavColc" Association="ScopoMFinanceModel.FK_Org_SavColc">
+            <End Role="SysColcOption" EntitySet="SysColcOptions" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Org_Village" Association="ScopoMFinanceModel.FK_Org_Village">
+            <End Role="SysVillage" EntitySet="SysVillages" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrgCO_Org" Association="ScopoMFinanceModel.FK_OrgCO_Org">
+            <End Role="Organization" EntitySet="Organizations" />
             <End Role="OrgCreditOfficer" EntitySet="OrgCreditOfficers" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_ProductType" Association="ScopoMFinanceModel.FK_Product_ProductType">
@@ -1128,35 +1152,6 @@
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="Organizations" EntityType="ScopoMFinanceModel.Organization" />
-          <AssociationSet Name="FK_Org_Branch" Association="ScopoMFinanceModel.FK_Org_Branch">
-            <End Role="Branch" EntitySet="Branches" />
-            <End Role="Organization" EntitySet="Organizations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Org_Gender" Association="ScopoMFinanceModel.FK_Org_Gender">
-            <End Role="SysGender" EntitySet="SysGenders" />
-            <End Role="Organization" EntitySet="Organizations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Org_LoanColc" Association="ScopoMFinanceModel.FK_Org_LoanColc">
-            <End Role="SysColcOption" EntitySet="SysColcOptions" />
-            <End Role="Organization" EntitySet="Organizations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Org_OrgCategory" Association="ScopoMFinanceModel.FK_Org_OrgCategory">
-            <End Role="OrgCategory" EntitySet="OrgCategories" />
-            <End Role="Organization" EntitySet="Organizations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Org_SavColc" Association="ScopoMFinanceModel.FK_Org_SavColc">
-            <End Role="SysColcOption" EntitySet="SysColcOptions" />
-            <End Role="Organization" EntitySet="Organizations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Org_Village" Association="ScopoMFinanceModel.FK_Org_Village">
-            <End Role="SysVillage" EntitySet="SysVillages" />
-            <End Role="Organization" EntitySet="Organizations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrgCO_Org" Association="ScopoMFinanceModel.FK_OrgCO_Org">
-            <End Role="Organization" EntitySet="Organizations" />
-            <End Role="OrgCreditOfficer" EntitySet="OrgCreditOfficers" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AccDayCloseProcess">
           <Key>
@@ -1166,10 +1161,9 @@
           <Property Name="ProcessName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="AccDayCloseProgresses" Relationship="ScopoMFinanceModel.FK_AccDayCloseProgress_AccDayCloseProcess" FromRole="AccDayCloseProcess" ToRole="AccDayCloseProgress" />
         </EntityType>
         <EntityType Name="AccDayCloseProgress">
@@ -1242,10 +1236,10 @@
           <NavigationProperty Name="AccDayOpenCloses" Relationship="ScopoMFinanceModel.FK_DayOpenClose_Branch" FromRole="Branch" ToRole="AccDayOpenClose" />
           <NavigationProperty Name="BranchWiseProjectMappings" Relationship="ScopoMFinanceModel.FK_BranchProject_Branch" FromRole="Branch" ToRole="BranchWiseProjectMapping" />
           <NavigationProperty Name="Employees" Relationship="ScopoMFinanceModel.FK_Employee_Branch" FromRole="Branch" ToRole="Employee" />
+          <NavigationProperty Name="Organizations" Relationship="ScopoMFinanceModel.FK_Org_Branch" FromRole="Branch" ToRole="Organization" />
           <NavigationProperty Name="OrgCreditOfficers" Relationship="ScopoMFinanceModel.FK_OrgCO_Branch" FromRole="Branch" ToRole="OrgCreditOfficer" />
           <NavigationProperty Name="UserBranches" Relationship="ScopoMFinanceModel.FK_UserBranch_Branch" FromRole="Branch" ToRole="UserBranch" />
           <NavigationProperty Name="UserLoginAudits" Relationship="ScopoMFinanceModel.FK_UserLogin_Branch" FromRole="Branch" ToRole="UserLoginAudit" />
-          <NavigationProperty Name="Organizations" Relationship="ScopoMFinanceModel.FK_Org_Branch" FromRole="Branch" ToRole="Organization" />
         </EntityType>
         <EntityType Name="BranchWiseProjectMapping">
           <Key>
@@ -1275,10 +1269,9 @@
           <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_Employee_Branch" FromRole="Employee" ToRole="Branch" />
           <NavigationProperty Name="EmployeeType" Relationship="ScopoMFinanceModel.FK_Employee_EmployeeType" FromRole="Employee" ToRole="EmployeeType" />
           <NavigationProperty Name="SysGender" Relationship="ScopoMFinanceModel.FK_Employee_Gender" FromRole="Employee" ToRole="SysGender" />
@@ -1292,11 +1285,39 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Employees" Relationship="ScopoMFinanceModel.FK_Employee_EmployeeType" FromRole="EmployeeType" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationNo" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="OrganizationName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrgCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="GenderId" Type="Int32" Nullable="false" />
+          <Property Name="SetupDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LoanColcOption" Type="Int32" Nullable="false" />
+          <Property Name="SavColcOption" Type="Int32" Nullable="false" />
+          <Property Name="FirstLoanColcDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FirstSavColcDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="VillageId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_Org_Branch" FromRole="Organization" ToRole="Branch" />
+          <NavigationProperty Name="SysGender" Relationship="ScopoMFinanceModel.FK_Org_Gender" FromRole="Organization" ToRole="SysGender" />
+          <NavigationProperty Name="SysColcOptionLoan" Relationship="ScopoMFinanceModel.FK_Org_LoanColc" FromRole="Organization" ToRole="SysColcOption" />
+          <NavigationProperty Name="OrgCategory" Relationship="ScopoMFinanceModel.FK_Org_OrgCategory" FromRole="Organization" ToRole="OrgCategory" />
+          <NavigationProperty Name="SysColcOptionSavings" Relationship="ScopoMFinanceModel.FK_Org_SavColc" FromRole="Organization" ToRole="SysColcOption" />
+          <NavigationProperty Name="SysVillage" Relationship="ScopoMFinanceModel.FK_Org_Village" FromRole="Organization" ToRole="SysVillage" />
+          <NavigationProperty Name="OrgCreditOfficers" Relationship="ScopoMFinanceModel.FK_OrgCO_Org" FromRole="Organization" ToRole="OrgCreditOfficer" />
         </EntityType>
         <EntityType Name="OrgCategory">
           <Key>
@@ -1307,10 +1328,9 @@
           <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Organizations" Relationship="ScopoMFinanceModel.FK_Org_OrgCategory" FromRole="OrgCategory" ToRole="Organization" />
         </EntityType>
         <EntityType Name="OrgCreditOfficer">
@@ -1325,10 +1345,9 @@
           <Property Name="ReleaseDate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_OrgCO_Branch" FromRole="OrgCreditOfficer" ToRole="Branch" />
           <NavigationProperty Name="Employee" Relationship="ScopoMFinanceModel.FK_OrgCO_Employee" FromRole="OrgCreditOfficer" ToRole="Employee" />
           <NavigationProperty Name="Organization" Relationship="ScopoMFinanceModel.FK_OrgCO_Org" FromRole="OrgCreditOfficer" ToRole="Organization" />
@@ -1344,10 +1363,9 @@
           <Property Name="ProductTypeId" Type="Int32" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="ProductType" Relationship="ScopoMFinanceModel.FK_Product_ProductType" FromRole="Product" ToRole="ProductType" />
           <NavigationProperty Name="ProjectWiseProductMappings" Relationship="ScopoMFinanceModel.FK_ProjectProduct_Product" FromRole="Product" ToRole="ProjectWiseProductMapping" />
         </EntityType>
@@ -1359,10 +1377,9 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Products" Relationship="ScopoMFinanceModel.FK_Product_ProductType" FromRole="ProductType" ToRole="Product" />
         </EntityType>
         <EntityType Name="Project">
@@ -1377,10 +1394,9 @@
           <Property Name="DonorId" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="BranchWiseProjectMappings" Relationship="ScopoMFinanceModel.FK_BranchProject_Project" FromRole="Project" ToRole="BranchWiseProjectMapping" />
           <NavigationProperty Name="SysDonor" Relationship="ScopoMFinanceModel.FK_Project_Donor" FromRole="Project" ToRole="SysDonor" />
           <NavigationProperty Name="ProjectType" Relationship="ScopoMFinanceModel.FK_Project_ProjectType" FromRole="Project" ToRole="ProjectType" />
@@ -1394,10 +1410,9 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Projects" Relationship="ScopoMFinanceModel.FK_Project_ProjectType" FromRole="ProjectType" ToRole="Project" />
         </EntityType>
         <EntityType Name="ProjectWiseProductMapping">
@@ -1418,10 +1433,9 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="OrganizationsLoan" Relationship="ScopoMFinanceModel.FK_Org_LoanColc" FromRole="SysColcOption" ToRole="Organization" />
           <NavigationProperty Name="OrganizationsSavings" Relationship="ScopoMFinanceModel.FK_Org_SavColc" FromRole="SysColcOption" ToRole="Organization" />
         </EntityType>
@@ -1434,8 +1448,9 @@
           <Property Name="DivisionId" Type="Int32" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="SysDivision" Relationship="ScopoMFinanceModel.FK_District_Division" FromRole="SysDistrict" ToRole="SysDivision" />
           <NavigationProperty Name="SysUpazilas" Relationship="ScopoMFinanceModel.FK_Upazila_District" FromRole="SysDistrict" ToRole="SysUpazila" />
         </EntityType>
@@ -1447,8 +1462,9 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="SysDistricts" Relationship="ScopoMFinanceModel.FK_District_Division" FromRole="SysDivision" ToRole="SysDistrict" />
         </EntityType>
         <EntityType Name="SysDonor">
@@ -1459,10 +1475,9 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Projects" Relationship="ScopoMFinanceModel.FK_Project_Donor" FromRole="SysDonor" ToRole="Project" />
         </EntityType>
         <EntityType Name="SysGender">
@@ -1473,6 +1488,9 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Employees" Relationship="ScopoMFinanceModel.FK_Employee_Gender" FromRole="SysGender" ToRole="Employee" />
           <NavigationProperty Name="Organizations" Relationship="ScopoMFinanceModel.FK_Org_Gender" FromRole="SysGender" ToRole="Organization" />
         </EntityType>
@@ -1485,8 +1503,9 @@
           <Property Name="UnionId" Type="Int32" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="SysUnion" Relationship="ScopoMFinanceModel.FK_Thana_Union" FromRole="SysThana" ToRole="SysUnion" />
         </EntityType>
         <EntityType Name="SysUnion">
@@ -1498,8 +1517,9 @@
           <Property Name="UpazilaId" Type="Int32" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="SysThanas" Relationship="ScopoMFinanceModel.FK_Thana_Union" FromRole="SysUnion" ToRole="SysThana" />
           <NavigationProperty Name="SysUpazila" Relationship="ScopoMFinanceModel.FK_Union_Upazila" FromRole="SysUnion" ToRole="SysUpazila" />
           <NavigationProperty Name="SysVillages" Relationship="ScopoMFinanceModel.FK_Village_Union" FromRole="SysUnion" ToRole="SysVillage" />
@@ -1513,8 +1533,9 @@
           <Property Name="DistrictId" Type="Int32" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="SysDistrict" Relationship="ScopoMFinanceModel.FK_Upazila_District" FromRole="SysUpazila" ToRole="SysDistrict" />
           <NavigationProperty Name="SysUnions" Relationship="ScopoMFinanceModel.FK_Union_Upazila" FromRole="SysUpazila" ToRole="SysUnion" />
         </EntityType>
@@ -1527,10 +1548,11 @@
           <Property Name="UnionId" Type="Int32" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="SysUnion" Relationship="ScopoMFinanceModel.FK_Village_Union" FromRole="SysVillage" ToRole="SysUnion" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Organizations" Relationship="ScopoMFinanceModel.FK_Org_Village" FromRole="SysVillage" ToRole="Organization" />
+          <NavigationProperty Name="SysUnion" Relationship="ScopoMFinanceModel.FK_Village_Union" FromRole="SysVillage" ToRole="SysUnion" />
         </EntityType>
         <EntityType Name="UserBranch">
           <Key>
@@ -1564,10 +1586,9 @@
           <Property Name="MobileNo" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ResUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="AccDayOpenCloses" Relationship="ScopoMFinanceModel.FK_DayOpenClose_UserProfile" FromRole="UserProfile" ToRole="AccDayOpenClose" />
           <NavigationProperty Name="AspNetUser" Relationship="ScopoMFinanceModel.FK_UserProfile_AspNetUser" FromRole="UserProfile" ToRole="AspNetUser" />
           <NavigationProperty Name="UserBranches" Relationship="ScopoMFinanceModel.FK_UserBranch_User" FromRole="UserProfile" ToRole="UserBranch" />
@@ -1657,6 +1678,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Org_Branch">
+          <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OrgCO_Branch">
           <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="1" />
           <End Type="ScopoMFinanceModel.OrgCreditOfficer" Role="OrgCreditOfficer" Multiplicity="*" />
@@ -1738,6 +1771,78 @@
             </Principal>
             <Dependent Role="OrgCreditOfficer">
               <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Org_Gender">
+          <End Type="ScopoMFinanceModel.SysGender" Role="SysGender" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysGender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Org_LoanColc">
+          <End Type="ScopoMFinanceModel.SysColcOption" Role="SysColcOption" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysColcOption">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="LoanColcOption" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Org_OrgCategory">
+          <End Type="ScopoMFinanceModel.OrgCategory" Role="OrgCategory" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrgCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="OrgCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Org_SavColc">
+          <End Type="ScopoMFinanceModel.SysColcOption" Role="SysColcOption" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysColcOption">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="SavColcOption" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Org_Village">
+          <End Type="ScopoMFinanceModel.SysVillage" Role="SysVillage" Multiplicity="0..1" />
+          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysVillage">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="VillageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrgCO_Org">
+          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.OrgCreditOfficer" Role="OrgCreditOfficer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrgCreditOfficer">
+              <PropertyRef Name="OrganizationId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1889,121 +1994,6 @@
           <End Type="ScopoMFinanceModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="ScopoMFinanceModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
-        <EntityType Name="Organization">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BranchId" Type="Int32" Nullable="false" />
-          <Property Name="OrganizationNo" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
-          <Property Name="OrganizationName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="OrgCategoryId" Type="Int32" Nullable="false" />
-          <Property Name="GenderId" Type="Int32" Nullable="false" />
-          <Property Name="SetupDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LoanColcOption" Type="Int32" Nullable="false" />
-          <Property Name="SavColcOption" Type="Int32" Nullable="false" />
-          <Property Name="FirstLoanColcDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FirstSavColcDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="VillageId" Type="Int32" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_Org_Branch" FromRole="Organization" ToRole="Branch" />
-          <NavigationProperty Name="SysGender" Relationship="ScopoMFinanceModel.FK_Org_Gender" FromRole="Organization" ToRole="SysGender" />
-          <NavigationProperty Name="SysColcOptionLoan" Relationship="ScopoMFinanceModel.FK_Org_LoanColc" FromRole="Organization" ToRole="SysColcOption" />
-          <NavigationProperty Name="OrgCategory" Relationship="ScopoMFinanceModel.FK_Org_OrgCategory" FromRole="Organization" ToRole="OrgCategory" />
-          <NavigationProperty Name="SysColcOptionSavings" Relationship="ScopoMFinanceModel.FK_Org_SavColc" FromRole="Organization" ToRole="SysColcOption" />
-          <NavigationProperty Name="SysVillage" Relationship="ScopoMFinanceModel.FK_Org_Village" FromRole="Organization" ToRole="SysVillage" />
-          <NavigationProperty Name="OrgCreditOfficers" Relationship="ScopoMFinanceModel.FK_OrgCO_Org" FromRole="Organization" ToRole="OrgCreditOfficer" />
-        </EntityType>
-        <Association Name="FK_Org_Branch">
-          <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="1" />
-          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Branch">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Organization">
-              <PropertyRef Name="BranchId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Org_Gender">
-          <End Type="ScopoMFinanceModel.SysGender" Role="SysGender" Multiplicity="1" />
-          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SysGender">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Organization">
-              <PropertyRef Name="GenderId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Org_LoanColc">
-          <End Type="ScopoMFinanceModel.SysColcOption" Role="SysColcOption" Multiplicity="1" />
-          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SysColcOption">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Organization">
-              <PropertyRef Name="LoanColcOption" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Org_OrgCategory">
-          <End Type="ScopoMFinanceModel.OrgCategory" Role="OrgCategory" Multiplicity="1" />
-          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="OrgCategory">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Organization">
-              <PropertyRef Name="OrgCategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Org_SavColc">
-          <End Type="ScopoMFinanceModel.SysColcOption" Role="SysColcOption" Multiplicity="1" />
-          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SysColcOption">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Organization">
-              <PropertyRef Name="SavColcOption" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Org_Village">
-          <End Type="ScopoMFinanceModel.SysVillage" Role="SysVillage" Multiplicity="0..1" />
-          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SysVillage">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Organization">
-              <PropertyRef Name="VillageId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_OrgCO_Org">
-          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="1" />
-          <End Type="ScopoMFinanceModel.OrgCreditOfficer" Role="OrgCreditOfficer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Organization">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="OrgCreditOfficer">
-              <PropertyRef Name="OrganizationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2013,10 +2003,9 @@
           <EntitySetMapping Name="AccDayCloseProcesses">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.AccDayCloseProcess">
               <MappingFragment StoreEntitySet="AccDayCloseProcess">
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
@@ -2101,10 +2090,9 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
@@ -2125,10 +2113,9 @@
           <EntitySetMapping Name="EmployeeTypes">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.EmployeeType">
               <MappingFragment StoreEntitySet="EmployeeType">
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -2136,13 +2123,35 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Organizations">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.Organization">
+              <MappingFragment StoreEntitySet="Organization">
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="VillageId" ColumnName="VillageId" />
+                <ScalarProperty Name="FirstSavColcDate" ColumnName="FirstSavColcDate" />
+                <ScalarProperty Name="FirstLoanColcDate" ColumnName="FirstLoanColcDate" />
+                <ScalarProperty Name="SavColcOption" ColumnName="SavColcOption" />
+                <ScalarProperty Name="LoanColcOption" ColumnName="LoanColcOption" />
+                <ScalarProperty Name="SetupDate" ColumnName="SetupDate" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="OrgCategoryId" ColumnName="OrgCategoryId" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="OrganizationNo" ColumnName="OrganizationNo" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="OrgCategories">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.OrgCategory">
               <MappingFragment StoreEntitySet="OrgCategory">
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
@@ -2154,10 +2163,9 @@
           <EntitySetMapping Name="OrgCreditOfficers">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.OrgCreditOfficer">
               <MappingFragment StoreEntitySet="OrgCreditOfficer">
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
@@ -2172,10 +2180,9 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.Product">
               <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="ProductTypeId" ColumnName="ProductTypeId" />
@@ -2189,10 +2196,9 @@
           <EntitySetMapping Name="ProductTypes">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.ProductType">
               <MappingFragment StoreEntitySet="ProductType">
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -2203,10 +2209,9 @@
           <EntitySetMapping Name="Projects">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.Project">
               <MappingFragment StoreEntitySet="Project">
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="DonorId" ColumnName="DonorId" />
@@ -2221,10 +2226,9 @@
           <EntitySetMapping Name="ProjectTypes">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.ProjectType">
               <MappingFragment StoreEntitySet="ProjectType">
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -2244,10 +2248,9 @@
           <EntitySetMapping Name="SysColcOptions">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.SysColcOption">
               <MappingFragment StoreEntitySet="SysColcOption">
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -2258,8 +2261,9 @@
           <EntitySetMapping Name="SysDistricts">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.SysDistrict">
               <MappingFragment StoreEntitySet="SysDistrict">
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
@@ -2271,8 +2275,9 @@
           <EntitySetMapping Name="SysDivisions">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.SysDivision">
               <MappingFragment StoreEntitySet="SysDivision">
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -2283,10 +2288,9 @@
           <EntitySetMapping Name="SysDonors">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.SysDonor">
               <MappingFragment StoreEntitySet="SysDonor">
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -2297,6 +2301,9 @@
           <EntitySetMapping Name="SysGenders">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.SysGender">
               <MappingFragment StoreEntitySet="SysGender">
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -2307,8 +2314,9 @@
           <EntitySetMapping Name="SysThanas">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.SysThana">
               <MappingFragment StoreEntitySet="SysThana">
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="UnionId" ColumnName="UnionId" />
@@ -2320,8 +2328,9 @@
           <EntitySetMapping Name="SysUnions">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.SysUnion">
               <MappingFragment StoreEntitySet="SysUnion">
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="UpazilaId" ColumnName="UpazilaId" />
@@ -2333,8 +2342,9 @@
           <EntitySetMapping Name="SysUpazilas">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.SysUpazila">
               <MappingFragment StoreEntitySet="SysUpazila">
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
@@ -2346,8 +2356,9 @@
           <EntitySetMapping Name="SysVillages">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.SysVillage">
               <MappingFragment StoreEntitySet="SysVillage">
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="UnionId" ColumnName="UnionId" />
@@ -2379,10 +2390,9 @@
           <EntitySetMapping Name="UserProfiles">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.UserProfile">
               <MappingFragment StoreEntitySet="UserProfile">
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="ResUserId" ColumnName="ResUserId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
@@ -2400,31 +2410,6 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="Organizations">
-            <EntityTypeMapping TypeName="ScopoMFinanceModel.Organization">
-              <MappingFragment StoreEntitySet="Organization">
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="VillageId" ColumnName="VillageId" />
-                <ScalarProperty Name="FirstSavColcDate" ColumnName="FirstSavColcDate" />
-                <ScalarProperty Name="FirstLoanColcDate" ColumnName="FirstLoanColcDate" />
-                <ScalarProperty Name="SavColcOption" ColumnName="SavColcOption" />
-                <ScalarProperty Name="LoanColcOption" ColumnName="LoanColcOption" />
-                <ScalarProperty Name="SetupDate" ColumnName="SetupDate" />
-                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
-                <ScalarProperty Name="OrgCategoryId" ColumnName="OrgCategoryId" />
-                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
-                <ScalarProperty Name="OrganizationNo" ColumnName="OrganizationNo" />
-                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -34,10 +34,9 @@ namespace ScopoMFinance.Domain.Models
         public string Remarks { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
-        public string CreatedBy { get; set; }
-        public System.DateTime CreatedOn { get; set; }
-        public string UpdatedBy { get; set; }
-        public Nullable<System.DateTime> UpdatedOn { get; set; }
+        public string UserId { get; set; }
+        public System.DateTime SystemDate { get; set; }
+        public System.DateTime SetDate { get; set; }
     
         public virtual Branch Branch { get; set; }
         public virtual EmployeeType EmployeeType { get; set; }

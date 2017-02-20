@@ -34,6 +34,7 @@ namespace ScopoMFinance.Domain.Models
         public virtual DbSet<BranchWiseProjectMapping> BranchWiseProjectMappings { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<EmployeeType> EmployeeTypes { get; set; }
+        public virtual DbSet<Organization> Organizations { get; set; }
         public virtual DbSet<OrgCategory> OrgCategories { get; set; }
         public virtual DbSet<OrgCreditOfficer> OrgCreditOfficers { get; set; }
         public virtual DbSet<Product> Products { get; set; }
@@ -53,6 +54,5 @@ namespace ScopoMFinance.Domain.Models
         public virtual DbSet<UserBranch> UserBranches { get; set; }
         public virtual DbSet<UserLoginAudit> UserLoginAudits { get; set; }
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
-        public virtual DbSet<Organization> Organizations { get; set; }
     }
 }
