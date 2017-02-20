@@ -6,6 +6,7 @@ using ScopoMFinance.Domain.ViewModels.Policy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,7 +16,7 @@ namespace ScopoMFinance.Core.Services
     {
         List<DropDownHelper> GetProjectTypeDropDown();
         ProjectTypeSetupViewModel GetProjectTypeById(int projectTypeId);
-        PList<ProjectTypeListViewModel> GetProjectTypeList(int pageNumber, int pageSize, SortDirection sortDir, int sortCol);
+        PList<ProjectTypeListViewModel> GetProjectTypeList(int pageNumber, int pageSize, Expression<Func<ProjectType, object>> orderBy = null, SortDirection sortDir = SortDirection.Asc);
         void CreateProjectType(ProjectTypeSetupViewModel vm);
         void UpdateProjectType(ProjectTypeSetupViewModel vm);
     }
@@ -46,7 +47,7 @@ namespace ScopoMFinance.Core.Services
             throw new NotImplementedException();
         }
 
-        public PList<ProjectTypeListViewModel> GetProjectTypeList(int pageNumber, int pageSize, SortDirection sortDir, int sortCol)
+        public PList<ProjectTypeListViewModel> GetProjectTypeList(int pageNumber, int pageSize, Expression<Func<ProjectType, object>> orderBy = null, SortDirection sortDir = SortDirection.Asc)
         {
             throw new NotImplementedException();
         }
