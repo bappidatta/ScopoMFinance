@@ -69,10 +69,8 @@ namespace ScopoMFinance.Core.Services
                                IsActive = c.IsActive,
                                IsDeleted = c.IsDeleted,
                                SystemDate = c.SystemDate,
-                               CreatedBy = c.CreatedBy,
-                               CreatedOn = c.CreatedOn,
-                               UpdatedBy = c.UpdatedBy,
-                               UpdatedOn = c.UpdatedOn
+                               UserId = c.UserId,
+                               SetDate = c.SetDate
                            }).Page(pageNumber, pageSize, out psettings);
 
             return orgList.ToPList(psettings);
@@ -116,8 +114,8 @@ namespace ScopoMFinance.Core.Services
                 IsActive = vm.IsActive,
                 IsDeleted = false,
                 SystemDate = vm.SetupDate,
-                CreatedBy = vm.CreatedBy,
-                CreatedOn = DateTime.Now
+                UserId = vm.UserId,
+                SetDate = DateTime.Now
             };
 
             _uow.OrganizationRepository.Insert(org);
@@ -139,8 +137,9 @@ namespace ScopoMFinance.Core.Services
             model.SavColcOption = vm.SavColcOptionId;
             model.FirstSavColcDate = vm.FirstSavColcDate;
             model.FirstLoanColcDate = vm.FirstLoanColcDate;
-            model.UpdatedBy = vm.CreatedBy;
-            model.UpdatedOn = DateTime.Now;
+            model.UserId = vm.UserId;
+            model.SetDate = DateTime.Now;
+            model.SystemDate = vm.SystemDate;
 
             _uow.OrganizationRepository.Update(model);
             _uow.Save();

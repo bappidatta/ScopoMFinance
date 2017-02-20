@@ -29,18 +29,14 @@ namespace ScopoMFinance.Domain.ViewModels.Employee
 
         [UIHint("Hidden")]
         [HiddenInput]
-        public string CreatedBy { get; set; }
+        public string UserId { get; set; }
 
         [UIHint("Hidden")]
         [HiddenInput]
-        public System.DateTime CreatedOn { get; set; }
+        public System.DateTime SystemDate { get; set; }
 
         [UIHint("Hidden")]
         [HiddenInput]
-        public string UpdatedBy { get; set; }
-
-        [UIHint("Hidden")]
-        [HiddenInput]
-        public Nullable<System.DateTime> UpdatedOn { get; set; }
+        public System.DateTime SetDate { get; set; }
     }
 }

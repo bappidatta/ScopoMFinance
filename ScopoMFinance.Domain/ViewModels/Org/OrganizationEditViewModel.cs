@@ -58,6 +58,8 @@ namespace ScopoMFinance.Domain.ViewModels.Org
         [Display(Name = "Organization_Edit_DN_IsActive", ResourceType = typeof(OrganizationStrings))]
         public bool IsActive { get; set; }
 
-        public string CreatedBy { get; set; }
+        public string UserId { get; set; }
+        public System.DateTime SystemDate { get; set; }
+        public System.DateTime SetDate { get; set; }
     }
 }

@@ -93,15 +93,16 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
             {
                 try
                 {
+                    vm.UserId = _userHelper.Get().UserId;
+                    vm.SystemDate = _userHelper.Get().DayOpenClose.SystemDate;
+                    
                     if (vm.Id > 0)
                     {
-                        vm.UpdatedBy = _userHelper.Get().UserId;
                         _employeeTypeService.UpdateEmployeeType(vm);
                         SystemMessages.Add(EmployeeTypeStrings.EmployeeType_Edit_Update_Success_Msg, false, true);
                     }
                     else
                     {
-                        vm.CreatedBy = _userHelper.Get().UserId;
                         _employeeTypeService.CreateEmployeeType(vm);
                         SystemMessages.Add(EmployeeTypeStrings.EmployeeType_Edit_Create_Success_Msg, false, true);
                     }

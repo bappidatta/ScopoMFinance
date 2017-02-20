@@ -66,10 +66,9 @@ namespace ScopoMFinance.Core.Services
                                     Name = c.Name,
                                     IsActive = c.IsActive,
                                     IsDeleted = c.IsDeleted,
-                                    CreatedBy = c.CreatedBy,
-                                    CreatedOn = c.CreatedOn,
-                                    UpdatedBy = c.UpdatedBy,
-                                    UpdatedOn = c.UpdatedOn
+                                    UserId = c.UserId,
+                                    SetDate = c.SetDate,
+                                    SystemDate = c.SystemDate
                                 }).Page(pageNumber, pageSize, out psettings);
 
             return employeeType.ToPList(psettings);
@@ -84,10 +83,9 @@ namespace ScopoMFinance.Core.Services
                         Name = c.Name,
                         IsActive = c.IsActive,
                         IsDeleted = c.IsDeleted,
-                        CreatedBy = c.CreatedBy,
-                        CreatedOn = c.CreatedOn,
-                        UpdatedBy = c.UpdatedBy,
-                        UpdatedOn = c.UpdatedOn
+                        UserId = c.UserId,
+                        SetDate = c.SetDate,
+                        SystemDate = c.SystemDate
                     }).SingleOrDefault();
         }
 
@@ -97,8 +95,9 @@ namespace ScopoMFinance.Core.Services
             {
                 Name = vm.Name,
                 IsActive = vm.IsActive,
-                CreatedBy = vm.CreatedBy,
-                CreatedOn = DateTime.Now
+                UserId = vm.UserId,
+                SystemDate = vm.SystemDate,
+                SetDate = DateTime.Now
             };
 
             _uow.EmployeeTypeRepository.Insert(model);
@@ -113,8 +112,9 @@ namespace ScopoMFinance.Core.Services
 
             model.Name = vm.Name;
             model.IsActive = vm.IsActive;
-            model.UpdatedBy = vm.UpdatedBy;
-            model.UpdatedOn = DateTime.Now;
+            model.UserId = vm.UserId;
+            model.SystemDate = vm.SystemDate;
+            model.SetDate = DateTime.Now;
 
             _uow.EmployeeTypeRepository.Update(model);
             _uow.Save();

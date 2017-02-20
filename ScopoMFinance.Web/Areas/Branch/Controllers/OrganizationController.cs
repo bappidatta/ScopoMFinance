@@ -147,7 +147,7 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
                 {
                     vm.BranchId = _userHelper.Get().BranchId;
                     vm.SetupDate = _userHelper.Get().DayOpenClose.SystemDate;
-                    vm.CreatedBy = _userHelper.Get().UserId;
+                    vm.UserId = _userHelper.Get().UserId;
 
                     if (vm.Id > 0)
                     {
