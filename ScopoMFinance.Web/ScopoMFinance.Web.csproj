@@ -190,6 +190,7 @@
     <Compile Include="Areas\Dashboard\Controllers\SuperUserController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
     <Compile Include="Areas\HO\Controllers\BranchController.cs" />
+    <Compile Include="Areas\HO\Controllers\EmployeeTypeController.cs" />
     <Compile Include="Areas\HO\HOAreaRegistration.cs" />
     <Compile Include="Attributes\LoginAuditAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -206,6 +207,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\HO\Scripts\EmployeeType\index.js" />
     <Content Include="Content\assets\common\css\main.min.css" />
     <Content Include="Content\assets\common\css\source\apps\calendar.css" />
     <Content Include="Content\assets\common\css\source\apps\gallery.css" />
@@ -723,6 +725,9 @@
     <Content Include="Content\assets\vendors\tether\src\css\tether-theme-arrows.sass" />
     <Content Include="Content\assets\vendors\tether\src\css\tether-theme-basic.sass" />
     <Content Include="Content\assets\vendors\tether\src\css\tether.sass" />
+    <Content Include="Areas\HO\Views\EmployeeType\Index.cshtml" />
+    <Content Include="Areas\HO\Views\EmployeeType\_Setup.cshtml" />
+    <Content Include="Areas\HO\Views\Shared\EditorTemplates\EmployeeTypeEditViewModel.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\common-system-messages.js" />
     <Content Include="Scripts\init.js" />
@@ -798,6 +803,8 @@
     <Content Include="Scripts\underscore.min.map" />
     <Content Include="Views\Shared\_CommonBootstrapDialogConfirmation.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_CommonBootstrapDialogEdit.cshtml" />
+    <Content Include="Views\Shared\_CommonBootstrapDialogEditFormContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -806,7 +813,6 @@
     <Folder Include="Areas\Dashboard\Models\" />
     <Folder Include="Areas\Dashboard\Views\Shared\" />
     <Folder Include="Areas\HO\Models\" />
-    <Folder Include="Areas\HO\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

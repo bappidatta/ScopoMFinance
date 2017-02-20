@@ -169,5 +169,21 @@ namespace ScopoMFinance.Web.Helpers
 
             return html.Partial("_CommonBootstrapDialogConfirmation", html.ViewData.Model, html.ViewData);
         }
+
+        /// <summary>
+        /// This method wraps the EditorForModel page model in Bootstrap dialog layout
+        /// </summary>
+        /// <param name="html">Extension instance</param>
+        /// <param name="title">Title of the dialog</param>
+        /// <returns>Rendered EditorForModel in Bootstrap layout</returns>
+        public static MvcHtmlString BootstrapEditorForModel(this HtmlHelper html, string title)
+        {
+            html.ViewData.Add("areaName", html.ViewContext.RouteData.DataTokens["area"]);
+            html.ViewData.Add("controllerName", html.ViewContext.RouteData.GetRequiredString("controller"));
+            html.ViewData.Add("actionName", html.ViewContext.RouteData.GetRequiredString("action"));
+            html.ViewData.Add("label", title);
+
+            return html.Partial("_CommonBootstrapDialogEdit", html.ViewData.Model, html.ViewData);
+        }
     }
 }

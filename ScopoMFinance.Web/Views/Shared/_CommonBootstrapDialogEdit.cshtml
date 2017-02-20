@@ -1,0 +1,61 @@
+﻿@{
+    int random = (new Random()).Next();
+    bool IsGET = ViewContext.HttpContext.Request.RequestType == "GET";
+    string DialogID = "Dialog_" + random;
+    string FormID = "Form_" + random;
+}
+
+
+@if (IsGET)
+{
+
+    <div class="modal-dialog" id="@DialogID">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">@ViewData["label"]</h4>
+            </div>
+
+            @using (Ajax.BeginForm((string)ViewData["actionName"], (string)ViewData["controllerName"],
+                            new AjaxOptions
+                            {
+                                HttpMethod = "POST",
+                                OnSuccess = "DialogEditOnSuccess_" + FormID
+                            },
+                            new
+                            {
+                                Enctype = (ViewData["Enctype"] as string) ?? "application/x-www-form-urlencoded",
+                                id = FormID
+                            }))
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.Partial("_CommonBootstrapDialogEditFormContent")
+
+            }
+
+        </div>
+    </div>
+    <script>
+        $.validator.unobtrusive.parse('#@DialogID');
+        $('#@DialogID').parent().modal("show");
+
+        function DialogEditOnSuccess_@(FormID)(data, status, xhr) {
+            if (typeof data.code == 'undefined')
+                $('#@FormID').html(data);
+        }
+    </script>
+}
+else
+{
+    @Html.AntiForgeryToken()
+    @Html.Partial("_CommonBootstrapDialogEditFormContent")
+}
+
+<script>
+
+    $('#@DialogID').find('input[type=text],textarea,select').filter(':visible:first').focus();
+
+
+
+</script>
