@@ -139,7 +139,7 @@ namespace ScopoMFinance.Core.Services
             model.FirstLoanColcDate = vm.FirstLoanColcDate;
             model.UserId = vm.UserId;
             model.SetDate = DateTime.Now;
-            model.SystemDate = vm.SystemDate;
+            model.SystemDate = vm.SetupDate;
 
             _uow.OrganizationRepository.Update(model);
             _uow.Save();
