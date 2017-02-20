@@ -207,6 +207,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Branch\Scripts\Organization\index.js" />
     <Content Include="Areas\HO\Scripts\EmployeeType\index.js" />
     <Content Include="Content\assets\common\css\main.min.css" />
     <Content Include="Content\assets\common\css\source\apps\calendar.css" />
@@ -744,6 +745,7 @@
     <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
     <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.vb.include.t4" />
     <Content Include="CodeTemplates\MvcView\ScopoCreditPaginationList.cs.t4" />
+    <Content Include="Areas\Branch\Views\Organization\_Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\common-system-messages.js" />
     <Content Include="Scripts\init.js" />
