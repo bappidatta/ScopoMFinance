@@ -16,7 +16,7 @@ namespace ScopoMFinance.Core.Services
     public interface IBranchService
     {
         List<DropDownHelper> GetBranchDropDown();
-        PList<BranchListViewModel> GetBranchList(int pageNumber, int pageSize, SortDirection sortDir, int sortCol);
+        PList<BranchListViewModel> GetBranchList(int pageNumber, int pageSize, Expression<Func<Branch, object>> orderBy = null, SortDirection sortDir = SortDirection.Asc);
         void SaveBranch(BranchEditViewModel vm);
         void UpdateBranch(BranchEditViewModel vm);
         BranchEditViewModel GetBranchById(int branchId);
@@ -43,29 +43,11 @@ namespace ScopoMFinance.Core.Services
             return branchDropDown.ToList();
         }
 
-        public PList<BranchListViewModel> GetBranchList(int pageNumber, int pageSize, SortDirection sortDir, int sortCol)
+        public PList<BranchListViewModel> GetBranchList(int pageNumber, int pageSize, Expression<Func<Branch, object>> orderBy = null, SortDirection sortDir = SortDirection.Asc)
         {
-            Expression<Func<Branch, object>> orderBy = null;
             PagerSettings psettings = null;
 
-            switch (sortCol)
-            {
-                case 0:
-                default:
-                    orderBy = x => x.Name;
-                    break;
-                case 1:
-                    orderBy = x => x.OpenDate;
-                    break;
-                case 2:
-                    orderBy = x => x.IsHeadOffice;
-                    break;
-                case 7:
-                    orderBy = x => x.UserBranches.Count(u => u.UserProfile.IsActive && !u.UserProfile.IsDeleted);
-                    break;
-            }
-
-            var branchList = (from c in _uow.BranchRepository.Get()
+            IQueryable<BranchListViewModel> branchList = (from c in _uow.BranchRepository.Get()
                               .Order(orderBy, sortDir)
                               select new BranchListViewModel()
                               {

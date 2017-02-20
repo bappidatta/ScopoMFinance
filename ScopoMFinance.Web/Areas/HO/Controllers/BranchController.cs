@@ -9,6 +9,7 @@ using ScopoMFinance.Web.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -41,7 +42,37 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
         {
             int pageSize = _userHelper.PagerSize;
 
-            PList<BranchListViewModel> branchList = _branchService.GetBranchList(index, pageSize, sortDir, sortCol);
+            Expression<Func<ScopoMFinance.Domain.Models.Branch, object>> orderBy = null;
+            switch (sortCol)
+            {
+                case 0:
+                default:
+                    orderBy = x => x.Name;
+                    break;
+                case 1:
+                    orderBy = x => x.OpenDate;
+                    break;
+                case 2:
+                    orderBy = x => x.IsHeadOffice;
+                    break;
+                case 3:
+                    orderBy = x => x.Status;
+                    break;
+                case 4:
+                    orderBy = x => x.Organizations.Count(o => o.IsActive && !o.IsDeleted);
+                    break;
+                case 5:
+                    orderBy = x => x.Employees.Count(e => e.IsActive && !e.IsDeleted && e.IsCreditOfficer);
+                    break;
+                case 6:
+                    orderBy = x => x.BranchWiseProjectMappings.Count(p => p.Project.IsActive && !p.Project.IsDeleted);
+                    break;
+                case 7:
+                    orderBy = x => x.UserBranches.Count(u => u.UserProfile.IsActive && !u.UserProfile.IsDeleted);
+                    break;
+            }
+
+            PList<BranchListViewModel> branchList = _branchService.GetBranchList(index, pageSize, orderBy, sortDir);
 
             if (branchList != null)
             {

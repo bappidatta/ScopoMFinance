@@ -50,7 +50,43 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
 
             Expression<Func<Organization, bool>> filter = x => x.BranchId == branchId && x.IsDeleted == false;
 
-            PList<OrganizationListViewModel> orgList = _orgService.GetOrganizationList(index, pageSize, sortDir, sortCol, filter);
+            Expression<Func<Organization, object>> orderBy = null;
+            switch (sortCol)
+            {
+                case 0:
+                default:
+                    orderBy = x => x.OrgCategory.CategoryName;
+                    break;
+                case 1:
+                    orderBy = x => x.OrganizationNo;
+                    break;
+                case 2:
+                    orderBy = x => x.OrganizationName;
+                    break;
+                case 3:
+                    orderBy = x => x.SysGender.Name;
+                    break;
+                case 4:
+                    orderBy = x => x.SetupDate;
+                    break;
+                case 5:
+                    orderBy = x => x.SysColcOptionLoan.Name;
+                    break;
+                case 6:
+                    orderBy = x => x.SysColcOptionSavings.Name;
+                    break;
+                case 7:
+                    orderBy = x => x.FirstLoanColcDate;
+                    break;
+                case 8:
+                    orderBy = x => x.FirstSavColcDate;
+                    break;
+                case 9:
+                    orderBy = x => x.IsActive;
+                    break;
+            };
+
+            PList<OrganizationListViewModel> orgList = _orgService.GetOrganizationList(index, pageSize, orderBy, sortDir, filter);
 
             if (orgList != null)
             {

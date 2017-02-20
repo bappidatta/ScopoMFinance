@@ -16,7 +16,8 @@ namespace ScopoMFinance.Core.Services
     {
         PList<OrganizationListViewModel> GetOrganizationList(
             int pageNumber, int pageSize,
-            SortDirection sortDir, int sortCol,
+            Expression<Func<Organization, object>> orderBy = null,
+            SortDirection sortDir = SortDirection.Asc,
             Expression<Func<Organization, bool>> filter = null);
 
         OrganizationEditViewModel GetOrganizationById(int orgId, int branchId);
@@ -38,46 +39,11 @@ namespace ScopoMFinance.Core.Services
 
         public PList<OrganizationListViewModel> GetOrganizationList(
             int pageNumber, int pageSize,
-            SortDirection sortDir, int sortCol,
+            Expression<Func<Organization, object>> orderBy = null,
+            SortDirection sortDir = SortDirection.Asc,
             Expression<Func<Organization, bool>> filter = null)
         {
-            Expression<Func<Organization, object>> orderBy = null;
             PagerSettings psettings = null;
-
-            switch (sortCol)
-            {
-                case 0:
-                default:
-                    orderBy = x => x.OrgCategory.CategoryName;
-                    break;
-                case 1:
-                    orderBy = x => x.OrganizationNo;
-                    break;
-                case 2:
-                    orderBy = x => x.OrganizationName;
-                    break;
-                case 3:
-                    orderBy = x => x.SysGender.Name;
-                    break;
-                case 4:
-                    orderBy = x => x.SetupDate;
-                    break;
-                case 5:
-                    orderBy = x => x.SysColcOptionLoan.Name;
-                    break;
-                case 6:
-                    orderBy = x => x.SysColcOptionSavings.Name;
-                    break;
-                case 7:
-                    orderBy = x => x.FirstLoanColcDate;
-                    break;
-                case 8:
-                    orderBy = x => x.FirstSavColcDate;
-                    break;
-                case 9:
-                    orderBy = x => x.IsActive;
-                    break;
-            }
 
             var orgList = (from c in _uow.OrganizationRepository.Get(filter)
                                .Order(orderBy, sortDir)
