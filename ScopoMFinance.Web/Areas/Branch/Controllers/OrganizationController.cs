@@ -45,7 +45,6 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
         [HttpGet]
         public ActionResult Index(int index = 0, SortDirection sortDir = SortDirection.Asc, int sortCol = 0)
         {
-            int pageSize = _userHelper.PagerSize;
             int branchId = _userHelper.Get().BranchId;
 
             Expression<Func<Organization, bool>> filter = x => x.BranchId == branchId && x.IsDeleted == false;
@@ -86,7 +85,7 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
                     break;
             };
 
-            PList<OrganizationListViewModel> orgList = _orgService.GetOrganizationList(index, pageSize, orderBy, sortDir, filter);
+            PList<OrganizationListViewModel> orgList = _orgService.GetOrganizationList(index, orderBy, sortDir, filter);
 
             if (orgList != null)
             {
@@ -109,16 +108,16 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
                 ViewBag.LoanCollectionOptionDropDown = new SelectList(_colcOptionService.GetColcOptionDropDown(), "Value", "Text");
                 ViewBag.SavingsCollectionOptionDropDown = new SelectList(_colcOptionService.GetColcOptionDropDown(), "Value", "Text");
 
+                DateTime systemDate = _userHelper.Get().DayOpenClose.SystemDate;
                 return View(new OrganizationEditViewModel() {
-                    SetupDate = _userHelper.Get().DayOpenClose.SystemDate,
-                    FirstLoanColcDate = _userHelper.Get().DayOpenClose.SystemDate,
-                    FirstSavColcDate = _userHelper.Get().DayOpenClose.SystemDate,
-                    IsActive = true,
-                    BranchId = _userHelper.Get().BranchId
+                    SetupDate = systemDate,
+                    FirstLoanColcDate = systemDate,
+                    FirstSavColcDate = systemDate,
+                    IsActive = true
                 });
             }
 
-            OrganizationEditViewModel vm = _orgService.GetOrganizationById(id.Value, _userHelper.Get().BranchId);
+            OrganizationEditViewModel vm = _orgService.GetOrganizationById(id.Value);
 
             if (vm != null)
             {
@@ -146,10 +145,6 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
             { 
                 try
                 {
-                    vm.BranchId = _userHelper.Get().BranchId;
-                    vm.SetupDate = _userHelper.Get().DayOpenClose.SystemDate;
-                    vm.UserId = _userHelper.Get().UserId;
-
                     if (vm.Id > 0)
                     {
                         _orgService.UpdateOrganization(vm);
@@ -180,7 +175,7 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
         [HttpGet]
         public ActionResult IsOrgNoAvailable(string organizationNo, int id)
         {
-            return Json(!string.IsNullOrWhiteSpace(organizationNo) && _orgService.IsOrgNoAvailable(organizationNo, _userHelper.Get().BranchId, id) == true, JsonRequestBehavior.AllowGet);
+            return Json(!string.IsNullOrWhiteSpace(organizationNo) && _orgService.IsOrgNoAvailable(organizationNo, id) == true, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -188,7 +183,7 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
         {
             if (id > 0)
             {
-                OrganizationEditViewModel vm = _orgService.GetOrganizationById(id, _userHelper.Get().BranchId);
+                OrganizationEditViewModel vm = _orgService.GetOrganizationById(id);
                 if (vm == null)
                 {
                     SystemMessages.Add(CommonStrings.No_Record, SystemMessageType.Error, true);
@@ -207,7 +202,7 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
             {
                 try
                 {
-                    _orgService.DeleteOrganization(id, _userHelper.Get().BranchId);
+                    _orgService.DeleteOrganization(id);
                     SystemMessages.Add(OrganizationStrings.Organization_Delete_Success_Msg, false, true);
                 }
                 catch (Exception ex)

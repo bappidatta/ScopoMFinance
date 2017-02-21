@@ -23,20 +23,16 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
     public class EmployeeTypeController : Controller
     {
         private IEmployeeTypeService _employeeTypeService;
-        private IUserHelper _userHelper;
 
-        public EmployeeTypeController(IEmployeeTypeService employeeTypeService, IUserHelper userHelper)
+        public EmployeeTypeController(IEmployeeTypeService employeeTypeService)
         {
             _employeeTypeService = employeeTypeService;
-            _userHelper = userHelper;
         }
 
         // GET: HO/EmployeeType
         [HttpGet]
         public ActionResult Index(int index = 0, SortDirection sortDir = SortDirection.Asc, int sortCol = 0)
         {
-            int pageSize = _userHelper.PagerSize;
-
             Expression<Func<EmployeeType, object>> orderBy = null;
             switch (sortCol)
             {
@@ -49,7 +45,7 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
                     break;
             }
 
-            PList<EmployeeTypeListViewModel> employeeTypeList = _employeeTypeService.GetEmployeeTypeList(index, pageSize, orderBy, sortDir);
+            PList<EmployeeTypeListViewModel> employeeTypeList = _employeeTypeService.GetEmployeeTypeList(index, orderBy, sortDir);
 
             if (employeeTypeList != null)
             {
@@ -94,9 +90,6 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
             {
                 try
                 {
-                    vm.UserId = _userHelper.Get().UserId;
-                    vm.SystemDate = _userHelper.Get().DayOpenClose.SystemDate;
-                    
                     if (vm.Id > 0)
                     {
                         if(_employeeTypeService.UpdateEmployeeType(vm))

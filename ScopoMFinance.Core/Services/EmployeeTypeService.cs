@@ -18,7 +18,12 @@ namespace ScopoMFinance.Core.Services
         List<DropDownHelper> GetEmployeeTypeDropDown();
 
         PList<EmployeeTypeListViewModel> GetEmployeeTypeList(
-            int pageNumber, int pageSize,
+            int pageNumber,
+            Expression<Func<EmployeeType, object>> orderBy = null,
+            SortDirection sortDir = SortDirection.Asc,
+            Expression<Func<EmployeeType, bool>> filter = null);
+
+        List<EmployeeTypeListViewModel> GetEmployeeTypeList(
             Expression<Func<EmployeeType, object>> orderBy = null,
             SortDirection sortDir = SortDirection.Asc,
             Expression<Func<EmployeeType, bool>> filter = null);
@@ -33,10 +38,12 @@ namespace ScopoMFinance.Core.Services
     public class EmployeeTypeService : IEmployeeTypeService
     {
         private UnitOfWork _uow;
+        private IUserHelper _userHelper;
 
-        public EmployeeTypeService(UnitOfWork uow)
+        public EmployeeTypeService(UnitOfWork uow, IUserHelper userHelper)
         {
             _uow = uow;
+            _userHelper = userHelper;
         }
 
         private EmployeeType GetEmployeeType(int id)
@@ -59,12 +66,13 @@ namespace ScopoMFinance.Core.Services
         }
 
         public PList<EmployeeTypeListViewModel> GetEmployeeTypeList(
-            int pageNumber, int pageSize,
+            int pageNumber,
             Expression<Func<EmployeeType, object>> orderBy = null,
             SortDirection sortDir = SortDirection.Asc,
             Expression<Func<EmployeeType, bool>> filter = null)
         {
             PagerSettings psettings = null;
+            int pageSize = _userHelper.PagerSize;
 
             var employeeType = (from c in _uow.EmployeeTypeRepository.Get(filter).Order(orderBy, sortDir)
                                 select new EmployeeTypeListViewModel
@@ -79,6 +87,26 @@ namespace ScopoMFinance.Core.Services
                                 }).Page(pageNumber, pageSize, out psettings);
 
             return employeeType.ToPList(psettings);
+        }
+
+        public List<EmployeeTypeListViewModel> GetEmployeeTypeList(
+            Expression<Func<EmployeeType, object>> orderBy = null,
+            SortDirection sortDir = SortDirection.Asc,
+            Expression<Func<EmployeeType, bool>> filter = null)
+        {
+            var employeeType = (from c in _uow.EmployeeTypeRepository.Get(filter).Order(orderBy, sortDir)
+                                select new EmployeeTypeListViewModel
+                                {
+                                    Id = c.Id,
+                                    Name = c.Name,
+                                    IsActive = c.IsActive,
+                                    IsDeleted = c.IsDeleted,
+                                    UserId = c.UserId,
+                                    SetDate = c.SetDate,
+                                    SystemDate = c.SystemDate
+                                });
+
+            return employeeType.ToList();
         }
 
         public EmployeeTypeEditViewModel GetEmployeeTypeById(int id)
@@ -102,8 +130,8 @@ namespace ScopoMFinance.Core.Services
             {
                 Name = vm.Name,
                 IsActive = vm.IsActive,
-                UserId = vm.UserId,
-                SystemDate = vm.SystemDate,
+                UserId = _userHelper.Get().UserId,
+                SystemDate = _userHelper.Get().DayOpenClose.SystemDate,
                 SetDate = DateTime.Now
             };
 
@@ -120,8 +148,8 @@ namespace ScopoMFinance.Core.Services
 
             model.Name = vm.Name;
             model.IsActive = vm.IsActive;
-            model.UserId = vm.UserId;
-            model.SystemDate = vm.SystemDate;
+            model.UserId = _userHelper.Get().UserId;
+            model.SystemDate = _userHelper.Get().DayOpenClose.SystemDate;
             model.SetDate = DateTime.Now;
 
             _uow.EmployeeTypeRepository.Update(model);

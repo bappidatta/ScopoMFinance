@@ -1,5 +1,6 @@
 ﻿using NtitasCommon.Core.Common;
 using NtitasCommon.Core.Helpers;
+using ScopoMFinance.Core.Helpers;
 using ScopoMFinance.Domain.Models;
 using ScopoMFinance.Domain.Repositories;
 using ScopoMFinance.Domain.ViewModels.Org;
@@ -15,35 +16,47 @@ namespace ScopoMFinance.Core.Services
     public interface IOrganizationService
     {
         PList<OrganizationListViewModel> GetOrganizationList(
-            int pageNumber, int pageSize,
+            int pageNumber,
             Expression<Func<Organization, object>> orderBy = null,
             SortDirection sortDir = SortDirection.Asc,
             Expression<Func<Organization, bool>> filter = null);
 
-        OrganizationEditViewModel GetOrganizationById(int orgId, int branchId);
+        OrganizationEditViewModel GetOrganizationById(int orgId);
 
         void CreateOrganization(OrganizationEditViewModel vm);
         void UpdateOrganization(OrganizationEditViewModel vm);
-        void DeleteOrganization(int orgId, int branchId);
-        bool IsOrgNoAvailable(string orgNo, int branchId, int orgId);
+        void DeleteOrganization(int orgId);
+        bool IsOrgNoAvailable(string orgNo, int orgId);
     }
 
     public class OrganizationService : IOrganizationService
     {
         private UnitOfWork _uow;
+        private IUserHelper _userHelper;
 
-        public OrganizationService(UnitOfWork uow)
+        public OrganizationService(UnitOfWork uow, IUserHelper userHelper)
         {
             _uow = uow;
+            _userHelper = userHelper;
+        }
+
+        private Organization GetOrganization(int id)
+        {
+            int branchId = _userHelper.Get().BranchId;
+
+            return (from c in _uow.OrganizationRepository
+                                      .Get(x => x.Id == id && x.BranchId == branchId && x.IsDeleted == false)
+                    select c).SingleOrDefault();
         }
 
         public PList<OrganizationListViewModel> GetOrganizationList(
-            int pageNumber, int pageSize,
+            int pageNumber,
             Expression<Func<Organization, object>> orderBy = null,
             SortDirection sortDir = SortDirection.Asc,
             Expression<Func<Organization, bool>> filter = null)
         {
             PagerSettings psettings = null;
+            int pageSize = _userHelper.PagerSize;
 
             var orgList = (from c in _uow.OrganizationRepository.Get(filter)
                                .Order(orderBy, sortDir)
@@ -76,8 +89,10 @@ namespace ScopoMFinance.Core.Services
             return orgList.ToPList(psettings);
         }
 
-        public OrganizationEditViewModel GetOrganizationById(int orgId, int branchId)
+        public OrganizationEditViewModel GetOrganizationById(int orgId)
         {
+            int branchId = _userHelper.Get().BranchId;
+
             return (from c in _uow.OrganizationRepository.Get(x => x.Id == orgId && x.BranchId == branchId && x.IsDeleted == false)
                     select new OrganizationEditViewModel
                     {
@@ -101,20 +116,20 @@ namespace ScopoMFinance.Core.Services
         {
             Organization org = new Organization
             {
-                BranchId = vm.BranchId,
+                BranchId = _userHelper.Get().BranchId,
                 OrganizationNo = vm.OrganizationNo,
                 OrganizationName = vm.OrganizationName,
                 OrgCategoryId = vm.OrgCategoryId,
                 GenderId = vm.GenderId,
-                SetupDate = vm.SetupDate,
+                SetupDate = _userHelper.Get().DayOpenClose.SystemDate,
                 LoanColcOption = vm.LoanColcOptionId,
                 SavColcOption = vm.SavColcOptionId,
                 FirstLoanColcDate = vm.FirstLoanColcDate,
                 FirstSavColcDate = vm.FirstSavColcDate,
                 IsActive = vm.IsActive,
                 IsDeleted = false,
-                SystemDate = vm.SetupDate,
-                UserId = vm.UserId,
+                SystemDate = _userHelper.Get().DayOpenClose.SystemDate,
+                UserId = _userHelper.Get().UserId,
                 SetDate = DateTime.Now
             };
 
@@ -124,9 +139,7 @@ namespace ScopoMFinance.Core.Services
 
         public void UpdateOrganization(OrganizationEditViewModel vm)
         {
-            Organization model = (from c in _uow.OrganizationRepository
-                                      .Get(x => x.Id == vm.Id && x.BranchId == vm.BranchId && x.IsDeleted == false)
-                                  select c).SingleOrDefault();
+            Organization model = GetOrganization(vm.Id);
 
             model.OrgCategoryId = vm.OrgCategoryId;
             model.GenderId = vm.GenderId;
@@ -137,19 +150,17 @@ namespace ScopoMFinance.Core.Services
             model.SavColcOption = vm.SavColcOptionId;
             model.FirstSavColcDate = vm.FirstSavColcDate;
             model.FirstLoanColcDate = vm.FirstLoanColcDate;
-            model.UserId = vm.UserId;
+            model.UserId = _userHelper.Get().UserId;
             model.SetDate = DateTime.Now;
-            model.SystemDate = vm.SetupDate;
+            model.SystemDate = _userHelper.Get().DayOpenClose.SystemDate;
 
             _uow.OrganizationRepository.Update(model);
             _uow.Save();
         }
 
-        public void DeleteOrganization(int orgId, int branchId)
+        public void DeleteOrganization(int orgId)
         {
-            Organization model = (from c in _uow.OrganizationRepository
-                                                 .Get(x => x.Id == orgId && x.BranchId == branchId && x.IsDeleted == false)
-                                  select c).SingleOrDefault();
+            Organization model = GetOrganization(orgId);
 
             model.IsDeleted = true;
 
@@ -157,14 +168,16 @@ namespace ScopoMFinance.Core.Services
             _uow.Save();
         }
 
-        public bool IsOrgNoAvailable(string orgNo, int branchId, int orgId)
+        public bool IsOrgNoAvailable(string orgNo, int orgId)
         {
+            int branchId = _userHelper.Get().BranchId;
+
             try
             {
                 if (string.IsNullOrWhiteSpace(orgNo))
                     return false;
 
-                return !_uow.OrganizationRepository.Get().Any(x => x.Id != orgId && x.BranchId == branchId && x.OrganizationNo == orgNo);
+                return !_uow.OrganizationRepository.Get().Any(x => x.Id != orgId && x.BranchId == branchId && x.OrganizationNo == orgNo && x.IsDeleted == false);
             }
             catch (Exception ex)
             {
