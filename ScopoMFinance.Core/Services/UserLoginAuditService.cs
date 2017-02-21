@@ -107,6 +107,7 @@ namespace ScopoMFinance.Core.Services
                                                 UserId = c.UserId,
                                                 BranchId = c.BranchId,
                                                 BranchName = c.Branch.Name,
+                                                IsHeadOffice = c.Branch.IsHeadOffice,
                                                 FirstName = c.UserProfile.FirstName,
                                                 LastName = c.UserProfile.LastName,
                                                 LoggedInTime = c.LoggedInTime,

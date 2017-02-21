@@ -6,7 +6,7 @@
     </a>
 </li>
 
-@if (UserHelper.Instance.Get().BranchName == BranchInfo.HO)
+@if (UserHelper.Instance.Get().IsHeadOffice)
 {
     <li class="left-menu-list-separator"><!-- --></li>
     <li class="left-menu-list-submenu">
@@ -93,7 +93,7 @@
         </ul>
     </li>
 }
-@if (UserHelper.Instance.Get().BranchName != BranchInfo.HO)
+@if (!UserHelper.Instance.Get().IsHeadOffice)
 {
     <li class="left-menu-list-separator"><!-- --></li>
     <li>
