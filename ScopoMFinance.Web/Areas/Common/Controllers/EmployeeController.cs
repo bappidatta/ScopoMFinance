@@ -33,18 +33,58 @@ namespace ScopoMFinance.Web.Areas.Common.Controllers
         public ActionResult Index(int index = 0, SortDirection sortDir = SortDirection.Asc, int sortCol = 0)
         {
             Expression<Func<Employee, object>> orderBy = null;
+            Expression<Func<Employee, bool>> filter = null;
+
             switch (sortCol)
             {
                 case 0:
+                    orderBy = x => x.Branch.Name;
+                    break;
+                case 1:
                 default:
                     orderBy = x => x.EmployeeNo;
                     break;
-                case 1:
+                case 2:
                     orderBy = x => x.EmployeeName;
+                    break;
+                case 3:
+                    orderBy = x => x.IsCreditOfficer;
+                    break;
+                case 4:
+                    orderBy = x => x.JoiningDate;
+                    break;
+                case 5:
+                    orderBy = x => x.ResignDate;
+                    break;
+                case 6:
+                    orderBy = x => x.SysGender.Name;
+                    break;
+                case 7:
+                    orderBy = x => x.EmployeeType.Name;
+                    break;
+                case 8:
+                    orderBy = x => x.Address;
+                    break;
+                case 9:
+                    orderBy = x => x.PhoneNo;
+                    break;
+                case 10:
+                    orderBy = x => x.Remarks;
+                    break;
+                case 11:
+                    orderBy = x => x.IsActive;
                     break;
             }
 
-            PList<EmployeeListViewModel> employeeList = _employeeService.GetEmployeeList(index, orderBy, sortDir);
+            if (_userHelper.Get().IsHeadOffice)
+                filter = x => x.IsDeleted == false;
+            else
+            {
+                int branchId = _userHelper.Get().BranchId;
+                filter = x => x.IsDeleted == false && x.BranchId == branchId;
+            }
+
+            PList<EmployeeListViewModel> employeeList = _employeeService.GetEmployeeList(index, orderBy, sortDir, filter);
 
             if (employeeList != null)
             {
