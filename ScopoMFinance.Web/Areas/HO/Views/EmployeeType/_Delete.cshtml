@@ -1,0 +1,9 @@
+﻿@model ScopoMFinance.Domain.ViewModels.Employee.EmployeeTypeEditViewModel
+
+@{
+    string task = "Delete";
+    string deleteTitle = ViewBag.Title;
+    string itemName = Model.Name;
+}
+
+@Html.BootstrapConfirmationDialog(deleteTitle, string.Format(EmployeeTypeStrings.Delete_Confirmation_Message, itemName))

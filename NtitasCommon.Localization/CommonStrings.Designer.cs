@@ -61,11 +61,65 @@ namespace NtitasCommon.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string Confirmation_Modal_No_Button {
+            get {
+                return ResourceManager.GetString("Confirmation_Modal_No_Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Working....
+        /// </summary>
+        public static string Confirmation_Modal_Working {
+            get {
+                return ResourceManager.GetString("Confirmation_Modal_Working", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string Confirmation_Modal_Yes_Button {
+            get {
+                return ResourceManager.GetString("Confirmation_Modal_Yes_Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to d MMMM, yyyy.
         /// </summary>
         public static string Date_Format {
             get {
                 return ResourceManager.GetString("Date_Format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Form_Modal_Cancel_Button {
+            get {
+                return ResourceManager.GetString("Form_Modal_Cancel_Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Form_Modal_Save_Button {
+            get {
+                return ResourceManager.GetString("Form_Modal_Save_Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saving....
+        /// </summary>
+        public static string Form_Modal_Saving {
+            get {
+                return ResourceManager.GetString("Form_Modal_Saving", resourceCulture);
             }
         }
         

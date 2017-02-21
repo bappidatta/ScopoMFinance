@@ -35,8 +35,8 @@
                     <p>@Html.Raw((string)ViewData["dialogText"])</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                    <button class="btn btn-primary __Submit" data-loading-text="Working..." type="submit">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@CommonStrings.Confirmation_Modal_No_Button</button>
+                    <button class="btn btn-primary __Submit" data-loading-text="@CommonStrings.Confirmation_Modal_Working" type="submit">@CommonStrings.Confirmation_Modal_Yes_Button</button>
                 </div>
             }
         </div>

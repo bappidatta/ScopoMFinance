@@ -1,7 +1,4 @@
 ﻿@model PList<ScopoMFinance.Domain.ViewModels.Employee.EmployeeTypeListViewModel>
-@{
-    ViewBag.Title = "Employee Type List";
-}
 <section class="panel">
     <div class="panel-heading">
         <h3>@ViewBag.Title</h3>
@@ -42,7 +39,7 @@
                                         }
                                     </td>
                                     <td>
-                                        <a href="#" data-toggle="modal" class="__lnkDelete __dialog m-right-10" data-url="/Branch/Organization/Delete/@item.Id">
+                                        <a href="#" data-toggle="modal" class="__lnkDelete __dialog m-right-10" data-url="/HO/EmployeeType/Delete/@item.Id">
                                             <i class="fa fa-archive fa-2x" data-toggle="tooltip" title="Delete"></i>
                                         </a>
                                         <a href="#edit" class="__lnkAddEdit m-right-10" data-id="@item.Id" data-url="@Url.Action("Setup", new { id = item.Id })">
@@ -76,7 +73,7 @@
     </div>
 </section>
 
-<div id="edit-employee-type" class="modal fade" role="dialog" aria-hidden="true"></div>
+<div id="employee-type-modal" class="modal fade" role="dialog" aria-hidden="true"></div>
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")

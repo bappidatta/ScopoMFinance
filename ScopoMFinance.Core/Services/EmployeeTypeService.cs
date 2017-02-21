@@ -26,8 +26,8 @@ namespace ScopoMFinance.Core.Services
         EmployeeTypeEditViewModel GetEmployeeTypeById(int id);
 
         void CreateEmployeeType(EmployeeTypeEditViewModel vm);
-        void UpdateEmployeeType(EmployeeTypeEditViewModel vm);
-
+        bool UpdateEmployeeType(EmployeeTypeEditViewModel vm);
+        bool DeleteEmployeeType(int id);
     }
 
     public class EmployeeTypeService : IEmployeeTypeService
@@ -37,6 +37,13 @@ namespace ScopoMFinance.Core.Services
         public EmployeeTypeService(UnitOfWork uow)
         {
             _uow = uow;
+        }
+
+        private EmployeeType GetEmployeeType(int id)
+        {
+            return (from c in _uow.EmployeeTypeRepository
+                                      .Get(x => x.Id == id && x.IsDeleted == false)
+                    select c).SingleOrDefault();
         }
 
         public List<DropDownHelper> GetEmployeeTypeDropDown()
@@ -104,11 +111,12 @@ namespace ScopoMFinance.Core.Services
             _uow.Save();
         }
 
-        public void UpdateEmployeeType(EmployeeTypeEditViewModel vm)
+        public bool UpdateEmployeeType(EmployeeTypeEditViewModel vm)
         {
-            EmployeeType model = (from c in _uow.EmployeeTypeRepository
-                                      .Get(x => x.Id == vm.Id && x.IsDeleted == false)
-                                  select c).SingleOrDefault();
+            EmployeeType model = GetEmployeeType(vm.Id);
+
+            if (model == null)
+                return false;
 
             model.Name = vm.Name;
             model.IsActive = vm.IsActive;
@@ -118,6 +126,21 @@ namespace ScopoMFinance.Core.Services
 
             _uow.EmployeeTypeRepository.Update(model);
             _uow.Save();
+
+            return true;
+        }
+
+        public bool DeleteEmployeeType(int id)
+        {
+            EmployeeType model = GetEmployeeType(id);
+
+            if (model == null)
+                return false;
+
+            _uow.EmployeeTypeRepository.Delete(model);
+            _uow.Save();
+
+            return true;
         }
     }
 }

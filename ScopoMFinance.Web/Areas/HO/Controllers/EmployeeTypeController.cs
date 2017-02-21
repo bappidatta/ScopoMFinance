@@ -57,6 +57,7 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
                 employeeTypeList.Pager.URLFormat = urlFormat;
             }
 
+            ViewBag.Title = EmployeeTypeStrings.List_Title;
             return View(employeeTypeList);
         }
 
@@ -67,12 +68,12 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
 
             if (!id.HasValue)
             {
-                ViewBag.Title = "Create Employee Type";
+                ViewBag.Title = EmployeeTypeStrings.Create_Title;
                 vm = new EmployeeTypeEditViewModel() { IsActive = true };
             }
             else
             {
-                ViewBag.Title = "Edit Employee Type";
+                ViewBag.Title = EmployeeTypeStrings.Edit_Title;
                 vm = _employeeTypeService.GetEmployeeTypeById(id.Value);
             }
 
@@ -98,8 +99,10 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
                     
                     if (vm.Id > 0)
                     {
-                        _employeeTypeService.UpdateEmployeeType(vm);
-                        SystemMessages.Add(EmployeeTypeStrings.EmployeeType_Edit_Update_Success_Msg, false, true);
+                        if(_employeeTypeService.UpdateEmployeeType(vm))
+                            SystemMessages.Add(EmployeeTypeStrings.EmployeeType_Edit_Update_Success_Msg, false, true);
+                        else
+                            SystemMessages.Add(CommonStrings.No_Record, true, true);
                     }
                     else
                     {
@@ -116,6 +119,50 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
             }
 
             return PartialView("_Setup", vm);
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            if (id > 0)
+            {
+                EmployeeTypeEditViewModel vm = _employeeTypeService.GetEmployeeTypeById(id);
+                if (vm == null)
+                {
+                    SystemMessages.Add(CommonStrings.No_Record, SystemMessageType.Error, true);
+                    return RedirectToAction("Index");
+                }
+
+                ViewBag.Title = EmployeeTypeStrings.Delete_Title;
+                return PartialView("_Delete", vm);
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, FormCollection fc)
+        {
+            if (id > 0)
+            {
+                try
+                {
+                    if(_employeeTypeService.DeleteEmployeeType(id))
+                        SystemMessages.Add(EmployeeTypeStrings.Employee_Type_Delete_Success_Msg, SystemMessageType.Success, true);
+                    else
+                        SystemMessages.Add(CommonStrings.No_Record, SystemMessageType.Error, true);
+                }
+                catch (Exception ex)
+                {
+                    SystemMessages.Add(CommonStrings.Server_Error, SystemMessageType.Error, true);
+                }
+            }
+            else
+            {
+                SystemMessages.Add(CommonStrings.POST_NoID, SystemMessageType.Error, true);
+            }
+
+            return new XHR_JSON_Redirect();
         }
     }
 }

@@ -139,6 +139,7 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(OrganizationEditViewModel vm)
         {
             if (ModelState.IsValid)
@@ -199,6 +200,7 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, FormCollection fc)
         {
             if (id > 0)

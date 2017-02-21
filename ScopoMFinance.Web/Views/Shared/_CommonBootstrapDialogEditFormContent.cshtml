@@ -3,6 +3,6 @@
     @Html.EditorForModel()
 </div>
 <div class="modal-footer">
-    <button type="button" class="__Cancel btn btn-default" data-dismiss="modal">Cancel</button>
-    <button class="btn btn-primary __Submit" data-loading-text="Saving" type="submit">Save</button>
+    <button type="button" class="__Cancel btn btn-default" data-dismiss="modal">@CommonStrings.Form_Modal_Cancel_Button</button>
+    <button class="btn btn-primary __Submit" data-loading-text="@CommonStrings.Form_Modal_Saving" type="submit">@CommonStrings.Form_Modal_Save_Button</button>
 </div>

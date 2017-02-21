@@ -746,6 +746,8 @@
     <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.vb.include.t4" />
     <Content Include="CodeTemplates\MvcView\ScopoCreditPaginationList.cs.t4" />
     <Content Include="Areas\Branch\Views\Organization\_Delete.cshtml" />
+    <Content Include="CodeTemplates\MvcView\ScopoCreditDeleteModal.cs.t4" />
+    <Content Include="Areas\HO\Views\EmployeeType\_Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\common-system-messages.js" />
     <Content Include="Scripts\init.js" />

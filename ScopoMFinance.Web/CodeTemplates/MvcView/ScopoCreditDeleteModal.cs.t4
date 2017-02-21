@@ -1,0 +1,12 @@
+﻿<#@ template language="C#" HostSpecific="True" #>
+<#@ output extension=".cshtml" #>
+<#@ include file="Imports.include.t4" #>
+@model <#= ViewDataTypeName #>
+
+@{
+    string task = "Delete";
+    string deleteTitle = ViewBag.Title;
+    string itemName = "{Item Name}";
+}
+
+@Html.BootstrapConfirmationDialog(deleteTitle, string.Format("Are you sure want to delete the organization {0}", itemName))

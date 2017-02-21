@@ -61,6 +61,51 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Employee Type.
+        /// </summary>
+        public static string Create_Title {
+            get {
+                return ResourceManager.GetString("Create_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure want to delete the employee type {0}.
+        /// </summary>
+        public static string Delete_Confirmation_Message {
+            get {
+                return ResourceManager.GetString("Delete_Confirmation_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee Type Delete.
+        /// </summary>
+        public static string Delete_Title {
+            get {
+                return ResourceManager.GetString("Delete_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Employee Type.
+        /// </summary>
+        public static string Edit_Title {
+            get {
+                return ResourceManager.GetString("Edit_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee type have been deleted successfully.
+        /// </summary>
+        public static string Employee_Type_Delete_Success_Msg {
+            get {
+                return ResourceManager.GetString("Employee_Type_Delete_Success_Msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employee type have been created successfully.
         /// </summary>
         public static string EmployeeType_Edit_Create_Success_Msg {
@@ -111,6 +156,15 @@ namespace ScopoMFinance.Localization {
         public static string EmployeeType_List_DN_Name {
             get {
                 return ResourceManager.GetString("EmployeeType_List_DN_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee Type List.
+        /// </summary>
+        public static string List_Title {
+            get {
+                return ResourceManager.GetString("List_Title", resourceCulture);
             }
         }
     }

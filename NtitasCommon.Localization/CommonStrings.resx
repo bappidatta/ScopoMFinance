@@ -117,8 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Confirmation_Modal_No_Button" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Confirmation_Modal_Working" xml:space="preserve">
+    <value>Working...</value>
+  </data>
+  <data name="Confirmation_Modal_Yes_Button" xml:space="preserve">
+    <value>Yes</value>
+  </data>
   <data name="Date_Format" xml:space="preserve">
     <value>d MMMM, yyyy</value>
+  </data>
+  <data name="Form_Modal_Cancel_Button" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Form_Modal_Save_Button" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Form_Modal_Saving" xml:space="preserve">
+    <value>Saving...</value>
   </data>
   <data name="List_Empty" xml:space="preserve">
     <value>Currently No Data Found</value>
