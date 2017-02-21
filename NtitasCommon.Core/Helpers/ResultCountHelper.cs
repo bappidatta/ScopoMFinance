@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NtitasCommon.Core.Helpers
+﻿namespace NtitasCommon.Core.Helpers
 {
     /// <summary>
     /// Model needed for the ResultCountMessage partial
