@@ -167,5 +167,14 @@ namespace ScopoMFinance.Localization {
                 return ResourceManager.GetString("Employee_List_DN_ResignDate", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee List.
+        /// </summary>
+        public static string List_Title {
+            get {
+                return ResourceManager.GetString("List_Title", resourceCulture);
+            }
+        }
     }
 }

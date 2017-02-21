@@ -55,6 +55,10 @@ namespace ScopoMFinance.Web
             bundles.Add(new ScriptBundle("~/bundles/HO/Scripts/EmployeeType/Index").Include(
                     "~/Areas/HO/Scripts/EmployeeType/index.js"
               ));
+
+            bundles.Add(new ScriptBundle("~/bundles/Common/Scripts/Employee/Index").Include(
+                    "~/Areas/Common/Scripts/Employee/Index.js"
+              ));
         }
     }
 }

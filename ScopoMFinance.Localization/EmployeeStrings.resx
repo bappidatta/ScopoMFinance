@@ -153,4 +153,7 @@
   <data name="Employee_List_DN_ResignDate" xml:space="preserve">
     <value>Resigning Date</value>
   </data>
+  <data name="List_Title" xml:space="preserve">
+    <value>Employee List</value>
+  </data>
 </root>

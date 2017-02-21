@@ -86,7 +86,7 @@
                 </a>
             </li>
             <li>
-                <a class="left-menu-link" href="/HO/Employee/Index">
+                <a class="left-menu-link" href="/Common/Employee/Index">
                     Employee Setup
                 </a>
             </li>
@@ -95,6 +95,13 @@
 }
 @if (!UserHelper.Instance.Get().IsHeadOffice)
 {
+    <li class="left-menu-list-separator"><!-- --></li>
+    <li>
+        <a class="left-menu-link" href="/Common/Employee/Index">
+            <i class="left-menu-link-icon icmn-font-size"><!-- --></i>
+            Employees
+        </a>
+    </li>
     <li class="left-menu-list-separator"><!-- --></li>
     <li>
         <a class="left-menu-link" href="/Branch/Organization/Index">
