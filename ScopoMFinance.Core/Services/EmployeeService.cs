@@ -35,6 +35,8 @@ namespace ScopoMFinance.Core.Services
         bool UpdateEmployee(EmployeeEditViewModel vm);
 
         bool DeleteEmployee(int id);
+
+        bool IsEmployeeNoAvailable(string employeeNo, int employeeId);
     }
 
     public class EmployeeService : IEmployeeService
@@ -163,9 +165,15 @@ namespace ScopoMFinance.Core.Services
 
         public void CreateEmployee(EmployeeEditViewModel vm)
         {
+            int branchId = 0;
+            if (_userHelper.Get().IsHeadOffice)
+                branchId = vm.BranchId;
+            else
+                branchId = _userHelper.Get().BranchId;
+
             Employee model = new Employee
             {
-                BranchId = vm.BranchId,
+                BranchId = branchId,
                 EmployeeNo = vm.EmployeeNo,
                 EmployeeName = vm.EmployeeName,
                 IsCreditOfficer = vm.IsCreditOfficer,
@@ -223,6 +231,21 @@ namespace ScopoMFinance.Core.Services
             _uow.Save();
 
             return true;
+        }
+
+        public bool IsEmployeeNoAvailable(string employeeNo, int employeeId)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(employeeNo))
+                    return false;
+
+                return !_uow.EmployeeRepository.Get().Any(x => x.Id != employeeId && x.EmployeeNo == employeeNo);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

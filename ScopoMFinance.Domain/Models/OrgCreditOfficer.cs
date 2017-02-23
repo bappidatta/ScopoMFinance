@@ -14,7 +14,6 @@ namespace ScopoMFinance.Domain.Models
     
     public partial class OrgCreditOfficer
     {
-        public int Id { get; set; }
         public int BranchId { get; set; }
         public int EmployeeId { get; set; }
         public int OrganizationId { get; set; }

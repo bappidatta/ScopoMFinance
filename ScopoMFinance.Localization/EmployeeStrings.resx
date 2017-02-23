@@ -117,6 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Create_Title" xml:space="preserve">
+    <value>Employee Create</value>
+  </data>
+  <data name="Edit_Title" xml:space="preserve">
+    <value>Employee Edit</value>
+  </data>
+  <data name="Employee_Edit_Create_Success_Msg" xml:space="preserve">
+    <value>Employee has been created successfully</value>
+  </data>
+  <data name="Employee_Edit_Update_Success_Msg" xml:space="preserve">
+    <value>Employee has been updated successfully</value>
+  </data>
+  <data name="Employee_Edit_Validation_EmployeeNoMaxLength" xml:space="preserve">
+    <value>Employee No must be less than or equal to 10 character</value>
+  </data>
+  <data name="Employee_Edit_Validation_EmployeeNoUnavailable" xml:space="preserve">
+    <value>This Employee No already exists</value>
+  </data>
   <data name="Employee_List_DN_Address" xml:space="preserve">
     <value>Address</value>
   </data>

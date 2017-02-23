@@ -87,16 +87,19 @@
     <Compile Include="Models\AccDayOpenClose.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AspNetUser.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AspNetUserRole.cs">
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Branch.cs">
-      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BranchWiseProjectMapping.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employee.cs">
@@ -124,9 +127,6 @@
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProjectType.cs">
-      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ProjectWiseProductMapping.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ScopoMFinanceModel.Context.cs">

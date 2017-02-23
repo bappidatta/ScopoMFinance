@@ -17,7 +17,7 @@ namespace ScopoMFinance.Domain.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.ProjectWiseProductMappings = new HashSet<ProjectWiseProductMapping>();
+            this.Projects = new HashSet<Project>();
         }
     
         public int Id { get; set; }
@@ -32,6 +32,6 @@ namespace ScopoMFinance.Domain.Models
     
         public virtual ProductType ProductType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProjectWiseProductMapping> ProjectWiseProductMappings { get; set; }
+        public virtual ICollection<Project> Projects { get; set; }
     }
 }

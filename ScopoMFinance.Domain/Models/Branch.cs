@@ -18,12 +18,12 @@ namespace ScopoMFinance.Domain.Models
         public Branch()
         {
             this.AccDayOpenCloses = new HashSet<AccDayOpenClose>();
-            this.BranchWiseProjectMappings = new HashSet<BranchWiseProjectMapping>();
             this.Employees = new HashSet<Employee>();
             this.Organizations = new HashSet<Organization>();
             this.OrgCreditOfficers = new HashSet<OrgCreditOfficer>();
             this.UserBranches = new HashSet<UserBranch>();
             this.UserLoginAudits = new HashSet<UserLoginAudit>();
+            this.Projects = new HashSet<Project>();
         }
     
         public int Id { get; set; }
@@ -35,8 +35,6 @@ namespace ScopoMFinance.Domain.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AccDayOpenClose> AccDayOpenCloses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BranchWiseProjectMapping> BranchWiseProjectMappings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Organization> Organizations { get; set; }
@@ -46,5 +44,7 @@ namespace ScopoMFinance.Domain.Models
         public virtual ICollection<UserBranch> UserBranches { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserLoginAudit> UserLoginAudits { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Project> Projects { get; set; }
     }
 }

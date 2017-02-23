@@ -28,10 +28,11 @@ namespace ScopoMFinance.Domain.Models
         public virtual DbSet<AccDayCloseProcess> AccDayCloseProcesses { get; set; }
         public virtual DbSet<AccDayCloseProgress> AccDayCloseProgresses { get; set; }
         public virtual DbSet<AccDayOpenClose> AccDayOpenCloses { get; set; }
-        public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Branch> Branches { get; set; }
-        public virtual DbSet<BranchWiseProjectMapping> BranchWiseProjectMappings { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<EmployeeType> EmployeeTypes { get; set; }
         public virtual DbSet<Organization> Organizations { get; set; }
@@ -41,7 +42,6 @@ namespace ScopoMFinance.Domain.Models
         public virtual DbSet<ProductType> ProductTypes { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<ProjectType> ProjectTypes { get; set; }
-        public virtual DbSet<ProjectWiseProductMapping> ProjectWiseProductMappings { get; set; }
         public virtual DbSet<SysColcOption> SysColcOptions { get; set; }
         public virtual DbSet<SysDistrict> SysDistricts { get; set; }
         public virtual DbSet<SysDivision> SysDivisions { get; set; }
@@ -54,6 +54,5 @@ namespace ScopoMFinance.Domain.Models
         public virtual DbSet<UserBranch> UserBranches { get; set; }
         public virtual DbSet<UserLoginAudit> UserLoginAudits { get; set; }
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
     }
 }

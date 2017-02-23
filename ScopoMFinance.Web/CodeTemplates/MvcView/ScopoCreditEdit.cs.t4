@@ -1,0 +1,54 @@
+﻿<#@ template language="C#" HostSpecific="True" #>
+<#@ output extension=".cshtml" #>
+<#@ include file="Imports.include.t4" #>
+@model <#= ViewDataTypeName #>
+<section class="panel panel-default">
+    <div class="panel-heading">
+        <h3>@ViewBag.Title</h3>
+    </div>
+    <div class="panel-body row">
+        <div class="col-md-12">
+			@using (Html.BeginForm("{Action}", "{Controller}", new { area = "{Area}" }, FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <#
+				foreach (PropertyMetadata property in ModelMetadata.Properties) {
+					if (property.Scaffold && !property.IsAssociation) {
+						if (property.IsPrimaryKey) {
+				#>
+					@Html.HiddenFor(model => model.<#= property.PropertyName #>)
+				<#
+						}
+						else {
+				#>
+					<div class="form-group row">
+						@Html.LabelFor(model => model.<#= property.PropertyName #>, new { @class = "col-md-3 control-label" })
+						<div class="col-md-9">
+							@Html.TextBoxFor(model => model.<#= property.PropertyName #>, new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.<#= property.PropertyName #>, "", new { @class = "text-danger" })
+						</div>
+					</div>
+				<#
+						}
+					}
+				}
+				#>
+				<div class="form-actions">
+                    <div class="form-group row">
+                        <div class="col-md-offset-6 col-md-3">
+                            @Html.ActionLink("Cancel", "Index", new { area = "{Area}", controller = "{Controller}" }, new { @class = "btn btn-default btn-block" })
+                        </div>
+                        <div class="col-md-3">
+                            <input type="submit" value="Save" class="btn btn-primary btn-block" />
+                        </div>
+                    </div>
+                </div>
+			}
+		</div>
+	</div>
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<#@ include file="ModelMetadataFunctions.cs.include.t4" #>

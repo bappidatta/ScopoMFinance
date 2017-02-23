@@ -177,19 +177,6 @@ namespace ScopoMFinance.Domain.Repositories
             }
         }
 
-        private IRepository<BranchWiseProjectMapping> branchWiseProjectMappingRepo;
-        public IRepository<BranchWiseProjectMapping> branchWiseProjectMappingRepository
-        {
-            get
-            {
-                if (this.branchWiseProjectMappingRepo == null)
-                {
-                    this.branchWiseProjectMappingRepo = new Repository<BranchWiseProjectMapping>(db);
-                }
-                return branchWiseProjectMappingRepo;
-            }
-        }
-
         private IRepository<ProductType> productTypeRepo;
         public IRepository<ProductType> ProductTypeRepository
         {
@@ -213,19 +200,6 @@ namespace ScopoMFinance.Domain.Repositories
                     this.productRepo = new Repository<Product>(db);
                 }
                 return productRepo;
-            }
-        }
-
-        private IRepository<ProjectWiseProductMapping> projectWiseProductRepo;
-        public IRepository<ProjectWiseProductMapping> ProjectWiseProductRepository
-        {
-            get
-            {
-                if (this.projectWiseProductRepo == null)
-                {
-                    this.projectWiseProductRepo = new Repository<ProjectWiseProductMapping>(db);
-                }
-                return projectWiseProductRepo;
             }
         }
 

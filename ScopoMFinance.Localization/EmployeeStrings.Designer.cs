@@ -61,6 +61,60 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employee Create.
+        /// </summary>
+        public static string Create_Title {
+            get {
+                return ResourceManager.GetString("Create_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee Edit.
+        /// </summary>
+        public static string Edit_Title {
+            get {
+                return ResourceManager.GetString("Edit_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee has been created successfully.
+        /// </summary>
+        public static string Employee_Edit_Create_Success_Msg {
+            get {
+                return ResourceManager.GetString("Employee_Edit_Create_Success_Msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee has been updated successfully.
+        /// </summary>
+        public static string Employee_Edit_Update_Success_Msg {
+            get {
+                return ResourceManager.GetString("Employee_Edit_Update_Success_Msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee No must be less than or equal to 10 character.
+        /// </summary>
+        public static string Employee_Edit_Validation_EmployeeNoMaxLength {
+            get {
+                return ResourceManager.GetString("Employee_Edit_Validation_EmployeeNoMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This Employee No already exists.
+        /// </summary>
+        public static string Employee_Edit_Validation_EmployeeNoUnavailable {
+            get {
+                return ResourceManager.GetString("Employee_Edit_Validation_EmployeeNoUnavailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
         public static string Employee_List_DN_Address {

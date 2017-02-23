@@ -59,7 +59,7 @@ namespace ScopoMFinance.Core.Services
                                   OrgCount = c.Organizations.Count(o => o.IsActive),
                                   COCount = c.Employees.Count(e => e.IsActive && e.IsCreditOfficer),
                                   UserCount = c.UserBranches.Count(u => u.UserProfile.IsActive),
-                                  ProjectCount = c.BranchWiseProjectMappings.Count(p => p.Project.IsActive)
+                                  ProjectCount = c.Projects.Count(p => p.IsActive)
                               }).Page(pageNumber, pageSize, out psettings);
 
             return branchList.ToPList(psettings);

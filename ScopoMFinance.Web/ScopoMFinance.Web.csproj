@@ -754,6 +754,8 @@
     <Content Include="Areas\Common\Views\web.config" />
     <Content Include="Areas\Common\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Common\Views\Employee\Index.cshtml" />
+    <Content Include="CodeTemplates\MvcView\ScopoCreditEdit.cs.t4" />
+    <Content Include="Areas\Common\Views\Employee\Setup.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\common-system-messages.js" />
     <Content Include="Scripts\init.js" />
@@ -834,13 +836,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Branch\Models\" />
     <Folder Include="Areas\Branch\Views\Shared\" />
-    <Folder Include="Areas\Common\Models\" />
     <Folder Include="Areas\Common\Views\Shared\" />
-    <Folder Include="Areas\Dashboard\Models\" />
     <Folder Include="Areas\Dashboard\Views\Shared\" />
-    <Folder Include="Areas\HO\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

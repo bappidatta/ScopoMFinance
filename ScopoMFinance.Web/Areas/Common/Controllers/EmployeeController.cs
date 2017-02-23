@@ -1,4 +1,5 @@
 ﻿using NtitasCommon.Core.Common;
+using NtitasCommon.Localization;
 using ScopoMFinance.Core.Common;
 using ScopoMFinance.Core.Helpers;
 using ScopoMFinance.Core.Services;
@@ -21,11 +22,22 @@ namespace ScopoMFinance.Web.Areas.Common.Controllers
     public class EmployeeController : Controller
     {
         private IEmployeeService _employeeService;
+        private IGenderService _genderService;
+        private IBranchService _branchService;
+        private IEmployeeTypeService _employeeTypeService;
         private IUserHelper _userHelper;
 
-        public EmployeeController(IEmployeeService employeeService, IUserHelper userHelper)
+        public EmployeeController(
+            IEmployeeService employeeService,
+            IGenderService genderService,
+            IBranchService branchService,
+            IEmployeeTypeService employeeTypeService,
+            IUserHelper userHelper)
         {
             _employeeService = employeeService;
+            _genderService = genderService;
+            _branchService = branchService;
+            _employeeTypeService = employeeTypeService;
             _userHelper = userHelper;
         }
 
@@ -63,15 +75,6 @@ namespace ScopoMFinance.Web.Areas.Common.Controllers
                     orderBy = x => x.EmployeeType.Name;
                     break;
                 case 8:
-                    orderBy = x => x.Address;
-                    break;
-                case 9:
-                    orderBy = x => x.PhoneNo;
-                    break;
-                case 10:
-                    orderBy = x => x.Remarks;
-                    break;
-                case 11:
                     orderBy = x => x.IsActive;
                     break;
             }
@@ -93,5 +96,91 @@ namespace ScopoMFinance.Web.Areas.Common.Controllers
             ViewBag.Title = EmployeeStrings.List_Title;
             return View(employeeList);
         }
+
+        [HttpGet]
+        public ActionResult Setup(int? id)
+        {
+            EmployeeEditViewModel vm = null;
+
+            if (!id.HasValue)
+            {
+                ViewBag.Title = EmployeeStrings.Create_Title;
+                vm = new EmployeeEditViewModel() {
+                    JoiningDate = _userHelper.Get().DayOpenClose.SystemDate,
+                    IsActive = true
+                };
+
+                if (_userHelper.Get().IsHeadOffice)
+                    vm.BranchId = _userHelper.Get().BranchId;
+            }
+            else
+            {
+                ViewBag.Title = EmployeeStrings.Edit_Title;
+                vm = _employeeService.GetEmployeeById(id.Value);
+            }
+
+            if (vm == null)
+            {
+                SystemMessages.Add(CommonStrings.No_Record, true, true);
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.GenderDropDown = new SelectList(_genderService.GetGenderDropDown(), "Value", "Text");
+            ViewBag.EmployeeTypeDropDown = new SelectList(_employeeTypeService.GetEmployeeTypeDropDown(), "Value", "Text");
+
+            if (_userHelper.Get().IsHeadOffice)
+                ViewBag.BranchDropDown = new SelectList(_branchService.GetBranchDropDown(), "Value", "Text");
+
+            return View("Setup", vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Setup(EmployeeEditViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (vm.Id > 0)
+                    {
+                        ViewBag.Title = EmployeeStrings.Edit_Title;
+
+                        if (_employeeService.UpdateEmployee(vm))
+                            SystemMessages.Add(EmployeeStrings.Employee_Edit_Update_Success_Msg, false, true);
+                        else
+                            SystemMessages.Add(CommonStrings.No_Record, true, true);
+                    }
+                    else
+                    {
+                        ViewBag.Title = EmployeeStrings.Create_Title;
+                        
+                        _employeeService.CreateEmployee(vm);
+                        SystemMessages.Add(EmployeeStrings.Employee_Edit_Create_Success_Msg, false, true);
+                    }
+
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    SystemMessages.Add(CommonStrings.Server_Error, true, true);
+                }
+            }
+
+            ViewBag.GenderDropDown = new SelectList(_genderService.GetGenderDropDown(), "Value", "Text");
+            ViewBag.EmployeeTypeDropDown = new SelectList(_employeeTypeService.GetEmployeeTypeDropDown(), "Value", "Text");
+
+            if (_userHelper.Get().IsHeadOffice)
+                ViewBag.BranchDropDown = new SelectList(_branchService.GetBranchDropDown(), "Value", "Text");
+
+            return View("Setup", vm);
+        }
+
+        [HttpGet]
+        public ActionResult IsEmployeeNoAvailable(string employeeNo, int id)
+        {
+            return Json(!string.IsNullOrWhiteSpace(employeeNo) && _employeeService.IsEmployeeNoAvailable(employeeNo, id) == true, JsonRequestBehavior.AllowGet);
+        }
+        
     }
 }

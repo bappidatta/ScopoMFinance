@@ -65,7 +65,7 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
                     orderBy = x => x.Employees.Count(e => e.IsActive && e.IsCreditOfficer);
                     break;
                 case 6:
-                    orderBy = x => x.BranchWiseProjectMappings.Count(p => p.Project.IsActive);
+                    orderBy = x => x.Projects.Count(p => p.IsActive);
                     break;
                 case 7:
                     orderBy = x => x.UserBranches.Count(u => u.UserProfile.IsActive);

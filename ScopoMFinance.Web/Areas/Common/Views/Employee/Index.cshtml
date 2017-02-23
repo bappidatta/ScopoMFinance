@@ -43,16 +43,7 @@
                                 @Html.SortableHeaderActionLink(@Html.DisplayNameFor(model => model.FirstOrDefault().EmployeeType), "Index", null, null, null, 7)
                             </th>
                             <th>
-                                @Html.SortableHeaderActionLink(@Html.DisplayNameFor(model => model.FirstOrDefault().Address), "Index", null, null, null, 8)
-                            </th>
-                            <th>
-                                @Html.SortableHeaderActionLink(@Html.DisplayNameFor(model => model.FirstOrDefault().PhoneNo), "Index", null, null, null, 9)
-                            </th>
-                            <th>
-                                @Html.SortableHeaderActionLink(@Html.DisplayNameFor(model => model.FirstOrDefault().Remarks), "Index", null, null, null, 10)
-                            </th>
-                            <th>
-                                @Html.SortableHeaderActionLink(@Html.DisplayNameFor(model => model.FirstOrDefault().IsActive), "Index", null, null, null, 11)
+                                @Html.SortableHeaderActionLink(@Html.DisplayNameFor(model => model.FirstOrDefault().IsActive), "Index", null, null, null, 8)
                             </th>
                             <th></th>
                         </tr>
@@ -76,28 +67,29 @@
                                         @Html.DisplayFor(modelItem => item.EmployeeName)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.IsCreditOfficer)
+                                        @if (item.IsCreditOfficer)
+                                        {
+                                            <i class="icon-active fa fa-check-circle fa-2x"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="icon-inactive fa fa-times fa-2x"></i>
+                                        }
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.JoiningDate)
+                                        @item.JoiningDate.ToString(NtitasCommon.Localization.CommonStrings.Date_Format)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.ResignDate)
+                                        @if (item.ResignDate != null)
+                                        {
+                                            @item.ResignDate.Value.ToString(NtitasCommon.Localization.CommonStrings.Date_Format)
+                                        }
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Gender)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.EmployeeType)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Address)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.PhoneNo)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Remarks)
                                     </td>
                                     <td>
                                         @if (item.IsActive)
@@ -110,10 +102,10 @@
                                         }
                                     </td>
                                     <td>
-                                        <a href="#" data-toggle="modal" class="__lnkDelete __dialog" data-url="Common/Employee/Delete/@item.Id">
+                                        <a href="#" data-toggle="modal" class="__lnkDelete __dialog" data-url="/Common/Employee/Delete/@item.Id">
                                             <i class="fa fa-archive fa-2x" data-toggle="tooltip" title="Delete"></i>
                                         </a>
-                                        <a href="Common/Employee/Setup/@item.Id" class="__lnkEdit">
+                                        <a href="/Common/Employee/Setup/@item.Id" class="__lnkEdit">
                                             <i class="fa fa-pencil fa-2x" data-toggle="tooltip" title="Edit"></i>
                                         </a>
                                     </td>

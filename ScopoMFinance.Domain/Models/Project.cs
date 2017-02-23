@@ -17,8 +17,8 @@ namespace ScopoMFinance.Domain.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Project()
         {
-            this.BranchWiseProjectMappings = new HashSet<BranchWiseProjectMapping>();
-            this.ProjectWiseProductMappings = new HashSet<ProjectWiseProductMapping>();
+            this.Branches = new HashSet<Branch>();
+            this.Products = new HashSet<Product>();
         }
     
         public int Id { get; set; }
@@ -32,11 +32,11 @@ namespace ScopoMFinance.Domain.Models
         public System.DateTime SystemDate { get; set; }
         public System.DateTime SetDate { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BranchWiseProjectMapping> BranchWiseProjectMappings { get; set; }
         public virtual SysDonor SysDonor { get; set; }
         public virtual ProjectType ProjectType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProjectWiseProductMapping> ProjectWiseProductMappings { get; set; }
+        public virtual ICollection<Branch> Branches { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

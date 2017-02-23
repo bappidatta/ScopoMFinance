@@ -46,6 +46,25 @@
           <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
         <EntityType Name="AspNetUserRoles">
           <Key>
             <PropertyRef Name="UserId" />
@@ -86,9 +105,9 @@
         </EntityType>
         <EntityType Name="BranchWiseProjectMapping">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="BranchId" />
+            <PropertyRef Name="ProjectId" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BranchId" Type="int" Nullable="false" />
           <Property Name="ProjectId" Type="int" Nullable="false" />
         </EntityType>
@@ -105,8 +124,8 @@
           <Property Name="ResignDate" Type="datetime" />
           <Property Name="GenderId" Type="int" Nullable="false" />
           <Property Name="EmployeeTypeId" Type="int" Nullable="false" />
-          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="PhoneNo" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="PhoneNo" Type="nvarchar" MaxLength="20" />
           <Property Name="Remarks" Type="nvarchar(max)" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
@@ -157,9 +176,10 @@
         </EntityType>
         <EntityType Name="OrgCreditOfficer">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="BranchId" />
+            <PropertyRef Name="EmployeeId" />
+            <PropertyRef Name="OrganizationId" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BranchId" Type="int" Nullable="false" />
           <Property Name="EmployeeId" Type="int" Nullable="false" />
           <Property Name="OrganizationId" Type="int" Nullable="false" />
@@ -223,9 +243,9 @@
         </EntityType>
         <EntityType Name="ProjectWiseProductMapping">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ProjectId" />
+            <PropertyRef Name="ProductId" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProjectId" Type="int" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
         </EntityType>
@@ -433,6 +453,34 @@
             </Principal>
             <Dependent Role="AccDayOpenClose">
               <PropertyRef Name="CloseRequestBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -781,6 +829,8 @@
           <EntitySet Name="AccDayCloseProgress" EntityType="Self.AccDayCloseProgress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AccDayOpenClose" EntityType="Self.AccDayOpenClose" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
@@ -830,6 +880,14 @@
           <AssociationSet Name="FK_DayOpenClose_UserProfile" Association="Self.FK_DayOpenClose_UserProfile">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="AccDayOpenClose" EntitySet="AccDayOpenClose" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
@@ -952,10 +1010,11 @@
           <EntitySet Name="AccDayCloseProcesses" EntityType="ScopoMFinanceModel.AccDayCloseProcess" />
           <EntitySet Name="AccDayCloseProgresses" EntityType="ScopoMFinanceModel.AccDayCloseProgress" />
           <EntitySet Name="AccDayOpenCloses" EntityType="ScopoMFinanceModel.AccDayOpenClose" />
-          <EntitySet Name="AspNetUserRoles" EntityType="ScopoMFinanceModel.AspNetUserRole" />
+          <EntitySet Name="AspNetRoles" EntityType="ScopoMFinanceModel.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="ScopoMFinanceModel.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="ScopoMFinanceModel.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="ScopoMFinanceModel.AspNetUser" />
           <EntitySet Name="Branches" EntityType="ScopoMFinanceModel.Branch" />
-          <EntitySet Name="BranchWiseProjectMappings" EntityType="ScopoMFinanceModel.BranchWiseProjectMapping" />
           <EntitySet Name="Employees" EntityType="ScopoMFinanceModel.Employee" />
           <EntitySet Name="EmployeeTypes" EntityType="ScopoMFinanceModel.EmployeeType" />
           <EntitySet Name="Organizations" EntityType="ScopoMFinanceModel.Organization" />
@@ -965,7 +1024,6 @@
           <EntitySet Name="ProductTypes" EntityType="ScopoMFinanceModel.ProductType" />
           <EntitySet Name="Projects" EntityType="ScopoMFinanceModel.Project" />
           <EntitySet Name="ProjectTypes" EntityType="ScopoMFinanceModel.ProjectType" />
-          <EntitySet Name="ProjectWiseProductMappings" EntityType="ScopoMFinanceModel.ProjectWiseProductMapping" />
           <EntitySet Name="SysColcOptions" EntityType="ScopoMFinanceModel.SysColcOption" />
           <EntitySet Name="SysDistricts" EntityType="ScopoMFinanceModel.SysDistrict" />
           <EntitySet Name="SysDivisions" EntityType="ScopoMFinanceModel.SysDivision" />
@@ -994,17 +1052,17 @@
             <End Role="UserProfile" EntitySet="UserProfiles" />
             <End Role="AccDayOpenClose" EntitySet="AccDayOpenCloses" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="ScopoMFinanceModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="ScopoMFinanceModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserRole" EntitySet="AspNetUserRoles" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="ScopoMFinanceModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
           </AssociationSet>
           <AssociationSet Name="FK_UserProfile_AspNetUser" Association="ScopoMFinanceModel.FK_UserProfile_AspNetUser">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="UserProfile" EntitySet="UserProfiles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BranchProject_Branch" Association="ScopoMFinanceModel.FK_BranchProject_Branch">
-            <End Role="Branch" EntitySet="Branches" />
-            <End Role="BranchWiseProjectMapping" EntitySet="BranchWiseProjectMappings" />
           </AssociationSet>
           <AssociationSet Name="FK_Employee_Branch" Association="ScopoMFinanceModel.FK_Employee_Branch">
             <End Role="Branch" EntitySet="Branches" />
@@ -1025,10 +1083,6 @@
           <AssociationSet Name="FK_UserLogin_Branch" Association="ScopoMFinanceModel.FK_UserLogin_Branch">
             <End Role="Branch" EntitySet="Branches" />
             <End Role="UserLoginAudit" EntitySet="UserLoginAudits" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BranchProject_Project" Association="ScopoMFinanceModel.FK_BranchProject_Project">
-            <End Role="Project" EntitySet="Projects" />
-            <End Role="BranchWiseProjectMapping" EntitySet="BranchWiseProjectMappings" />
           </AssociationSet>
           <AssociationSet Name="FK_Employee_EmployeeType" Association="ScopoMFinanceModel.FK_Employee_EmployeeType">
             <End Role="EmployeeType" EntitySet="EmployeeTypes" />
@@ -1066,10 +1120,6 @@
             <End Role="ProductType" EntitySet="ProductTypes" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProjectProduct_Product" Association="ScopoMFinanceModel.FK_ProjectProduct_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="ProjectWiseProductMapping" EntitySet="ProjectWiseProductMappings" />
-          </AssociationSet>
           <AssociationSet Name="FK_Project_Donor" Association="ScopoMFinanceModel.FK_Project_Donor">
             <End Role="SysDonor" EntitySet="SysDonors" />
             <End Role="Project" EntitySet="Projects" />
@@ -1077,10 +1127,6 @@
           <AssociationSet Name="FK_Project_ProjectType" Association="ScopoMFinanceModel.FK_Project_ProjectType">
             <End Role="ProjectType" EntitySet="ProjectTypes" />
             <End Role="Project" EntitySet="Projects" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProjectProduct_Project" Association="ScopoMFinanceModel.FK_ProjectProduct_Project">
-            <End Role="Project" EntitySet="Projects" />
-            <End Role="ProjectWiseProductMapping" EntitySet="ProjectWiseProductMappings" />
           </AssociationSet>
           <AssociationSet Name="FK_District_Division" Association="ScopoMFinanceModel.FK_District_Division">
             <End Role="SysDivision" EntitySet="SysDivisions" />
@@ -1110,10 +1156,17 @@
             <End Role="UserProfile" EntitySet="UserProfiles" />
             <End Role="UserLoginAudit" EntitySet="UserLoginAudits" />
           </AssociationSet>
-          <EntitySet Name="AspNetRoles" EntityType="ScopoMFinanceModel.AspNetRole" />
-          <AssociationSet Name="AspNetUserRoles1" Association="ScopoMFinanceModel.AspNetUserRoles">
+          <AssociationSet Name="AspNetUserRoles" Association="ScopoMFinanceModel.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="BranchWiseProjectMapping" Association="ScopoMFinanceModel.BranchWiseProjectMapping">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="ProjectWiseProductMapping" Association="ScopoMFinanceModel.ProjectWiseProductMapping">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Project" EntitySet="Projects" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AccDayCloseProcess">
@@ -1156,14 +1209,34 @@
           <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_DayOpenClose_Branch" FromRole="AccDayOpenClose" ToRole="Branch" />
           <NavigationProperty Name="UserProfile" Relationship="ScopoMFinanceModel.FK_DayOpenClose_UserProfile" FromRole="AccDayOpenClose" ToRole="UserProfile" />
         </EntityType>
-        <EntityType Name="AspNetUserRole">
+        <EntityType Name="AspNetRole">
           <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="ScopoMFinanceModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="RoleId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="ScopoMFinanceModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUserRole" ToRole="AspNetUser" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="ScopoMFinanceModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="ScopoMFinanceModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="AspNetUser">
           <Key>
@@ -1184,7 +1257,8 @@
           <Property Name="LastPasswordChangedDate" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="PasswordResetToken" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="PasswordResetTokenExpireDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="AspNetUserRoles" Relationship="ScopoMFinanceModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserRole" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="ScopoMFinanceModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="ScopoMFinanceModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
           <NavigationProperty Name="UserProfile" Relationship="ScopoMFinanceModel.FK_UserProfile_AspNetUser" FromRole="AspNetUser" ToRole="UserProfile" />
           <NavigationProperty Name="AspNetRoles" Relationship="ScopoMFinanceModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
         </EntityType>
@@ -1198,22 +1272,12 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsHeadOffice" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="AccDayOpenCloses" Relationship="ScopoMFinanceModel.FK_DayOpenClose_Branch" FromRole="Branch" ToRole="AccDayOpenClose" />
-          <NavigationProperty Name="BranchWiseProjectMappings" Relationship="ScopoMFinanceModel.FK_BranchProject_Branch" FromRole="Branch" ToRole="BranchWiseProjectMapping" />
           <NavigationProperty Name="Employees" Relationship="ScopoMFinanceModel.FK_Employee_Branch" FromRole="Branch" ToRole="Employee" />
           <NavigationProperty Name="Organizations" Relationship="ScopoMFinanceModel.FK_Org_Branch" FromRole="Branch" ToRole="Organization" />
           <NavigationProperty Name="OrgCreditOfficers" Relationship="ScopoMFinanceModel.FK_OrgCO_Branch" FromRole="Branch" ToRole="OrgCreditOfficer" />
           <NavigationProperty Name="UserBranches" Relationship="ScopoMFinanceModel.FK_UserBranch_Branch" FromRole="Branch" ToRole="UserBranch" />
           <NavigationProperty Name="UserLoginAudits" Relationship="ScopoMFinanceModel.FK_UserLogin_Branch" FromRole="Branch" ToRole="UserLoginAudit" />
-        </EntityType>
-        <EntityType Name="BranchWiseProjectMapping">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BranchId" Type="Int32" Nullable="false" />
-          <Property Name="ProjectId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_BranchProject_Branch" FromRole="BranchWiseProjectMapping" ToRole="Branch" />
-          <NavigationProperty Name="Project" Relationship="ScopoMFinanceModel.FK_BranchProject_Project" FromRole="BranchWiseProjectMapping" ToRole="Project" />
+          <NavigationProperty Name="Projects" Relationship="ScopoMFinanceModel.BranchWiseProjectMapping" FromRole="Branch" ToRole="Project" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -1228,8 +1292,8 @@
           <Property Name="ResignDate" Type="DateTime" Precision="3" />
           <Property Name="GenderId" Type="Int32" Nullable="false" />
           <Property Name="EmployeeTypeId" Type="Int32" Nullable="false" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
@@ -1292,9 +1356,10 @@
         </EntityType>
         <EntityType Name="OrgCreditOfficer">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="BranchId" />
+            <PropertyRef Name="EmployeeId" />
+            <PropertyRef Name="OrganizationId" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="BranchId" Type="Int32" Nullable="false" />
           <Property Name="EmployeeId" Type="Int32" Nullable="false" />
           <Property Name="OrganizationId" Type="Int32" Nullable="false" />
@@ -1322,7 +1387,7 @@
           <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="ProductType" Relationship="ScopoMFinanceModel.FK_Product_ProductType" FromRole="Product" ToRole="ProductType" />
-          <NavigationProperty Name="ProjectWiseProductMappings" Relationship="ScopoMFinanceModel.FK_ProjectProduct_Product" FromRole="Product" ToRole="ProjectWiseProductMapping" />
+          <NavigationProperty Name="Projects" Relationship="ScopoMFinanceModel.ProjectWiseProductMapping" FromRole="Product" ToRole="Project" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
@@ -1350,10 +1415,10 @@
           <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="BranchWiseProjectMappings" Relationship="ScopoMFinanceModel.FK_BranchProject_Project" FromRole="Project" ToRole="BranchWiseProjectMapping" />
           <NavigationProperty Name="SysDonor" Relationship="ScopoMFinanceModel.FK_Project_Donor" FromRole="Project" ToRole="SysDonor" />
           <NavigationProperty Name="ProjectType" Relationship="ScopoMFinanceModel.FK_Project_ProjectType" FromRole="Project" ToRole="ProjectType" />
-          <NavigationProperty Name="ProjectWiseProductMappings" Relationship="ScopoMFinanceModel.FK_ProjectProduct_Project" FromRole="Project" ToRole="ProjectWiseProductMapping" />
+          <NavigationProperty Name="Branches" Relationship="ScopoMFinanceModel.BranchWiseProjectMapping" FromRole="Project" ToRole="Branch" />
+          <NavigationProperty Name="Products" Relationship="ScopoMFinanceModel.ProjectWiseProductMapping" FromRole="Project" ToRole="Product" />
         </EntityType>
         <EntityType Name="ProjectType">
           <Key>
@@ -1366,16 +1431,6 @@
           <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Projects" Relationship="ScopoMFinanceModel.FK_Project_ProjectType" FromRole="ProjectType" ToRole="Project" />
-        </EntityType>
-        <EntityType Name="ProjectWiseProductMapping">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProjectId" Type="Int32" Nullable="false" />
-          <Property Name="ProductId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="ScopoMFinanceModel.FK_ProjectProduct_Product" FromRole="ProjectWiseProductMapping" ToRole="Product" />
-          <NavigationProperty Name="Project" Relationship="ScopoMFinanceModel.FK_ProjectProduct_Project" FromRole="ProjectWiseProductMapping" ToRole="Project" />
         </EntityType>
         <EntityType Name="SysColcOption">
           <Key>
@@ -1583,16 +1638,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="ScopoMFinanceModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="ScopoMFinanceModel.AspNetUserRole" Role="AspNetUserRole" Multiplicity="*" />
+          <End Type="ScopoMFinanceModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUser">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="AspNetUserRole">
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="ScopoMFinanceModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ScopoMFinanceModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1606,18 +1675,6 @@
             </Principal>
             <Dependent Role="UserProfile">
               <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BranchProject_Branch">
-          <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="1" />
-          <End Type="ScopoMFinanceModel.BranchWiseProjectMapping" Role="BranchWiseProjectMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Branch">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="BranchWiseProjectMapping">
-              <PropertyRef Name="BranchId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1678,18 +1735,6 @@
             </Principal>
             <Dependent Role="UserLoginAudit">
               <PropertyRef Name="BranchId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BranchProject_Project">
-          <End Type="ScopoMFinanceModel.Project" Role="Project" Multiplicity="1" />
-          <End Type="ScopoMFinanceModel.BranchWiseProjectMapping" Role="BranchWiseProjectMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Project">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="BranchWiseProjectMapping">
-              <PropertyRef Name="ProjectId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1801,18 +1846,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProjectProduct_Product">
-          <End Type="ScopoMFinanceModel.Product" Role="Product" Multiplicity="1" />
-          <End Type="ScopoMFinanceModel.ProjectWiseProductMapping" Role="ProjectWiseProductMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ProjectWiseProductMapping">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Project_Donor">
           <End Type="ScopoMFinanceModel.SysDonor" Role="SysDonor" Multiplicity="0..1" />
           <End Type="ScopoMFinanceModel.Project" Role="Project" Multiplicity="*" />
@@ -1834,18 +1867,6 @@
             </Principal>
             <Dependent Role="Project">
               <PropertyRef Name="ProjectTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProjectProduct_Project">
-          <End Type="ScopoMFinanceModel.Project" Role="Project" Multiplicity="1" />
-          <End Type="ScopoMFinanceModel.ProjectWiseProductMapping" Role="ProjectWiseProductMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Project">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ProjectWiseProductMapping">
-              <PropertyRef Name="ProjectId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1933,17 +1954,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="AspNetRole">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUsers" Relationship="ScopoMFinanceModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
-        </EntityType>
         <Association Name="AspNetUserRoles">
           <End Type="ScopoMFinanceModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="ScopoMFinanceModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <Association Name="BranchWiseProjectMapping">
+          <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="*" />
+          <End Type="ScopoMFinanceModel.Project" Role="Project" Multiplicity="*" />
+        </Association>
+        <Association Name="ProjectWiseProductMapping">
+          <End Type="ScopoMFinanceModel.Product" Role="Product" Multiplicity="*" />
+          <End Type="ScopoMFinanceModel.Project" Role="Project" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -1988,11 +2009,30 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUserRoles">
-            <EntityTypeMapping TypeName="ScopoMFinanceModel.AspNetUserRole">
-              <MappingFragment StoreEntitySet="AspNetUserRoles">
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2024,15 +2064,6 @@
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="OpenDate" ColumnName="OpenDate" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BranchWiseProjectMappings">
-            <EntityTypeMapping TypeName="ScopoMFinanceModel.BranchWiseProjectMapping">
-              <MappingFragment StoreEntitySet="BranchWiseProjectMapping">
-                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2116,7 +2147,6 @@
                 <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="BranchId" ColumnName="BranchId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2171,15 +2201,6 @@
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProjectWiseProductMappings">
-            <EntityTypeMapping TypeName="ScopoMFinanceModel.ProjectWiseProductMapping">
-              <MappingFragment StoreEntitySet="ProjectWiseProductMapping">
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2331,20 +2352,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="ScopoMFinanceModel.AspNetRole">
-              <MappingFragment StoreEntitySet="AspNetRoles">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles1" TypeName="ScopoMFinanceModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="ScopoMFinanceModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetUser">
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
             <EndProperty Name="AspNetRole">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="BranchWiseProjectMapping" TypeName="ScopoMFinanceModel.BranchWiseProjectMapping" StoreEntitySet="BranchWiseProjectMapping">
+            <EndProperty Name="Project">
+              <ScalarProperty Name="Id" ColumnName="ProjectId" />
+            </EndProperty>
+            <EndProperty Name="Branch">
+              <ScalarProperty Name="Id" ColumnName="BranchId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ProjectWiseProductMapping" TypeName="ScopoMFinanceModel.ProjectWiseProductMapping" StoreEntitySet="ProjectWiseProductMapping">
+            <EndProperty Name="Project">
+              <ScalarProperty Name="Id" ColumnName="ProjectId" />
+            </EndProperty>
+            <EndProperty Name="Product">
+              <ScalarProperty Name="Id" ColumnName="ProductId" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>
