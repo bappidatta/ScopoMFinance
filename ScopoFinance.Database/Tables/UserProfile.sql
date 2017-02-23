@@ -5,7 +5,6 @@
     [LastName] NVARCHAR(255) NOT NULL, 
     [MobileNo] NVARCHAR(14) NOT NULL, 
     [IsActive] BIT NOT NULL DEFAULT 1, 
-    [IsDeleted] BIT NOT NULL DEFAULT 0, 
     [ResUserId] NVARCHAR(128) NOT NULL, 
 	[SystemDate] DATETIME NOT NULL,
     [SetDate] DATETIME NOT NULL,

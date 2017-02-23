@@ -14,4 +14,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="LoggedInTime" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="526149f6-113e-41a5-8d42-2b6b923f91b9" ChangeDateTime="02/23/2017 05:32:32">
+    <Property Name="ElementName" Value="[dbo].[Branch].[Status]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Branch]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IsActive" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1eafae16-f6ad-448c-ac42-e3d734905706" ChangeDateTime="02/23/2017 05:36:59">
+    <Property Name="ElementName" Value="[dbo].[Organization].[LoanColcOption]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Organization]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MeetingFrequency" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7d1f938b-a7d2-4891-8dba-931f47fa6071" ChangeDateTime="02/23/2017 05:37:10">
+    <Property Name="ElementName" Value="[dbo].[Organization].[FirstLoanColcDate]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Organization]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MeetingDate" />
+  </Operation>
 </Operations>
