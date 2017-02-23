@@ -27,7 +27,6 @@ namespace ScopoMFinance.Domain.Models
         public string LastName { get; set; }
         public string MobileNo { get; set; }
         public bool IsActive { get; set; }
-        public bool IsDeleted { get; set; }
         public string ResUserId { get; set; }
         public System.DateTime SystemDate { get; set; }
         public System.DateTime SetDate { get; set; }

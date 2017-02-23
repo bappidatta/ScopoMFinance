@@ -33,7 +33,7 @@ namespace ScopoMFinance.Core.Services
 
         public List<DropDownHelper> GetBranchDropDown()
         {
-            var branchDropDown = from c in _uow.BranchRepository.Get(c => c.Status == true)
+            var branchDropDown = from c in _uow.BranchRepository.Get(c => c.IsActive == true)
                                  select new DropDownHelper()
                                  {
                                      Value = c.Id,
@@ -55,11 +55,11 @@ namespace ScopoMFinance.Core.Services
                                   Name = c.Name,
                                   OpenDate = c.OpenDate,
                                   IsHeadOffice = c.IsHeadOffice,
-                                  Status = c.Status,
-                                  OrgCount = c.Organizations.Count(o => o.IsActive && !o.IsDeleted),
-                                  COCount = c.Employees.Count(e => e.IsActive && !e.IsDeleted && e.IsCreditOfficer),
-                                  UserCount = c.UserBranches.Count(u => u.UserProfile.IsActive && !u.UserProfile.IsDeleted),
-                                  ProjectCount = c.BranchWiseProjectMappings.Count(p => p.Project.IsActive && !p.Project.IsDeleted)
+                                  IsActive = c.IsActive,
+                                  OrgCount = c.Organizations.Count(o => o.IsActive),
+                                  COCount = c.Employees.Count(e => e.IsActive && e.IsCreditOfficer),
+                                  UserCount = c.UserBranches.Count(u => u.UserProfile.IsActive),
+                                  ProjectCount = c.BranchWiseProjectMappings.Count(p => p.Project.IsActive)
                               }).Page(pageNumber, pageSize, out psettings);
 
             return branchList.ToPList(psettings);
@@ -72,7 +72,7 @@ namespace ScopoMFinance.Core.Services
                 Name = vm.Name,
                 OpenDate = vm.OpenDate,
                 IsHeadOffice = vm.IsHeadOffice,
-                Status = vm.Status
+                IsActive = vm.IsActive
             };
 
             _uow.BranchRepository.Insert(branch);
@@ -87,7 +87,7 @@ namespace ScopoMFinance.Core.Services
                 Name = vm.Name,
                 OpenDate = vm.OpenDate,
                 IsHeadOffice = vm.IsHeadOffice,
-                Status = vm.Status
+                IsActive = vm.IsActive
             };
 
             _uow.BranchRepository.Update(branch);
@@ -103,7 +103,7 @@ namespace ScopoMFinance.Core.Services
                         IsHeadOffice = c.IsHeadOffice,
                         Name = c.Name,
                         OpenDate = c.OpenDate,
-                        Status = c.Status
+                        IsActive = c.IsActive
                     }).SingleOrDefault();
         }
     }

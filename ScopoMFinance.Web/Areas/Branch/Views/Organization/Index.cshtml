@@ -23,11 +23,9 @@
                             <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().OrganizationName), "Index", null, null, null, 2)</th>
                             <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().Gender), "Index", null, null, null, 3)</th>
                             <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().SetupDate), "Index", null, null, null, 4)</th>
-                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().LoanColcOption), "Index", null, null, null, 5)</th>
-                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().SavColcOption), "Index", null, null, null, 6)</th>
-                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().FirstLoanColcDate), "Index", null, null, null, 7)</th>
-                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().FirstSavColcDate), "Index", null, null, null, 8)</th>
-                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().IsActive), "Index", null, null, null, 9)</th>
+                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().MeetingFrequency), "Index", null, null, null, 5)</th>
+                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().MeetingDate), "Index", null, null, null, 6)</th>
+                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().IsActive), "Index", null, null, null, 7)</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -42,10 +40,8 @@
                                     <td>@item.OrganizationName</td>
                                     <td>@item.Gender</td>
                                     <td>@item.SetupDate.ToString(NtitasCommon.Localization.CommonStrings.Date_Format)</td>
-                                    <td>@item.LoanColcOption</td>
-                                    <td>@item.SavColcOption</td>
-                                    <td>@item.FirstLoanColcDate.ToString(NtitasCommon.Localization.CommonStrings.Date_Format)</td>
-                                    <td>@item.FirstSavColcDate.ToString(NtitasCommon.Localization.CommonStrings.Date_Format)</td>
+                                    <td>@item.MeetingFrequency</td>
+                                    <td>@item.MeetingDate.ToString(NtitasCommon.Localization.CommonStrings.Date_Format)</td>
                                     <td>
                                         @if (item.IsActive)
                                         {

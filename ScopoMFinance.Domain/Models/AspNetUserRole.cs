@@ -12,16 +12,11 @@ namespace ScopoMFinance.Domain.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SysThana
+    public partial class AspNetUserRole
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int UnionId { get; set; }
-        public bool IsActive { get; set; }
         public string UserId { get; set; }
-        public System.DateTime SystemDate { get; set; }
-        public System.DateTime SetDate { get; set; }
+        public string RoleId { get; set; }
     
-        public virtual SysUnion SysUnion { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

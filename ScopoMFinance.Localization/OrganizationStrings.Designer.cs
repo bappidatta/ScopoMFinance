@@ -97,6 +97,24 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Meeting Date.
+        /// </summary>
+        public static string Organization_Edit_DN_MeetingDate {
+            get {
+                return ResourceManager.GetString("Organization_Edit_DN_MeetingDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Meeting Frequency.
+        /// </summary>
+        public static string Organization_Edit_DN_MeetingFrequency {
+            get {
+                return ResourceManager.GetString("Organization_Edit_DN_MeetingFrequency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Organization Category.
         /// </summary>
         public static string Organization_Edit_DN_OrgCategory {
@@ -106,38 +124,11 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to First Loan Collection Date.
-        /// </summary>
-        public static string Organization_Edit_DN_OrgFirstLoanColcDate {
-            get {
-                return ResourceManager.GetString("Organization_Edit_DN_OrgFirstLoanColcDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to First Savings Collection Date.
-        /// </summary>
-        public static string Organization_Edit_DN_OrgFirstSavColcDate {
-            get {
-                return ResourceManager.GetString("Organization_Edit_DN_OrgFirstSavColcDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Gender.
         /// </summary>
         public static string Organization_Edit_DN_OrgGender {
             get {
                 return ResourceManager.GetString("Organization_Edit_DN_OrgGender", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Loan Collection Option.
-        /// </summary>
-        public static string Organization_Edit_DN_OrgLoanColcOption {
-            get {
-                return ResourceManager.GetString("Organization_Edit_DN_OrgLoanColcOption", resourceCulture);
             }
         }
         
@@ -156,15 +147,6 @@ namespace ScopoMFinance.Localization {
         public static string Organization_Edit_DN_OrgNo {
             get {
                 return ResourceManager.GetString("Organization_Edit_DN_OrgNo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Savings Collection Option.
-        /// </summary>
-        public static string Organization_Edit_DN_OrgSavColcOption {
-            get {
-                return ResourceManager.GetString("Organization_Edit_DN_OrgSavColcOption", resourceCulture);
             }
         }
         
@@ -223,6 +205,24 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Meeting Date.
+        /// </summary>
+        public static string Organization_List_DN_MeetingDate {
+            get {
+                return ResourceManager.GetString("Organization_List_DN_MeetingDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Meeting Frequency.
+        /// </summary>
+        public static string Organization_List_DN_MeetingFrequency {
+            get {
+                return ResourceManager.GetString("Organization_List_DN_MeetingFrequency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Category.
         /// </summary>
         public static string Organization_List_DN_OrgCategory {
@@ -232,38 +232,11 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to First Loan Collection Date.
-        /// </summary>
-        public static string Organization_List_DN_OrgFirstLoanColcDate {
-            get {
-                return ResourceManager.GetString("Organization_List_DN_OrgFirstLoanColcDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to First Savings Collection Date.
-        /// </summary>
-        public static string Organization_List_DN_OrgFirstSavColcDate {
-            get {
-                return ResourceManager.GetString("Organization_List_DN_OrgFirstSavColcDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Gender.
         /// </summary>
         public static string Organization_List_DN_OrgGender {
             get {
                 return ResourceManager.GetString("Organization_List_DN_OrgGender", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Loan Collection Option.
-        /// </summary>
-        public static string Organization_List_DN_OrgLoanColcOption {
-            get {
-                return ResourceManager.GetString("Organization_List_DN_OrgLoanColcOption", resourceCulture);
             }
         }
         
@@ -282,15 +255,6 @@ namespace ScopoMFinance.Localization {
         public static string Organization_List_DN_OrgNo {
             get {
                 return ResourceManager.GetString("Organization_List_DN_OrgNo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Savings Collection Option.
-        /// </summary>
-        public static string Organization_List_DN_OrgSavColcOption {
-            get {
-                return ResourceManager.GetString("Organization_List_DN_OrgSavColcOption", resourceCulture);
             }
         }
         

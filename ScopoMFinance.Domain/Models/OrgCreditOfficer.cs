@@ -21,7 +21,6 @@ namespace ScopoMFinance.Domain.Models
         public System.DateTime AssignedDate { get; set; }
         public Nullable<System.DateTime> ReleaseDate { get; set; }
         public bool IsActive { get; set; }
-        public bool IsDeleted { get; set; }
         public string UserId { get; set; }
         public System.DateTime SystemDate { get; set; }
         public System.DateTime SetDate { get; set; }

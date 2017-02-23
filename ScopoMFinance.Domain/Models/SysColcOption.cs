@@ -17,21 +17,17 @@ namespace ScopoMFinance.Domain.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SysColcOption()
         {
-            this.OrganizationsLoan = new HashSet<Organization>();
-            this.OrganizationsSavings = new HashSet<Organization>();
+            this.Organizations = new HashSet<Organization>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
         public bool IsActive { get; set; }
-        public bool IsDeleted { get; set; }
         public string UserId { get; set; }
         public System.DateTime SystemDate { get; set; }
         public System.DateTime SetDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Organization> OrganizationsLoan { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Organization> OrganizationsSavings { get; set; }
+        public virtual ICollection<Organization> Organizations { get; set; }
     }
 }

@@ -32,27 +32,19 @@ namespace ScopoMFinance.Domain.ViewModels.Org
         [Display(Name = "Organization_List_DN_OrgSetupDate", ResourceType = typeof(OrganizationStrings))]
         public DateTime SetupDate { get; set; }
 
-        public int LoanColcOptionId { get; set; }
+        public int MeetingFrequencyId { get; set; }
 
-        [Display(Name = "Organization_List_DN_OrgLoanColcOption", ResourceType = typeof(OrganizationStrings))]
-        public string LoanColcOption { get; set; }
+        [Display(Name = "Organization_List_DN_MeetingFrequency", ResourceType = typeof(OrganizationStrings))]
+        public string MeetingFrequency { get; set; }
 
-        public int SavColcOptionId { get; set; }
+        [Display(Name = "Organization_List_DN_MeetingDate", ResourceType = typeof(OrganizationStrings))]
+        public System.DateTime MeetingDate { get; set; }
 
-        [Display(Name = "Organization_List_DN_OrgSavColcOption", ResourceType = typeof(OrganizationStrings))]
-        public string SavColcOption { get; set; }
-
-        [Display(Name = "Organization_List_DN_OrgFirstLoanColcDate", ResourceType = typeof(OrganizationStrings))]
-        public System.DateTime FirstLoanColcDate { get; set; }
-
-        [Display(Name = "Organization_List_DN_OrgFirstSavColcDate", ResourceType = typeof(OrganizationStrings))]
-        public System.DateTime FirstSavColcDate { get; set; }
         public Nullable<int> VillageId { get; set; }
         public string Village { get; set; }
 
         [Display(Name = "Organization_List_DN_IsActive", ResourceType = typeof(OrganizationStrings))]
         public bool IsActive { get; set; }
-        public bool IsDeleted { get; set; }
 
         public string UserId { get; set; }
         public System.DateTime SystemDate { get; set; }

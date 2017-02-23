@@ -24,7 +24,6 @@ namespace ScopoMFinance.Domain.Models
         public string CategoryCode { get; set; }
         public string CategoryName { get; set; }
         public bool IsActive { get; set; }
-        public bool IsDeleted { get; set; }
         public string UserId { get; set; }
         public System.DateTime SystemDate { get; set; }
         public System.DateTime SetDate { get; set; }

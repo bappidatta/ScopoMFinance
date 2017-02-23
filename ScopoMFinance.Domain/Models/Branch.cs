@@ -29,7 +29,7 @@ namespace ScopoMFinance.Domain.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public System.DateTime OpenDate { get; set; }
-        public bool Status { get; set; }
+        public bool IsActive { get; set; }
         public bool IsHeadOffice { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

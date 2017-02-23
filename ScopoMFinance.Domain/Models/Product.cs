@@ -26,7 +26,6 @@ namespace ScopoMFinance.Domain.Models
         public decimal InterestRate { get; set; }
         public int ProductTypeId { get; set; }
         public bool IsActive { get; set; }
-        public bool IsDeleted { get; set; }
         public string UserId { get; set; }
         public System.DateTime SystemDate { get; set; }
         public System.DateTime SetDate { get; set; }

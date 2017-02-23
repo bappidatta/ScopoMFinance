@@ -53,11 +53,11 @@ namespace ScopoMFinance.Core.Services
             Expression<Func<Employee, bool>> filter = null;
 
             if (_userHelper.Get().IsHeadOffice)
-                filter = x => x.Id == id && x.IsDeleted == false;
+                filter = x => x.Id == id;
             else
             {
                 int branchId = _userHelper.Get().BranchId;
-                filter = x => x.Id == id && x.IsDeleted == false && x.BranchId == branchId;
+                filter = x => x.Id == id && x.BranchId == branchId;
             }
 
             return (from c in _uow.EmployeeRepository.Get(filter)
@@ -140,7 +140,7 @@ namespace ScopoMFinance.Core.Services
 
         public EmployeeEditViewModel GetEmployeeById(int id)
         {
-            var employee = (from c in _uow.EmployeeRepository.Get(x => x.Id == id && x.IsDeleted == false)
+            var employee = (from c in _uow.EmployeeRepository.Get(x => x.Id == id)
                             select new EmployeeEditViewModel
                             {
                                 Id = c.Id,

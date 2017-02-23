@@ -87,10 +87,10 @@
     <Compile Include="Models\AccDayOpenClose.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AspNetRole.cs">
+    <Compile Include="Models\AspNetUser.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AspNetUser.cs">
+    <Compile Include="Models\AspNetUserRole.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Branch.cs">

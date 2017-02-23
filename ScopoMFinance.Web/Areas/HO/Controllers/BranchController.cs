@@ -56,19 +56,19 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
                     orderBy = x => x.IsHeadOffice;
                     break;
                 case 3:
-                    orderBy = x => x.Status;
+                    orderBy = x => x.IsActive;
                     break;
                 case 4:
-                    orderBy = x => x.Organizations.Count(o => o.IsActive && !o.IsDeleted);
+                    orderBy = x => x.Organizations.Count(o => o.IsActive);
                     break;
                 case 5:
-                    orderBy = x => x.Employees.Count(e => e.IsActive && !e.IsDeleted && e.IsCreditOfficer);
+                    orderBy = x => x.Employees.Count(e => e.IsActive && e.IsCreditOfficer);
                     break;
                 case 6:
-                    orderBy = x => x.BranchWiseProjectMappings.Count(p => p.Project.IsActive && !p.Project.IsDeleted);
+                    orderBy = x => x.BranchWiseProjectMappings.Count(p => p.Project.IsActive);
                     break;
                 case 7:
-                    orderBy = x => x.UserBranches.Count(u => u.UserProfile.IsActive && !u.UserProfile.IsDeleted);
+                    orderBy = x => x.UserBranches.Count(u => u.UserProfile.IsActive);
                     break;
             }
 
@@ -94,7 +94,7 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
             if (!id.HasValue)
             {
                 ViewBag.Title = "Create Branch";
-                return View(new BranchEditViewModel() { OpenDate = DateTime.Now, Status = true });
+                return View(new BranchEditViewModel() { OpenDate = DateTime.Now, IsActive = true });
             }
 
             BranchEditViewModel vm = _branchService.GetBranchById(id.Value);

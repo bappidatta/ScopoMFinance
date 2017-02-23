@@ -24,7 +24,7 @@ namespace ScopoMFinance.Core.Services
 
         public List<DropDownHelper> GetGenderDropDown()
         {
-            var genderDropDown = from c in _uow.GenderRepository.Get(x => x.IsActive == true && x.IsDeleted == false)
+            var genderDropDown = from c in _uow.GenderRepository.Get(x => x.IsActive == true)
                                  select new DropDownHelper()
                                  {
                                      Value = c.Id,

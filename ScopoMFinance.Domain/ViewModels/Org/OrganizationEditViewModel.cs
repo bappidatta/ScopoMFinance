@@ -37,20 +37,12 @@ namespace ScopoMFinance.Domain.ViewModels.Org
         public DateTime SetupDate { get; set; }
 
         [Required]
-        [Display(Name = "Organization_Edit_DN_OrgLoanColcOption", ResourceType = typeof(OrganizationStrings))]
-        public int LoanColcOptionId { get; set; }
+        [Display(Name = "Organization_Edit_DN_MeetingFrequency", ResourceType = typeof(OrganizationStrings))]
+        public int MeetingFrequencyId { get; set; }
 
         [Required]
-        [Display(Name = "Organization_Edit_DN_OrgSavColcOption", ResourceType = typeof(OrganizationStrings))]
-        public int SavColcOptionId { get; set; }
-
-        [Required]
-        [Display(Name = "Organization_Edit_DN_OrgFirstLoanColcDate", ResourceType = typeof(OrganizationStrings))]
-        public DateTime FirstLoanColcDate { get; set; }
-
-        [Required]
-        [Display(Name = "Organization_Edit_DN_OrgFirstSavColcDate", ResourceType = typeof(OrganizationStrings))]
-        public DateTime FirstSavColcDate { get; set; }
+        [Display(Name = "Organization_Edit_DN_MeetingDate", ResourceType = typeof(OrganizationStrings))]
+        public DateTime MeetingDate { get; set; }
 
         [Display(Name = "Organization_Edit_DN_OrgVillage", ResourceType = typeof(OrganizationStrings))]
         public Nullable<int> VillageId { get; set; }

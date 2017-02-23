@@ -47,7 +47,7 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
         {
             int branchId = _userHelper.Get().BranchId;
 
-            Expression<Func<Organization, bool>> filter = x => x.BranchId == branchId && x.IsDeleted == false;
+            Expression<Func<Organization, bool>> filter = x => x.BranchId == branchId;
 
             Expression<Func<Organization, object>> orderBy = null;
             switch (sortCol)
@@ -69,18 +69,12 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
                     orderBy = x => x.SetupDate;
                     break;
                 case 5:
-                    orderBy = x => x.SysColcOptionLoan.Name;
+                    orderBy = x => x.SysColcOption.Name;
                     break;
                 case 6:
-                    orderBy = x => x.SysColcOptionSavings.Name;
+                    orderBy = x => x.MeetingDate;
                     break;
                 case 7:
-                    orderBy = x => x.FirstLoanColcDate;
-                    break;
-                case 8:
-                    orderBy = x => x.FirstSavColcDate;
-                    break;
-                case 9:
                     orderBy = x => x.IsActive;
                     break;
             };
@@ -111,8 +105,7 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
                 DateTime systemDate = _userHelper.Get().DayOpenClose.SystemDate;
                 return View(new OrganizationEditViewModel() {
                     SetupDate = systemDate,
-                    FirstLoanColcDate = systemDate,
-                    FirstSavColcDate = systemDate,
+                    MeetingDate = systemDate,
                     IsActive = true
                 });
             }
@@ -125,8 +118,7 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
 
                 ViewBag.OrgCategoryDropDown = new SelectList(_orgCategoryService.GetOrgCategoryDropDown(), "Value", "Text", vm.OrgCategoryId);
                 ViewBag.GenderDropDown = new SelectList(_genderService.GetGenderDropDown(), "Value", "Text", vm.GenderId);
-                ViewBag.LoanCollectionOptionDropDown = new SelectList(_colcOptionService.GetColcOptionDropDown(), "Value", "Text", vm.LoanColcOptionId);
-                ViewBag.SavingsCollectionOptionDropDown = new SelectList(_colcOptionService.GetColcOptionDropDown(), "Value", "Text", vm.SavColcOptionId);
+                ViewBag.CollectionOptionDropDown = new SelectList(_colcOptionService.GetColcOptionDropDown(), "Value", "Text", vm.MeetingFrequencyId);
 
                 return View(vm);
             }
@@ -166,8 +158,7 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
 
             ViewBag.OrgCategoryDropDown = new SelectList(_orgCategoryService.GetOrgCategoryDropDown(), "Value", "Text", vm.OrgCategoryId);
             ViewBag.GenderDropDown = new SelectList(_genderService.GetGenderDropDown(), "Value", "Text", vm.GenderId);
-            ViewBag.LoanCollectionOptionDropDown = new SelectList(_colcOptionService.GetColcOptionDropDown(), "Value", "Text", vm.LoanColcOptionId);
-            ViewBag.SavingsCollectionOptionDropDown = new SelectList(_colcOptionService.GetColcOptionDropDown(), "Value", "Text", vm.SavColcOptionId);
+            ViewBag.CollectionOptionDropDown = new SelectList(_colcOptionService.GetColcOptionDropDown(), "Value", "Text", vm.MeetingFrequencyId);
 
             return View(vm);
         }

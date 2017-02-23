@@ -76,12 +76,10 @@ namespace ScopoMFinance.Web.Areas.Common.Controllers
                     break;
             }
 
-            if (_userHelper.Get().IsHeadOffice)
-                filter = x => x.IsDeleted == false;
-            else
+            if (!_userHelper.Get().IsHeadOffice)
             {
                 int branchId = _userHelper.Get().BranchId;
-                filter = x => x.IsDeleted == false && x.BranchId == branchId;
+                filter = x => x.BranchId == branchId;
             }
 
             PList<EmployeeListViewModel> employeeList = _employeeService.GetEmployeeList(index, orderBy, sortDir, filter);

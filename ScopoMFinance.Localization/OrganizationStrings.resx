@@ -129,29 +129,23 @@
   <data name="Organization_Edit_DN_IsActive" xml:space="preserve">
     <value>Active</value>
   </data>
+  <data name="Organization_Edit_DN_MeetingDate" xml:space="preserve">
+    <value>Meeting Date</value>
+  </data>
+  <data name="Organization_Edit_DN_MeetingFrequency" xml:space="preserve">
+    <value>Meeting Frequency</value>
+  </data>
   <data name="Organization_Edit_DN_OrgCategory" xml:space="preserve">
     <value>Organization Category</value>
   </data>
-  <data name="Organization_Edit_DN_OrgFirstLoanColcDate" xml:space="preserve">
-    <value>First Loan Collection Date</value>
-  </data>
-  <data name="Organization_Edit_DN_OrgFirstSavColcDate" xml:space="preserve">
-    <value>First Savings Collection Date</value>
-  </data>
   <data name="Organization_Edit_DN_OrgGender" xml:space="preserve">
     <value>Gender</value>
-  </data>
-  <data name="Organization_Edit_DN_OrgLoanColcOption" xml:space="preserve">
-    <value>Loan Collection Option</value>
   </data>
   <data name="Organization_Edit_DN_OrgName" xml:space="preserve">
     <value>Organization Name</value>
   </data>
   <data name="Organization_Edit_DN_OrgNo" xml:space="preserve">
     <value>Organization No</value>
-  </data>
-  <data name="Organization_Edit_DN_OrgSavColcOption" xml:space="preserve">
-    <value>Savings Collection Option</value>
   </data>
   <data name="Organization_Edit_DN_OrgSetupDate" xml:space="preserve">
     <value>Setup Date</value>
@@ -171,29 +165,23 @@
   <data name="Organization_List_DN_IsActive" xml:space="preserve">
     <value>Active</value>
   </data>
+  <data name="Organization_List_DN_MeetingDate" xml:space="preserve">
+    <value>Meeting Date</value>
+  </data>
+  <data name="Organization_List_DN_MeetingFrequency" xml:space="preserve">
+    <value>Meeting Frequency</value>
+  </data>
   <data name="Organization_List_DN_OrgCategory" xml:space="preserve">
     <value>Category</value>
   </data>
-  <data name="Organization_List_DN_OrgFirstLoanColcDate" xml:space="preserve">
-    <value>First Loan Collection Date</value>
-  </data>
-  <data name="Organization_List_DN_OrgFirstSavColcDate" xml:space="preserve">
-    <value>First Savings Collection Date</value>
-  </data>
   <data name="Organization_List_DN_OrgGender" xml:space="preserve">
     <value>Gender</value>
-  </data>
-  <data name="Organization_List_DN_OrgLoanColcOption" xml:space="preserve">
-    <value>Loan Collection Option</value>
   </data>
   <data name="Organization_List_DN_OrgName" xml:space="preserve">
     <value>Organization Name</value>
   </data>
   <data name="Organization_List_DN_OrgNo" xml:space="preserve">
     <value>Organization No</value>
-  </data>
-  <data name="Organization_List_DN_OrgSavColcOption" xml:space="preserve">
-    <value>Savings Collection Option</value>
   </data>
   <data name="Organization_List_DN_OrgSetupDate" xml:space="preserve">
     <value>Setup Date</value>

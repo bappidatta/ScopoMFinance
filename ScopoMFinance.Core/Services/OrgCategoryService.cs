@@ -24,7 +24,7 @@ namespace ScopoMFinance.Core.Services
         public List<DropDownHelper> GetOrgCategoryDropDown()
         {
             var orgCategoryDropDown = from c in _uow.OrgCategoryRepository.Get()
-                                 where c.IsActive == true && c.IsDeleted == false
+                                 where c.IsActive == true
                                  select new DropDownHelper()
                                  {
                                      Value = c.Id,

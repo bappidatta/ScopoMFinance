@@ -45,7 +45,7 @@ namespace ScopoMFinance.Core.Services
             int branchId = _userHelper.Get().BranchId;
 
             return (from c in _uow.OrganizationRepository
-                                      .Get(x => x.Id == id && x.BranchId == branchId && x.IsDeleted == false)
+                                      .Get(x => x.Id == id && x.BranchId == branchId)
                     select c).SingleOrDefault();
         }
 
@@ -71,16 +71,12 @@ namespace ScopoMFinance.Core.Services
                                GenderId = c.GenderId,
                                Gender = c.SysGender.Name,
                                SetupDate = c.SetupDate,
-                               LoanColcOptionId = c.LoanColcOption,
-                               LoanColcOption = c.SysColcOptionLoan.Name,
-                               SavColcOptionId = c.SavColcOption,
-                               SavColcOption = c.SysColcOptionSavings.Name,
-                               FirstLoanColcDate = c.FirstLoanColcDate,
-                               FirstSavColcDate = c.FirstSavColcDate,
+                               MeetingFrequencyId = c.MeetingFrequency,
+                               MeetingFrequency = c.SysColcOption.Name,
+                               MeetingDate = c.MeetingDate,
                                VillageId = c.VillageId,
                                Village = c.SysVillage.Name,
                                IsActive = c.IsActive,
-                               IsDeleted = c.IsDeleted,
                                SystemDate = c.SystemDate,
                                UserId = c.UserId,
                                SetDate = c.SetDate
@@ -93,7 +89,7 @@ namespace ScopoMFinance.Core.Services
         {
             int branchId = _userHelper.Get().BranchId;
 
-            return (from c in _uow.OrganizationRepository.Get(x => x.Id == orgId && x.BranchId == branchId && x.IsDeleted == false)
+            return (from c in _uow.OrganizationRepository.Get(x => x.Id == orgId && x.BranchId == branchId)
                     select new OrganizationEditViewModel
                     {
                         Id = c.Id,
@@ -103,10 +99,8 @@ namespace ScopoMFinance.Core.Services
                         OrgCategoryId = c.OrgCategoryId,
                         GenderId = c.GenderId,
                         SetupDate = c.SetupDate,
-                        LoanColcOptionId = c.LoanColcOption,
-                        SavColcOptionId = c.SavColcOption,
-                        FirstLoanColcDate = c.FirstLoanColcDate,
-                        FirstSavColcDate = c.FirstSavColcDate,
+                        MeetingFrequencyId = c.MeetingFrequency,
+                        MeetingDate = c.MeetingDate,
                         VillageId = c.VillageId,
                         IsActive = c.IsActive
                     }).SingleOrDefault();
@@ -122,12 +116,9 @@ namespace ScopoMFinance.Core.Services
                 OrgCategoryId = vm.OrgCategoryId,
                 GenderId = vm.GenderId,
                 SetupDate = _userHelper.Get().DayOpenClose.SystemDate,
-                LoanColcOption = vm.LoanColcOptionId,
-                SavColcOption = vm.SavColcOptionId,
-                FirstLoanColcDate = vm.FirstLoanColcDate,
-                FirstSavColcDate = vm.FirstSavColcDate,
+                MeetingFrequency = vm.MeetingFrequencyId,
+                MeetingDate = vm.MeetingDate,
                 IsActive = vm.IsActive,
-                IsDeleted = false,
                 SystemDate = _userHelper.Get().DayOpenClose.SystemDate,
                 UserId = _userHelper.Get().UserId,
                 SetDate = DateTime.Now
@@ -146,10 +137,8 @@ namespace ScopoMFinance.Core.Services
             model.OrganizationNo = vm.OrganizationNo;
             model.OrganizationName = vm.OrganizationName;
             model.IsActive = vm.IsActive;
-            model.LoanColcOption = vm.LoanColcOptionId;
-            model.SavColcOption = vm.SavColcOptionId;
-            model.FirstSavColcDate = vm.FirstSavColcDate;
-            model.FirstLoanColcDate = vm.FirstLoanColcDate;
+            model.MeetingFrequency = vm.MeetingFrequencyId;
+            model.MeetingDate = vm.MeetingDate;
             model.UserId = _userHelper.Get().UserId;
             model.SetDate = DateTime.Now;
             model.SystemDate = _userHelper.Get().DayOpenClose.SystemDate;
@@ -162,9 +151,7 @@ namespace ScopoMFinance.Core.Services
         {
             Organization model = GetOrganization(orgId);
 
-            model.IsDeleted = true;
-
-            _uow.OrganizationRepository.Update(model);
+            _uow.OrganizationRepository.Delete(model);
             _uow.Save();
         }
 
@@ -177,7 +164,7 @@ namespace ScopoMFinance.Core.Services
                 if (string.IsNullOrWhiteSpace(orgNo))
                     return false;
 
-                return !_uow.OrganizationRepository.Get().Any(x => x.Id != orgId && x.BranchId == branchId && x.OrganizationNo == orgNo && x.IsDeleted == false);
+                return !_uow.OrganizationRepository.Get().Any(x => x.Id != orgId && x.BranchId == branchId && x.OrganizationNo == orgNo);
             }
             catch (Exception ex)
             {

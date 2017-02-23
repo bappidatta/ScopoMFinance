@@ -22,7 +22,7 @@
                             <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().Name), "Index", null, null, null, 0)</th>
                             <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().OpenDate), "Index", null, null, null, 1)</th>
                             <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().IsHeadOffice), "Index", null, null, null, 2)</th>
-                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().Status), "Index", null, null, null, 3)</th>
+                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().IsActive), "Index", null, null, null, 3)</th>
                             <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().OrgCount), "Index", null, null, null, 4)</th>
                             <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().COCount), "Index", null, null, null, 5)</th>
                             <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().ProjectCount), "Index", null, null, null, 6)</th>
@@ -48,7 +48,7 @@
                                         }
                                     </td>
                                     <td>
-                                        @if (item.Status)
+                                        @if (item.IsActive)
                                         {
                                             <i class="icon-active fa fa-check-circle fa-2x"></i>
                                         }

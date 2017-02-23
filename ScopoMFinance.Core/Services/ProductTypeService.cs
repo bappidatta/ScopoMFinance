@@ -24,7 +24,7 @@ namespace ScopoMFinance.Core.Services
 
         public List<DropDownHelper> GetProductTypeDropDown()
         {
-            var productTypeDropDown = from c in _uow.ProductTypeRepository.Get(x => x.IsActive == true && x.IsDeleted == false)
+            var productTypeDropDown = from c in _uow.ProductTypeRepository.Get(x => x.IsActive == true)
                                       select new DropDownHelper()
                                       {
                                           Value = c.Id,

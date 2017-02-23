@@ -23,8 +23,7 @@ namespace ScopoMFinance.Core.Services
 
         public List<DropDownHelper> GetColcOptionDropDown()
         {
-            var colcOptionDropDown = from c in _uow.ColcOptionRepository.Get()
-                                 where c.IsActive == true && c.IsDeleted == false
+            var colcOptionDropDown = from c in _uow.ColcOptionRepository.Get(x => x.IsActive == true)
                                  select new DropDownHelper()
                                  {
                                      Value = c.Id,

@@ -25,10 +25,6 @@ namespace ScopoMFinance.Domain.ViewModels.Employee
 
         [UIHint("Hidden")]
         [HiddenInput]
-        public bool IsDeleted { get; set; }
-
-        [UIHint("Hidden")]
-        [HiddenInput]
         public string UserId { get; set; }
 
         [UIHint("Hidden")]

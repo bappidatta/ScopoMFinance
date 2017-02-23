@@ -35,7 +35,7 @@ namespace ScopoMFinance.Core.Services
         public UserCacheViewModel GetUserCache(string username)
         {
             var userCache = from c in _uow.UserProfileRepository.Get()
-                            where c.IsActive == true && c.IsDeleted == false && c.AspNetUser.UserName == username
+                            where c.IsActive == true && c.AspNetUser.UserName == username
                             select new UserCacheViewModel()
                             {
                                 BranchId = c.UserBranches.FirstOrDefault().BranchId,

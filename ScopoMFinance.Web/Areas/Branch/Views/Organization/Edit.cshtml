@@ -41,30 +41,16 @@
                 </div>
 
                 <div class="form-group row">
-                    @Html.LabelFor(m => m.LoanColcOptionId, new { @class = "col-md-3 control-label" })
+                    @Html.LabelFor(m => m.MeetingFrequencyId, new { @class = "col-md-3 control-label" })
                     <div class="col-md-3">
-                        @Html.DropDownListFor(m => m.LoanColcOptionId, ViewBag.LoanCollectionOptionDropDown as SelectList, "Select Collection Option", new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.LoanColcOptionId, "", new { @class = "text-danger" })
+                        @Html.DropDownListFor(m => m.MeetingFrequencyId, ViewBag.LoanCollectionOptionDropDown as SelectList, "Select Collection Option", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.MeetingFrequencyId, "", new { @class = "text-danger" })
                     </div>
 
-                    @Html.LabelFor(m => m.FirstLoanColcDate, new { @class = "col-md-3 control-label" })
+                    @Html.LabelFor(m => m.MeetingDate, new { @class = "col-md-3 control-label" })
                     <div class="col-md-3">
-                        @Html.TextBoxFor(m => m.FirstLoanColcDate, "{0:" + NtitasCommon.Localization.CommonStrings.Date_Format + "}", new { @class = "form-control datepicker" })
-                        @Html.ValidationMessageFor(m => m.FirstLoanColcDate, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    @Html.LabelFor(m => m.SavColcOptionId, new { @class = "col-md-3 control-label" })
-                    <div class="col-md-3">
-                        @Html.DropDownListFor(m => m.SavColcOptionId, ViewBag.SavingsCollectionOptionDropDown as SelectList, "Select Collection Option", new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.SavColcOptionId, "", new { @class = "text-danger" })
-                    </div>
-
-                    @Html.LabelFor(m => m.FirstSavColcDate, new { @class = "col-md-3 control-label" })
-                    <div class="col-md-3">
-                        @Html.TextBoxFor(m => m.FirstSavColcDate, "{0:" + NtitasCommon.Localization.CommonStrings.Date_Format + "}", new { @class = "form-control datepicker" })
-                        @Html.ValidationMessageFor(m => m.FirstSavColcDate, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(m => m.MeetingDate, "{0:" + NtitasCommon.Localization.CommonStrings.Date_Format + "}", new { @class = "form-control datepicker" })
+                        @Html.ValidationMessageFor(m => m.MeetingDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
 

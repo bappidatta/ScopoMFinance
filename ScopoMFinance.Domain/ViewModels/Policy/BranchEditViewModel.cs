@@ -24,6 +24,6 @@ namespace ScopoMFinance.Domain.ViewModels.Policy
         public bool IsHeadOffice { get; set; }
 
         [Display(Name = "Branch_List_DN_BranchStatus", ResourceType = typeof(BranchStrings))]
-        public bool Status { get; set; }
+        public bool IsActive { get; set; }
     }
 }

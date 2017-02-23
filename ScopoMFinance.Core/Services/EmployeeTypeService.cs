@@ -49,13 +49,13 @@ namespace ScopoMFinance.Core.Services
         private EmployeeType GetEmployeeType(int id)
         {
             return (from c in _uow.EmployeeTypeRepository
-                                      .Get(x => x.Id == id && x.IsDeleted == false)
+                                      .Get(x => x.Id == id)
                     select c).SingleOrDefault();
         }
 
         public List<DropDownHelper> GetEmployeeTypeDropDown()
         {
-            var employeeTypeDropDown = from c in _uow.EmployeeTypeRepository.Get(x => x.IsActive == true && x.IsDeleted == false)
+            var employeeTypeDropDown = from c in _uow.EmployeeTypeRepository.Get(x => x.IsActive == true)
                                        select new DropDownHelper()
                                        {
                                            Value = c.Id,
@@ -80,7 +80,6 @@ namespace ScopoMFinance.Core.Services
                                     Id = c.Id,
                                     Name = c.Name,
                                     IsActive = c.IsActive,
-                                    IsDeleted = c.IsDeleted,
                                     UserId = c.UserId,
                                     SetDate = c.SetDate,
                                     SystemDate = c.SystemDate
@@ -100,7 +99,6 @@ namespace ScopoMFinance.Core.Services
                                     Id = c.Id,
                                     Name = c.Name,
                                     IsActive = c.IsActive,
-                                    IsDeleted = c.IsDeleted,
                                     UserId = c.UserId,
                                     SetDate = c.SetDate,
                                     SystemDate = c.SystemDate
@@ -111,13 +109,12 @@ namespace ScopoMFinance.Core.Services
 
         public EmployeeTypeEditViewModel GetEmployeeTypeById(int id)
         {
-            return (from c in _uow.EmployeeTypeRepository.Get(x=>x.Id == id && x.IsDeleted == false)
+            return (from c in _uow.EmployeeTypeRepository.Get(x=>x.Id == id)
                     select new EmployeeTypeEditViewModel
                     {
                         Id = c.Id,
                         Name = c.Name,
                         IsActive = c.IsActive,
-                        IsDeleted = c.IsDeleted,
                         UserId = c.UserId,
                         SetDate = c.SetDate,
                         SystemDate = c.SystemDate

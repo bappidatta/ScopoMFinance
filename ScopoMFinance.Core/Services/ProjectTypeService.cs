@@ -32,7 +32,7 @@ namespace ScopoMFinance.Core.Services
 
         public List<DropDownHelper> GetProjectTypeDropDown()
         {
-            var projectTypeDropDown = from c in _uow.ProjectTypeRepository.Get(x => x.IsActive == true && x.IsDeleted == false)
+            var projectTypeDropDown = from c in _uow.ProjectTypeRepository.Get(x => x.IsActive == true)
                                       select new DropDownHelper()
                                       {
                                           Value = c.Id,
