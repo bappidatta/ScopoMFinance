@@ -1,5 +1,5 @@
-﻿using ScopoMFinance.Core.Helpers;
-using ScopoMFinance.Domain.Repositories;
+﻿using ScopoMFinance.Domain.Repositories;
+using ScopoMFinance.Domain.ViewModels.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace ScopoMFinance.Core.Services
 {
     public interface IProductTypeService
     {
-        List<DropDownHelper> GetProductTypeDropDown();
+        List<DropDownViewModel> GetProductTypeDropDown();
     }
 
     public class ProductTypeService : IProductTypeService
@@ -22,10 +22,10 @@ namespace ScopoMFinance.Core.Services
             _uow = uow;
         }
 
-        public List<DropDownHelper> GetProductTypeDropDown()
+        public List<DropDownViewModel> GetProductTypeDropDown()
         {
             var productTypeDropDown = from c in _uow.ProductTypeRepository.Get(x => x.IsActive == true)
-                                      select new DropDownHelper()
+                                      select new DropDownViewModel()
                                       {
                                           Value = c.Id,
                                           Text = c.Name

@@ -3,6 +3,7 @@ using NtitasCommon.Core.Helpers;
 using ScopoMFinance.Core.Helpers;
 using ScopoMFinance.Domain.Models;
 using ScopoMFinance.Domain.Repositories;
+using ScopoMFinance.Domain.ViewModels.Common;
 using ScopoMFinance.Domain.ViewModels.Employee;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace ScopoMFinance.Core.Services
 {
     public interface IEmployeeTypeService
     {
-        List<DropDownHelper> GetEmployeeTypeDropDown();
+        List<DropDownViewModel> GetEmployeeTypeDropDown();
 
         PList<EmployeeTypeListViewModel> GetEmployeeTypeList(
             int pageNumber,
@@ -53,10 +54,10 @@ namespace ScopoMFinance.Core.Services
                     select c).SingleOrDefault();
         }
 
-        public List<DropDownHelper> GetEmployeeTypeDropDown()
+        public List<DropDownViewModel> GetEmployeeTypeDropDown()
         {
             var employeeTypeDropDown = from c in _uow.EmployeeTypeRepository.Get(x => x.IsActive == true)
-                                       select new DropDownHelper()
+                                       select new DropDownViewModel()
                                        {
                                            Value = c.Id,
                                            Text = c.Name

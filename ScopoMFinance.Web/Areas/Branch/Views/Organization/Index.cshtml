@@ -1,14 +1,11 @@
 ﻿@model PList<ScopoMFinance.Domain.ViewModels.Org.OrganizationListViewModel>
-@{
-    ViewBag.Title = "Organization List";
-}
 <section class="panel">
     <div class="panel-heading">
         <h3>@ViewBag.Title</h3>
     </div>
     <div class="panel-body row">
         <div class="col-md-12">
-            @Html.ActionLink("New Organization", "Edit", new { area = "Branch", controller = "Organization" }, new { @class = "btn btn-primary" })
+            @Html.ActionLink(OrganizationStrings.Organization_List_Create_Button, "Edit", new { area = "Branch", controller = "Organization" }, new { @class = "btn btn-primary" })
             <div class="list-count-container">
                 <div class="list-count">
                     @Html.Partial("_ResultCountMessage", new ResultCountHelper { ItemCount = Model.Pager.TotalRecords })

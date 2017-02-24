@@ -1,5 +1,5 @@
-﻿using ScopoMFinance.Core.Helpers;
-using ScopoMFinance.Domain.Repositories;
+﻿using ScopoMFinance.Domain.Repositories;
+using ScopoMFinance.Domain.ViewModels.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace ScopoMFinance.Core.Services
 {
     public interface IOrgCategoryService
     {
-        List<DropDownHelper> GetOrgCategoryDropDown();
+        List<DropDownViewModel> GetOrgCategoryDropDown();
     }
     public class OrgCategoryService : IOrgCategoryService
     {
@@ -21,11 +21,11 @@ namespace ScopoMFinance.Core.Services
             _uow = uow;
         }
 
-        public List<DropDownHelper> GetOrgCategoryDropDown()
+        public List<DropDownViewModel> GetOrgCategoryDropDown()
         {
             var orgCategoryDropDown = from c in _uow.OrgCategoryRepository.Get()
                                  where c.IsActive == true
-                                 select new DropDownHelper()
+                                 select new DropDownViewModel()
                                  {
                                      Value = c.Id,
                                      Text = "(" + c.CategoryCode + ") " + c.CategoryName

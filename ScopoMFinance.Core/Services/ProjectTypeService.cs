@@ -1,7 +1,7 @@
 ﻿using NtitasCommon.Core.Common;
-using ScopoMFinance.Core.Helpers;
 using ScopoMFinance.Domain.Models;
 using ScopoMFinance.Domain.Repositories;
+using ScopoMFinance.Domain.ViewModels.Common;
 using ScopoMFinance.Domain.ViewModels.Policy;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace ScopoMFinance.Core.Services
 {
     public interface IProjectTypeService
     {
-        List<DropDownHelper> GetProjectTypeDropDown();
+        List<DropDownViewModel> GetProjectTypeDropDown();
         ProjectTypeSetupViewModel GetProjectTypeById(int projectTypeId);
         PList<ProjectTypeListViewModel> GetProjectTypeList(int pageNumber, int pageSize, Expression<Func<ProjectType, object>> orderBy = null, SortDirection sortDir = SortDirection.Asc);
         void CreateProjectType(ProjectTypeSetupViewModel vm);
@@ -30,10 +30,10 @@ namespace ScopoMFinance.Core.Services
             _uow = uow;
         }
 
-        public List<DropDownHelper> GetProjectTypeDropDown()
+        public List<DropDownViewModel> GetProjectTypeDropDown()
         {
             var projectTypeDropDown = from c in _uow.ProjectTypeRepository.Get(x => x.IsActive == true)
-                                      select new DropDownHelper()
+                                      select new DropDownViewModel()
                                       {
                                           Value = c.Id,
                                           Text = c.Name

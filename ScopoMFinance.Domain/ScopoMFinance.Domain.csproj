@@ -185,10 +185,12 @@
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
     <Compile Include="ViewModels\Acc\DayOpenCloseViewModel.cs" />
+    <Compile Include="ViewModels\Common\DropDownViewModel.cs" />
     <Compile Include="ViewModels\Employee\EmployeeEditViewModel.cs" />
     <Compile Include="ViewModels\Employee\EmployeeListViewModel.cs" />
     <Compile Include="ViewModels\Employee\EmployeeTypeEditViewModel.cs" />
     <Compile Include="ViewModels\Employee\EmployeeTypeListViewModel.cs" />
+    <Compile Include="ViewModels\Org\OrgCOMappingViewModel.cs" />
     <Compile Include="ViewModels\Org\OrganizationEditViewModel.cs" />
     <Compile Include="ViewModels\Org\OrganizationListViewModel.cs" />
     <Compile Include="ViewModels\Policy\BranchEditViewModel.cs" />

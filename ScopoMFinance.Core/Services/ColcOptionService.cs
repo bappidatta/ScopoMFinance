@@ -1,5 +1,5 @@
-﻿using ScopoMFinance.Core.Helpers;
-using ScopoMFinance.Domain.Repositories;
+﻿using ScopoMFinance.Domain.Repositories;
+using ScopoMFinance.Domain.ViewModels.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace ScopoMFinance.Core.Services
 {
     public interface IColcOptionService
     {
-        List<DropDownHelper> GetColcOptionDropDown();
+        List<DropDownViewModel> GetColcOptionDropDown();
     }
     public class ColcOptionService : IColcOptionService
     {
@@ -21,10 +21,10 @@ namespace ScopoMFinance.Core.Services
             _uow = uow;
         }
 
-        public List<DropDownHelper> GetColcOptionDropDown()
+        public List<DropDownViewModel> GetColcOptionDropDown()
         {
             var colcOptionDropDown = from c in _uow.ColcOptionRepository.Get(x => x.IsActive == true)
-                                 select new DropDownHelper()
+                                 select new DropDownViewModel()
                                  {
                                      Value = c.Id,
                                      Text = c.Name

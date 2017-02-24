@@ -27,6 +27,8 @@ namespace ScopoMFinance.Core.Services
         void UpdateOrganization(OrganizationEditViewModel vm);
         void DeleteOrganization(int orgId);
         bool IsOrgNoAvailable(string orgNo, int orgId);
+
+        List<MappedOrganizationViewModel> GetMappedOrganizationList(int creditOfficerId);
     }
 
     public class OrganizationService : IOrganizationService
@@ -169,6 +171,29 @@ namespace ScopoMFinance.Core.Services
             catch (Exception ex)
             {
                 return false;
+            }
+        }
+
+        public List<MappedOrganizationViewModel> GetMappedOrganizationList(int creditOfficerId)
+        {
+            int branchId = _userHelper.Get().BranchId;
+
+            try
+            {
+                var mappedList = (from c in _uow.OrganizationRepository.Get(x => x.BranchId == branchId && x.OrgCreditOfficers.All(i => i.BranchId == branchId && i.EmployeeId == creditOfficerId))
+                                    .Order(x => x.OrganizationNo, SortDirection.Asc)
+                                  select new MappedOrganizationViewModel
+                                  {
+                                      OrganizationId = c.Id,
+                                      OrganizationName = "(" + c.OrganizationNo + ") " + c.OrganizationName,
+                                      Checked = c.OrgCreditOfficers.Any(i => i.BranchId == branchId && i.EmployeeId == creditOfficerId)
+                                  }).ToList();
+
+                return mappedList;
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
         }
     }

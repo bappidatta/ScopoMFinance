@@ -1,5 +1,5 @@
-﻿using ScopoMFinance.Core.Helpers;
-using ScopoMFinance.Domain.Repositories;
+﻿using ScopoMFinance.Domain.Repositories;
+using ScopoMFinance.Domain.ViewModels.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace ScopoMFinance.Core.Services
 {
     public interface IGenderService
     {
-        List<DropDownHelper> GetGenderDropDown();
+        List<DropDownViewModel> GetGenderDropDown();
     }
 
     public class GenderService : IGenderService
@@ -22,10 +22,10 @@ namespace ScopoMFinance.Core.Services
             _uow = uow;
         }
 
-        public List<DropDownHelper> GetGenderDropDown()
+        public List<DropDownViewModel> GetGenderDropDown()
         {
             var genderDropDown = from c in _uow.GenderRepository.Get(x => x.IsActive == true)
-                                 select new DropDownHelper()
+                                 select new DropDownViewModel()
                                  {
                                      Value = c.Id,
                                      Text = c.Name

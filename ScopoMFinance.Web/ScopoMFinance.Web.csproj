@@ -210,6 +210,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Branch\Scripts\Organization\index.js" />
+    <Content Include="Areas\Branch\Scripts\Organization\MapCreditOfficer.js" />
     <Content Include="Areas\Common\Scripts\Employee\Index.js" />
     <Content Include="Areas\HO\Scripts\EmployeeType\index.js" />
     <Content Include="Content\assets\common\css\main.min.css" />
@@ -756,6 +757,8 @@
     <Content Include="Areas\Common\Views\Employee\Index.cshtml" />
     <Content Include="CodeTemplates\MvcView\ScopoCreditEdit.cs.t4" />
     <Content Include="Areas\Common\Views\Employee\Setup.cshtml" />
+    <Content Include="Areas\Branch\Views\Organization\MapCreditOfficer.cshtml" />
+    <Content Include="Areas\Branch\Views\Organization\CreditOfficerMappedList.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\common-system-messages.js" />
     <Content Include="Scripts\init.js" />

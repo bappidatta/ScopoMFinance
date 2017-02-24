@@ -61,7 +61,25 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Organization is deleted successfully.
+        ///   Looks up a localized string similar to Credit Officer.
+        /// </summary>
+        public static string Organization_CO_DN_CreditOfficer {
+            get {
+                return ResourceManager.GetString("Organization_CO_DN_CreditOfficer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Center Wise Credit Officer Mapping.
+        /// </summary>
+        public static string Organization_Credit_Officer_Title {
+            get {
+                return ResourceManager.GetString("Organization_Credit_Officer_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Center has been deleted successfully.
         /// </summary>
         public static string Organization_Delete_Success_Msg {
             get {
@@ -70,7 +88,7 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New Organization Added Successfully.
+        ///   Looks up a localized string similar to New Center has been added successfully.
         /// </summary>
         public static string Organization_Edit_Add_Success_Msg {
             get {
@@ -79,7 +97,7 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create Organization.
+        ///   Looks up a localized string similar to Create Center.
         /// </summary>
         public static string Organization_Edit_Add_Title {
             get {
@@ -115,7 +133,7 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Organization Category.
+        ///   Looks up a localized string similar to Center Category.
         /// </summary>
         public static string Organization_Edit_DN_OrgCategory {
             get {
@@ -133,7 +151,7 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Organization Name.
+        ///   Looks up a localized string similar to Center Name.
         /// </summary>
         public static string Organization_Edit_DN_OrgName {
             get {
@@ -142,7 +160,7 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Organization No.
+        ///   Looks up a localized string similar to Center No.
         /// </summary>
         public static string Organization_Edit_DN_OrgNo {
             get {
@@ -169,7 +187,7 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Organization has been edited successfully.
+        ///   Looks up a localized string similar to Center has been edited successfully.
         /// </summary>
         public static string Organization_Edit_Update_Success_Msg {
             get {
@@ -178,7 +196,7 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update Organization.
+        ///   Looks up a localized string similar to Update Center.
         /// </summary>
         public static string Organization_Edit_Update_Title {
             get {
@@ -187,11 +205,20 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Organization No Already Exists.
+        ///   Looks up a localized string similar to Center No Already Exists.
         /// </summary>
         public static string Organization_Edit_Validation_OrgNoUnavailable {
             get {
                 return ResourceManager.GetString("Organization_Edit_Validation_OrgNoUnavailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Center.
+        /// </summary>
+        public static string Organization_List_Create_Button {
+            get {
+                return ResourceManager.GetString("Organization_List_Create_Button", resourceCulture);
             }
         }
         
@@ -241,7 +268,7 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Organization Name.
+        ///   Looks up a localized string similar to Center Name.
         /// </summary>
         public static string Organization_List_DN_OrgName {
             get {
@@ -250,7 +277,7 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Organization No.
+        ///   Looks up a localized string similar to Center No.
         /// </summary>
         public static string Organization_List_DN_OrgNo {
             get {
@@ -264,6 +291,15 @@ namespace ScopoMFinance.Localization {
         public static string Organization_List_DN_OrgSetupDate {
             get {
                 return ResourceManager.GetString("Organization_List_DN_OrgSetupDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Center List.
+        /// </summary>
+        public static string Organization_List_Title {
+            get {
+                return ResourceManager.GetString("Organization_List_Title", resourceCulture);
             }
         }
     }

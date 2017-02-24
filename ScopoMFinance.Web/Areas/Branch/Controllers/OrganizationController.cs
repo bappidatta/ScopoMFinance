@@ -26,6 +26,7 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
         private IOrgCategoryService _orgCategoryService;
         private IGenderService _genderService;
         private IColcOptionService _colcOptionService;
+        private IEmployeeService _employeeService;
         private IUserHelper _userHelper;
 
         public OrganizationController(
@@ -33,12 +34,14 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
             IOrgCategoryService orgCategoryService,
             IGenderService genderService,
             IColcOptionService colcOptionService,
+            IEmployeeService employeeService,
             IUserHelper userHelper)
         {
             _orgService = orgService;
             _orgCategoryService = orgCategoryService;
             _genderService = genderService;
             _colcOptionService = colcOptionService;
+            _employeeService = employeeService;
             _userHelper = userHelper;
         }
 
@@ -87,6 +90,7 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
                 orgList.Pager.URLFormat = urlFormat;
             }
 
+            ViewBag.Title = OrganizationStrings.Organization_List_Title;
             return View(orgList);
         }
 
@@ -99,8 +103,7 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
 
                 ViewBag.OrgCategoryDropDown = new SelectList(_orgCategoryService.GetOrgCategoryDropDown(), "Value", "Text");
                 ViewBag.GenderDropDown = new SelectList(_genderService.GetGenderDropDown(), "Value", "Text");
-                ViewBag.LoanCollectionOptionDropDown = new SelectList(_colcOptionService.GetColcOptionDropDown(), "Value", "Text");
-                ViewBag.SavingsCollectionOptionDropDown = new SelectList(_colcOptionService.GetColcOptionDropDown(), "Value", "Text");
+                ViewBag.CollectionOptionDropDown = new SelectList(_colcOptionService.GetColcOptionDropDown(), "Value", "Text");
 
                 DateTime systemDate = _userHelper.Get().DayOpenClose.SystemDate;
                 return View(new OrganizationEditViewModel() {
@@ -207,6 +210,41 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
             }
 
             return new XHR_JSON_Redirect();
+        }
+
+        [HttpGet]
+        public ActionResult MapCreditOfficer()
+        {
+            int branchId = _userHelper.Get().BranchId;
+
+            ViewBag.CreditOfficerDropDown = new SelectList(_employeeService.GetEmployeeDropDown(x => x.BranchId == branchId && x.IsCreditOfficer && x.IsActive), "Value", "Text");
+
+            ViewBag.Title = OrganizationStrings.Organization_Credit_Officer_Title;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult MapCreditOfficer(OrgCOMappingViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
+
+            int branchId = _userHelper.Get().BranchId;
+
+            ViewBag.CreditOfficerDropDown = new SelectList(_employeeService.GetEmployeeDropDown(x => x.BranchId == branchId && x.IsCreditOfficer && x.IsActive), "Value", "Text");
+
+            ViewBag.Title = OrganizationStrings.Organization_Credit_Officer_Title;
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult CreditOfficerMappedList(int id)
+        {
+            var mappedList = _orgService.GetMappedOrganizationList(id);
+
+            return PartialView("CreditOfficerMappedList", mappedList);
         }
     }
 }
