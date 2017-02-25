@@ -4,6 +4,7 @@ using ScopoMFinance.Core.Helpers;
 using ScopoMFinance.Domain.Models;
 using ScopoMFinance.Domain.Repositories;
 using ScopoMFinance.Domain.ViewModels.Org;
+using ScopoMFinance.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,7 @@ namespace ScopoMFinance.Core.Services
         bool IsOrgNoAvailable(string orgNo, int orgId);
 
         List<MappedOrganizationViewModel> GetMappedOrganizationList(int creditOfficerId);
+        bool MapCreditOfficer(OrgCOMappingViewModel vm, out string validationMessage);
     }
 
     public class OrganizationService : IOrganizationService
@@ -79,6 +81,7 @@ namespace ScopoMFinance.Core.Services
                                VillageId = c.VillageId,
                                Village = c.SysVillage.Name,
                                IsActive = c.IsActive,
+                               CreditOfficer = c.Employee.EmployeeName,
                                SystemDate = c.SystemDate,
                                UserId = c.UserId,
                                SetDate = c.SetDate
@@ -180,13 +183,22 @@ namespace ScopoMFinance.Core.Services
 
             try
             {
-                var mappedList = (from c in _uow.OrganizationRepository.Get(x => x.BranchId == branchId && x.OrgCreditOfficers.All(i => i.BranchId == branchId && i.EmployeeId == creditOfficerId))
+                //var mappedList = (from c in _uow.OrganizationRepository.Get(x => x.BranchId == branchId && x.OrgCreditOfficers.All(i => i.BranchId == branchId && i.EmployeeId == creditOfficerId))
+                //                    .Order(x => x.OrganizationNo, SortDirection.Asc)
+                //                  select new MappedOrganizationViewModel
+                //                  {
+                //                      OrganizationId = c.Id,
+                //                      OrganizationName = "(" + c.OrganizationNo + ") " + c.OrganizationName,
+                //                      Checked = c.OrgCreditOfficers.Any(i => i.BranchId == branchId && i.EmployeeId == creditOfficerId)
+                //                  }).ToList();
+
+                var mappedList = (from c in _uow.OrganizationRepository.Get(x => x.BranchId == branchId && (x.CreditOfficerId == creditOfficerId || x.CreditOfficerId == null))
                                     .Order(x => x.OrganizationNo, SortDirection.Asc)
                                   select new MappedOrganizationViewModel
                                   {
                                       OrganizationId = c.Id,
                                       OrganizationName = "(" + c.OrganizationNo + ") " + c.OrganizationName,
-                                      Checked = c.OrgCreditOfficers.Any(i => i.BranchId == branchId && i.EmployeeId == creditOfficerId)
+                                      Checked = c.CreditOfficerId != null
                                   }).ToList();
 
                 return mappedList;
@@ -195,6 +207,43 @@ namespace ScopoMFinance.Core.Services
             {
                 return null;
             }
+        }
+
+        public bool MapCreditOfficer(OrgCOMappingViewModel vm, out string validationMessage)
+        {
+            int branchId = _userHelper.Get().BranchId;
+            validationMessage = String.Empty;
+            
+            foreach(var i in vm.MappedOrganizationList)
+            {
+                Organization model = GetOrganization(i.OrganizationId);
+
+                if (model == null)
+                {
+                    validationMessage = String.Format(OrganizationStrings.Organization_CO_Validation_InvalidOrg, model.OrganizationName);
+                    return false;
+                }
+
+                if (i.Checked)
+                {
+                    if (model.CreditOfficerId != null && model.CreditOfficerId != vm.CreditOfficerId)
+                    {
+                        validationMessage = String.Format(OrganizationStrings.Organization_CO_Validation_OrgHasCO, model.OrganizationName);
+                        return false;
+                    }
+                }
+
+                if (i.Checked)
+                    model.CreditOfficerId = vm.CreditOfficerId;
+                else
+                    model.CreditOfficerId = null;
+
+                _uow.OrganizationRepository.Update(model);
+            }
+
+            _uow.Save();
+
+            return true;
         }
     }
 }

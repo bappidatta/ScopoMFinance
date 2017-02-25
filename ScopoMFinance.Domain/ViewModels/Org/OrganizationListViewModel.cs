@@ -46,6 +46,9 @@ namespace ScopoMFinance.Domain.ViewModels.Org
         [Display(Name = "Organization_List_DN_IsActive", ResourceType = typeof(OrganizationStrings))]
         public bool IsActive { get; set; }
 
+        [Display(Name = "Organization_List_DN_CreditOfficer", ResourceType = typeof(OrganizationStrings))]
+        public string CreditOfficer { get; set; }
+
         public string UserId { get; set; }
         public System.DateTime SystemDate { get; set; }
         public System.DateTime SetDate { get; set; }

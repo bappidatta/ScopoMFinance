@@ -120,6 +120,18 @@
   <data name="Organization_CO_DN_CreditOfficer" xml:space="preserve">
     <value>Credit Officer</value>
   </data>
+  <data name="Organization_CO_Map_Successfull_Msg" xml:space="preserve">
+    <value>Credit officer has been mapped successfully</value>
+  </data>
+  <data name="Organization_CO_Validation_EmptyOrganizationList" xml:space="preserve">
+    <value>Please select at least one center</value>
+  </data>
+  <data name="Organization_CO_Validation_InvalidOrg" xml:space="preserve">
+    <value>Center {0} is Invalid</value>
+  </data>
+  <data name="Organization_CO_Validation_OrgHasCO" xml:space="preserve">
+    <value>Center {0} has already a credit officer</value>
+  </data>
   <data name="Organization_Credit_Officer_Title" xml:space="preserve">
     <value>Center Wise Credit Officer Mapping</value>
   </data>
@@ -170,6 +182,9 @@
   </data>
   <data name="Organization_List_Create_Button" xml:space="preserve">
     <value>New Center</value>
+  </data>
+  <data name="Organization_List_DN_CreditOfficer" xml:space="preserve">
+    <value>Credit Officer</value>
   </data>
   <data name="Organization_List_DN_IsActive" xml:space="preserve">
     <value>Active</value>

@@ -70,6 +70,42 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Credit officer has been mapped successfully.
+        /// </summary>
+        public static string Organization_CO_Map_Successfull_Msg {
+            get {
+                return ResourceManager.GetString("Organization_CO_Map_Successfull_Msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select at least one center.
+        /// </summary>
+        public static string Organization_CO_Validation_EmptyOrganizationList {
+            get {
+                return ResourceManager.GetString("Organization_CO_Validation_EmptyOrganizationList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Center {0} is Invalid.
+        /// </summary>
+        public static string Organization_CO_Validation_InvalidOrg {
+            get {
+                return ResourceManager.GetString("Organization_CO_Validation_InvalidOrg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Center {0} has already a credit officer.
+        /// </summary>
+        public static string Organization_CO_Validation_OrgHasCO {
+            get {
+                return ResourceManager.GetString("Organization_CO_Validation_OrgHasCO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Center Wise Credit Officer Mapping.
         /// </summary>
         public static string Organization_Credit_Officer_Title {
@@ -219,6 +255,15 @@ namespace ScopoMFinance.Localization {
         public static string Organization_List_Create_Button {
             get {
                 return ResourceManager.GetString("Organization_List_Create_Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credit Officer.
+        /// </summary>
+        public static string Organization_List_DN_CreditOfficer {
+            get {
+                return ResourceManager.GetString("Organization_List_DN_CreditOfficer", resourceCulture);
             }
         }
         

@@ -66,18 +66,21 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
                     orderBy = x => x.OrganizationName;
                     break;
                 case 3:
-                    orderBy = x => x.SysGender.Name;
+                    orderBy = x => x.Employee.EmployeeName;
                     break;
                 case 4:
-                    orderBy = x => x.SetupDate;
+                    orderBy = x => x.SysGender.Name;
                     break;
                 case 5:
-                    orderBy = x => x.SysColcOption.Name;
+                    orderBy = x => x.SetupDate;
                     break;
                 case 6:
-                    orderBy = x => x.MeetingDate;
+                    orderBy = x => x.SysColcOption.Name;
                     break;
                 case 7:
+                    orderBy = x => x.MeetingDate;
+                    break;
+                case 8:
                     orderBy = x => x.IsActive;
                     break;
             };
@@ -213,11 +216,17 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
         }
 
         [HttpGet]
-        public ActionResult MapCreditOfficer()
+        public ActionResult MapCreditOfficer(int? id)
         {
             int branchId = _userHelper.Get().BranchId;
 
-            ViewBag.CreditOfficerDropDown = new SelectList(_employeeService.GetEmployeeDropDown(x => x.BranchId == branchId && x.IsCreditOfficer && x.IsActive), "Value", "Text");
+            if (id.HasValue && _employeeService.GetEmployeeList(filter: x => x.BranchId == branchId && x.Id == id).Count == 0)
+            {
+                SystemMessages.Add(CommonStrings.No_Record, true, true);
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.CreditOfficerDropDown = new SelectList(_employeeService.GetEmployeeDropDown(x => x.BranchId == branchId && x.IsCreditOfficer && x.IsActive), "Value", "Text", id);
 
             ViewBag.Title = OrganizationStrings.Organization_Credit_Officer_Title;
             return View();
@@ -226,12 +235,27 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
         [HttpPost]
         public ActionResult MapCreditOfficer(OrgCOMappingViewModel vm)
         {
+            int branchId = _userHelper.Get().BranchId;
+
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Index");
-            }
+                if (_employeeService.GetEmployeeList(filter: x => x.BranchId == branchId && x.Id == vm.CreditOfficerId).Count == 0)
+                {
+                    SystemMessages.Add(CommonStrings.No_Record, true, true);
+                    return RedirectToAction("Index");
+                }
 
-            int branchId = _userHelper.Get().BranchId;
+                string validationMessage = String.Empty;
+                if (!_orgService.MapCreditOfficer(vm, out validationMessage))
+                {
+                    SystemMessages.Add(validationMessage, true);
+                }
+                else
+                {
+                    SystemMessages.Add(OrganizationStrings.Organization_CO_Map_Successfull_Msg, false, true);
+                    return RedirectToAction("Index");
+                }
+            }
 
             ViewBag.CreditOfficerDropDown = new SelectList(_employeeService.GetEmployeeDropDown(x => x.BranchId == branchId && x.IsCreditOfficer && x.IsActive), "Value", "Text");
 

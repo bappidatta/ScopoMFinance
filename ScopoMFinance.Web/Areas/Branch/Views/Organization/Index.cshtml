@@ -18,11 +18,12 @@
                             <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().OrgCategoryName), "Index", null, null, null, 0)</th>
                             <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().OrganizationNo), "Index", null, null, null, 1)</th>
                             <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().OrganizationName), "Index", null, null, null, 2)</th>
-                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().Gender), "Index", null, null, null, 3)</th>
-                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().SetupDate), "Index", null, null, null, 4)</th>
-                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().MeetingFrequency), "Index", null, null, null, 5)</th>
-                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().MeetingDate), "Index", null, null, null, 6)</th>
-                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().IsActive), "Index", null, null, null, 7)</th>
+                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().CreditOfficer), "Index", null, null, null, 3)</th>
+                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().Gender), "Index", null, null, null, 4)</th>
+                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().SetupDate), "Index", null, null, null, 5)</th>
+                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().MeetingFrequency), "Index", null, null, null, 6)</th>
+                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().MeetingDate), "Index", null, null, null, 7)</th>
+                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().IsActive), "Index", null, null, null, 8)</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -35,6 +36,7 @@
                                     <td>@item.OrgCategoryName</td>
                                     <td>@item.OrganizationNo</td>
                                     <td>@item.OrganizationName</td>
+                                    <td>@item.CreditOfficer</td>
                                     <td>@item.Gender</td>
                                     <td>@item.SetupDate.ToString(NtitasCommon.Localization.CommonStrings.Date_Format)</td>
                                     <td>@item.MeetingFrequency</td>
@@ -63,7 +65,7 @@
                         else
                         {
                             <tr>
-                                <td colspan="10" class="align-center"><strong>@NtitasCommon.Localization.CommonStrings.List_Empty</strong></td>
+                                <td colspan="11" class="align-center"><strong>@NtitasCommon.Localization.CommonStrings.List_Empty</strong></td>
                             </tr>
                         }
                     </tbody>
