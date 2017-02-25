@@ -34,6 +34,7 @@ namespace ScopoMFinance.Domain.Models
         public string UserId { get; set; }
         public System.DateTime SystemDate { get; set; }
         public System.DateTime SetDate { get; set; }
+        public Nullable<int> CreditOfficerId { get; set; }
     
         public virtual Branch Branch { get; set; }
         public virtual SysColcOption SysColcOption { get; set; }
@@ -42,5 +43,6 @@ namespace ScopoMFinance.Domain.Models
         public virtual SysVillage SysVillage { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrgCreditOfficer> OrgCreditOfficers { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }

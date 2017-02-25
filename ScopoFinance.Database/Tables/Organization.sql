@@ -6,6 +6,7 @@
 	[OrganizationName] NVARCHAR(50) NOT NULL,
 	[OrgCategoryId] INT NOT NULL, 
     [GenderId] INT NOT NULL, 
+	[CreditOfficerId] INT NULL,
     [SetupDate] DATETIME NOT NULL, 
     [MeetingFrequency] INT NOT NULL, 
     [MeetingDate] DATETIME NOT NULL, 
@@ -19,5 +20,6 @@
 	CONSTRAINT [FK_Org_OrgCategory] FOREIGN KEY ([OrgCategoryId]) REFERENCES [OrgCategory]([Id]),
 	CONSTRAINT [FK_Org_Gender] FOREIGN KEY ([GenderId]) REFERENCES [SysGender]([Id]),
 	CONSTRAINT [FK_Org_Colc] FOREIGN KEY ([MeetingFrequency]) REFERENCES [SysColcOption]([Id]),
-	CONSTRAINT [FK_Org_Village] FOREIGN KEY ([VillageId]) REFERENCES [SysVillage]([Id])
+	CONSTRAINT [FK_Org_Village] FOREIGN KEY ([VillageId]) REFERENCES [SysVillage]([Id]),
+	CONSTRAINT [FK_Org_CreditOfficer] FOREIGN KEY ([CreditOfficerId]) REFERENCES [Employee]([Id])
 )

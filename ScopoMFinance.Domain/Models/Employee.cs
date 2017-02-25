@@ -18,6 +18,7 @@ namespace ScopoMFinance.Domain.Models
         public Employee()
         {
             this.OrgCreditOfficers = new HashSet<OrgCreditOfficer>();
+            this.Organizations = new HashSet<Organization>();
         }
     
         public int Id { get; set; }
@@ -42,5 +43,7 @@ namespace ScopoMFinance.Domain.Models
         public virtual SysGender SysGender { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrgCreditOfficer> OrgCreditOfficers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Organization> Organizations { get; set; }
     }
 }

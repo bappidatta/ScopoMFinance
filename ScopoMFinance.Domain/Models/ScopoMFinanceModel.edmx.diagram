@@ -67,6 +67,7 @@
         <AssociationConnector Association="ScopoMFinanceModel.AspNetUserRoles" />
         <AssociationConnector Association="ScopoMFinanceModel.BranchWiseProjectMapping" />
         <AssociationConnector Association="ScopoMFinanceModel.ProjectWiseProductMapping" />
+        <AssociationConnector Association="ScopoMFinanceModel.FK_Org_CreditOfficer" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

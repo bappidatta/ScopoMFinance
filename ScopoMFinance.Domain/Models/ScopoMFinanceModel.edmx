@@ -153,6 +153,7 @@
           <Property Name="OrganizationName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="OrgCategoryId" Type="int" Nullable="false" />
           <Property Name="GenderId" Type="int" Nullable="false" />
+          <Property Name="CreditOfficerId" Type="int" />
           <Property Name="SetupDate" Type="datetime" Nullable="false" />
           <Property Name="MeetingFrequency" Type="int" Nullable="false" />
           <Property Name="MeetingDate" Type="datetime" Nullable="false" />
@@ -584,6 +585,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Org_CreditOfficer">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="CreditOfficerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Org_Gender">
           <End Role="SysGender" Type="Self.SysGender" Multiplicity="1" />
           <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
@@ -921,6 +934,10 @@
             <End Role="SysColcOption" EntitySet="SysColcOption" />
             <End Role="Organization" EntitySet="Organization" />
           </AssociationSet>
+          <AssociationSet Name="FK_Org_CreditOfficer" Association="Self.FK_Org_CreditOfficer">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
           <AssociationSet Name="FK_Org_Gender" Association="Self.FK_Org_Gender">
             <End Role="SysGender" EntitySet="SysGender" />
             <End Role="Organization" EntitySet="Organization" />
@@ -1168,6 +1185,10 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="Project" EntitySet="Projects" />
           </AssociationSet>
+          <AssociationSet Name="FK_Org_CreditOfficer" Association="ScopoMFinanceModel.FK_Org_CreditOfficer">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AccDayCloseProcess">
           <Key>
@@ -1303,6 +1324,7 @@
           <NavigationProperty Name="EmployeeType" Relationship="ScopoMFinanceModel.FK_Employee_EmployeeType" FromRole="Employee" ToRole="EmployeeType" />
           <NavigationProperty Name="SysGender" Relationship="ScopoMFinanceModel.FK_Employee_Gender" FromRole="Employee" ToRole="SysGender" />
           <NavigationProperty Name="OrgCreditOfficers" Relationship="ScopoMFinanceModel.FK_OrgCO_Employee" FromRole="Employee" ToRole="OrgCreditOfficer" />
+          <NavigationProperty Name="Organizations" Relationship="ScopoMFinanceModel.FK_Org_CreditOfficer" FromRole="Employee" ToRole="Organization" />
         </EntityType>
         <EntityType Name="EmployeeType">
           <Key>
@@ -1340,6 +1362,8 @@
           <NavigationProperty Name="OrgCategory" Relationship="ScopoMFinanceModel.FK_Org_OrgCategory" FromRole="Organization" ToRole="OrgCategory" />
           <NavigationProperty Name="SysVillage" Relationship="ScopoMFinanceModel.FK_Org_Village" FromRole="Organization" ToRole="SysVillage" />
           <NavigationProperty Name="OrgCreditOfficers" Relationship="ScopoMFinanceModel.FK_OrgCO_Org" FromRole="Organization" ToRole="OrgCreditOfficer" />
+          <Property Name="CreditOfficerId" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="ScopoMFinanceModel.FK_Org_CreditOfficer" FromRole="Organization" ToRole="Employee" />
         </EntityType>
         <EntityType Name="OrgCategory">
           <Key>
@@ -1966,6 +1990,18 @@
           <End Type="ScopoMFinanceModel.Product" Role="Product" Multiplicity="*" />
           <End Type="ScopoMFinanceModel.Project" Role="Project" Multiplicity="*" />
         </Association>
+        <Association Name="FK_Org_CreditOfficer">
+          <End Type="ScopoMFinanceModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="CreditOfficerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2105,6 +2141,7 @@
           <EntitySetMapping Name="Organizations">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.Organization">
               <MappingFragment StoreEntitySet="Organization">
+                <ScalarProperty Name="CreditOfficerId" ColumnName="CreditOfficerId" />
                 <ScalarProperty Name="SetDate" ColumnName="SetDate" />
                 <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
