@@ -3,7 +3,7 @@
 MERGE [dbo].[EmployeeType] AS TARGET
 USING
 (
-			SELECT 1, N'IT Manager', @User_HOUser, GetDate(), GetDate()
+			SELECT 1, N'Credit Officer', @User_HOUser, GetDate(), GetDate()
    UNION	SELECT 2, N'HR Manager', @User_HOUser, GetDate(), GetDate()
 
 ) AS SOURCE ([Id],[Name],[UserId],[SystemDate],[SetDate])

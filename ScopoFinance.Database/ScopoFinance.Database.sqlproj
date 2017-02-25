@@ -117,6 +117,8 @@
     <None Include="PreloadData\SysColcOption.sql" />
     <None Include="PreloadData\AccDayOpenClose.sql" />
     <None Include="PreloadData\EmployeeType.sql" />
+    <None Include="PreloadData\Employee.sql" />
+    <None Include="PreloadData\Organization.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="ScopoFinance.Database.refactorlog" />
