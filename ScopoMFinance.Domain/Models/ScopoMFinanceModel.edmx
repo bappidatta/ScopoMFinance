@@ -184,9 +184,8 @@
           <Property Name="BranchId" Type="int" Nullable="false" />
           <Property Name="EmployeeId" Type="int" Nullable="false" />
           <Property Name="OrganizationId" Type="int" Nullable="false" />
-          <Property Name="AssignedDate" Type="datetime" Nullable="false" />
+          <Property Name="AssignedDate" Type="datetime" />
           <Property Name="ReleaseDate" Type="datetime" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="SystemDate" Type="datetime" Nullable="false" />
           <Property Name="SetDate" Type="datetime" Nullable="false" />
@@ -1109,6 +1108,10 @@
             <End Role="SysGender" EntitySet="SysGenders" />
             <End Role="Employee" EntitySet="Employees" />
           </AssociationSet>
+          <AssociationSet Name="FK_Org_CreditOfficer" Association="ScopoMFinanceModel.FK_Org_CreditOfficer">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
           <AssociationSet Name="FK_OrgCO_Employee" Association="ScopoMFinanceModel.FK_OrgCO_Employee">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="OrgCreditOfficer" EntitySet="OrgCreditOfficers" />
@@ -1184,10 +1187,6 @@
           <AssociationSet Name="ProjectWiseProductMapping" Association="ScopoMFinanceModel.ProjectWiseProductMapping">
             <End Role="Product" EntitySet="Products" />
             <End Role="Project" EntitySet="Projects" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Org_CreditOfficer" Association="ScopoMFinanceModel.FK_Org_CreditOfficer">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="Organization" EntitySet="Organizations" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AccDayCloseProcess">
@@ -1323,8 +1322,8 @@
           <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_Employee_Branch" FromRole="Employee" ToRole="Branch" />
           <NavigationProperty Name="EmployeeType" Relationship="ScopoMFinanceModel.FK_Employee_EmployeeType" FromRole="Employee" ToRole="EmployeeType" />
           <NavigationProperty Name="SysGender" Relationship="ScopoMFinanceModel.FK_Employee_Gender" FromRole="Employee" ToRole="SysGender" />
-          <NavigationProperty Name="OrgCreditOfficers" Relationship="ScopoMFinanceModel.FK_OrgCO_Employee" FromRole="Employee" ToRole="OrgCreditOfficer" />
           <NavigationProperty Name="Organizations" Relationship="ScopoMFinanceModel.FK_Org_CreditOfficer" FromRole="Employee" ToRole="Organization" />
+          <NavigationProperty Name="OrgCreditOfficers" Relationship="ScopoMFinanceModel.FK_OrgCO_Employee" FromRole="Employee" ToRole="OrgCreditOfficer" />
         </EntityType>
         <EntityType Name="EmployeeType">
           <Key>
@@ -1348,6 +1347,7 @@
           <Property Name="OrganizationName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="OrgCategoryId" Type="Int32" Nullable="false" />
           <Property Name="GenderId" Type="Int32" Nullable="false" />
+          <Property Name="CreditOfficerId" Type="Int32" />
           <Property Name="SetupDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MeetingFrequency" Type="Int32" Nullable="false" />
           <Property Name="MeetingDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -1357,13 +1357,12 @@
           <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_Org_Branch" FromRole="Organization" ToRole="Branch" />
+          <NavigationProperty Name="Employee" Relationship="ScopoMFinanceModel.FK_Org_CreditOfficer" FromRole="Organization" ToRole="Employee" />
           <NavigationProperty Name="SysColcOption" Relationship="ScopoMFinanceModel.FK_Org_Colc" FromRole="Organization" ToRole="SysColcOption" />
           <NavigationProperty Name="SysGender" Relationship="ScopoMFinanceModel.FK_Org_Gender" FromRole="Organization" ToRole="SysGender" />
           <NavigationProperty Name="OrgCategory" Relationship="ScopoMFinanceModel.FK_Org_OrgCategory" FromRole="Organization" ToRole="OrgCategory" />
           <NavigationProperty Name="SysVillage" Relationship="ScopoMFinanceModel.FK_Org_Village" FromRole="Organization" ToRole="SysVillage" />
           <NavigationProperty Name="OrgCreditOfficers" Relationship="ScopoMFinanceModel.FK_OrgCO_Org" FromRole="Organization" ToRole="OrgCreditOfficer" />
-          <Property Name="CreditOfficerId" Type="Int32" />
-          <NavigationProperty Name="Employee" Relationship="ScopoMFinanceModel.FK_Org_CreditOfficer" FromRole="Organization" ToRole="Employee" />
         </EntityType>
         <EntityType Name="OrgCategory">
           <Key>
@@ -1387,9 +1386,8 @@
           <Property Name="BranchId" Type="Int32" Nullable="false" />
           <Property Name="EmployeeId" Type="Int32" Nullable="false" />
           <Property Name="OrganizationId" Type="Int32" Nullable="false" />
-          <Property Name="AssignedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AssignedDate" Type="DateTime" Precision="3" />
           <Property Name="ReleaseDate" Type="DateTime" Precision="3" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -1786,6 +1784,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Org_CreditOfficer">
+          <End Type="ScopoMFinanceModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="CreditOfficerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OrgCO_Employee">
           <End Type="ScopoMFinanceModel.Employee" Role="Employee" Multiplicity="1" />
           <End Type="ScopoMFinanceModel.OrgCreditOfficer" Role="OrgCreditOfficer" Multiplicity="*" />
@@ -1990,18 +2000,6 @@
           <End Type="ScopoMFinanceModel.Product" Role="Product" Multiplicity="*" />
           <End Type="ScopoMFinanceModel.Project" Role="Project" Multiplicity="*" />
         </Association>
-        <Association Name="FK_Org_CreditOfficer">
-          <End Type="ScopoMFinanceModel.Employee" Role="Employee" Multiplicity="0..1" />
-          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Organization">
-              <PropertyRef Name="CreditOfficerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2141,7 +2139,6 @@
           <EntitySetMapping Name="Organizations">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.Organization">
               <MappingFragment StoreEntitySet="Organization">
-                <ScalarProperty Name="CreditOfficerId" ColumnName="CreditOfficerId" />
                 <ScalarProperty Name="SetDate" ColumnName="SetDate" />
                 <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -2150,6 +2147,7 @@
                 <ScalarProperty Name="MeetingDate" ColumnName="MeetingDate" />
                 <ScalarProperty Name="MeetingFrequency" ColumnName="MeetingFrequency" />
                 <ScalarProperty Name="SetupDate" ColumnName="SetupDate" />
+                <ScalarProperty Name="CreditOfficerId" ColumnName="CreditOfficerId" />
                 <ScalarProperty Name="GenderId" ColumnName="GenderId" />
                 <ScalarProperty Name="OrgCategoryId" ColumnName="OrgCategoryId" />
                 <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
@@ -2178,7 +2176,6 @@
                 <ScalarProperty Name="SetDate" ColumnName="SetDate" />
                 <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
                 <ScalarProperty Name="AssignedDate" ColumnName="AssignedDate" />
                 <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />

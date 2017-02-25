@@ -192,7 +192,7 @@ namespace ScopoMFinance.Core.Services
                 //                      Checked = c.OrgCreditOfficers.Any(i => i.BranchId == branchId && i.EmployeeId == creditOfficerId)
                 //                  }).ToList();
 
-                var mappedList = (from c in _uow.OrganizationRepository.Get(x => x.BranchId == branchId && (x.CreditOfficerId == creditOfficerId || x.CreditOfficerId == null))
+                var mappedList = (from c in _uow.OrganizationRepository.Get(x => x.BranchId == branchId && x.IsActive && (x.CreditOfficerId == creditOfficerId || x.CreditOfficerId == null))
                                     .Order(x => x.OrganizationNo, SortDirection.Asc)
                                   select new MappedOrganizationViewModel
                                   {
@@ -216,29 +216,64 @@ namespace ScopoMFinance.Core.Services
             
             foreach(var i in vm.MappedOrganizationList)
             {
-                Organization model = GetOrganization(i.OrganizationId);
+                Organization org = GetOrganization(i.OrganizationId);
 
-                if (model == null)
+                if (org == null || !org.IsActive)
                 {
-                    validationMessage = String.Format(OrganizationStrings.Organization_CO_Validation_InvalidOrg, model.OrganizationName);
+                    validationMessage = String.Format(OrganizationStrings.Organization_CO_Validation_InvalidOrg, org.OrganizationName);
                     return false;
                 }
 
                 if (i.Checked)
                 {
-                    if (model.CreditOfficerId != null && model.CreditOfficerId != vm.CreditOfficerId)
+                    if (org.CreditOfficerId != null && org.CreditOfficerId != vm.CreditOfficerId)
                     {
-                        validationMessage = String.Format(OrganizationStrings.Organization_CO_Validation_OrgHasCO, model.OrganizationName);
+                        validationMessage = String.Format(OrganizationStrings.Organization_CO_Validation_OrgHasCO, org.OrganizationName);
                         return false;
                     }
+
+                    org.CreditOfficerId = vm.CreditOfficerId;
+                }
+                else
+                {
+                    org.CreditOfficerId = null;
                 }
 
-                if (i.Checked)
-                    model.CreditOfficerId = vm.CreditOfficerId;
-                else
-                    model.CreditOfficerId = null;
+                OrgCreditOfficer orgCO = (from c in _uow.OrgCORepository.Get(x => x.BranchId == branchId
+                                              && x.EmployeeId == vm.CreditOfficerId
+                                              && x.OrganizationId == i.OrganizationId
+                                              && x.ReleaseDate == null)
+                                          select c).SingleOrDefault();
 
-                _uow.OrganizationRepository.Update(model);
+                if (orgCO != null)
+                {
+                    if (!i.Checked)
+                    {
+                        orgCO.ReleaseDate = _userHelper.Get().DayOpenClose.SystemDate;
+                        orgCO.UserId = _userHelper.Get().UserId;
+                        orgCO.SystemDate = _userHelper.Get().DayOpenClose.SystemDate;
+                        orgCO.SetDate = DateTime.Now;
+
+                        _uow.OrgCORepository.Update(orgCO);
+                    }
+                }
+                else
+                {
+                    if (i.Checked)
+                    {
+                        _uow.OrgCORepository.Insert(new OrgCreditOfficer
+                        {
+                            BranchId = branchId,
+                            EmployeeId = vm.CreditOfficerId,
+                            OrganizationId = i.OrganizationId,
+                            AssignedDate = _userHelper.Get().DayOpenClose.SystemDate,
+                            UserId = _userHelper.Get().UserId,
+                            SystemDate = _userHelper.Get().DayOpenClose.SystemDate,
+                            SetDate = DateTime.Now
+                        });
+                    }
+                }
+                _uow.OrganizationRepository.Update(org);
             }
 
             _uow.Save();

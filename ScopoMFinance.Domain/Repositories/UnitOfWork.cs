@@ -21,6 +21,110 @@ namespace ScopoMFinance.Domain.Repositories
             db.SaveChanges();
         }
 
+        private IRepository<SysGender> genderRepo;
+        public IRepository<SysGender> GenderRepository
+        {
+            get
+            {
+                if (this.genderRepo == null)
+                {
+                    this.genderRepo = new Repository<SysGender>(db);
+                }
+                return genderRepo;
+            }
+        }
+
+        private IRepository<SysColcOption> colcOptionRepo;
+        public IRepository<SysColcOption> ColcOptionRepository
+        {
+            get
+            {
+                if (this.colcOptionRepo == null)
+                {
+                    this.colcOptionRepo = new Repository<SysColcOption>(db);
+                }
+                return colcOptionRepo;
+            }
+        }
+
+        private IRepository<SysDivision> divisionRepo;
+        public IRepository<SysDivision> DivisionRepository
+        {
+            get
+            {
+                if (this.divisionRepo == null)
+                {
+                    this.divisionRepo = new Repository<SysDivision>(db);
+                }
+                return divisionRepo;
+            }
+        }
+
+        private IRepository<SysDistrict> districtRepo;
+        public IRepository<SysDistrict> DistrictRepository
+        {
+            get
+            {
+                if (this.districtRepo == null)
+                {
+                    this.districtRepo = new Repository<SysDistrict>(db);
+                }
+                return districtRepo;
+            }
+        }
+
+        private IRepository<SysThana> thanaRepo;
+        public IRepository<SysThana> ThanaRepository
+        {
+            get
+            {
+                if (this.thanaRepo == null)
+                {
+                    this.thanaRepo = new Repository<SysThana>(db);
+                }
+                return thanaRepo;
+            }
+        }
+
+        private IRepository<SysUpazila> upazilaRepo;
+        public IRepository<SysUpazila> UpazilaRepository
+        {
+            get
+            {
+                if (this.upazilaRepo == null)
+                {
+                    this.upazilaRepo = new Repository<SysUpazila>(db);
+                }
+                return upazilaRepo;
+            }
+        }
+
+        private IRepository<SysUnion> unionRepo;
+        public IRepository<SysUnion> UnionRepository
+        {
+            get
+            {
+                if (this.unionRepo == null)
+                {
+                    this.unionRepo = new Repository<SysUnion>(db);
+                }
+                return unionRepo;
+            }
+        }
+
+        private IRepository<SysDonor> donorRepo;
+        public IRepository<SysDonor> DonorRepository
+        {
+            get
+            {
+                if (this.donorRepo == null)
+                {
+                    this.donorRepo = new Repository<SysDonor>(db);
+                }
+                return donorRepo;
+            }
+        }
+
         private IRepository<Branch> branchRepo;
         public IRepository<Branch> BranchRepository
         {
@@ -73,29 +177,29 @@ namespace ScopoMFinance.Domain.Repositories
             }
         }
 
-        private IRepository<SysGender> genderRepo;
-        public IRepository<SysGender> GenderRepository
+        private IRepository<Organization> organizationRepo;
+        public IRepository<Organization> OrganizationRepository
         {
             get
             {
-                if (this.genderRepo == null)
+                if (this.organizationRepo == null)
                 {
-                    this.genderRepo = new Repository<SysGender>(db);
+                    this.organizationRepo = new Repository<Organization>(db);
                 }
-                return genderRepo;
+                return organizationRepo;
             }
         }
 
-        private IRepository<SysColcOption> colcOptionRepo;
-        public IRepository<SysColcOption> ColcOptionRepository
+        private IRepository<OrgCreditOfficer> orgCORepo;
+        public IRepository<OrgCreditOfficer> OrgCORepository
         {
             get
             {
-                if (this.colcOptionRepo == null)
+                if (this.orgCORepo == null)
                 {
-                    this.colcOptionRepo = new Repository<SysColcOption>(db);
+                    this.orgCORepo = new Repository<OrgCreditOfficer>(db);
                 }
-                return colcOptionRepo;
+                return orgCORepo;
             }
         }
 
@@ -109,19 +213,6 @@ namespace ScopoMFinance.Domain.Repositories
                     this.dayOpenCloseRepo = new Repository<AccDayOpenClose>(db);
                 }
                 return dayOpenCloseRepo;
-            }
-        }
-
-        private IRepository<Organization> organizationRepo;
-        public IRepository<Organization> OrganizationRepository
-        {
-            get
-            {
-                if (this.organizationRepo == null)
-                {
-                    this.organizationRepo = new Repository<Organization>(db);
-                }
-                return organizationRepo;
             }
         }
 

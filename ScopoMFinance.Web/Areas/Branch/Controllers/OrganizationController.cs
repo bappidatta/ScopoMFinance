@@ -220,7 +220,7 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
         {
             int branchId = _userHelper.Get().BranchId;
 
-            if (id.HasValue && _employeeService.GetEmployeeList(filter: x => x.BranchId == branchId && x.Id == id).Count == 0)
+            if (id.HasValue && _employeeService.GetEmployeeList(filter: x => x.BranchId == branchId && x.Id == id && x.IsActive && x.IsCreditOfficer).Count == 0)
             {
                 SystemMessages.Add(CommonStrings.No_Record, true, true);
                 return RedirectToAction("Index");
@@ -233,13 +233,14 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult MapCreditOfficer(OrgCOMappingViewModel vm)
         {
             int branchId = _userHelper.Get().BranchId;
 
             if (ModelState.IsValid)
             {
-                if (_employeeService.GetEmployeeList(filter: x => x.BranchId == branchId && x.Id == vm.CreditOfficerId).Count == 0)
+                if (_employeeService.GetEmployeeList(filter: x => x.BranchId == branchId && x.Id == vm.CreditOfficerId && x.IsActive && x.IsCreditOfficer).Count == 0)
                 {
                     SystemMessages.Add(CommonStrings.No_Record, true, true);
                     return RedirectToAction("Index");
@@ -266,6 +267,14 @@ namespace ScopoMFinance.Web.Areas.Branch.Controllers
         [HttpGet]
         public ActionResult CreditOfficerMappedList(int id)
         {
+            int branchId = _userHelper.Get().BranchId;
+
+            if (_employeeService.GetEmployeeList(filter: x => x.BranchId == branchId && x.Id == id && x.IsActive && x.IsCreditOfficer).Count == 0)
+            {
+                SystemMessages.Add(CommonStrings.No_Record, true, true);
+                return new XHR_JSON_Redirect();
+            }
+
             var mappedList = _orgService.GetMappedOrganizationList(id);
 
             return PartialView("CreditOfficerMappedList", mappedList);

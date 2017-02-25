@@ -17,9 +17,8 @@ namespace ScopoMFinance.Domain.Models
         public int BranchId { get; set; }
         public int EmployeeId { get; set; }
         public int OrganizationId { get; set; }
-        public System.DateTime AssignedDate { get; set; }
+        public Nullable<System.DateTime> AssignedDate { get; set; }
         public Nullable<System.DateTime> ReleaseDate { get; set; }
-        public bool IsActive { get; set; }
         public string UserId { get; set; }
         public System.DateTime SystemDate { get; set; }
         public System.DateTime SetDate { get; set; }
