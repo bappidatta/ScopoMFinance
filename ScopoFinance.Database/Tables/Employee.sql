@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Employee]
+﻿CREATE TABLE [lnsav].[Employee]
 (
 	[Id] INT NOT NULL IDENTITY,
 	[BranchId] INT NOT NULL, 
@@ -17,8 +17,8 @@
 	[SystemDate] DATETIME NOT NULL,
     [SetDate] DATETIME NOT NULL,
 	CONSTRAINT [PK_Employee] PRIMARY KEY ([Id]),
-	CONSTRAINT [FK_Employee_EmployeeType] FOREIGN KEY ([EmployeeTypeId]) REFERENCES [EmployeeType]([Id]),
-	CONSTRAINT [FK_Employee_Gender] FOREIGN KEY ([GenderId]) REFERENCES [SysGender]([Id]),
-	CONSTRAINT [FK_Employee_Branch] FOREIGN KEY ([BranchId]) REFERENCES [Branch]([Id]),
+	CONSTRAINT [FK_Employee_EmployeeType] FOREIGN KEY ([EmployeeTypeId]) REFERENCES [lnsav].[EmployeeType]([Id]),
+	CONSTRAINT [FK_Employee_Gender] FOREIGN KEY ([GenderId]) REFERENCES [lnsav].[SysGender]([Id]),
+	CONSTRAINT [FK_Employee_Branch] FOREIGN KEY ([BranchId]) REFERENCES [lnsav].[Branch]([Id]),
 	CONSTRAINT [UQ_EmployeeNo] UNIQUE ([EmployeeNo])
 )

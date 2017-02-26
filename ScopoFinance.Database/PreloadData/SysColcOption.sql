@@ -1,6 +1,6 @@
-﻿SET IDENTITY_INSERT [dbo].[SysColcOption] ON;
+﻿SET IDENTITY_INSERT [lnsav].[SysColcOption] ON;
 
-MERGE [dbo].[SysColcOption] AS TARGET
+MERGE [lnsav].[SysColcOption] AS TARGET
 USING
 (
 			SELECT 1, N'Weekly', @User_HOUser, GetDate(), GetDate()
@@ -20,4 +20,4 @@ WHEN NOT MATCHED THEN
 	VALUES(SOURCE.[Id],SOURCE.[Name],SOURCE.[UserId],SOURCE.[SystemDate],SOURCE.[SetDate])
 ;
 
-SET IDENTITY_INSERT [dbo].[SysColcOption] OFF;
+SET IDENTITY_INSERT [lnsav].[SysColcOption] OFF;

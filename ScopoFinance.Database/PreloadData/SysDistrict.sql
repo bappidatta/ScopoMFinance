@@ -1,6 +1,6 @@
-﻿SET IDENTITY_INSERT [dbo].[SysDistrict] ON;
+﻿SET IDENTITY_INSERT [lnsav].[SysDistrict] ON;
 
-MERGE [dbo].[SysDistrict] AS TARGET
+MERGE [lnsav].[SysDistrict] AS TARGET
 USING
 (
 			SELECT @District_DHAKA			, N'DHAKA'		, @Division_DHAKA, @User_HOUser, GETDATE(), GETDATE()
@@ -31,4 +31,4 @@ WHEN NOT MATCHED THEN
 	VALUES(SOURCE.[Id],SOURCE.[Name],SOURCE.[DivisionId],SOURCE.[UserId],SOURCE.[SystemDate],SOURCE.[SetDate])
 ;
 
-SET IDENTITY_INSERT [dbo].[SysDistrict] OFF;
+SET IDENTITY_INSERT [lnsav].[SysDistrict] OFF;

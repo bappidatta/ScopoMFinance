@@ -1,6 +1,6 @@
-﻿SET IDENTITY_INSERT [dbo].[SysDivision] ON;
+﻿SET IDENTITY_INSERT [lnsav].[SysDivision] ON;
 
-MERGE [dbo].[SysDivision] AS TARGET
+MERGE [lnsav].[SysDivision] AS TARGET
 USING
 (
 			SELECT @Division_DHAKA		, N'DHAKA'	   , @User_HOUser, GETDATE(), GETDATE()
@@ -25,4 +25,4 @@ WHEN NOT MATCHED THEN
 	VALUES(SOURCE.[Id],SOURCE.[Name],SOURCE.[UserId],SOURCE.[SystemDate],SOURCE.[SetDate])
 ;
 
-SET IDENTITY_INSERT [dbo].[SysDivision] OFF;
+SET IDENTITY_INSERT [lnsav].[SysDivision] OFF;

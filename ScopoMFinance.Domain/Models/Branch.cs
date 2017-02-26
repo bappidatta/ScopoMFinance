@@ -18,11 +18,11 @@ namespace ScopoMFinance.Domain.Models
         public Branch()
         {
             this.AccDayOpenCloses = new HashSet<AccDayOpenClose>();
+            this.UserBranches = new HashSet<UserBranch>();
+            this.UserLoginAudits = new HashSet<UserLoginAudit>();
             this.Employees = new HashSet<Employee>();
             this.Organizations = new HashSet<Organization>();
             this.OrgCreditOfficers = new HashSet<OrgCreditOfficer>();
-            this.UserBranches = new HashSet<UserBranch>();
-            this.UserLoginAudits = new HashSet<UserLoginAudit>();
             this.Components = new HashSet<Component>();
         }
     
@@ -35,15 +35,15 @@ namespace ScopoMFinance.Domain.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AccDayOpenClose> AccDayOpenCloses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserBranch> UserBranches { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserLoginAudit> UserLoginAudits { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Organization> Organizations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrgCreditOfficer> OrgCreditOfficers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserBranch> UserBranches { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserLoginAudit> UserLoginAudits { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Component> Components { get; set; }
     }

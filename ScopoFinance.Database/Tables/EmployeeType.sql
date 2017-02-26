@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[EmployeeType]
+﻿CREATE TABLE [lnsav].[EmployeeType]
 (
 	[Id] INT NOT NULL IDENTITY,
 	[Name] NVARCHAR(256) NOT NULL,

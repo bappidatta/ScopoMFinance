@@ -32,6 +32,9 @@ namespace ScopoMFinance.Domain.Models
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<UserBranch> UserBranches { get; set; }
+        public virtual DbSet<UserLoginAudit> UserLoginAudits { get; set; }
+        public virtual DbSet<UserProfile> UserProfiles { get; set; }
         public virtual DbSet<Branch> Branches { get; set; }
         public virtual DbSet<Component> Components { get; set; }
         public virtual DbSet<ComponentType> ComponentTypes { get; set; }
@@ -51,9 +54,6 @@ namespace ScopoMFinance.Domain.Models
         public virtual DbSet<SysUnion> SysUnions { get; set; }
         public virtual DbSet<SysUpazila> SysUpazilas { get; set; }
         public virtual DbSet<SysVillage> SysVillages { get; set; }
-        public virtual DbSet<UserBranch> UserBranches { get; set; }
-        public virtual DbSet<UserLoginAudit> UserLoginAudits { get; set; }
-        public virtual DbSet<UserProfile> UserProfiles { get; set; }
         public virtual DbSet<OrgCreditOfficer> OrgCreditOfficers { get; set; }
     }
 }

@@ -1,6 +1,6 @@
-﻿SET IDENTITY_INSERT [dbo].[Employee] ON;
+﻿SET IDENTITY_INSERT [lnsav].[Employee] ON;
 
-MERGE [dbo].[Employee] AS TARGET
+MERGE [lnsav].[Employee] AS TARGET
 USING
 (
 			SELECT 1, @Branch_101, N'1011001', N'Active CO 1 - Br 1'		, 1, GETDATE(), NULL, @Gender_Male, 1, 1, @User_BranchUser_101, GetDate(), GetDate()
@@ -38,4 +38,4 @@ WHEN NOT MATCHED THEN
 	VALUES(SOURCE.[Id],SOURCE.[BranchId],SOURCE.[EmployeeNo],SOURCE.[EmployeeName],SOURCE.[IsCreditOfficer],SOURCE.[JoiningDate],SOURCE.[ResignDate],SOURCE.[GenderId],SOURCE.[EmployeeTypeId],SOURCE.[IsActive],SOURCE.[UserId],SOURCE.[SystemDate],SOURCE.[SetDate])
 ;
 
-SET IDENTITY_INSERT [dbo].[Employee] OFF;
+SET IDENTITY_INSERT [lnsav].[Employee] OFF;

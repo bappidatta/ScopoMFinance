@@ -1,6 +1,6 @@
-﻿SET IDENTITY_INSERT [dbo].[ComponentType] ON;
+﻿SET IDENTITY_INSERT [lnsav].[ComponentType] ON;
 
-MERGE [dbo].[ComponentType] AS TARGET
+MERGE [lnsav].[ComponentType] AS TARGET
 USING
 (
 			SELECT 1, N'Core Component', 3, @User_HOUser, GetDate(), GetDate()
@@ -20,4 +20,4 @@ WHEN NOT MATCHED THEN
 	VALUES(SOURCE.[Id],SOURCE.[Name],SOURCE.[NoOfMaxLoan],SOURCE.[UserId],SOURCE.[SystemDate],SOURCE.[SetDate])
 ;
 
-SET IDENTITY_INSERT [dbo].[ComponentType] OFF;
+SET IDENTITY_INSERT [lnsav].[ComponentType] OFF;

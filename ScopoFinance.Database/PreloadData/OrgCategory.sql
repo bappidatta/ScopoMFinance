@@ -1,6 +1,6 @@
-﻿SET IDENTITY_INSERT [dbo].[OrgCategory] ON;
+﻿SET IDENTITY_INSERT [lnsav].[OrgCategory] ON;
 
-MERGE [dbo].[OrgCategory] AS TARGET
+MERGE [lnsav].[OrgCategory] AS TARGET
 USING
 (
 			SELECT 1, N'01', N'Center', @User_HOUser, GetDate(), GetDate()
@@ -20,4 +20,4 @@ WHEN NOT MATCHED THEN
 	VALUES(SOURCE.[Id],SOURCE.[CategoryCode],SOURCE.[CategoryName],SOURCE.[UserId],SOURCE.[SystemDate],SOURCE.[SetDate])
 ;
 
-SET IDENTITY_INSERT [dbo].[OrgCategory] OFF;
+SET IDENTITY_INSERT [lnsav].[OrgCategory] OFF;

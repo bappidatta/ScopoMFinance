@@ -10,6 +10,6 @@
 	[OpenedAt] DATETIME NOT NULL,
 	[ClosedAt] DATETIME NULL,
 	CONSTRAINT [PK_DayOpenClose] PRIMARY KEY ([Id]),
-	CONSTRAINT [FK_DayOpenClose_Branch] FOREIGN KEY ([BranchId]) REFERENCES [Branch]([Id]),
+	CONSTRAINT [FK_DayOpenClose_Branch] FOREIGN KEY ([BranchId]) REFERENCES [lnsav].[Branch]([Id]),
 	CONSTRAINT [FK_DayOpenClose_UserProfile] FOREIGN KEY ([CloseRequestBy]) REFERENCES [UserProfile]([UserId])
 )

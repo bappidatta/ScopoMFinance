@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[SysUpazila]
+﻿CREATE TABLE [lnsav].[SysUpazila]
 (
 	[Id] INT NOT NULL IDENTITY,
 	[Name] NVARCHAR(50) NOT NULL, 
@@ -8,5 +8,5 @@
 	[SystemDate] DATETIME NOT NULL,
     [SetDate] DATETIME NOT NULL,
 	CONSTRAINT [PK_Upazila] PRIMARY KEY ([Id]),
-	CONSTRAINT [FK_Upazila_District] FOREIGN KEY ([DistrictId]) REFERENCES [SysDistrict]([Id])
+	CONSTRAINT [FK_Upazila_District] FOREIGN KEY ([DistrictId]) REFERENCES [lnsav].[SysDistrict]([Id])
 )

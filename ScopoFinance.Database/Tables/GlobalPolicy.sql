@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[GlobalPolicy]
+﻿CREATE TABLE [lnsav].[GlobalPolicy]
 (
 	[Id] INT NOT NULL IDENTITY,
 	[NoOfMaxLoan] INT NOT NULL,

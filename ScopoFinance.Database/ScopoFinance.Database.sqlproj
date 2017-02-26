@@ -23,6 +23,7 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <IncludeSchemaNameInFileName>False</IncludeSchemaNameInFileName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -97,6 +98,7 @@
     <Build Include="Tables\LoanProduct.sql" />
     <Build Include="Tables\ComponentLoanProduct.sql" />
     <Build Include="Tables\GlobalPolicy.sql" />
+    <Build Include="LoanSavings.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Common\Variables.sql" />

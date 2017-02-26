@@ -1,6 +1,6 @@
-﻿SET IDENTITY_INSERT [dbo].[SysUpazila] ON;
+﻿SET IDENTITY_INSERT [lnsav].[SysUpazila] ON;
 
-MERGE [dbo].[SysUpazila] AS TARGET
+MERGE [lnsav].[SysUpazila] AS TARGET
 USING
 (
 			SELECT @Upazila_DHAMRAI		, N'DHAMRAI'	, @District_DHAKA, @User_HOUser, GETDATE(), GETDATE()
@@ -22,4 +22,4 @@ WHEN NOT MATCHED THEN
 	VALUES(SOURCE.[Id],SOURCE.[Name],SOURCE.[DistrictId],SOURCE.[UserId],SOURCE.[SystemDate],SOURCE.[SetDate])
 ;
 
-SET IDENTITY_INSERT [dbo].[SysUpazila] OFF;
+SET IDENTITY_INSERT [lnsav].[SysUpazila] OFF;

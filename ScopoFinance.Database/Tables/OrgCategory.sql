@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[OrgCategory]
+﻿CREATE TABLE [lnsav].[OrgCategory]
 (
 	[Id] INT NOT NULL IDENTITY, 
     [CategoryCode] NVARCHAR(5) NOT NULL, 

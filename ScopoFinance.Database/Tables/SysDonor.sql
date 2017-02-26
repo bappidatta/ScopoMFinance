@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[SysDonor]
+﻿CREATE TABLE [lnsav].[SysDonor]
 (
 	[Id] INT NOT NULL IDENTITY,
 	[Name] NVARCHAR(256) NOT NULL,

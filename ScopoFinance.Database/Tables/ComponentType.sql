@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[ComponentType]
+﻿CREATE TABLE [lnsav].[ComponentType]
 (
 	[Id] INT NOT NULL IDENTITY,
 	[Name] NVARCHAR(256) NOT NULL,

@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[SysDivision]
+﻿CREATE TABLE [lnsav].[SysDivision]
 (
 	[Id] INT NOT NULL IDENTITY,
 	[Name] NVARCHAR(50) NOT NULL, 

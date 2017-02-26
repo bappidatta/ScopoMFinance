@@ -93,6 +93,37 @@
           <Property Name="PasswordResetToken" Type="nvarchar" MaxLength="255" />
           <Property Name="PasswordResetTokenExpireDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="UserBranch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserLoginAudit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+          <Property Name="LoggedInTime" Type="datetime" Nullable="false" />
+          <Property Name="LoggedOutTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="MobileNo" Type="nvarchar" MaxLength="14" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="ResUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SystemDate" Type="datetime" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Branch">
           <Key>
             <PropertyRef Name="Id" />
@@ -239,7 +270,7 @@
           <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'ScopoMFinance.dbo.OrgCreditOfficer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'ScopoMFinance.lnsav.OrgCreditOfficer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="OrgCreditOfficer">
           <Key>
             <PropertyRef Name="BranchId" />
@@ -372,37 +403,6 @@ warning 6002: The table/view 'ScopoMFinance.dbo.OrgCreditOfficer' does not have 
           <Property Name="UnionId" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="SystemDate" Type="datetime" Nullable="false" />
-          <Property Name="SetDate" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UserBranch">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="BranchId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UserLoginAudit">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="BranchId" Type="int" Nullable="false" />
-          <Property Name="LoggedInTime" Type="datetime" Nullable="false" />
-          <Property Name="LoggedOutTime" Type="datetime" />
-        </EntityType>
-        <EntityType Name="UserProfile">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="LastName" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="MobileNo" Type="nvarchar" MaxLength="14" Nullable="false" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="ResUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="SystemDate" Type="datetime" Nullable="false" />
           <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
@@ -879,32 +879,32 @@ warning 6002: The table/view 'ScopoMFinance.dbo.OrgCreditOfficer' does not have 
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="BranchComponent" EntityType="Self.BranchComponent" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Component" EntityType="Self.Component" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ComponentLoanProduct" EntityType="Self.ComponentLoanProduct" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ComponentSavingsProduct" EntityType="Self.ComponentSavingsProduct" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ComponentType" EntityType="Self.ComponentType" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="EmployeeType" EntityType="Self.EmployeeType" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="GlobalPolicy" EntityType="Self.GlobalPolicy" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="LoanProduct" EntityType="Self.LoanProduct" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="OrgCategory" EntityType="Self.OrgCategory" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SavingsProduct" EntityType="Self.SavingsProduct" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SysColcOption" EntityType="Self.SysColcOption" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SysDistrict" EntityType="Self.SysDistrict" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SysDivision" EntityType="Self.SysDivision" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SysDonor" EntityType="Self.SysDonor" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SysGender" EntityType="Self.SysGender" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SysThana" EntityType="Self.SysThana" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SysUnion" EntityType="Self.SysUnion" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SysUpazila" EntityType="Self.SysUpazila" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SysVillage" EntityType="Self.SysVillage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserBranch" EntityType="Self.UserBranch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserLoginAudit" EntityType="Self.UserLoginAudit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="OrgCreditOfficer" EntityType="Self.OrgCreditOfficer" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="Branch" EntityType="Self.Branch" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="BranchComponent" EntityType="Self.BranchComponent" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="Component" EntityType="Self.Component" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="ComponentLoanProduct" EntityType="Self.ComponentLoanProduct" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="ComponentSavingsProduct" EntityType="Self.ComponentSavingsProduct" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="ComponentType" EntityType="Self.ComponentType" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="EmployeeType" EntityType="Self.EmployeeType" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="GlobalPolicy" EntityType="Self.GlobalPolicy" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="LoanProduct" EntityType="Self.LoanProduct" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="Organization" EntityType="Self.Organization" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="OrgCategory" EntityType="Self.OrgCategory" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="SavingsProduct" EntityType="Self.SavingsProduct" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="SysColcOption" EntityType="Self.SysColcOption" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="SysDistrict" EntityType="Self.SysDistrict" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="SysDivision" EntityType="Self.SysDivision" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="SysDonor" EntityType="Self.SysDonor" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="SysGender" EntityType="Self.SysGender" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="SysThana" EntityType="Self.SysThana" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="SysUnion" EntityType="Self.SysUnion" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="SysUpazila" EntityType="Self.SysUpazila" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="SysVillage" EntityType="Self.SysVillage" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="OrgCreditOfficer" EntityType="Self.OrgCreditOfficer" store:Type="Tables" store:Schema="lnsav">
             <DefiningQuery>SELECT 
     [OrgCreditOfficer].[BranchId] AS [BranchId], 
     [OrgCreditOfficer].[EmployeeId] AS [EmployeeId], 
@@ -914,7 +914,7 @@ warning 6002: The table/view 'ScopoMFinance.dbo.OrgCreditOfficer' does not have 
     [OrgCreditOfficer].[UserId] AS [UserId], 
     [OrgCreditOfficer].[SystemDate] AS [SystemDate], 
     [OrgCreditOfficer].[SetDate] AS [SetDate]
-    FROM [dbo].[OrgCreditOfficer] AS [OrgCreditOfficer]</DefiningQuery>
+    FROM [lnsav].[OrgCreditOfficer] AS [OrgCreditOfficer]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_AccDayCloseProgress_AccDayCloseProcess" Association="Self.FK_AccDayCloseProgress_AccDayCloseProcess">
             <End Role="AccDayCloseProcess" EntitySet="AccDayCloseProcess" />
@@ -1081,6 +1081,9 @@ warning 6002: The table/view 'ScopoMFinance.dbo.OrgCreditOfficer' does not have 
           <EntitySet Name="AspNetUserClaims" EntityType="ScopoMFinanceModel.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="ScopoMFinanceModel.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="ScopoMFinanceModel.AspNetUser" />
+          <EntitySet Name="UserBranches" EntityType="ScopoMFinanceModel.UserBranch" />
+          <EntitySet Name="UserLoginAudits" EntityType="ScopoMFinanceModel.UserLoginAudit" />
+          <EntitySet Name="UserProfiles" EntityType="ScopoMFinanceModel.UserProfile" />
           <EntitySet Name="Branches" EntityType="ScopoMFinanceModel.Branch" />
           <EntitySet Name="Components" EntityType="ScopoMFinanceModel.Component" />
           <EntitySet Name="ComponentTypes" EntityType="ScopoMFinanceModel.ComponentType" />
@@ -1100,9 +1103,6 @@ warning 6002: The table/view 'ScopoMFinance.dbo.OrgCreditOfficer' does not have 
           <EntitySet Name="SysUnions" EntityType="ScopoMFinanceModel.SysUnion" />
           <EntitySet Name="SysUpazilas" EntityType="ScopoMFinanceModel.SysUpazila" />
           <EntitySet Name="SysVillages" EntityType="ScopoMFinanceModel.SysVillage" />
-          <EntitySet Name="UserBranches" EntityType="ScopoMFinanceModel.UserBranch" />
-          <EntitySet Name="UserLoginAudits" EntityType="ScopoMFinanceModel.UserLoginAudit" />
-          <EntitySet Name="UserProfiles" EntityType="ScopoMFinanceModel.UserProfile" />
           <EntitySet Name="OrgCreditOfficers" EntityType="ScopoMFinanceModel.OrgCreditOfficer" />
           <AssociationSet Name="FK_AccDayCloseProgress_AccDayCloseProcess" Association="ScopoMFinanceModel.FK_AccDayCloseProgress_AccDayCloseProcess">
             <End Role="AccDayCloseProcess" EntitySet="AccDayCloseProcesses" />
@@ -1132,6 +1132,22 @@ warning 6002: The table/view 'ScopoMFinance.dbo.OrgCreditOfficer' does not have 
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="UserProfile" EntitySet="UserProfiles" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserBranch_Branch" Association="ScopoMFinanceModel.FK_UserBranch_Branch">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="UserBranch" EntitySet="UserBranches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserBranch_User" Association="ScopoMFinanceModel.FK_UserBranch_User">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="UserBranch" EntitySet="UserBranches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserLogin_Branch" Association="ScopoMFinanceModel.FK_UserLogin_Branch">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="UserLoginAudit" EntitySet="UserLoginAudits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserLogin_User" Association="ScopoMFinanceModel.FK_UserLogin_User">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="UserLoginAudit" EntitySet="UserLoginAudits" />
+          </AssociationSet>
           <AssociationSet Name="FK_Employee_Branch" Association="ScopoMFinanceModel.FK_Employee_Branch">
             <End Role="Branch" EntitySet="Branches" />
             <End Role="Employee" EntitySet="Employees" />
@@ -1143,14 +1159,6 @@ warning 6002: The table/view 'ScopoMFinance.dbo.OrgCreditOfficer' does not have 
           <AssociationSet Name="FK_OrgCO_Branch" Association="ScopoMFinanceModel.FK_OrgCO_Branch">
             <End Role="Branch" EntitySet="Branches" />
             <End Role="OrgCreditOfficer" EntitySet="OrgCreditOfficers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserBranch_Branch" Association="ScopoMFinanceModel.FK_UserBranch_Branch">
-            <End Role="Branch" EntitySet="Branches" />
-            <End Role="UserBranch" EntitySet="UserBranches" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserLogin_Branch" Association="ScopoMFinanceModel.FK_UserLogin_Branch">
-            <End Role="Branch" EntitySet="Branches" />
-            <End Role="UserLoginAudit" EntitySet="UserLoginAudits" />
           </AssociationSet>
           <AssociationSet Name="FK_Component_ComponentType" Association="ScopoMFinanceModel.FK_Component_ComponentType">
             <End Role="ComponentType" EntitySet="ComponentTypes" />
@@ -1215,14 +1223,6 @@ warning 6002: The table/view 'ScopoMFinance.dbo.OrgCreditOfficer' does not have 
           <AssociationSet Name="FK_Village_Union" Association="ScopoMFinanceModel.FK_Village_Union">
             <End Role="SysUnion" EntitySet="SysUnions" />
             <End Role="SysVillage" EntitySet="SysVillages" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserBranch_User" Association="ScopoMFinanceModel.FK_UserBranch_User">
-            <End Role="UserProfile" EntitySet="UserProfiles" />
-            <End Role="UserBranch" EntitySet="UserBranches" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserLogin_User" Association="ScopoMFinanceModel.FK_UserLogin_User">
-            <End Role="UserProfile" EntitySet="UserProfiles" />
-            <End Role="UserLoginAudit" EntitySet="UserLoginAudits" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="ScopoMFinanceModel.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
@@ -1334,6 +1334,45 @@ warning 6002: The table/view 'ScopoMFinance.dbo.OrgCreditOfficer' does not have 
           <NavigationProperty Name="UserProfile" Relationship="ScopoMFinanceModel.FK_UserProfile_AspNetUser" FromRole="AspNetUser" ToRole="UserProfile" />
           <NavigationProperty Name="AspNetRoles" Relationship="ScopoMFinanceModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
         </EntityType>
+        <EntityType Name="UserBranch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_UserBranch_Branch" FromRole="UserBranch" ToRole="Branch" />
+          <NavigationProperty Name="UserProfile" Relationship="ScopoMFinanceModel.FK_UserBranch_User" FromRole="UserBranch" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="UserLoginAudit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="LoggedInTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LoggedOutTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_UserLogin_Branch" FromRole="UserLoginAudit" ToRole="Branch" />
+          <NavigationProperty Name="UserProfile" Relationship="ScopoMFinanceModel.FK_UserLogin_User" FromRole="UserLoginAudit" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNo" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="ResUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AccDayOpenCloses" Relationship="ScopoMFinanceModel.FK_DayOpenClose_UserProfile" FromRole="UserProfile" ToRole="AccDayOpenClose" />
+          <NavigationProperty Name="AspNetUser" Relationship="ScopoMFinanceModel.FK_UserProfile_AspNetUser" FromRole="UserProfile" ToRole="AspNetUser" />
+          <NavigationProperty Name="UserBranches" Relationship="ScopoMFinanceModel.FK_UserBranch_User" FromRole="UserProfile" ToRole="UserBranch" />
+          <NavigationProperty Name="UserLoginAudits" Relationship="ScopoMFinanceModel.FK_UserLogin_User" FromRole="UserProfile" ToRole="UserLoginAudit" />
+        </EntityType>
         <EntityType Name="Branch">
           <Key>
             <PropertyRef Name="Id" />
@@ -1344,11 +1383,11 @@ warning 6002: The table/view 'ScopoMFinance.dbo.OrgCreditOfficer' does not have 
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsHeadOffice" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="AccDayOpenCloses" Relationship="ScopoMFinanceModel.FK_DayOpenClose_Branch" FromRole="Branch" ToRole="AccDayOpenClose" />
+          <NavigationProperty Name="UserBranches" Relationship="ScopoMFinanceModel.FK_UserBranch_Branch" FromRole="Branch" ToRole="UserBranch" />
+          <NavigationProperty Name="UserLoginAudits" Relationship="ScopoMFinanceModel.FK_UserLogin_Branch" FromRole="Branch" ToRole="UserLoginAudit" />
           <NavigationProperty Name="Employees" Relationship="ScopoMFinanceModel.FK_Employee_Branch" FromRole="Branch" ToRole="Employee" />
           <NavigationProperty Name="Organizations" Relationship="ScopoMFinanceModel.FK_Org_Branch" FromRole="Branch" ToRole="Organization" />
           <NavigationProperty Name="OrgCreditOfficers" Relationship="ScopoMFinanceModel.FK_OrgCO_Branch" FromRole="Branch" ToRole="OrgCreditOfficer" />
-          <NavigationProperty Name="UserBranches" Relationship="ScopoMFinanceModel.FK_UserBranch_Branch" FromRole="Branch" ToRole="UserBranch" />
-          <NavigationProperty Name="UserLoginAudits" Relationship="ScopoMFinanceModel.FK_UserLogin_Branch" FromRole="Branch" ToRole="UserLoginAudit" />
           <NavigationProperty Name="Components" Relationship="ScopoMFinanceModel.BranchComponent" FromRole="Branch" ToRole="Component" />
         </EntityType>
         <EntityType Name="Component">
@@ -1616,45 +1655,6 @@ warning 6002: The table/view 'ScopoMFinance.dbo.OrgCreditOfficer' does not have 
           <NavigationProperty Name="Organizations" Relationship="ScopoMFinanceModel.FK_Org_Village" FromRole="SysVillage" ToRole="Organization" />
           <NavigationProperty Name="SysUnion" Relationship="ScopoMFinanceModel.FK_Village_Union" FromRole="SysVillage" ToRole="SysUnion" />
         </EntityType>
-        <EntityType Name="UserBranch">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="BranchId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_UserBranch_Branch" FromRole="UserBranch" ToRole="Branch" />
-          <NavigationProperty Name="UserProfile" Relationship="ScopoMFinanceModel.FK_UserBranch_User" FromRole="UserBranch" ToRole="UserProfile" />
-        </EntityType>
-        <EntityType Name="UserLoginAudit">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="BranchId" Type="Int32" Nullable="false" />
-          <Property Name="LoggedInTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LoggedOutTime" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_UserLogin_Branch" FromRole="UserLoginAudit" ToRole="Branch" />
-          <NavigationProperty Name="UserProfile" Relationship="ScopoMFinanceModel.FK_UserLogin_User" FromRole="UserLoginAudit" ToRole="UserProfile" />
-        </EntityType>
-        <EntityType Name="UserProfile">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="MobileNo" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="ResUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="AccDayOpenCloses" Relationship="ScopoMFinanceModel.FK_DayOpenClose_UserProfile" FromRole="UserProfile" ToRole="AccDayOpenClose" />
-          <NavigationProperty Name="AspNetUser" Relationship="ScopoMFinanceModel.FK_UserProfile_AspNetUser" FromRole="UserProfile" ToRole="AspNetUser" />
-          <NavigationProperty Name="UserBranches" Relationship="ScopoMFinanceModel.FK_UserBranch_User" FromRole="UserProfile" ToRole="UserBranch" />
-          <NavigationProperty Name="UserLoginAudits" Relationship="ScopoMFinanceModel.FK_UserLogin_User" FromRole="UserProfile" ToRole="UserLoginAudit" />
-        </EntityType>
         <EntityType Name="OrgCreditOfficer">
           <Key>
             <PropertyRef Name="BranchId" />
@@ -1764,6 +1764,54 @@ warning 6002: The table/view 'ScopoMFinance.dbo.OrgCreditOfficer' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserBranch_Branch">
+          <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.UserBranch" Role="UserBranch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserBranch">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserBranch_User">
+          <End Type="ScopoMFinanceModel.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.UserBranch" Role="UserBranch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserBranch">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserLogin_Branch">
+          <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.UserLoginAudit" Role="UserLoginAudit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserLoginAudit">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserLogin_User">
+          <End Type="ScopoMFinanceModel.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.UserLoginAudit" Role="UserLoginAudit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserLoginAudit">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Employee_Branch">
           <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="1" />
           <End Type="ScopoMFinanceModel.Employee" Role="Employee" Multiplicity="*" />
@@ -1796,30 +1844,6 @@ warning 6002: The table/view 'ScopoMFinance.dbo.OrgCreditOfficer' does not have 
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="OrgCreditOfficer">
-              <PropertyRef Name="BranchId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserBranch_Branch">
-          <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="1" />
-          <End Type="ScopoMFinanceModel.UserBranch" Role="UserBranch" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Branch">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserBranch">
-              <PropertyRef Name="BranchId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserLogin_Branch">
-          <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="1" />
-          <End Type="ScopoMFinanceModel.UserLoginAudit" Role="UserLoginAudit" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Branch">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserLoginAudit">
               <PropertyRef Name="BranchId" />
             </Dependent>
           </ReferentialConstraint>
@@ -2016,30 +2040,6 @@ warning 6002: The table/view 'ScopoMFinance.dbo.OrgCreditOfficer' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserBranch_User">
-          <End Type="ScopoMFinanceModel.UserProfile" Role="UserProfile" Multiplicity="1" />
-          <End Type="ScopoMFinanceModel.UserBranch" Role="UserBranch" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserProfile">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="UserBranch">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserLogin_User">
-          <End Type="ScopoMFinanceModel.UserProfile" Role="UserProfile" Multiplicity="1" />
-          <End Type="ScopoMFinanceModel.UserLoginAudit" Role="UserLoginAudit" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserProfile">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="UserLoginAudit">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="AspNetUserRoles">
           <End Type="ScopoMFinanceModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="ScopoMFinanceModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
@@ -2144,6 +2144,40 @@ warning 6002: The table/view 'ScopoMFinance.dbo.OrgCreditOfficer' does not have 
                 <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserBranches">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.UserBranch">
+              <MappingFragment StoreEntitySet="UserBranch">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserLoginAudits">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.UserLoginAudit">
+              <MappingFragment StoreEntitySet="UserLoginAudit">
+                <ScalarProperty Name="LoggedOutTime" ColumnName="LoggedOutTime" />
+                <ScalarProperty Name="LoggedInTime" ColumnName="LoggedInTime" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfiles">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="ResUserId" ColumnName="ResUserId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2401,40 +2435,6 @@ warning 6002: The table/view 'ScopoMFinance.dbo.OrgCreditOfficer' does not have 
                 <ScalarProperty Name="UnionId" ColumnName="UnionId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserBranches">
-            <EntityTypeMapping TypeName="ScopoMFinanceModel.UserBranch">
-              <MappingFragment StoreEntitySet="UserBranch">
-                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserLoginAudits">
-            <EntityTypeMapping TypeName="ScopoMFinanceModel.UserLoginAudit">
-              <MappingFragment StoreEntitySet="UserLoginAudit">
-                <ScalarProperty Name="LoggedOutTime" ColumnName="LoggedOutTime" />
-                <ScalarProperty Name="LoggedInTime" ColumnName="LoggedInTime" />
-                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserProfiles">
-            <EntityTypeMapping TypeName="ScopoMFinanceModel.UserProfile">
-              <MappingFragment StoreEntitySet="UserProfile">
-                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
-                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
-                <ScalarProperty Name="ResUserId" ColumnName="ResUserId" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

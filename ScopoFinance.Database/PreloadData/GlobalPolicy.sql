@@ -1,6 +1,6 @@
-﻿SET IDENTITY_INSERT [dbo].[GlobalPolicy] ON;
+﻿SET IDENTITY_INSERT [lnsav].[GlobalPolicy] ON;
 
-MERGE [dbo].[GlobalPolicy] AS TARGET
+MERGE [lnsav].[GlobalPolicy] AS TARGET
 USING
 (
 			SELECT 1, 3
@@ -15,4 +15,4 @@ WHEN NOT MATCHED THEN
 	VALUES(SOURCE.[Id],SOURCE.[NoOfMaxLoan])
 ;
 
-SET IDENTITY_INSERT [dbo].[GlobalPolicy] OFF;
+SET IDENTITY_INSERT [lnsav].[GlobalPolicy] OFF;

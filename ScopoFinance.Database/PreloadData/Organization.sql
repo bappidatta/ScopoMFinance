@@ -1,6 +1,6 @@
-﻿SET IDENTITY_INSERT [dbo].[Organization] ON;
+﻿SET IDENTITY_INSERT [lnsav].[Organization] ON;
 
-MERGE [dbo].[Organization] AS TARGET
+MERGE [lnsav].[Organization] AS TARGET
 USING
 (
 			SELECT 1, @Branch_101, N'1001', N'Active Center 1 - Br 1'	, 1, 1, GETDATE(), 1, GETDATE(), 1, @User_BranchUser_101, GetDate(), GetDate()
@@ -34,4 +34,4 @@ WHEN NOT MATCHED THEN
 	VALUES(SOURCE.[Id],SOURCE.[BranchId],SOURCE.[OrganizationNo],SOURCE.[OrganizationName],SOURCE.[OrgCategoryId],SOURCE.[GenderId],SOURCE.[SetupDate],SOURCE.[MeetingFrequency],SOURCE.[MeetingDate],SOURCE.[IsActive],SOURCE.[UserId],SOURCE.[SystemDate],SOURCE.[SetDate])
 ;
 
-SET IDENTITY_INSERT [dbo].[Organization] OFF;
+SET IDENTITY_INSERT [lnsav].[Organization] OFF;

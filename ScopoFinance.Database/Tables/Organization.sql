@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Organization]
+﻿CREATE TABLE [lnsav].[Organization]
 (
 	[Id] INT NOT NULL IDENTITY, 
 	[BranchId] INT NOT NULL, 
@@ -16,10 +16,10 @@
 	[SystemDate] DATETIME NOT NULL,
     [SetDate] DATETIME NOT NULL,
     CONSTRAINT [PK_Organization] PRIMARY KEY ([Id]),
-	CONSTRAINT [FK_Org_Branch] FOREIGN KEY ([BranchId]) REFERENCES [Branch]([Id]),
-	CONSTRAINT [FK_Org_OrgCategory] FOREIGN KEY ([OrgCategoryId]) REFERENCES [OrgCategory]([Id]),
-	CONSTRAINT [FK_Org_Gender] FOREIGN KEY ([GenderId]) REFERENCES [SysGender]([Id]),
-	CONSTRAINT [FK_Org_Colc] FOREIGN KEY ([MeetingFrequency]) REFERENCES [SysColcOption]([Id]),
-	CONSTRAINT [FK_Org_Village] FOREIGN KEY ([VillageId]) REFERENCES [SysVillage]([Id]),
-	CONSTRAINT [FK_Org_CreditOfficer] FOREIGN KEY ([CreditOfficerId]) REFERENCES [Employee]([Id])
+	CONSTRAINT [FK_Org_Branch] FOREIGN KEY ([BranchId]) REFERENCES [lnsav].[Branch]([Id]),
+	CONSTRAINT [FK_Org_OrgCategory] FOREIGN KEY ([OrgCategoryId]) REFERENCES [lnsav].[OrgCategory]([Id]),
+	CONSTRAINT [FK_Org_Gender] FOREIGN KEY ([GenderId]) REFERENCES [lnsav].[SysGender]([Id]),
+	CONSTRAINT [FK_Org_Colc] FOREIGN KEY ([MeetingFrequency]) REFERENCES [lnsav].[SysColcOption]([Id]),
+	CONSTRAINT [FK_Org_Village] FOREIGN KEY ([VillageId]) REFERENCES [lnsav].[SysVillage]([Id]),
+	CONSTRAINT [FK_Org_CreditOfficer] FOREIGN KEY ([CreditOfficerId]) REFERENCES [lnsav].[Employee]([Id])
 )

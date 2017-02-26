@@ -1,6 +1,6 @@
-﻿SET IDENTITY_INSERT [dbo].[EmployeeType] ON;
+﻿SET IDENTITY_INSERT [lnsav].[EmployeeType] ON;
 
-MERGE [dbo].[EmployeeType] AS TARGET
+MERGE [lnsav].[EmployeeType] AS TARGET
 USING
 (
 			SELECT 1, N'Credit Officer', @User_HOUser, GetDate(), GetDate()
@@ -19,4 +19,4 @@ WHEN NOT MATCHED THEN
 	VALUES(SOURCE.[Id],SOURCE.[Name],SOURCE.[UserId],SOURCE.[SystemDate],SOURCE.[SetDate])
 ;
 
-SET IDENTITY_INSERT [dbo].[EmployeeType] OFF;
+SET IDENTITY_INSERT [lnsav].[EmployeeType] OFF;

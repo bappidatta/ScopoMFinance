@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Branch]
+﻿CREATE TABLE [lnsav].[Branch]
 (
 	[Id] INT NOT NULL IDENTITY,
 	[Name] NVARCHAR(255) NOT NULL, 

@@ -1,6 +1,6 @@
-﻿SET IDENTITY_INSERT [dbo].[SysUnion] ON;
+﻿SET IDENTITY_INSERT [lnsav].[SysUnion] ON;
 
-MERGE [dbo].[SysUnion] AS TARGET
+MERGE [lnsav].[SysUnion] AS TARGET
 USING
 (
 			SELECT @Union_KUSHUMHATI	, N'KUSHUMHATI'	, @Upazila_DHAMRAI, @User_HOUser, GETDATE(), GETDATE()
@@ -25,4 +25,4 @@ WHEN NOT MATCHED THEN
 	VALUES(SOURCE.[Id],SOURCE.[Name],SOURCE.[UpazilaId],SOURCE.[UserId],SOURCE.[SystemDate],SOURCE.[SetDate])
 ;
 
-SET IDENTITY_INSERT [dbo].[SysUnion] OFF;
+SET IDENTITY_INSERT [lnsav].[SysUnion] OFF;

@@ -1,6 +1,6 @@
-﻿SET IDENTITY_INSERT [dbo].[SysGender] ON;
+﻿SET IDENTITY_INSERT [lnsav].[SysGender] ON;
 
-MERGE [dbo].[SysGender] AS TARGET
+MERGE [lnsav].[SysGender] AS TARGET
 USING
 (
 			SELECT @Gender_Male		, N'Male'  , @User_HOUser, GETDATE(), GETDATE()
@@ -19,4 +19,4 @@ WHEN NOT MATCHED THEN
 	VALUES(SOURCE.[Id],SOURCE.[Name],SOURCE.[UserId],SOURCE.[SystemDate],SOURCE.[SetDate])
 ;
 
-SET IDENTITY_INSERT [dbo].[SysGender] OFF;
+SET IDENTITY_INSERT [lnsav].[SysGender] OFF;

@@ -5,5 +5,5 @@
     [BranchId] INT NOT NULL
 	CONSTRAINT [PK_UserBranch] PRIMARY KEY ([Id]),
 	CONSTRAINT [FK_UserBranch_User] FOREIGN KEY ([UserId]) REFERENCES [UserProfile]([UserId]),
-	CONSTRAINT [FK_UserBranch_Branch] FOREIGN KEY ([BranchId]) REFERENCES [Branch]([Id])
+	CONSTRAINT [FK_UserBranch_Branch] FOREIGN KEY ([BranchId]) REFERENCES [lnsav].[Branch]([Id])
 )

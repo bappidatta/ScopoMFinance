@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[SavingsProduct]
+﻿CREATE TABLE [lnsav].[SavingsProduct]
 (
 	[Id] INT NOT NULL IDENTITY, 
     [ProductCode] NVARCHAR(50) NOT NULL, 

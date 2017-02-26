@@ -1,6 +1,6 @@
-﻿SET IDENTITY_INSERT [dbo].[SysVillage] ON;
+﻿SET IDENTITY_INSERT [lnsav].[SysVillage] ON;
 
-MERGE [dbo].[SysVillage] AS TARGET
+MERGE [lnsav].[SysVillage] AS TARGET
 USING
 (
 			SELECT 1, N'Village 1'	, @Union_KUSHUMHATI, @User_HOUser, GETDATE(), GETDATE()
@@ -20,4 +20,4 @@ WHEN NOT MATCHED THEN
 	VALUES(SOURCE.[Id],SOURCE.[Name],SOURCE.[UnionId],SOURCE.[UserId],SOURCE.[SystemDate],SOURCE.[SetDate])
 ;
 
-SET IDENTITY_INSERT [dbo].[SysVillage] OFF;
+SET IDENTITY_INSERT [lnsav].[SysVillage] OFF;

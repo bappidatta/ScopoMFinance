@@ -1,6 +1,6 @@
-﻿SET IDENTITY_INSERT [dbo].[Branch] ON;
+﻿SET IDENTITY_INSERT [lnsav].[Branch] ON;
 
-MERGE [dbo].[Branch] AS TARGET
+MERGE [lnsav].[Branch] AS TARGET
 USING
 (
 			SELECT @Branch_HO	, N'Head Office', GetDate(), 1, 1
@@ -36,4 +36,4 @@ WHEN NOT MATCHED THEN
 	VALUES(SOURCE.[Id],SOURCE.[Name],SOURCE.[OpenDate],SOURCE.[IsActive],SOURCE.[IsHeadOffice])
 ;
 
-SET IDENTITY_INSERT [dbo].[Branch] OFF;
+SET IDENTITY_INSERT [lnsav].[Branch] OFF;

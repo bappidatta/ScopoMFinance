@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[SysThana]
+﻿CREATE TABLE [lnsav].[SysThana]
 (
 	[Id] INT NOT NULL IDENTITY,
 	[Name] NVARCHAR(50) NOT NULL, 
@@ -8,5 +8,5 @@
 	[SystemDate] DATETIME NOT NULL,
     [SetDate] DATETIME NOT NULL,
 	CONSTRAINT [PK_Thana] PRIMARY KEY ([Id]),
-	CONSTRAINT [FK_Thana_Union] FOREIGN KEY ([UnionId]) REFERENCES [SysUnion]([Id])
+	CONSTRAINT [FK_Thana_Union] FOREIGN KEY ([UnionId]) REFERENCES [lnsav].[SysUnion]([Id])
 )
