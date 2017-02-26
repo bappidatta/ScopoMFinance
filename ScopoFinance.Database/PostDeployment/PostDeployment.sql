@@ -30,6 +30,7 @@ Post-Deployment Script Template
 :r ..\PreloadData\UserBranch.sql
 :r ..\PreloadData\OrgCategory.sql
 :r ..\PreloadData\SysColcOption.sql
+:r ..\PreloadData\ComponentType.sql
 :r ..\PreloadData\Organization.sql
 :r ..\PreloadData\AccDayOpenClose.sql
 :r ..\PreloadData\EmployeeType.sql

@@ -80,21 +80,22 @@
     <Build Include="Tables\SysThana.sql" />
     <Build Include="Tables\SysVillage.sql" />
     <Build Include="Tables\Employee.sql" />
-    <Build Include="Tables\Project.sql" />
-    <Build Include="Tables\ProjectType.sql" />
+    <Build Include="Tables\Component.sql" />
+    <Build Include="Tables\ComponentType.sql" />
     <Build Include="Tables\SysDonor.sql" />
-    <Build Include="Tables\BranchWiseProjectMapping.sql" />
+    <Build Include="Tables\BranchComponent.sql" />
     <Build Include="Tables\Organization.sql" />
     <Build Include="Tables\SysColcOption.sql" />
     <Build Include="Tables\OrgCreditOfficer.sql" />
     <Build Include="Tables\UserBranch.sql" />
     <Build Include="Tables\UserLoginAudit.sql" />
-    <Build Include="Tables\Product.sql" />
-    <Build Include="Tables\ProjectWiseProductMapping.sql" />
-    <Build Include="Tables\ProductType.sql" />
+    <Build Include="Tables\SavingsProduct.sql" />
+    <Build Include="Tables\ComponentSavingsProduct.sql" />
     <Build Include="Tables\AccDayOpenClose.sql" />
     <Build Include="Tables\AccDayCloseProcess.sql" />
     <Build Include="Tables\AccDayCloseProgress.sql" />
+    <Build Include="Tables\LoanProduct.sql" />
+    <Build Include="Tables\ComponentLoanProduct.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Common\Variables.sql" />
@@ -119,6 +120,7 @@
     <None Include="PreloadData\EmployeeType.sql" />
     <None Include="PreloadData\Employee.sql" />
     <None Include="PreloadData\Organization.sql" />
+    <None Include="PreloadData\ComponentType.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="ScopoFinance.Database.refactorlog" />

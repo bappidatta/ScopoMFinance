@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[ProductType]
+﻿CREATE TABLE [dbo].[ComponentType]
 (
 	[Id] INT NOT NULL IDENTITY,
 	[Name] NVARCHAR(256) NOT NULL,
@@ -6,5 +6,5 @@
     [UserId] NVARCHAR(128) NOT NULL, 
 	[SystemDate] DATETIME NOT NULL,
     [SetDate] DATETIME NOT NULL,
-	CONSTRAINT [PK_ProductType] PRIMARY KEY ([Id])
+	CONSTRAINT [PK_ComponentType] PRIMARY KEY ([Id])
 )
