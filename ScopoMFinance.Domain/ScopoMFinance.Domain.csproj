@@ -114,6 +114,9 @@
     <Compile Include="Models\EmployeeType.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GlobalPolicy.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\LoanProduct.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>

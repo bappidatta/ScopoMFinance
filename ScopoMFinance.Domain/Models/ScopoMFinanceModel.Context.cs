@@ -37,6 +37,7 @@ namespace ScopoMFinance.Domain.Models
         public virtual DbSet<ComponentType> ComponentTypes { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<EmployeeType> EmployeeTypes { get; set; }
+        public virtual DbSet<GlobalPolicy> GlobalPolicies { get; set; }
         public virtual DbSet<LoanProduct> LoanProducts { get; set; }
         public virtual DbSet<Organization> Organizations { get; set; }
         public virtual DbSet<OrgCategory> OrgCategories { get; set; }

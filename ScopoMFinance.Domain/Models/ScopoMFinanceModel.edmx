@@ -148,6 +148,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="NoOfMaxLoan" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="SystemDate" Type="datetime" Nullable="false" />
@@ -184,6 +185,13 @@
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="SystemDate" Type="datetime" Nullable="false" />
           <Property Name="SetDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GlobalPolicy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NoOfMaxLoan" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="LoanProduct">
           <Key>
@@ -879,6 +887,7 @@ warning 6002: The table/view 'ScopoMFinance.dbo.OrgCreditOfficer' does not have 
           <EntitySet Name="ComponentType" EntityType="Self.ComponentType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeeType" EntityType="Self.EmployeeType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GlobalPolicy" EntityType="Self.GlobalPolicy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoanProduct" EntityType="Self.LoanProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrgCategory" EntityType="Self.OrgCategory" Schema="dbo" store:Type="Tables" />
@@ -1077,6 +1086,7 @@ warning 6002: The table/view 'ScopoMFinance.dbo.OrgCreditOfficer' does not have 
           <EntitySet Name="ComponentTypes" EntityType="ScopoMFinanceModel.ComponentType" />
           <EntitySet Name="Employees" EntityType="ScopoMFinanceModel.Employee" />
           <EntitySet Name="EmployeeTypes" EntityType="ScopoMFinanceModel.EmployeeType" />
+          <EntitySet Name="GlobalPolicies" EntityType="ScopoMFinanceModel.GlobalPolicy" />
           <EntitySet Name="LoanProducts" EntityType="ScopoMFinanceModel.LoanProduct" />
           <EntitySet Name="Organizations" EntityType="ScopoMFinanceModel.Organization" />
           <EntitySet Name="OrgCategories" EntityType="ScopoMFinanceModel.OrgCategory" />
@@ -1367,6 +1377,7 @@ warning 6002: The table/view 'ScopoMFinance.dbo.OrgCreditOfficer' does not have 
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="NoOfMaxLoan" Type="Int32" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -1410,6 +1421,13 @@ warning 6002: The table/view 'ScopoMFinance.dbo.OrgCreditOfficer' does not have 
           <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Employees" Relationship="ScopoMFinanceModel.FK_Employee_EmployeeType" FromRole="EmployeeType" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="GlobalPolicy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NoOfMaxLoan" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="LoanProduct">
           <Key>
@@ -2163,6 +2181,7 @@ warning 6002: The table/view 'ScopoMFinance.dbo.OrgCreditOfficer' does not have 
                 <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="NoOfMaxLoan" ColumnName="NoOfMaxLoan" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -2198,6 +2217,14 @@ warning 6002: The table/view 'ScopoMFinance.dbo.OrgCreditOfficer' does not have 
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GlobalPolicies">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.GlobalPolicy">
+              <MappingFragment StoreEntitySet="GlobalPolicy">
+                <ScalarProperty Name="NoOfMaxLoan" ColumnName="NoOfMaxLoan" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
