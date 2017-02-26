@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace ScopoMFinance.Core.Services
 {
-    public interface IProjectService
+    public interface IComponentService
     {
 
     }
 
-    public class ProjectService : IProjectService
+    public class ComponentService : IComponentService
     {
         private UnitOfWork _uow;
 
-        public ProjectService(UnitOfWork uow)
+        public ComponentService(UnitOfWork uow)
         {
             _uow = uow;
         }

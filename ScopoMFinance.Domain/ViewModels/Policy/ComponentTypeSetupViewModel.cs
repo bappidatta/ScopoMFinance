@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ScopoMFinance.Domain.ViewModels.Policy
 {
-    public class ProjectTypeSetupViewModel
+    public class ComponentTypeSetupViewModel
     {
 
     }

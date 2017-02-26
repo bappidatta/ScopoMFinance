@@ -242,55 +242,55 @@ namespace ScopoMFinance.Domain.Repositories
             }
         }
 
-        private IRepository<ProjectType> projectTypeRepo;
-        public IRepository<ProjectType> ProjectTypeRepository
+        private IRepository<ComponentType> componentTypeRepo;
+        public IRepository<ComponentType> ComponentTypeRepository
         {
             get
             {
-                if (this.projectTypeRepo == null)
+                if (this.componentTypeRepo == null)
                 {
-                    this.projectTypeRepo = new Repository<ProjectType>(db);
+                    this.componentTypeRepo = new Repository<ComponentType>(db);
                 }
-                return projectTypeRepo;
+                return componentTypeRepo;
             }
         }
 
-        private IRepository<Project> projectRepo;
-        public IRepository<Project> ProjectRepository
+        private IRepository<Component> componentRepo;
+        public IRepository<Component> ComponentRepository
         {
             get
             {
-                if (this.projectRepo == null)
+                if (this.componentRepo == null)
                 {
-                    this.projectRepo = new Repository<Project>(db);
+                    this.componentRepo = new Repository<Component>(db);
                 }
-                return projectRepo;
+                return componentRepo;
             }
         }
 
-        private IRepository<ProductType> productTypeRepo;
-        public IRepository<ProductType> ProductTypeRepository
+        private IRepository<SavingsProduct> savingsProductRepo;
+        public IRepository<SavingsProduct> SavingsProductRepository
         {
             get
             {
-                if (this.productTypeRepo == null)
+                if (this.savingsProductRepo == null)
                 {
-                    this.productTypeRepo = new Repository<ProductType>(db);
+                    this.savingsProductRepo = new Repository<SavingsProduct>(db);
                 }
-                return productTypeRepo;
+                return savingsProductRepo;
             }
         }
 
-        private IRepository<Product> productRepo;
-        public IRepository<Product> ProductRepository
+        private IRepository<LoanProduct> loanProductRepo;
+        public IRepository<LoanProduct> LoanProductRepository
         {
             get
             {
-                if (this.productRepo == null)
+                if (this.loanProductRepo == null)
                 {
-                    this.productRepo = new Repository<Product>(db);
+                    this.loanProductRepo = new Repository<LoanProduct>(db);
                 }
-                return productRepo;
+                return loanProductRepo;
             }
         }
 

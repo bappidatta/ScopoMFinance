@@ -12,26 +12,22 @@ namespace ScopoMFinance.Domain.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Product
+    public partial class ComponentType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Product()
+        public ComponentType()
         {
-            this.Projects = new HashSet<Project>();
+            this.Components = new HashSet<Component>();
         }
     
         public int Id { get; set; }
-        public string ProductCode { get; set; }
-        public string ProductName { get; set; }
-        public decimal InterestRate { get; set; }
-        public int ProductTypeId { get; set; }
+        public string Name { get; set; }
         public bool IsActive { get; set; }
         public string UserId { get; set; }
         public System.DateTime SystemDate { get; set; }
         public System.DateTime SetDate { get; set; }
     
-        public virtual ProductType ProductType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Project> Projects { get; set; }
+        public virtual ICollection<Component> Components { get; set; }
     }
 }

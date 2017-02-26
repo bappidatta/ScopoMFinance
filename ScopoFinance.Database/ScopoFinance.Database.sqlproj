@@ -96,6 +96,7 @@
     <Build Include="Tables\AccDayCloseProgress.sql" />
     <Build Include="Tables\LoanProduct.sql" />
     <Build Include="Tables\ComponentLoanProduct.sql" />
+    <Build Include="Tables\GlobalPolicy.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Common\Variables.sql" />
@@ -121,6 +122,7 @@
     <None Include="PreloadData\Employee.sql" />
     <None Include="PreloadData\Organization.sql" />
     <None Include="PreloadData\ComponentType.sql" />
+    <None Include="PreloadData\GlobalPolicy.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="ScopoFinance.Database.refactorlog" />

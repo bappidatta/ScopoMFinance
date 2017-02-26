@@ -102,10 +102,19 @@
     <Compile Include="Models\Branch.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Component.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ComponentType.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Employee.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EmployeeType.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoanProduct.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Organization.cs">
@@ -117,16 +126,7 @@
     <Compile Include="Models\OrgCreditOfficer.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Product.cs">
-      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ProductType.cs">
-      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Project.cs">
-      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ProjectType.cs">
+    <Compile Include="Models\SavingsProduct.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ScopoMFinanceModel.Context.cs">
@@ -195,8 +195,8 @@
     <Compile Include="ViewModels\Org\OrganizationListViewModel.cs" />
     <Compile Include="ViewModels\Policy\BranchEditViewModel.cs" />
     <Compile Include="ViewModels\Policy\BranchListViewModel.cs" />
-    <Compile Include="ViewModels\Policy\ProjectTypeListViewModel.cs" />
-    <Compile Include="ViewModels\Policy\ProjectTypeSetupViewModel.cs" />
+    <Compile Include="ViewModels\Policy\ComponentTypeListViewModel.cs" />
+    <Compile Include="ViewModels\Policy\ComponentTypeSetupViewModel.cs" />
     <Compile Include="ViewModels\User\UserCacheViewModel.cs" />
     <Compile Include="ViewModels\User\UserLoginAuditViewModel.cs" />
   </ItemGroup>

@@ -8,30 +8,30 @@ using System.Threading.Tasks;
 
 namespace ScopoMFinance.Core.Services
 {
-    public interface IProductTypeService
+    public interface ILoanProductService
     {
-        List<DropDownViewModel> GetProductTypeDropDown();
+        List<DropDownViewModel> GetLoanProductDropDown();
     }
 
-    public class ProductTypeService : IProductTypeService
+    public class LoanProductService : ILoanProductService
     {
         private UnitOfWork _uow;
 
-        public ProductTypeService(UnitOfWork uow)
+        public LoanProductService(UnitOfWork uow)
         {
             _uow = uow;
         }
 
-        public List<DropDownViewModel> GetProductTypeDropDown()
+        public List<DropDownViewModel> GetLoanProductDropDown()
         {
-            var productTypeDropDown = from c in _uow.ProductTypeRepository.Get(x => x.IsActive == true)
+            var loanProductDropDown = from c in _uow.LoanProductRepository.Get(x => x.IsActive == true)
                                       select new DropDownViewModel()
                                       {
                                           Value = c.Id,
-                                          Text = c.Name
+                                          Text = "(" + c.ProductCode + ") " + c.ProductName
                                       };
 
-            return productTypeDropDown.ToList();
+            return loanProductDropDown.ToList();
         }
     }
 }

@@ -23,7 +23,7 @@ namespace ScopoMFinance.Domain.Models
             this.OrgCreditOfficers = new HashSet<OrgCreditOfficer>();
             this.UserBranches = new HashSet<UserBranch>();
             this.UserLoginAudits = new HashSet<UserLoginAudit>();
-            this.Projects = new HashSet<Project>();
+            this.Components = new HashSet<Component>();
         }
     
         public int Id { get; set; }
@@ -45,6 +45,6 @@ namespace ScopoMFinance.Domain.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserLoginAudit> UserLoginAudits { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Project> Projects { get; set; }
+        public virtual ICollection<Component> Components { get; set; }
     }
 }

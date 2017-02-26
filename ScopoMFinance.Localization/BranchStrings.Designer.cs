@@ -115,20 +115,20 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total Components.
+        /// </summary>
+        public static string Branch_List_DN_TotalComponent {
+            get {
+                return ResourceManager.GetString("Branch_List_DN_TotalComponent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total Organizations.
         /// </summary>
         public static string Branch_List_DN_TotalOrg {
             get {
                 return ResourceManager.GetString("Branch_List_DN_TotalOrg", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Total Projects.
-        /// </summary>
-        public static string Branch_List_DN_TotalProject {
-            get {
-                return ResourceManager.GetString("Branch_List_DN_TotalProject", resourceCulture);
             }
         }
         

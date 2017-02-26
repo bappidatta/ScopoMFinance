@@ -12,31 +12,24 @@ namespace ScopoMFinance.Domain.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Project
+    public partial class SavingsProduct
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Project()
+        public SavingsProduct()
         {
-            this.Branches = new HashSet<Branch>();
-            this.Products = new HashSet<Product>();
+            this.Components = new HashSet<Component>();
         }
     
         public int Id { get; set; }
-        public string ProjectCode { get; set; }
-        public string ProjectName { get; set; }
-        public Nullable<System.DateTime> ProjectDuration { get; set; }
-        public int ProjectTypeId { get; set; }
-        public Nullable<int> DonorId { get; set; }
+        public string ProductCode { get; set; }
+        public string ProductName { get; set; }
+        public decimal InterestRate { get; set; }
         public bool IsActive { get; set; }
         public string UserId { get; set; }
         public System.DateTime SystemDate { get; set; }
         public System.DateTime SetDate { get; set; }
     
-        public virtual SysDonor SysDonor { get; set; }
-        public virtual ProjectType ProjectType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Branch> Branches { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Component> Components { get; set; }
     }
 }

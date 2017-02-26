@@ -33,15 +33,14 @@ namespace ScopoMFinance.Domain.Models
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Branch> Branches { get; set; }
+        public virtual DbSet<Component> Components { get; set; }
+        public virtual DbSet<ComponentType> ComponentTypes { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<EmployeeType> EmployeeTypes { get; set; }
+        public virtual DbSet<LoanProduct> LoanProducts { get; set; }
         public virtual DbSet<Organization> Organizations { get; set; }
         public virtual DbSet<OrgCategory> OrgCategories { get; set; }
-        public virtual DbSet<OrgCreditOfficer> OrgCreditOfficers { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<ProductType> ProductTypes { get; set; }
-        public virtual DbSet<Project> Projects { get; set; }
-        public virtual DbSet<ProjectType> ProjectTypes { get; set; }
+        public virtual DbSet<SavingsProduct> SavingsProducts { get; set; }
         public virtual DbSet<SysColcOption> SysColcOptions { get; set; }
         public virtual DbSet<SysDistrict> SysDistricts { get; set; }
         public virtual DbSet<SysDivision> SysDivisions { get; set; }
@@ -54,5 +53,6 @@ namespace ScopoMFinance.Domain.Models
         public virtual DbSet<UserBranch> UserBranches { get; set; }
         public virtual DbSet<UserLoginAudit> UserLoginAudits { get; set; }
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
+        public virtual DbSet<OrgCreditOfficer> OrgCreditOfficers { get; set; }
     }
 }

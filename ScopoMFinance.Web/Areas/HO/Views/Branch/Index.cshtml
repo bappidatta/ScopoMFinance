@@ -25,7 +25,7 @@
                             <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().IsActive), "Index", null, null, null, 3)</th>
                             <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().OrgCount), "Index", null, null, null, 4)</th>
                             <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().COCount), "Index", null, null, null, 5)</th>
-                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().ProjectCount), "Index", null, null, null, 6)</th>
+                            <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().ComponentCount), "Index", null, null, null, 6)</th>
                             <th>@Html.SortableHeaderActionLink(Html.DisplayNameFor(model => model.FirstOrDefault().UserCount), "Index", null, null, null, 7)</th>
                         </tr>
                     </thead>
@@ -59,7 +59,7 @@
                                     </td>
                                     <td>@item.OrgCount</td>
                                     <td>@item.COCount</td>
-                                    <td>@item.ProjectCount</td>
+                                    <td>@item.ComponentCount</td>
                                     <td>@item.UserCount</td>
                                 </tr>
                             }

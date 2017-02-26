@@ -33,7 +33,7 @@ namespace ScopoMFinance.Domain.ViewModels.Policy
         [Display(Name = "Branch_List_DN_TotalUser", ResourceType = typeof(BranchStrings))]
         public int UserCount { get; set; }
 
-        [Display(Name = "Branch_List_DN_TotalProject", ResourceType = typeof(BranchStrings))]
-        public int ProjectCount { get; set; }
+        [Display(Name = "Branch_List_DN_TotalComponent", ResourceType = typeof(BranchStrings))]
+        public int ComponentCount { get; set; }
     }
 }

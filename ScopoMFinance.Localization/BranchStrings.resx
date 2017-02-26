@@ -135,11 +135,11 @@
   <data name="Branch_List_DN_TotalCO" xml:space="preserve">
     <value>Total Credit Officers</value>
   </data>
+  <data name="Branch_List_DN_TotalComponent" xml:space="preserve">
+    <value>Total Components</value>
+  </data>
   <data name="Branch_List_DN_TotalOrg" xml:space="preserve">
     <value>Total Organizations</value>
-  </data>
-  <data name="Branch_List_DN_TotalProject" xml:space="preserve">
-    <value>Total Projects</value>
   </data>
   <data name="Branch_List_DN_TotalUser" xml:space="preserve">
     <value>Total Users</value>
