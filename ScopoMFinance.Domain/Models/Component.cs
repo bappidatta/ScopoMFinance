@@ -17,6 +17,7 @@ namespace ScopoMFinance.Domain.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Component()
         {
+            this.Members = new HashSet<Member>();
             this.Branches = new HashSet<Branch>();
             this.LoanProducts = new HashSet<LoanProduct>();
             this.SavingsProducts = new HashSet<SavingsProduct>();
@@ -35,6 +36,8 @@ namespace ScopoMFinance.Domain.Models
     
         public virtual ComponentType ComponentType { get; set; }
         public virtual SysDonor SysDonor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Member> Members { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Branch> Branches { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -12,14 +12,12 @@ namespace ScopoMFinance.Domain.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SysGender
+    public partial class SysDocType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SysGender()
+        public SysDocType()
         {
-            this.Employees = new HashSet<Employee>();
-            this.Members = new HashSet<Member>();
-            this.Organizations = new HashSet<Organization>();
+            this.MemberDocs = new HashSet<MemberDoc>();
         }
     
         public int Id { get; set; }
@@ -30,10 +28,6 @@ namespace ScopoMFinance.Domain.Models
         public System.DateTime SetDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employee> Employees { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Member> Members { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Organization> Organizations { get; set; }
+        public virtual ICollection<MemberDoc> MemberDocs { get; set; }
     }
 }

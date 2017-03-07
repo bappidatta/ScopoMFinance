@@ -237,6 +237,41 @@
           <Property Name="SystemDate" Type="datetime" Nullable="false" />
           <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+          <Property Name="OrganizationId" Type="int" Nullable="false" />
+          <Property Name="ComponentId" Type="int" Nullable="false" />
+          <Property Name="MemberNo" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GenderId" Type="int" Nullable="false" />
+          <Property Name="JoiningDate" Type="datetime" Nullable="false" />
+          <Property Name="SavingsTarget" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="NID" Type="nvarchar" MaxLength="17" />
+          <Property Name="MobileNo" Type="nvarchar" MaxLength="14" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SystemDate" Type="datetime" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MemberDoc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ContentType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Content" Type="varbinary(max)" Nullable="false" />
+          <Property Name="DocTypeId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Organization">
           <Key>
             <PropertyRef Name="Id" />
@@ -331,6 +366,17 @@ warning 6002: The table/view 'ScopoMFinance.lnsav.OrgCreditOfficer' does not hav
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SystemDate" Type="datetime" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SysDocType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="SystemDate" Type="datetime" Nullable="false" />
@@ -654,6 +700,78 @@ warning 6002: The table/view 'ScopoMFinance.lnsav.OrgCreditOfficer' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Member_Branch">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
+          <End Role="Member" Type="Self.Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_Component">
+          <End Role="Component" Type="Self.Component" Multiplicity="1" />
+          <End Role="Member" Type="Self.Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Component">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="ComponentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_Gender">
+          <End Role="SysGender" Type="Self.SysGender" Multiplicity="1" />
+          <End Role="Member" Type="Self.Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysGender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_Organization">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Member" Type="Self.Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberDoc_DocType">
+          <End Role="SysDocType" Type="Self.SysDocType" Multiplicity="1" />
+          <End Role="MemberDoc" Type="Self.MemberDoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysDocType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MemberDoc">
+              <PropertyRef Name="DocTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberDoc_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="MemberDoc" Type="Self.MemberDoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MemberDoc">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Org_Branch">
           <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
           <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
@@ -892,12 +1010,15 @@ warning 6002: The table/view 'ScopoMFinance.lnsav.OrgCreditOfficer' does not hav
           <EntitySet Name="EmployeeType" EntityType="Self.EmployeeType" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="GlobalPolicy" EntityType="Self.GlobalPolicy" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="LoanProduct" EntityType="Self.LoanProduct" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="Member" EntityType="Self.Member" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="MemberDoc" EntityType="Self.MemberDoc" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="Organization" EntityType="Self.Organization" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="OrgCategory" EntityType="Self.OrgCategory" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="SavingsProduct" EntityType="Self.SavingsProduct" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="SysColcOption" EntityType="Self.SysColcOption" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="SysDistrict" EntityType="Self.SysDistrict" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="SysDivision" EntityType="Self.SysDivision" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="SysDocType" EntityType="Self.SysDocType" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="SysDonor" EntityType="Self.SysDonor" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="SysGender" EntityType="Self.SysGender" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="SysThana" EntityType="Self.SysThana" Schema="lnsav" store:Type="Tables" />
@@ -996,6 +1117,30 @@ warning 6002: The table/view 'ScopoMFinance.lnsav.OrgCreditOfficer' does not hav
             <End Role="SysGender" EntitySet="SysGender" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
+          <AssociationSet Name="FK_Member_Branch" Association="Self.FK_Member_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="Member" EntitySet="Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_Component" Association="Self.FK_Member_Component">
+            <End Role="Component" EntitySet="Component" />
+            <End Role="Member" EntitySet="Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_Gender" Association="Self.FK_Member_Gender">
+            <End Role="SysGender" EntitySet="SysGender" />
+            <End Role="Member" EntitySet="Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_Organization" Association="Self.FK_Member_Organization">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="Member" EntitySet="Member" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberDoc_DocType" Association="Self.FK_MemberDoc_DocType">
+            <End Role="SysDocType" EntitySet="SysDocType" />
+            <End Role="MemberDoc" EntitySet="MemberDoc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberDoc_Member" Association="Self.FK_MemberDoc_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="MemberDoc" EntitySet="MemberDoc" />
+          </AssociationSet>
           <AssociationSet Name="FK_Org_Branch" Association="Self.FK_Org_Branch">
             <End Role="Branch" EntitySet="Branch" />
             <End Role="Organization" EntitySet="Organization" />
@@ -1091,12 +1236,15 @@ warning 6002: The table/view 'ScopoMFinance.lnsav.OrgCreditOfficer' does not hav
           <EntitySet Name="EmployeeTypes" EntityType="ScopoMFinanceModel.EmployeeType" />
           <EntitySet Name="GlobalPolicies" EntityType="ScopoMFinanceModel.GlobalPolicy" />
           <EntitySet Name="LoanProducts" EntityType="ScopoMFinanceModel.LoanProduct" />
+          <EntitySet Name="Members" EntityType="ScopoMFinanceModel.Member" />
+          <EntitySet Name="MemberDocs" EntityType="ScopoMFinanceModel.MemberDoc" />
           <EntitySet Name="Organizations" EntityType="ScopoMFinanceModel.Organization" />
           <EntitySet Name="OrgCategories" EntityType="ScopoMFinanceModel.OrgCategory" />
           <EntitySet Name="SavingsProducts" EntityType="ScopoMFinanceModel.SavingsProduct" />
           <EntitySet Name="SysColcOptions" EntityType="ScopoMFinanceModel.SysColcOption" />
           <EntitySet Name="SysDistricts" EntityType="ScopoMFinanceModel.SysDistrict" />
           <EntitySet Name="SysDivisions" EntityType="ScopoMFinanceModel.SysDivision" />
+          <EntitySet Name="SysDocTypes" EntityType="ScopoMFinanceModel.SysDocType" />
           <EntitySet Name="SysDonors" EntityType="ScopoMFinanceModel.SysDonor" />
           <EntitySet Name="SysGenders" EntityType="ScopoMFinanceModel.SysGender" />
           <EntitySet Name="SysThanas" EntityType="ScopoMFinanceModel.SysThana" />
@@ -1152,6 +1300,10 @@ warning 6002: The table/view 'ScopoMFinance.lnsav.OrgCreditOfficer' does not hav
             <End Role="Branch" EntitySet="Branches" />
             <End Role="Employee" EntitySet="Employees" />
           </AssociationSet>
+          <AssociationSet Name="FK_Member_Branch" Association="ScopoMFinanceModel.FK_Member_Branch">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="Member" EntitySet="Members" />
+          </AssociationSet>
           <AssociationSet Name="FK_Org_Branch" Association="ScopoMFinanceModel.FK_Org_Branch">
             <End Role="Branch" EntitySet="Branches" />
             <End Role="Organization" EntitySet="Organizations" />
@@ -1168,6 +1320,10 @@ warning 6002: The table/view 'ScopoMFinance.lnsav.OrgCreditOfficer' does not hav
             <End Role="SysDonor" EntitySet="SysDonors" />
             <End Role="Component" EntitySet="Components" />
           </AssociationSet>
+          <AssociationSet Name="FK_Member_Component" Association="ScopoMFinanceModel.FK_Member_Component">
+            <End Role="Component" EntitySet="Components" />
+            <End Role="Member" EntitySet="Members" />
+          </AssociationSet>
           <AssociationSet Name="FK_Employee_EmployeeType" Association="ScopoMFinanceModel.FK_Employee_EmployeeType">
             <End Role="EmployeeType" EntitySet="EmployeeTypes" />
             <End Role="Employee" EntitySet="Employees" />
@@ -1183,6 +1339,22 @@ warning 6002: The table/view 'ScopoMFinance.lnsav.OrgCreditOfficer' does not hav
           <AssociationSet Name="FK_OrgCO_Employee" Association="ScopoMFinanceModel.FK_OrgCO_Employee">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="OrgCreditOfficer" EntitySet="OrgCreditOfficers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_Gender" Association="ScopoMFinanceModel.FK_Member_Gender">
+            <End Role="SysGender" EntitySet="SysGenders" />
+            <End Role="Member" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Member_Organization" Association="ScopoMFinanceModel.FK_Member_Organization">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="Member" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberDoc_Member" Association="ScopoMFinanceModel.FK_MemberDoc_Member">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="MemberDoc" EntitySet="MemberDocs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberDoc_DocType" Association="ScopoMFinanceModel.FK_MemberDoc_DocType">
+            <End Role="SysDocType" EntitySet="SysDocTypes" />
+            <End Role="MemberDoc" EntitySet="MemberDocs" />
           </AssociationSet>
           <AssociationSet Name="FK_Org_Colc" Association="ScopoMFinanceModel.FK_Org_Colc">
             <End Role="SysColcOption" EntitySet="SysColcOptions" />
@@ -1386,6 +1558,7 @@ warning 6002: The table/view 'ScopoMFinance.lnsav.OrgCreditOfficer' does not hav
           <NavigationProperty Name="UserBranches" Relationship="ScopoMFinanceModel.FK_UserBranch_Branch" FromRole="Branch" ToRole="UserBranch" />
           <NavigationProperty Name="UserLoginAudits" Relationship="ScopoMFinanceModel.FK_UserLogin_Branch" FromRole="Branch" ToRole="UserLoginAudit" />
           <NavigationProperty Name="Employees" Relationship="ScopoMFinanceModel.FK_Employee_Branch" FromRole="Branch" ToRole="Employee" />
+          <NavigationProperty Name="Members" Relationship="ScopoMFinanceModel.FK_Member_Branch" FromRole="Branch" ToRole="Member" />
           <NavigationProperty Name="Organizations" Relationship="ScopoMFinanceModel.FK_Org_Branch" FromRole="Branch" ToRole="Organization" />
           <NavigationProperty Name="OrgCreditOfficers" Relationship="ScopoMFinanceModel.FK_OrgCO_Branch" FromRole="Branch" ToRole="OrgCreditOfficer" />
           <NavigationProperty Name="Components" Relationship="ScopoMFinanceModel.BranchComponent" FromRole="Branch" ToRole="Component" />
@@ -1406,6 +1579,7 @@ warning 6002: The table/view 'ScopoMFinance.lnsav.OrgCreditOfficer' does not hav
           <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="ComponentType" Relationship="ScopoMFinanceModel.FK_Component_ComponentType" FromRole="Component" ToRole="ComponentType" />
           <NavigationProperty Name="SysDonor" Relationship="ScopoMFinanceModel.FK_Component_Donor" FromRole="Component" ToRole="SysDonor" />
+          <NavigationProperty Name="Members" Relationship="ScopoMFinanceModel.FK_Member_Component" FromRole="Component" ToRole="Member" />
           <NavigationProperty Name="Branches" Relationship="ScopoMFinanceModel.BranchComponent" FromRole="Component" ToRole="Branch" />
           <NavigationProperty Name="LoanProducts" Relationship="ScopoMFinanceModel.ComponentLoanProduct" FromRole="Component" ToRole="LoanProduct" />
           <NavigationProperty Name="SavingsProducts" Relationship="ScopoMFinanceModel.ComponentSavingsProduct" FromRole="Component" ToRole="SavingsProduct" />
@@ -1482,6 +1656,48 @@ warning 6002: The table/view 'ScopoMFinance.lnsav.OrgCreditOfficer' does not hav
           <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Components" Relationship="ScopoMFinanceModel.ComponentLoanProduct" FromRole="LoanProduct" ToRole="Component" />
         </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+          <Property Name="ComponentId" Type="Int32" Nullable="false" />
+          <Property Name="MemberNo" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GenderId" Type="Int32" Nullable="false" />
+          <Property Name="JoiningDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SavingsTarget" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="NID" Type="String" MaxLength="17" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNo" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_Member_Branch" FromRole="Member" ToRole="Branch" />
+          <NavigationProperty Name="Component" Relationship="ScopoMFinanceModel.FK_Member_Component" FromRole="Member" ToRole="Component" />
+          <NavigationProperty Name="SysGender" Relationship="ScopoMFinanceModel.FK_Member_Gender" FromRole="Member" ToRole="SysGender" />
+          <NavigationProperty Name="Organization" Relationship="ScopoMFinanceModel.FK_Member_Organization" FromRole="Member" ToRole="Organization" />
+          <NavigationProperty Name="MemberDocs" Relationship="ScopoMFinanceModel.FK_MemberDoc_Member" FromRole="Member" ToRole="MemberDoc" />
+        </EntityType>
+        <EntityType Name="MemberDoc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContentType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="DocTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Member" Relationship="ScopoMFinanceModel.FK_MemberDoc_Member" FromRole="MemberDoc" ToRole="Member" />
+          <NavigationProperty Name="SysDocType" Relationship="ScopoMFinanceModel.FK_MemberDoc_DocType" FromRole="MemberDoc" ToRole="SysDocType" />
+        </EntityType>
         <EntityType Name="Organization">
           <Key>
             <PropertyRef Name="Id" />
@@ -1503,6 +1719,7 @@ warning 6002: The table/view 'ScopoMFinance.lnsav.OrgCreditOfficer' does not hav
           <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_Org_Branch" FromRole="Organization" ToRole="Branch" />
           <NavigationProperty Name="Employee" Relationship="ScopoMFinanceModel.FK_Org_CreditOfficer" FromRole="Organization" ToRole="Employee" />
+          <NavigationProperty Name="Members" Relationship="ScopoMFinanceModel.FK_Member_Organization" FromRole="Organization" ToRole="Member" />
           <NavigationProperty Name="SysColcOption" Relationship="ScopoMFinanceModel.FK_Org_Colc" FromRole="Organization" ToRole="SysColcOption" />
           <NavigationProperty Name="SysGender" Relationship="ScopoMFinanceModel.FK_Org_Gender" FromRole="Organization" ToRole="SysGender" />
           <NavigationProperty Name="OrgCategory" Relationship="ScopoMFinanceModel.FK_Org_OrgCategory" FromRole="Organization" ToRole="OrgCategory" />
@@ -1574,6 +1791,18 @@ warning 6002: The table/view 'ScopoMFinance.lnsav.OrgCreditOfficer' does not hav
           <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="SysDistricts" Relationship="ScopoMFinanceModel.FK_District_Division" FromRole="SysDivision" ToRole="SysDistrict" />
         </EntityType>
+        <EntityType Name="SysDocType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="MemberDocs" Relationship="ScopoMFinanceModel.FK_MemberDoc_DocType" FromRole="SysDocType" ToRole="MemberDoc" />
+        </EntityType>
         <EntityType Name="SysDonor">
           <Key>
             <PropertyRef Name="Id" />
@@ -1597,6 +1826,7 @@ warning 6002: The table/view 'ScopoMFinance.lnsav.OrgCreditOfficer' does not hav
           <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Employees" Relationship="ScopoMFinanceModel.FK_Employee_Gender" FromRole="SysGender" ToRole="Employee" />
+          <NavigationProperty Name="Members" Relationship="ScopoMFinanceModel.FK_Member_Gender" FromRole="SysGender" ToRole="Member" />
           <NavigationProperty Name="Organizations" Relationship="ScopoMFinanceModel.FK_Org_Gender" FromRole="SysGender" ToRole="Organization" />
         </EntityType>
         <EntityType Name="SysThana">
@@ -1824,6 +2054,18 @@ warning 6002: The table/view 'ScopoMFinance.lnsav.OrgCreditOfficer' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Member_Branch">
+          <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.Member" Role="Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Org_Branch">
           <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="1" />
           <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="*" />
@@ -1872,6 +2114,18 @@ warning 6002: The table/view 'ScopoMFinance.lnsav.OrgCreditOfficer' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Member_Component">
+          <End Type="ScopoMFinanceModel.Component" Role="Component" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.Member" Role="Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Component">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="ComponentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Employee_EmployeeType">
           <End Type="ScopoMFinanceModel.EmployeeType" Role="EmployeeType" Multiplicity="1" />
           <End Type="ScopoMFinanceModel.Employee" Role="Employee" Multiplicity="*" />
@@ -1917,6 +2171,54 @@ warning 6002: The table/view 'ScopoMFinance.lnsav.OrgCreditOfficer' does not hav
             </Principal>
             <Dependent Role="OrgCreditOfficer">
               <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_Gender">
+          <End Type="ScopoMFinanceModel.SysGender" Role="SysGender" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.Member" Role="Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysGender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Member_Organization">
+          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.Member" Role="Member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Member">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberDoc_Member">
+          <End Type="ScopoMFinanceModel.Member" Role="Member" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.MemberDoc" Role="MemberDoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MemberDoc">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberDoc_DocType">
+          <End Type="ScopoMFinanceModel.SysDocType" Role="SysDocType" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.MemberDoc" Role="MemberDoc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysDocType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MemberDoc">
+              <PropertyRef Name="DocTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2277,6 +2579,43 @@ warning 6002: The table/view 'ScopoMFinance.lnsav.OrgCreditOfficer' does not hav
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.Member">
+              <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="NID" ColumnName="NID" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="SavingsTarget" ColumnName="SavingsTarget" />
+                <ScalarProperty Name="JoiningDate" ColumnName="JoiningDate" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MemberNo" ColumnName="MemberNo" />
+                <ScalarProperty Name="ComponentId" ColumnName="ComponentId" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberDocs">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.MemberDoc">
+              <MappingFragment StoreEntitySet="MemberDoc">
+                <ScalarProperty Name="DocTypeId" ColumnName="DocTypeId" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Organizations">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.Organization">
               <MappingFragment StoreEntitySet="Organization">
@@ -2353,6 +2692,18 @@ warning 6002: The table/view 'ScopoMFinance.lnsav.OrgCreditOfficer' does not hav
           <EntitySetMapping Name="SysDivisions">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.SysDivision">
               <MappingFragment StoreEntitySet="SysDivision">
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysDocTypes">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.SysDocType">
+              <MappingFragment StoreEntitySet="SysDocType">
                 <ScalarProperty Name="SetDate" ColumnName="SetDate" />
                 <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />

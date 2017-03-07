@@ -12,40 +12,39 @@ namespace ScopoMFinance.Domain.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Organization
+    public partial class Member
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Organization()
+        public Member()
         {
-            this.Members = new HashSet<Member>();
-            this.OrgCreditOfficers = new HashSet<OrgCreditOfficer>();
+            this.MemberDocs = new HashSet<MemberDoc>();
         }
     
         public int Id { get; set; }
         public int BranchId { get; set; }
-        public string OrganizationNo { get; set; }
-        public string OrganizationName { get; set; }
-        public int OrgCategoryId { get; set; }
+        public int OrganizationId { get; set; }
+        public int ComponentId { get; set; }
+        public string MemberNo { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public int GenderId { get; set; }
-        public Nullable<int> CreditOfficerId { get; set; }
-        public System.DateTime SetupDate { get; set; }
-        public int MeetingFrequency { get; set; }
-        public System.DateTime MeetingDate { get; set; }
-        public Nullable<int> VillageId { get; set; }
+        public System.DateTime JoiningDate { get; set; }
+        public decimal SavingsTarget { get; set; }
+        public Nullable<System.DateTime> DateOfBirth { get; set; }
+        public string NID { get; set; }
+        public string MobileNo { get; set; }
+        public string Address { get; set; }
+        public string Email { get; set; }
         public bool IsActive { get; set; }
         public string UserId { get; set; }
         public System.DateTime SystemDate { get; set; }
         public System.DateTime SetDate { get; set; }
     
         public virtual Branch Branch { get; set; }
-        public virtual Employee Employee { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Member> Members { get; set; }
-        public virtual SysColcOption SysColcOption { get; set; }
+        public virtual Component Component { get; set; }
         public virtual SysGender SysGender { get; set; }
-        public virtual OrgCategory OrgCategory { get; set; }
-        public virtual SysVillage SysVillage { get; set; }
+        public virtual Organization Organization { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrgCreditOfficer> OrgCreditOfficers { get; set; }
+        public virtual ICollection<MemberDoc> MemberDocs { get; set; }
     }
 }

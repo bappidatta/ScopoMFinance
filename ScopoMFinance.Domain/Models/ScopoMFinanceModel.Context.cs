@@ -42,12 +42,15 @@ namespace ScopoMFinance.Domain.Models
         public virtual DbSet<EmployeeType> EmployeeTypes { get; set; }
         public virtual DbSet<GlobalPolicy> GlobalPolicies { get; set; }
         public virtual DbSet<LoanProduct> LoanProducts { get; set; }
+        public virtual DbSet<Member> Members { get; set; }
+        public virtual DbSet<MemberDoc> MemberDocs { get; set; }
         public virtual DbSet<Organization> Organizations { get; set; }
         public virtual DbSet<OrgCategory> OrgCategories { get; set; }
         public virtual DbSet<SavingsProduct> SavingsProducts { get; set; }
         public virtual DbSet<SysColcOption> SysColcOptions { get; set; }
         public virtual DbSet<SysDistrict> SysDistricts { get; set; }
         public virtual DbSet<SysDivision> SysDivisions { get; set; }
+        public virtual DbSet<SysDocType> SysDocTypes { get; set; }
         public virtual DbSet<SysDonor> SysDonors { get; set; }
         public virtual DbSet<SysGender> SysGenders { get; set; }
         public virtual DbSet<SysThana> SysThanas { get; set; }
