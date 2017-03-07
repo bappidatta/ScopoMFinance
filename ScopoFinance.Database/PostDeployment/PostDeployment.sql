@@ -26,6 +26,7 @@ Post-Deployment Script Template
 :r ..\PreloadData\SysUpazila.sql
 :r ..\PreloadData\SysUnion.sql
 :r ..\PreloadData\SysVillage.sql
+:r ..\PreloadData\SysDocType.sql
 :r ..\PreloadData\Branch.sql
 :r ..\PreloadData\UserProfile.sql
 :r ..\PreloadData\UserBranch.sql
