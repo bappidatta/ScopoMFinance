@@ -23,8 +23,8 @@ namespace ScopoMFinance.Domain.Models
             this.Employees = new HashSet<Employee>();
             this.Members = new HashSet<Member>();
             this.Organizations = new HashSet<Organization>();
-            this.OrgCreditOfficers = new HashSet<OrgCreditOfficer>();
             this.Components = new HashSet<Component>();
+            this.OrgCreditOfficers = new HashSet<OrgCreditOfficer>();
         }
     
         public int Id { get; set; }
@@ -46,8 +46,8 @@ namespace ScopoMFinance.Domain.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Organization> Organizations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrgCreditOfficer> OrgCreditOfficers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Component> Components { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrgCreditOfficer> OrgCreditOfficers { get; set; }
     }
 }

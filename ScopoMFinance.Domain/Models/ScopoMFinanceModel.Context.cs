@@ -29,8 +29,6 @@ namespace ScopoMFinance.Domain.Models
         public virtual DbSet<AccDayCloseProgress> AccDayCloseProgresses { get; set; }
         public virtual DbSet<AccDayOpenClose> AccDayOpenCloses { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<UserBranch> UserBranches { get; set; }
         public virtual DbSet<UserLoginAudit> UserLoginAudits { get; set; }

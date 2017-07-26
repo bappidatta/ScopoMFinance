@@ -93,12 +93,6 @@
     <Compile Include="Models\AspNetUser.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AspNetUserClaim.cs">
-      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserLogin.cs">
-      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Branch.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
