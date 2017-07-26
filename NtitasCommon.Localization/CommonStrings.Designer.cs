@@ -124,6 +124,15 @@ namespace NtitasCommon.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        public static string List_DN_IsActive {
+            get {
+                return ResourceManager.GetString("List_DN_IsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Currently No Data Found.
         /// </summary>
         public static string List_Empty {

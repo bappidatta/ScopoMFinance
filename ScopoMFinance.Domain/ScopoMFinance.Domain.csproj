@@ -191,6 +191,8 @@
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
     <Compile Include="ViewModels\Acc\DayOpenCloseViewModel.cs" />
+    <Compile Include="ViewModels\Common\CoreEditViewModel.cs" />
+    <Compile Include="ViewModels\Common\CoreListViewModel.cs" />
     <Compile Include="ViewModels\Common\DropDownViewModel.cs" />
     <Compile Include="ViewModels\Employee\EmployeeEditViewModel.cs" />
     <Compile Include="ViewModels\Employee\EmployeeListViewModel.cs" />
@@ -233,6 +235,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NtitasCommon.Localization\NtitasCommon.Localization.csproj">
+      <Project>{19A8B8C3-0E49-4FA6-8F7B-750BC14F98BD}</Project>
+      <Name>NtitasCommon.Localization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ScopoMFinance.Localization\ScopoMFinance.Localization.csproj">
       <Project>{42aada26-f118-4f8c-ad52-51213b9265ab}</Project>
       <Name>ScopoMFinance.Localization</Name>
