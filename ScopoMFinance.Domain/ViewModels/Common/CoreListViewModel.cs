@@ -11,6 +11,7 @@ namespace ScopoMFinance.Domain.ViewModels.Common
 {
     public class CoreListViewModel
     {
+        public int Id { get; set; }
         [Display(Name = "List_DN_IsActive", ResourceType = typeof(CommonStrings))]
         public bool IsActive { get; set; }
         public string UserId { get; set; }

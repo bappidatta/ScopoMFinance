@@ -61,6 +61,96 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Component Code.
+        /// </summary>
+        public static string Component_List_DN_Code {
+            get {
+                return ResourceManager.GetString("Component_List_DN_Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Component Type.
+        /// </summary>
+        public static string Component_List_DN_ComponentTypeName {
+            get {
+                return ResourceManager.GetString("Component_List_DN_ComponentTypeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Donor.
+        /// </summary>
+        public static string Component_List_DN_DonorName {
+            get {
+                return ResourceManager.GetString("Component_List_DN_DonorName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duration.
+        /// </summary>
+        public static string Component_List_DN_Duration {
+            get {
+                return ResourceManager.GetString("Component_List_DN_Duration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Component_List_DN_Name {
+            get {
+                return ResourceManager.GetString("Component_List_DN_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Component Code.
+        /// </summary>
+        public static string Component_Setup_DN_Code {
+            get {
+                return ResourceManager.GetString("Component_Setup_DN_Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Component Type.
+        /// </summary>
+        public static string Component_Setup_DN_ComponentTypeName {
+            get {
+                return ResourceManager.GetString("Component_Setup_DN_ComponentTypeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Donor.
+        /// </summary>
+        public static string Component_Setup_DN_DonorName {
+            get {
+                return ResourceManager.GetString("Component_Setup_DN_DonorName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duration.
+        /// </summary>
+        public static string Component_Setup_DN_Duration {
+            get {
+                return ResourceManager.GetString("Component_Setup_DN_Duration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Component Name.
+        /// </summary>
+        public static string Component_Setup_DN_Name {
+            get {
+                return ResourceManager.GetString("Component_Setup_DN_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Component Type.
         /// </summary>
         public static string ComponentType_Create_Title {

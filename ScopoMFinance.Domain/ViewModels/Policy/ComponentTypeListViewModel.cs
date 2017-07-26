@@ -11,8 +11,6 @@ namespace ScopoMFinance.Domain.ViewModels.Policy
 {
     public class ComponentTypeListViewModel : CoreListViewModel
     {
-        public int Id { get; set; }
-
         [Display(Name = "ComponentType_List_DN_Name", ResourceType = typeof(ComponentStrings))]
         public string Name { get; set; }
 
