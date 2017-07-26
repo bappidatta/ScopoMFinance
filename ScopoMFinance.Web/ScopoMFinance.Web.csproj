@@ -767,6 +767,7 @@
     <Content Include="Areas\HO\Views\ComponentType\_Setup.cshtml" />
     <Content Include="Areas\HO\Views\Shared\EditorTemplates\ComponentTypeSetupViewModel.cshtml" />
     <Content Include="Areas\HO\Views\Component\Index.cshtml" />
+    <Content Include="Areas\HO\Views\Component\Setup.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\common-system-messages.js" />
     <Content Include="Scripts\init.js" />

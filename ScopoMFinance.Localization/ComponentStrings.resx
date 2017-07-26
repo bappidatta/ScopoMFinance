@@ -138,6 +138,18 @@
   <data name="ComponentType_List_Title" xml:space="preserve">
     <value>Component Type</value>
   </data>
+  <data name="Component_Create_Success_Msg" xml:space="preserve">
+    <value>Component has been created successfully</value>
+  </data>
+  <data name="Component_Create_Title" xml:space="preserve">
+    <value>Create Component</value>
+  </data>
+  <data name="Component_Edit_Title" xml:space="preserve">
+    <value>Update Component</value>
+  </data>
+  <data name="Component_Edit_Validation_ComponentCodeUnavailable" xml:space="preserve">
+    <value>Sorry! This component code is already been used</value>
+  </data>
   <data name="Component_List_DN_Code" xml:space="preserve">
     <value>Component Code</value>
   </data>
@@ -170,5 +182,8 @@
   </data>
   <data name="Component_Setup_DN_Name" xml:space="preserve">
     <value>Component Name</value>
+  </data>
+  <data name="Component_Update_Success_Msg" xml:space="preserve">
+    <value>Component has been updated successfully</value>
   </data>
 </root>

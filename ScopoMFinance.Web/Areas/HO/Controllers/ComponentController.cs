@@ -1,4 +1,5 @@
 ﻿using NtitasCommon.Core.Common;
+using NtitasCommon.Localization;
 using ScopoMFinance.Core.Common;
 using ScopoMFinance.Core.Helpers;
 using ScopoMFinance.Core.Services;
@@ -72,6 +73,82 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
 
             ViewBag.Title = ComponentStrings.Component_List_Title;
             return View(componentList);
+        }
+
+        [HttpGet]
+        public ActionResult Setup(int? id)
+        {
+            ComponentSetupViewModel vm = null;
+
+            if (!id.HasValue)
+            {
+                ViewBag.Title = ComponentStrings.Component_Create_Title;
+                vm = new ComponentSetupViewModel()
+                {
+                    IsActive = true
+                };
+            }
+            else
+            {
+                ViewBag.Title = ComponentStrings.Component_Edit_Title;
+                vm = _componentService.GetComponentById(id.Value);
+            }
+
+            if (vm == null)
+            {
+                SystemMessages.Add(CommonStrings.No_Record, true, true);
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.ComponentTypeDropDown = new SelectList(_componentTypeService.GetComponentTypeDropDown(), "Value", "Text");
+            ViewBag.DonorDropDown = new SelectList(_donorService.GetDonorDropDown(), "Value", "Text");
+
+            return View("Setup", vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Setup(ComponentSetupViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (vm.Id > 0)
+                    {
+                        ViewBag.Title = ComponentStrings.Component_Edit_Title;
+
+                        if (_componentService.UpdateComponent(vm))
+                            SystemMessages.Add(ComponentStrings.Component_Update_Success_Msg, false, true);
+                        else
+                            SystemMessages.Add(CommonStrings.No_Record, true, true);
+                    }
+                    else
+                    {
+                        ViewBag.Title = ComponentStrings.Component_Create_Title;
+
+                        _componentService.CreateComponent(vm);
+                        SystemMessages.Add(ComponentStrings.Component_Create_Success_Msg, false, true);
+                    }
+
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    SystemMessages.Add(CommonStrings.Server_Error, true, true);
+                }
+            }
+
+            ViewBag.ComponentTypeDropDown = new SelectList(_componentTypeService.GetComponentTypeDropDown(), "Value", "Text", vm.ComponentTypeId);
+            ViewBag.DonorDropDown = new SelectList(_donorService.GetDonorDropDown(), "Value", "Text", vm.DonorId);
+
+            return View("Setup", vm);
+        }
+
+        [HttpGet]
+        public ActionResult IsComponentCodeAvailable(string componentCode, int id)
+        {
+            return Json(!string.IsNullOrWhiteSpace(componentCode) && _componentService.IsComponentCodeAvailable(componentCode, id) == true, JsonRequestBehavior.AllowGet);
         }
     }
 }

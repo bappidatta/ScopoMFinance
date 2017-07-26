@@ -61,6 +61,42 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Component has been created successfully.
+        /// </summary>
+        public static string Component_Create_Success_Msg {
+            get {
+                return ResourceManager.GetString("Component_Create_Success_Msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Component.
+        /// </summary>
+        public static string Component_Create_Title {
+            get {
+                return ResourceManager.GetString("Component_Create_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Component.
+        /// </summary>
+        public static string Component_Edit_Title {
+            get {
+                return ResourceManager.GetString("Component_Edit_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry! This component code is already been used.
+        /// </summary>
+        public static string Component_Edit_Validation_ComponentCodeUnavailable {
+            get {
+                return ResourceManager.GetString("Component_Edit_Validation_ComponentCodeUnavailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Component Code.
         /// </summary>
         public static string Component_List_DN_Code {
@@ -156,6 +192,15 @@ namespace ScopoMFinance.Localization {
         public static string Component_Setup_DN_Name {
             get {
                 return ResourceManager.GetString("Component_Setup_DN_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Component has been updated successfully.
+        /// </summary>
+        public static string Component_Update_Success_Msg {
+            get {
+                return ResourceManager.GetString("Component_Update_Success_Msg", resourceCulture);
             }
         }
         

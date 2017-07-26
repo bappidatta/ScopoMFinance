@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace ScopoMFinance.Domain.ViewModels.Component
 {
@@ -13,6 +14,7 @@ namespace ScopoMFinance.Domain.ViewModels.Component
     {
         [Required]
         [Display(Name = "Component_Setup_DN_Code", ResourceType = typeof(ComponentStrings))]
+        [Remote("IsComponentCodeAvailable", "Component", "HO", ErrorMessageResourceName = "Component_Edit_Validation_ComponentCodeUnavailable", ErrorMessageResourceType = typeof(ComponentStrings), AdditionalFields = "Id")]
         public string ComponentCode { get; set; }
 
         [Required]

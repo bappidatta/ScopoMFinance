@@ -1,7 +1,7 @@
 ﻿@model PList<ScopoMFinance.Domain.ViewModels.Component.ComponentListViewModel>
 <section class="panel">
     <div class="panel-heading">
-        <h3>@ViewBag.Title</h3>
+        <h5>@ViewBag.Title</h5>
     </div>
     <div class="panel-body row">
         <div class="col-md-12">
@@ -49,7 +49,10 @@
                                         @Html.DisplayFor(modelItem => item.Name)
                                     </td>
                                     <td>
-                                        @item.Duration.Value.ToString(NtitasCommon.Localization.CommonStrings.Date_Format)
+                                        @if (@item.Duration != null)
+                                        {
+                                            @item.Duration.Value.ToString(NtitasCommon.Localization.CommonStrings.Date_Format)
+                                        }
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.ComponentTypeName)
