@@ -70,11 +70,29 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Component has been created successfully.
+        /// </summary>
+        public static string ComponentType_Edit_Create_Success_Msg {
+            get {
+                return ResourceManager.GetString("ComponentType_Edit_Create_Success_Msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update Component Type.
         /// </summary>
         public static string ComponentType_Edit_Title {
             get {
                 return ResourceManager.GetString("ComponentType_Edit_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Component has been updated succesfully.
+        /// </summary>
+        public static string ComponentType_Edit_Update_Success_Msg {
+            get {
+                return ResourceManager.GetString("ComponentType_Edit_Update_Success_Msg", resourceCulture);
             }
         }
         

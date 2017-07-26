@@ -95,14 +95,14 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
                     if (vm.Id > 0)
                     {
                         if (_componentTypeService.UpdateComponentType(vm))
-                            SystemMessages.Add(EmployeeTypeStrings.EmployeeType_Edit_Update_Success_Msg, false, true);
+                            SystemMessages.Add(ComponentStrings.ComponentType_Edit_Update_Success_Msg, false, true);
                         else
                             SystemMessages.Add(CommonStrings.No_Record, true, true);
                     }
                     else
                     {
                         _componentTypeService.CreateComponentType(vm);
-                        SystemMessages.Add(EmployeeTypeStrings.EmployeeType_Edit_Create_Success_Msg, false, true);
+                        SystemMessages.Add(ComponentStrings.ComponentType_Edit_Create_Success_Msg, false, true);
                     }
 
                     return new XHR_JSON_Redirect();

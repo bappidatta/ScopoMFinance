@@ -105,8 +105,7 @@ namespace ScopoMFinance.Core.Services
 
             if (model == null)
                 return false;
-
-            model.Name = vm.Name;
+            
             model.IsActive = vm.IsActive;
             model.NoOfMaxLoan = vm.NoOfMaxLoan;
             model.UserId = _userHelper.Get().UserId;

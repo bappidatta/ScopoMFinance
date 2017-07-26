@@ -5,7 +5,7 @@
     </div>
     <div class="panel-body row">
         <div class="col-md-12">
-            <!--<a id="__lnkAdd" href="#create" data-toggle="modal" class="btn btn-primary __lnkAddEdit" data-url="@Url.Action("Setup")">New Employee Type <i class="zmdi zmdi-plus zmdi-icon right"></i></a>-->
+            @*<a id="__lnkAdd" href="#create" data-toggle="modal" class="btn btn-primary __lnkAddEdit" data-url="@Url.Action("Setup")">New Employee Type <i class="zmdi zmdi-plus zmdi-icon right"></i></a>*@
 
             <div class="list-count-container">
                 <div class="list-count">
@@ -41,9 +41,9 @@
                                         }
                                     </td>
                                     <td>
-                                        <a href="#" data-toggle="modal" class="__lnkDelete __dialog m-right-10" data-url="/HO/ComponentType/Delete/@item.Id">
+                                        @*<a href="#" data-toggle="modal" class="__lnkDelete __dialog m-right-10" data-url="/HO/ComponentType/Delete/@item.Id">
                                             <i class="fa fa-archive fa-2x" data-toggle="tooltip" title="Delete"></i>
-                                        </a>
+                                        </a>*@
                                         <a href="#edit" class="__lnkAddEdit m-right-10" data-id="@item.Id" data-url="@Url.Action("Setup", new { id = item.Id })">
                                             <i class="fa fa-pencil fa-2x" data-toggle="tooltip" title="Edit"></i>
                                         </a>
