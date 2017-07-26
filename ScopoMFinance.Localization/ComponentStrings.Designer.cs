@@ -106,6 +106,15 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Component.
+        /// </summary>
+        public static string Component_List_Title {
+            get {
+                return ResourceManager.GetString("Component_List_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Component Code.
         /// </summary>
         public static string Component_Setup_DN_Code {

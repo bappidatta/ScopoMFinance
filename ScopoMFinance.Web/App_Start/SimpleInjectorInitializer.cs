@@ -55,6 +55,7 @@ namespace ScopoMFinance.Web.App_Start
             container.Register<ILoanProductService, LoanProductService>();
             container.Register<ISavingsProductService, SavingsProductService>();
             container.Register<IEmployeeService, EmployeeService>();
+            container.Register<IDonorService, DonorService>();
 
             container.Register<IUserHelper, UserHelper>();
             container.Register<IConfig, Config>();

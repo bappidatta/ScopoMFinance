@@ -192,6 +192,7 @@
     <Compile Include="Areas\Dashboard\Controllers\SuperUserController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
     <Compile Include="Areas\HO\Controllers\BranchController.cs" />
+    <Compile Include="Areas\HO\Controllers\ComponentController.cs" />
     <Compile Include="Areas\HO\Controllers\ComponentTypeController.cs" />
     <Compile Include="Areas\HO\Controllers\EmployeeTypeController.cs" />
     <Compile Include="Areas\HO\HOAreaRegistration.cs" />
@@ -213,6 +214,7 @@
     <Content Include="Areas\Branch\Scripts\Organization\index.js" />
     <Content Include="Areas\Branch\Scripts\Organization\MapCreditOfficer.js" />
     <Content Include="Areas\Common\Scripts\Employee\Index.js" />
+    <Content Include="Areas\HO\Scripts\Component\index.js" />
     <Content Include="Areas\HO\Scripts\ComponentType\index.js" />
     <Content Include="Areas\HO\Scripts\EmployeeType\index.js" />
     <Content Include="Content\assets\common\css\main.min.css" />
@@ -764,6 +766,7 @@
     <Content Include="Areas\HO\Views\ComponentType\Index.cshtml" />
     <Content Include="Areas\HO\Views\ComponentType\_Setup.cshtml" />
     <Content Include="Areas\HO\Views\Shared\EditorTemplates\ComponentTypeSetupViewModel.cshtml" />
+    <Content Include="Areas\HO\Views\Component\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\common-system-messages.js" />
     <Content Include="Scripts\init.js" />
