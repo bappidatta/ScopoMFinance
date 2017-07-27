@@ -194,6 +194,7 @@
     <Compile Include="ViewModels\Common\CoreEditViewModel.cs" />
     <Compile Include="ViewModels\Common\CoreListViewModel.cs" />
     <Compile Include="ViewModels\Common\DropDownViewModel.cs" />
+    <Compile Include="ViewModels\Component\ComponentBranchMappingViewModel.cs" />
     <Compile Include="ViewModels\Component\ComponentListViewModel.cs" />
     <Compile Include="ViewModels\Component\ComponentSetupViewModel.cs" />
     <Compile Include="ViewModels\Employee\EmployeeEditViewModel.cs" />

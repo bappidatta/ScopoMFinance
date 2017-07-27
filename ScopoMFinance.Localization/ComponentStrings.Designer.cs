@@ -61,6 +61,15 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Branch.
+        /// </summary>
+        public static string Component_Branch_DN_Branch {
+            get {
+                return ResourceManager.GetString("Component_Branch_DN_Branch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Component has been created successfully.
         /// </summary>
         public static string Component_Create_Success_Msg {

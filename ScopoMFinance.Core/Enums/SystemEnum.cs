@@ -9,17 +9,4 @@ namespace ScopoMFinance.Core.Enums
     public class SystemEnum
     {
     }
-
-    public enum BranchComponentDropdown
-    {
-        /// <summary>
-        /// Branch Wise
-        /// </summary>
-        BranchWise = 1,
-
-        /// <summary>
-        /// Component Wise
-        /// </summary>
-        ComponentWise = 2
-    }
 }

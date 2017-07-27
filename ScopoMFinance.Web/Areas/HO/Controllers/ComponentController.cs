@@ -175,23 +175,5 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
 
             return View("MapBranch");
         }
-
-        [HttpGet]
-        public ActionResult GetBranchComponentDropdown(BranchComponentDropdown choice = BranchComponentDropdown.BranchWise)
-        {
-            switch (choice)
-            {
-                case BranchComponentDropdown.BranchWise:
-                    ViewBag.Choice = choice;
-                    ViewBag.BranchDropDown = new SelectList(_branchService.GetBranchDropDown(), "Value", "Text");
-                    break;
-                case BranchComponentDropdown.ComponentWise:
-                    ViewBag.Choice = choice;
-                    ViewBag.ComponentDropDown = new SelectList(_componentService.GetComponentDropDown(), "Value", "Text");
-                    break;
-            }
-
-            return PartialView("_BranchComponentDropDown");
-        }
     }
 }

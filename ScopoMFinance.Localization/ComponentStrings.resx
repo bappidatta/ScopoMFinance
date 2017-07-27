@@ -138,6 +138,9 @@
   <data name="ComponentType_List_Title" xml:space="preserve">
     <value>Component Type</value>
   </data>
+  <data name="Component_Branch_DN_Branch" xml:space="preserve">
+    <value>Branch</value>
+  </data>
   <data name="Component_Create_Success_Msg" xml:space="preserve">
     <value>Component has been created successfully</value>
   </data>
