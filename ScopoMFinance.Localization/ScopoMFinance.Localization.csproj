@@ -69,6 +69,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PaginationStrings.resx</DependentUpon>
     </Compile>
+    <Compile Include="ProductStrings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductStrings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleStrings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -100,6 +105,10 @@
     <EmbeddedResource Include="PaginationStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PaginationStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProductStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="RoleStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
