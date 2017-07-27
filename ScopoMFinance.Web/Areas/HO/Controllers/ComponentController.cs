@@ -117,14 +117,6 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
         {
             if (ModelState.IsValid)
             {
-                //if (!_componentTypeService.IsComponentTypeActive(vm.ComponentTypeId))
-                //{
-                //    ViewBag.ComponentTypeDropDown = new SelectList(_componentTypeService.GetComponentTypeDropDown(), "Value", "Text", vm.ComponentTypeId);
-                //    ViewBag.DonorDropDown = new SelectList(_donorService.GetDonorDropDown(), "Value", "Text", vm.DonorId);
-                //    SystemMessages.Add(ComponentStrings.Component_Edit_Validation_ComponentTypeInactive, true, true);
-                //    return View("Setup", vm);
-                //}
-
                 try
                 {
                     if (vm.Id > 0)
