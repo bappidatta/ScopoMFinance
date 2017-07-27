@@ -40,7 +40,9 @@
                             {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.ComponentCode)
+                                        <a href="/HO/Component/Setup/@item.Id" class="__colItemEdit">
+                                            @Html.DisplayFor(modelItem => item.ComponentCode)
+                                        </a>
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Name)
@@ -68,9 +70,6 @@
                                         }
                                     </td>
                                     <td>
-                                        <a href="#" data-toggle="modal" class="__lnkDelete __dialog" data-url="/HO/Component/Delete/@item.Id">
-                                            <i class="fa fa-archive fa-2x" data-toggle="tooltip" title="Delete"></i>
-                                        </a>
                                         <a href="/HO/Component/Setup/@item.Id" class="__lnkEdit">
                                             <i class="fa fa-pencil fa-2x" data-toggle="tooltip" title="Edit"></i>
                                         </a>
@@ -85,6 +84,7 @@
                             </tr>
                         }
                     </tbody>
+
                 </table>
             </div>
             @if (Model != null && Model.Count() > 0)

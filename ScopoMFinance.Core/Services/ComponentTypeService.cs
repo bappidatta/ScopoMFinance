@@ -21,6 +21,7 @@ namespace ScopoMFinance.Core.Services
         PList<ComponentTypeListViewModel> GetComponentTypeList(int pageNumber, Expression<Func<ComponentType, object>> orderBy = null, SortDirection sortDir = SortDirection.Asc, Expression<Func<ComponentType, bool>> filter = null);
         void CreateComponentType(ComponentTypeSetupViewModel vm);
         bool UpdateComponentType(ComponentTypeSetupViewModel vm);
+        bool IsComponentTypeActive(int componentTypeId);
     }
 
     public class ComponentTypeService : IComponentTypeService
@@ -116,6 +117,19 @@ namespace ScopoMFinance.Core.Services
             _uow.Save();
 
             return true;
+        }
+
+        public bool IsComponentTypeActive(int componentTypeId)
+        {
+            ComponentType model = GetComponentType(componentTypeId);
+
+            if (model == null)
+                return false;
+
+            if (model.IsActive)
+                return true;
+
+            return false;
         }
     }
 }

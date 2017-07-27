@@ -112,6 +112,14 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
         {
             if (ModelState.IsValid)
             {
+                //if (!_componentTypeService.IsComponentTypeActive(vm.ComponentTypeId))
+                //{
+                //    ViewBag.ComponentTypeDropDown = new SelectList(_componentTypeService.GetComponentTypeDropDown(), "Value", "Text", vm.ComponentTypeId);
+                //    ViewBag.DonorDropDown = new SelectList(_donorService.GetDonorDropDown(), "Value", "Text", vm.DonorId);
+                //    SystemMessages.Add(ComponentStrings.Component_Edit_Validation_ComponentTypeInactive, true, true);
+                //    return View("Setup", vm);
+                //}
+
                 try
                 {
                     if (vm.Id > 0)
@@ -149,6 +157,12 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
         public ActionResult IsComponentCodeAvailable(string componentCode, int id)
         {
             return Json(!string.IsNullOrWhiteSpace(componentCode) && _componentService.IsComponentCodeAvailable(componentCode, id) == true, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult IsComponentTypeActive(int componentTypeId, int id)
+        {
+            return Json(_componentTypeService.IsComponentTypeActive(componentTypeId), JsonRequestBehavior.AllowGet);
         }
 
         //[HttpGet]

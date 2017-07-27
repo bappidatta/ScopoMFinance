@@ -26,6 +26,7 @@ namespace ScopoMFinance.Domain.ViewModels.Component
 
         [Required]
         [Display(Name = "Component_Setup_DN_ComponentTypeName", ResourceType = typeof(ComponentStrings))]
+        [Remote("IsComponentTypeActive", "Component", "HO", ErrorMessageResourceName = "Component_Edit_Validation_ComponentTypeInactive", ErrorMessageResourceType = typeof(ComponentStrings), AdditionalFields = "Id")]
         public int ComponentTypeId { get; set; }
 
         [Display(Name = "Component_Setup_DN_DonorName", ResourceType = typeof(ComponentStrings))]

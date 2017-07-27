@@ -150,6 +150,9 @@
   <data name="Component_Edit_Validation_ComponentCodeUnavailable" xml:space="preserve">
     <value>Sorry! This component code is already been used</value>
   </data>
+  <data name="Component_Edit_Validation_ComponentTypeInactive" xml:space="preserve">
+    <value>Sorry! Provided component type is inactive </value>
+  </data>
   <data name="Component_List_DN_Code" xml:space="preserve">
     <value>Component Code</value>
   </data>

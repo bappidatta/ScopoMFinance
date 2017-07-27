@@ -97,6 +97,15 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sorry! Provided component type is inactive .
+        /// </summary>
+        public static string Component_Edit_Validation_ComponentTypeInactive {
+            get {
+                return ResourceManager.GetString("Component_Edit_Validation_ComponentTypeInactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Component Code.
         /// </summary>
         public static string Component_List_DN_Code {

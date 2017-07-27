@@ -190,3 +190,8 @@ footer.internal {
 .__lnkDelete, .__lnkEdit {
     color: #000000;
 }
+
+.__colItemEdit {
+    font-weight: bold !important;
+    text-decoration: underline !important;
+}
