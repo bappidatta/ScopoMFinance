@@ -16,6 +16,7 @@ namespace ScopoMFinance.Core.Services
     public interface IBranchService
     {
         List<DropDownViewModel> GetBranchDropDown();
+        List<DropDownViewModel> GetBranchDropDown(Expression<Func<Branch, bool>> filter);
         PList<BranchListViewModel> GetBranchList(int pageNumber, int pageSize, Expression<Func<Branch, object>> orderBy = null, SortDirection sortDir = SortDirection.Asc);
         void SaveBranch(BranchEditViewModel vm);
         void UpdateBranch(BranchEditViewModel vm);
@@ -34,6 +35,18 @@ namespace ScopoMFinance.Core.Services
         public List<DropDownViewModel> GetBranchDropDown()
         {
             var branchDropDown = from c in _uow.BranchRepository.Get(c => c.IsActive == true)
+                                 select new DropDownViewModel()
+                                 {
+                                     Value = c.Id,
+                                     Text = c.Name
+                                 };
+
+            return branchDropDown.ToList();
+        }
+
+        public List<DropDownViewModel> GetBranchDropDown(Expression<Func<Branch, bool>> filter)
+        {
+            var branchDropDown = from c in _uow.BranchRepository.Get(filter)
                                  select new DropDownViewModel()
                                  {
                                      Value = c.Id,

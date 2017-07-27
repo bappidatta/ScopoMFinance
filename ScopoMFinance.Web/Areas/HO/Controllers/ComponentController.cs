@@ -172,6 +172,7 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
         public ActionResult MapBranch()
         {
             ViewBag.Title = ComponentStrings.Component_Map_Branch_Setup_Title;
+            ViewBag.BranchDropDown = new SelectList(_branchService.GetBranchDropDown(x => x.IsActive && !x.IsHeadOffice), "Value", "Text");
 
             return View("MapBranch");
         }

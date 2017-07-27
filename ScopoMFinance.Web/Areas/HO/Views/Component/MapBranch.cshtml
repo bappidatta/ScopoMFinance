@@ -1,12 +1,33 @@
-﻿<section class="panel panel-default">
+﻿@model ScopoMFinance.Domain.ViewModels.Component.ComponentBranchMappingViewModel
+<section class="panel panel-default">
 
     <div class="panel-body row">
         <div class="col-md-12">
-            @using (Html.BeginForm("Setup", "Component", new { area = "HO" }, FormMethod.Post))
+            @using (Html.BeginForm("MapBranch", "Component", new { area = "HO" }, FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
 
-                
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.BranchId, new { @class = "col-md-3 control-label" })
+                    <div class="col-md-3">
+                        @Html.DropDownListFor(m => m.BranchId, ViewBag.BranchDropDown as SelectList, "Select Branch", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.BranchId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div id="mappedListContainer" class="col-md-6"></div>
+                </div>
+
+                <div class="form-actions">
+                    <div class="form-group row">
+                        <div class="col-md-offset-2 col-md-2">
+                            @Html.ActionLink("Cancel", "Index", new { area = "HO", controller = "Component" }, new { @class = "btn btn-default btn-block" })
+                        </div>
+                        <div class="col-md-2">
+                            <input type="submit" value="Save" class="btn btn-primary btn-block" />
+                        </div>
+                    </div>
+                </div>
             }
         </div>
     </div>
@@ -14,6 +35,7 @@
 
 @section scripts
 {
+    @Scripts.Render("~/bundles/jqueryval")
     @System.Web.Optimization.Scripts.Render("~/bundles/HO/Scripts/Component/MapBranch")
 }
 
