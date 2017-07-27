@@ -287,10 +287,12 @@
         </EntityType>
         <EntityType Name="OrgCreditOfficer">
           <Key>
+            <PropertyRef Name="Id" />
             <PropertyRef Name="BranchId" />
             <PropertyRef Name="EmployeeId" />
             <PropertyRef Name="OrganizationId" />
           </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BranchId" Type="int" Nullable="false" />
           <Property Name="EmployeeId" Type="int" Nullable="false" />
           <Property Name="OrganizationId" Type="int" Nullable="false" />
@@ -1329,7 +1331,7 @@
             <End Role="Organization" EntitySet="Organizations" />
             <End Role="OrgCreditOfficer" EntitySet="OrgCreditOfficers" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="AccDayCloseProcess">
           <Key>
             <PropertyRef Name="Id" />
@@ -2169,10 +2171,12 @@
         </Association>
         <EntityType Name="OrgCreditOfficer">
           <Key>
+            <PropertyRef Name="Id" />
             <PropertyRef Name="BranchId" />
             <PropertyRef Name="EmployeeId" />
             <PropertyRef Name="OrganizationId" />
           </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="BranchId" Type="Int32" Nullable="false" />
           <Property Name="EmployeeId" Type="Int32" Nullable="false" />
           <Property Name="OrganizationId" Type="Int32" Nullable="false" />
@@ -2676,6 +2680,7 @@
                 <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

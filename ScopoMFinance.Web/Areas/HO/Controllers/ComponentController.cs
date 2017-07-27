@@ -150,5 +150,11 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
         {
             return Json(!string.IsNullOrWhiteSpace(componentCode) && _componentService.IsComponentCodeAvailable(componentCode, id) == true, JsonRequestBehavior.AllowGet);
         }
+
+        //[HttpGet]
+        //public ActionResult MapBranch(int id)
+        //{
+
+        //}
     }
 }

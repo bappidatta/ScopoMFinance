@@ -1,9 +1,6 @@
 ﻿@model ScopoMFinance.Domain.ViewModels.Policy.BranchEditViewModel
 
 <section class="panel panel-default">
-    <div class="panel-heading">
-        <h3>@ViewBag.Title</h3>
-    </div>
     <div class="panel-body row">
         <div class="col-md-12">
             @using (Html.BeginForm("Edit", "Branch", new { area = "HO" }, FormMethod.Post, new { @class = "form-horizontal col-md-6", role = "form" }))

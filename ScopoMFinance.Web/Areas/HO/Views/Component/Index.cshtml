@@ -1,8 +1,5 @@
 ﻿@model PList<ScopoMFinance.Domain.ViewModels.Component.ComponentListViewModel>
 <section class="panel">
-    <div class="panel-heading">
-        <h5>@ViewBag.Title</h5>
-    </div>
     <div class="panel-body row">
         <div class="col-md-12">
             @Html.ActionLink("New Component", "Setup", new { area = "HO", controller = "Component" }, new { @class = "btn btn-primary" })

@@ -1,9 +1,6 @@
 ﻿@model ScopoMFinance.Domain.ViewModels.Employee.EmployeeEditViewModel
 
 <section class="panel panel-default">
-    <div class="panel-heading">
-        <h3>@ViewBag.Title</h3>
-    </div>
     <div class="panel-body row">
         <div class="col-md-12">
             @using (Html.BeginForm("Setup", "Employee", new { area = "Common" }, FormMethod.Post))

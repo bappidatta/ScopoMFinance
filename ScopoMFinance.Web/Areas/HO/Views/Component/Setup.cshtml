@@ -1,9 +1,7 @@
 ﻿@model ScopoMFinance.Domain.ViewModels.Component.ComponentSetupViewModel
 
 <section class="panel panel-default">
-    <div class="panel-heading">
-        <h5>@ViewBag.Title</h5>
-    </div>
+    
     <div class="panel-body row">
         <div class="col-md-12">
             @using (Html.BeginForm("Setup", "Component", new { area = "HO" }, FormMethod.Post))

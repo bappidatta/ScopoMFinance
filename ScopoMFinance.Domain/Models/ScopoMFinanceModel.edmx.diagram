@@ -70,7 +70,7 @@
         <AssociationConnector Association="ScopoMFinanceModel.BranchComponent" />
         <AssociationConnector Association="ScopoMFinanceModel.ComponentLoanProduct" />
         <AssociationConnector Association="ScopoMFinanceModel.ComponentSavingsProduct" />
-        <EntityTypeShape EntityType="ScopoMFinanceModel.OrgCreditOfficer" Width="1.5" PointX="14.25" PointY="14" />
+        <EntityTypeShape EntityType="ScopoMFinanceModel.OrgCreditOfficer" Width="1.5" PointX="14.25" PointY="13.875" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_OrgCO_Branch" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_OrgCO_Employee" />
         <AssociationConnector Association="ScopoMFinanceModel.FK_OrgCO_Org" />
