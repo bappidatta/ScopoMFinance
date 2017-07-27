@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\AppRoles.cs" />
+    <Compile Include="Enums\SystemEnum.cs" />
     <Compile Include="Helpers\CookieAccessor.cs" />
     <Compile Include="Helpers\UserHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

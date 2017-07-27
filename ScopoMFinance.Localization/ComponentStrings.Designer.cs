@@ -160,6 +160,15 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Branch &amp; Component Mapping.
+        /// </summary>
+        public static string Component_Map_Branch_Setup_Title {
+            get {
+                return ResourceManager.GetString("Component_Map_Branch_Setup_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Component Code.
         /// </summary>
         public static string Component_Setup_DN_Code {

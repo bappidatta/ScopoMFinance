@@ -1,0 +1,28 @@
+﻿<section class="panel panel-default">
+
+    <div class="panel-body row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("Setup", "Component", new { area = "HO" }, FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group row">
+                    <label class="radio-inline">
+                        <input type="radio" name="rdoBranchCom" class="__rdoBranchCom" id="branchWise" value="@BranchComponentDropdown.BranchWise"> Branch Wise
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="rdoBranchCom" class="__rdoBranchCom" id="comWise" value="@BranchComponentDropdown.ComponentWise"> Component Wise
+                    </label>
+                </div>
+
+                <div id="__branchComponentDropDownContainer"></div>
+            }
+        </div>
+    </div>
+</section>
+
+@section scripts
+{
+    @System.Web.Optimization.Scripts.Render("~/bundles/HO/Scripts/Component/MapBranch")
+}
+

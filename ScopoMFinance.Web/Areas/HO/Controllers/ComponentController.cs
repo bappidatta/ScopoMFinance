@@ -1,6 +1,7 @@
 ﻿using NtitasCommon.Core.Common;
 using NtitasCommon.Localization;
 using ScopoMFinance.Core.Common;
+using ScopoMFinance.Core.Enums;
 using ScopoMFinance.Core.Helpers;
 using ScopoMFinance.Core.Services;
 using ScopoMFinance.Domain.Models;
@@ -24,13 +25,15 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
         private IComponentTypeService _componentTypeService;
         private IComponentService _componentService;
         private IDonorService _donorService;
+        private IBranchService _branchService;
         private IUserHelper _userHelper;
 
-        public ComponentController(IComponentTypeService componentTypeService, IComponentService componentService, IDonorService donorService, IUserHelper userHelper)
+        public ComponentController(IComponentTypeService componentTypeService, IComponentService componentService, IDonorService donorService, IBranchService branchService, IUserHelper userHelper)
         {
             _componentTypeService = componentTypeService;
             _componentService = componentService;
             _donorService = donorService;
+            _branchService = branchService;
             _userHelper = userHelper;
         }
 
@@ -165,10 +168,30 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
             return Json(_componentTypeService.IsComponentTypeActive(componentTypeId), JsonRequestBehavior.AllowGet);
         }
 
-        //[HttpGet]
-        //public ActionResult MapBranch(int id)
-        //{
+        [HttpGet]
+        public ActionResult MapBranch()
+        {
+            ViewBag.Title = ComponentStrings.Component_Map_Branch_Setup_Title;
 
-        //}
+            return View("MapBranch");
+        }
+
+        [HttpGet]
+        public ActionResult GetBranchComponentDropdown(BranchComponentDropdown choice = BranchComponentDropdown.BranchWise)
+        {
+            switch (choice)
+            {
+                case BranchComponentDropdown.BranchWise:
+                    ViewBag.Choice = choice;
+                    ViewBag.BranchDropDown = new SelectList(_branchService.GetBranchDropDown(), "Value", "Text");
+                    break;
+                case BranchComponentDropdown.ComponentWise:
+                    ViewBag.Choice = choice;
+                    ViewBag.ComponentDropDown = new SelectList(_componentService.GetComponentDropDown(), "Value", "Text");
+                    break;
+            }
+
+            return PartialView("_BranchComponentDropDown");
+        }
     }
 }
