@@ -3,7 +3,9 @@ using NtitasCommon.Core.Helpers;
 using ScopoMFinance.Domain.Models;
 using ScopoMFinance.Domain.Repositories;
 using ScopoMFinance.Domain.ViewModels.Common;
+using ScopoMFinance.Domain.ViewModels.Component;
 using ScopoMFinance.Domain.ViewModels.Policy;
+using ScopoMFinance.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +19,16 @@ namespace ScopoMFinance.Core.Services
     {
         List<DropDownViewModel> GetBranchDropDown();
         List<DropDownViewModel> GetBranchDropDown(Expression<Func<Branch, bool>> filter);
+
         PList<BranchListViewModel> GetBranchList(int pageNumber, int pageSize, Expression<Func<Branch, object>> orderBy = null, SortDirection sortDir = SortDirection.Asc);
+
         void SaveBranch(BranchEditViewModel vm);
         void UpdateBranch(BranchEditViewModel vm);
+
         BranchEditViewModel GetBranchById(int branchId);
+
+        List<MappedComponentViewModel> GetMappedComponentList(int id);
+        bool MapComponent(ComponentBranchMappingViewModel vm);
     }
 
     public class BranchService : IBranchService
@@ -30,6 +38,13 @@ namespace ScopoMFinance.Core.Services
         public BranchService(UnitOfWork uow)
         {
             _uow = uow;
+        }
+
+        private Branch GetBranch(int id)
+        {
+            return (from c in _uow.BranchRepository
+                                      .Get(x => x.Id == id && x.IsActive)
+                    select c).SingleOrDefault();
         }
 
         public List<DropDownViewModel> GetBranchDropDown()
@@ -118,6 +133,59 @@ namespace ScopoMFinance.Core.Services
                         OpenDate = c.OpenDate,
                         IsActive = c.IsActive
                     }).SingleOrDefault();
+        }
+
+        public List<MappedComponentViewModel> GetMappedComponentList(int id)
+        {
+            try
+            {
+                var mappedList = (from c in _uow.ComponentRepository.Get(x => x.IsActive).Order(x => x.Name, SortDirection.Asc)
+                                  select new MappedComponentViewModel
+                                  {
+                                      ComponentId = c.Id,
+                                      ComponentName = c.Name,
+                                      Checked = c.Branches.Any(x => x.Id == id)
+                                  }).ToList();
+
+                return mappedList;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public bool MapComponent(ComponentBranchMappingViewModel vm)
+        {
+            Branch branch = GetBranch(vm.BranchId);
+
+            if (branch != null && !branch.IsHeadOffice)
+            {
+                foreach (var i in vm.MappedComponentList)
+                {
+                    Component component = _uow.ComponentRepository.Get(x => x.Id == i.ComponentId && x.IsActive).SingleOrDefault();
+                    if (component != null)
+                    {
+                        if (i.Checked)
+                            branch.Components.Add(component);
+
+                        if (!i.Checked)
+                            branch.Components.Remove(component);
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+            _uow.Save();
+
+            return true;
         }
     }
 }

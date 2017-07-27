@@ -1,4 +1,5 @@
 ﻿using NtitasCommon.Core.Common;
+using NtitasCommon.Core.Helpers;
 using NtitasCommon.Localization;
 using ScopoMFinance.Core.Common;
 using ScopoMFinance.Core.Enums;
@@ -6,6 +7,7 @@ using ScopoMFinance.Core.Helpers;
 using ScopoMFinance.Core.Services;
 using ScopoMFinance.Domain.Models;
 using ScopoMFinance.Domain.ViewModels.Component;
+using ScopoMFinance.Domain.ViewModels.Policy;
 using ScopoMFinance.Localization;
 using ScopoMFinance.Web.Attributes;
 using System;
@@ -175,6 +177,76 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
             ViewBag.BranchDropDown = new SelectList(_branchService.GetBranchDropDown(x => x.IsActive && !x.IsHeadOffice), "Value", "Text");
 
             return View("MapBranch");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult MapBranch(ComponentBranchMappingViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (_componentService.GetComponentList(filter: x => x.IsActive).Count == 0)
+                    {
+                        SystemMessages.Add(CommonStrings.No_Record, true, true);
+                        return RedirectToAction("MapBranch");
+                    }
+
+                    BranchEditViewModel branchVM = _branchService.GetBranchById(vm.BranchId);
+                    if (branchVM == null || !branchVM.IsActive || branchVM.IsHeadOffice)
+                    {
+                        SystemMessages.Add(ComponentStrings.Component_Map_Branch_Validation_InvalidBranch, true, true);
+                        return RedirectToAction("MapBranch"); ;
+                    }
+
+                    foreach (var i in vm.MappedComponentList)
+                    {
+                        if (!_componentService.GetComponentById(i.ComponentId).IsActive)
+                        {
+                            SystemMessages.Add(String.Format(ComponentStrings.Component_Map_Branch_Validation_InvalidComponent, i.ComponentName), true, true);
+                            return RedirectToAction("MapBranch");
+                        }
+                    }
+
+
+                    if (!_branchService.MapComponent(vm))
+                    {
+                        SystemMessages.Add(CommonStrings.Server_Error, true, true);
+                        return RedirectToAction("MapBranch");
+                    }
+                    else
+                    {
+                        SystemMessages.Add(ComponentStrings.Component_Branch_Map_Successfull_Msg, false, true);
+                        return RedirectToAction("MapBranch");
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    SystemMessages.Add(CommonStrings.Server_Error, true, true);
+                    return RedirectToAction("MapBranch");
+                }
+            }
+
+            ViewBag.Title = ComponentStrings.Component_Map_Branch_Setup_Title;
+            ViewBag.BranchDropDown = new SelectList(_branchService.GetBranchDropDown(x => x.IsActive && !x.IsHeadOffice), "Value", "Text");
+
+            return View("MapBranch");
+        }
+
+        [HttpGet]
+        public ActionResult ComponentMappedList(int id)
+        {
+            if (_componentService.GetComponentList(filter: x => x.IsActive).Count == 0)
+            {
+                SystemMessages.Add(CommonStrings.No_Record, true, true);
+                return new XHR_JSON_Redirect();
+            }
+
+            var mappedList = _branchService.GetMappedComponentList(id);
+
+            return PartialView("_ComponentMappedList", mappedList);
         }
     }
 }

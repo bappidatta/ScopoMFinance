@@ -70,6 +70,15 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mapping has been successfully placed.
+        /// </summary>
+        public static string Component_Branch_Map_Successfull_Msg {
+            get {
+                return ResourceManager.GetString("Component_Branch_Map_Successfull_Msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Component has been created successfully.
         /// </summary>
         public static string Component_Create_Success_Msg {
@@ -174,6 +183,24 @@ namespace ScopoMFinance.Localization {
         public static string Component_Map_Branch_Setup_Title {
             get {
                 return ResourceManager.GetString("Component_Map_Branch_Setup_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Branch is invalid to map with any component.
+        /// </summary>
+        public static string Component_Map_Branch_Validation_InvalidBranch {
+            get {
+                return ResourceManager.GetString("Component_Map_Branch_Validation_InvalidBranch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Component {0} is invalid to map a branch.
+        /// </summary>
+        public static string Component_Map_Branch_Validation_InvalidComponent {
+            get {
+                return ResourceManager.GetString("Component_Map_Branch_Validation_InvalidComponent", resourceCulture);
             }
         }
         
