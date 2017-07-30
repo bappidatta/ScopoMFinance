@@ -214,10 +214,10 @@
     <Compile Include="ViewModels\Policy\BranchListViewModel.cs" />
     <Compile Include="ViewModels\Policy\ComponentTypeListViewModel.cs" />
     <Compile Include="ViewModels\Policy\ComponentTypeSetupViewModel.cs" />
-    <Compile Include="ViewModels\Product\LoanProductListViewModel.cs" />
-    <Compile Include="ViewModels\Product\LoanProductSetupViewModel.cs" />
-    <Compile Include="ViewModels\Product\SavingsProductListViewModel.cs" />
-    <Compile Include="ViewModels\Product\SavingsProductSetupViewModel.cs" />
+    <Compile Include="ViewModels\Product\ProductListViewModel.cs" />
+    <Compile Include="ViewModels\Product\ProductSetupViewModel.cs" />
+    <Compile Include="ViewModels\Product\ProductTypeListViewModel.cs" />
+    <Compile Include="ViewModels\Product\ProductTypeSetupViewModel.cs" />
     <Compile Include="ViewModels\User\UserCacheViewModel.cs" />
     <Compile Include="ViewModels\User\UserLoginAuditViewModel.cs" />
   </ItemGroup>
