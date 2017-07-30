@@ -117,46 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Ln_Product_List_DN_Code" xml:space="preserve">
+  <data name="Product_List_DN_Code" xml:space="preserve">
     <value>Product Code</value>
   </data>
-  <data name="Ln_Product_List_DN_IntRate" xml:space="preserve">
+  <data name="Product_List_DN_IntRate" xml:space="preserve">
     <value>Interest Rate</value>
   </data>
-  <data name="Ln_Product_List_DN_Name" xml:space="preserve">
+  <data name="Product_List_DN_Name" xml:space="preserve">
     <value>Product Name</value>
   </data>
-  <data name="Ln_Product_Setup_DN_Code" xml:space="preserve">
+  <data name="Product_List_DN_ProductType" xml:space="preserve">
+    <value>Product Type</value>
+  </data>
+  <data name="Product_Setup_DN_Code" xml:space="preserve">
     <value>Product Code</value>
   </data>
-  <data name="Ln_Product_Setup_DN_IntRate" xml:space="preserve">
+  <data name="Product_Setup_DN_IntRate" xml:space="preserve">
     <value>Interest Rate</value>
   </data>
-  <data name="Ln_Product_Setup_DN_Name" xml:space="preserve">
+  <data name="Product_Setup_DN_Name" xml:space="preserve">
     <value>Product Name</value>
   </data>
-  <data name="Ln_Product_Setup_Validation_DuplicateCode" xml:space="preserve">
+  <data name="Product_Setup_DN_ProductType" xml:space="preserve">
+    <value>Product Type</value>
+  </data>
+  <data name="Product_Setup_Validation_DuplicateCode" xml:space="preserve">
     <value>This code is already been used</value>
   </data>
-  <data name="Sav_Product_List_DN_Code" xml:space="preserve">
-    <value>Product Code</value>
+  <data name="Product_Type_List_DN_Name" xml:space="preserve">
+    <value>Product Type Name</value>
   </data>
-  <data name="Sav_Product_List_DN_IntRate" xml:space="preserve">
-    <value>Interest Rate</value>
-  </data>
-  <data name="Sav_Product_List_DN_Name" xml:space="preserve">
-    <value>Product Name</value>
-  </data>
-  <data name="Sav_Product_Setup_DN_Code" xml:space="preserve">
-    <value>Product Code</value>
-  </data>
-  <data name="Sav_Product_Setup_DN_IntRate" xml:space="preserve">
-    <value>Interest Rate</value>
-  </data>
-  <data name="Sav_Product_Setup_DN_Name" xml:space="preserve">
-    <value>Product Name</value>
-  </data>
-  <data name="Sav_Product_Setup_Validation_DuplicateCode" xml:space="preserve">
-    <value>This code is already been used</value>
+  <data name="Product_Type_Setup_DN_Name" xml:space="preserve">
+    <value>Product Type Name</value>
   </data>
 </root>

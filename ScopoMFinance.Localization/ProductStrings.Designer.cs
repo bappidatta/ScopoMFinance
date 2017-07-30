@@ -63,126 +63,99 @@ namespace ScopoMFinance.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Product Code.
         /// </summary>
-        public static string Ln_Product_List_DN_Code {
+        public static string Product_List_DN_Code {
             get {
-                return ResourceManager.GetString("Ln_Product_List_DN_Code", resourceCulture);
+                return ResourceManager.GetString("Product_List_DN_Code", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Interest Rate.
         /// </summary>
-        public static string Ln_Product_List_DN_IntRate {
+        public static string Product_List_DN_IntRate {
             get {
-                return ResourceManager.GetString("Ln_Product_List_DN_IntRate", resourceCulture);
+                return ResourceManager.GetString("Product_List_DN_IntRate", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Product Name.
         /// </summary>
-        public static string Ln_Product_List_DN_Name {
+        public static string Product_List_DN_Name {
             get {
-                return ResourceManager.GetString("Ln_Product_List_DN_Name", resourceCulture);
+                return ResourceManager.GetString("Product_List_DN_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Type.
+        /// </summary>
+        public static string Product_List_DN_ProductType {
+            get {
+                return ResourceManager.GetString("Product_List_DN_ProductType", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Product Code.
         /// </summary>
-        public static string Ln_Product_Setup_DN_Code {
+        public static string Product_Setup_DN_Code {
             get {
-                return ResourceManager.GetString("Ln_Product_Setup_DN_Code", resourceCulture);
+                return ResourceManager.GetString("Product_Setup_DN_Code", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Interest Rate.
         /// </summary>
-        public static string Ln_Product_Setup_DN_IntRate {
+        public static string Product_Setup_DN_IntRate {
             get {
-                return ResourceManager.GetString("Ln_Product_Setup_DN_IntRate", resourceCulture);
+                return ResourceManager.GetString("Product_Setup_DN_IntRate", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Product Name.
         /// </summary>
-        public static string Ln_Product_Setup_DN_Name {
+        public static string Product_Setup_DN_Name {
             get {
-                return ResourceManager.GetString("Ln_Product_Setup_DN_Name", resourceCulture);
+                return ResourceManager.GetString("Product_Setup_DN_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Type.
+        /// </summary>
+        public static string Product_Setup_DN_ProductType {
+            get {
+                return ResourceManager.GetString("Product_Setup_DN_ProductType", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to This code is already been used.
         /// </summary>
-        public static string Ln_Product_Setup_Validation_DuplicateCode {
+        public static string Product_Setup_Validation_DuplicateCode {
             get {
-                return ResourceManager.GetString("Ln_Product_Setup_Validation_DuplicateCode", resourceCulture);
+                return ResourceManager.GetString("Product_Setup_Validation_DuplicateCode", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Product Code.
+        ///   Looks up a localized string similar to Product Type Name.
         /// </summary>
-        public static string Sav_Product_List_DN_Code {
+        public static string Product_Type_List_DN_Name {
             get {
-                return ResourceManager.GetString("Sav_Product_List_DN_Code", resourceCulture);
+                return ResourceManager.GetString("Product_Type_List_DN_Name", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Interest Rate.
+        ///   Looks up a localized string similar to Product Type Name.
         /// </summary>
-        public static string Sav_Product_List_DN_IntRate {
+        public static string Product_Type_Setup_DN_Name {
             get {
-                return ResourceManager.GetString("Sav_Product_List_DN_IntRate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Product Name.
-        /// </summary>
-        public static string Sav_Product_List_DN_Name {
-            get {
-                return ResourceManager.GetString("Sav_Product_List_DN_Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Product Code.
-        /// </summary>
-        public static string Sav_Product_Setup_DN_Code {
-            get {
-                return ResourceManager.GetString("Sav_Product_Setup_DN_Code", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Interest Rate.
-        /// </summary>
-        public static string Sav_Product_Setup_DN_IntRate {
-            get {
-                return ResourceManager.GetString("Sav_Product_Setup_DN_IntRate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Product Name.
-        /// </summary>
-        public static string Sav_Product_Setup_DN_Name {
-            get {
-                return ResourceManager.GetString("Sav_Product_Setup_DN_Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This code is already been used.
-        /// </summary>
-        public static string Sav_Product_Setup_Validation_DuplicateCode {
-            get {
-                return ResourceManager.GetString("Sav_Product_Setup_Validation_DuplicateCode", resourceCulture);
+                return ResourceManager.GetString("Product_Type_Setup_DN_Name", resourceCulture);
             }
         }
     }
