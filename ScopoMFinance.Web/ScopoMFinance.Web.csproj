@@ -195,6 +195,7 @@
     <Compile Include="Areas\HO\Controllers\ComponentController.cs" />
     <Compile Include="Areas\HO\Controllers\ComponentTypeController.cs" />
     <Compile Include="Areas\HO\Controllers\EmployeeTypeController.cs" />
+    <Compile Include="Areas\HO\Controllers\ProductController.cs" />
     <Compile Include="Areas\HO\Controllers\ProductTypeController.cs" />
     <Compile Include="Areas\HO\HOAreaRegistration.cs" />
     <Compile Include="Attributes\LoginAuditAttribute.cs" />
@@ -220,6 +221,7 @@
     <Content Include="Areas\HO\Scripts\ComponentType\index.js" />
     <Content Include="Areas\HO\Scripts\EmployeeType\index.js" />
     <Content Include="Areas\HO\Scripts\ProductType\index.js" />
+    <Content Include="Areas\HO\Scripts\Product\index.js" />
     <Content Include="Content\assets\common\css\main.min.css" />
     <Content Include="Content\assets\common\css\source\apps\calendar.css" />
     <Content Include="Content\assets\common\css\source\apps\gallery.css" />
@@ -776,6 +778,8 @@
     <Content Include="Areas\HO\Views\ProductType\Index.cshtml" />
     <Content Include="Areas\HO\Views\ProductType\_Setup.cshtml" />
     <Content Include="Areas\HO\Views\Shared\EditorTemplates\ProductTypeSetupViewModel.cshtml" />
+    <Content Include="Areas\HO\Views\Product\Index.cshtml" />
+    <Content Include="Areas\HO\Views\Product\Setup.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\common-system-messages.js" />
     <Content Include="Scripts\init.js" />

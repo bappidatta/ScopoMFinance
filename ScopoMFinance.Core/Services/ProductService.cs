@@ -23,6 +23,7 @@ namespace ScopoMFinance.Core.Services
         void CreateProduct(ProductSetupViewModel vm);
         bool UpdateProduct(ProductSetupViewModel vm);
         bool IsProductActive(int productId);
+        bool IsProductCodeAvailable(string productCode, int productId);
     }
 
     public class ProductService : IProductService
@@ -166,6 +167,21 @@ namespace ScopoMFinance.Core.Services
                 return true;
 
             return false;
+        }
+
+        public bool IsProductCodeAvailable(string productCode, int productId)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(productCode))
+                    return false;
+
+                return !_uow.ProductRepository.Get().Any(x => x.Id != productId && x.ProductCode == productCode);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

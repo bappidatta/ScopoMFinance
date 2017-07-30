@@ -74,6 +74,9 @@ namespace ScopoMFinance.Web
             bundles.Add(new ScriptBundle("~/bundles/HO/Scripts/ProductType/Index").Include(
                     "~/Areas/HO/Scripts/ProductType/index.js"
               ));
+            bundles.Add(new ScriptBundle("~/bundles/HO/Scripts/Product/Index").Include(
+                    "~/Areas/HO/Scripts/Product/index.js"
+              ));
         }
     }
 }

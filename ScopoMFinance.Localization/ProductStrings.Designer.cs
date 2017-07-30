@@ -61,6 +61,33 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product has been created successfully.
+        /// </summary>
+        public static string Product_Create_Success_Msg {
+            get {
+                return ResourceManager.GetString("Product_Create_Success_Msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Product.
+        /// </summary>
+        public static string Product_Create_Title {
+            get {
+                return ResourceManager.GetString("Product_Create_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Product.
+        /// </summary>
+        public static string Product_Edit_Title {
+            get {
+                return ResourceManager.GetString("Product_Edit_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product Code.
         /// </summary>
         public static string Product_List_DN_Code {
@@ -93,6 +120,15 @@ namespace ScopoMFinance.Localization {
         public static string Product_List_DN_ProductType {
             get {
                 return ResourceManager.GetString("Product_List_DN_ProductType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Products.
+        /// </summary>
+        public static string Product_List_Title {
+            get {
+                return ResourceManager.GetString("Product_List_Title", resourceCulture);
             }
         }
         
@@ -201,6 +237,15 @@ namespace ScopoMFinance.Localization {
         public static string Product_Type_Setup_DN_Name {
             get {
                 return ResourceManager.GetString("Product_Type_Setup_DN_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product has been updated successfully.
+        /// </summary>
+        public static string Product_Update_Success_Msg {
+            get {
+                return ResourceManager.GetString("Product_Update_Success_Msg", resourceCulture);
             }
         }
     }
