@@ -58,8 +58,8 @@
     <Compile Include="Services\GenderService.cs" />
     <Compile Include="Services\OrganizationService.cs" />
     <Compile Include="Services\OrgCategoryService.cs" />
-    <Compile Include="Services\SavingsProductService.cs" />
-    <Compile Include="Services\LoanProductService.cs" />
+    <Compile Include="Services\ProductTypeService.cs" />
+    <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\ComponentService.cs" />
     <Compile Include="Services\ComponentTypeService.cs" />
     <Compile Include="Services\UserLoginAuditService.cs" />

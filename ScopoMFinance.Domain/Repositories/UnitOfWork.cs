@@ -268,29 +268,29 @@ namespace ScopoMFinance.Domain.Repositories
             }
         }
 
-        private IRepository<SavingsProduct> savingsProductRepo;
-        public IRepository<SavingsProduct> SavingsProductRepository
+        private IRepository<ProductType> productTypeRepo;
+        public IRepository<ProductType> ProductTypeRepository
         {
             get
             {
-                if (this.savingsProductRepo == null)
+                if (this.productTypeRepo == null)
                 {
-                    this.savingsProductRepo = new Repository<SavingsProduct>(db);
+                    this.productTypeRepo = new Repository<ProductType>(db);
                 }
-                return savingsProductRepo;
+                return productTypeRepo;
             }
         }
 
-        private IRepository<LoanProduct> loanProductRepo;
-        public IRepository<LoanProduct> LoanProductRepository
+        private IRepository<Product> productRepo;
+        public IRepository<Product> ProductRepository
         {
             get
             {
-                if (this.loanProductRepo == null)
+                if (this.productRepo == null)
                 {
-                    this.loanProductRepo = new Repository<LoanProduct>(db);
+                    this.productRepo = new Repository<Product>(db);
                 }
-                return loanProductRepo;
+                return productRepo;
             }
         }
 

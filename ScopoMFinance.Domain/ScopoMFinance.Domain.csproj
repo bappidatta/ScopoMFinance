@@ -93,6 +93,12 @@
     <Compile Include="Models\AspNetUser.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Branch.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
@@ -111,9 +117,6 @@
     <Compile Include="Models\GlobalPolicy.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LoanProduct.cs">
-      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Member.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
@@ -129,7 +132,10 @@
     <Compile Include="Models\OrgCreditOfficer.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SavingsProduct.cs">
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductType.cs">
       <DependentUpon>ScopoMFinanceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ScopoMFinanceModel.Context.cs">

@@ -90,18 +90,17 @@
     <Build Include="Tables\OrgCreditOfficer.sql" />
     <Build Include="Tables\UserBranch.sql" />
     <Build Include="Tables\UserLoginAudit.sql" />
-    <Build Include="Tables\SavingsProduct.sql" />
-    <Build Include="Tables\ComponentSavingsProduct.sql" />
     <Build Include="Tables\AccDayOpenClose.sql" />
     <Build Include="Tables\AccDayCloseProcess.sql" />
     <Build Include="Tables\AccDayCloseProgress.sql" />
-    <Build Include="Tables\LoanProduct.sql" />
-    <Build Include="Tables\ComponentLoanProduct.sql" />
+    <Build Include="Tables\Product.sql" />
+    <Build Include="Tables\ComponentProduct.sql" />
     <Build Include="Tables\GlobalPolicy.sql" />
     <Build Include="LoanSavings.sql" />
     <Build Include="Tables\Member.sql" />
     <Build Include="Tables\SysDocType.sql" />
     <Build Include="Tables\MemberDoc.sql" />
+    <Build Include="Tables\ProductType.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Common\Variables.sql" />

@@ -46,6 +46,25 @@
           <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
         <EntityType Name="AspNetUserRoles">
           <Key>
             <PropertyRef Name="UserId" />
@@ -138,15 +157,7 @@
           <Property Name="SystemDate" Type="datetime" Nullable="false" />
           <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="ComponentLoanProduct">
-          <Key>
-            <PropertyRef Name="ComponentId" />
-            <PropertyRef Name="ProductId" />
-          </Key>
-          <Property Name="ComponentId" Type="int" Nullable="false" />
-          <Property Name="ProductId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ComponentSavingsProduct">
+        <EntityType Name="ComponentProduct">
           <Key>
             <PropertyRef Name="ComponentId" />
             <PropertyRef Name="ProductId" />
@@ -204,19 +215,6 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NoOfMaxLoan" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="LoanProduct">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProductCode" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ProductName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="InterestRate" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="SystemDate" Type="datetime" Nullable="false" />
-          <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Member">
           <Key>
@@ -302,7 +300,7 @@
           <Property Name="SystemDate" Type="datetime" Nullable="false" />
           <Property Name="SetDate" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="SavingsProduct">
+        <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -310,6 +308,18 @@
           <Property Name="ProductCode" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ProductName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="InterestRate" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ProductTypeId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SystemDate" Type="datetime" Nullable="false" />
+          <Property Name="SetDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="SystemDate" Type="datetime" Nullable="false" />
@@ -502,50 +512,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ComponentLoanProduct_Component">
+        <Association Name="FK_ComponentProduct_Component">
           <End Role="Component" Type="Self.Component" Multiplicity="1" />
-          <End Role="ComponentLoanProduct" Type="Self.ComponentLoanProduct" Multiplicity="*" />
+          <End Role="ComponentProduct" Type="Self.ComponentProduct" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Component">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="ComponentLoanProduct">
+            <Dependent Role="ComponentProduct">
               <PropertyRef Name="ComponentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ComponentLoanProduct_Product">
-          <End Role="LoanProduct" Type="Self.LoanProduct" Multiplicity="1" />
-          <End Role="ComponentLoanProduct" Type="Self.ComponentLoanProduct" Multiplicity="*" />
+        <Association Name="FK_ComponentProduct_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ComponentProduct" Type="Self.ComponentProduct" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="LoanProduct">
+            <Principal Role="Product">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="ComponentLoanProduct">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ComponentSavingsProduct_Component">
-          <End Role="Component" Type="Self.Component" Multiplicity="1" />
-          <End Role="ComponentSavingsProduct" Type="Self.ComponentSavingsProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Component">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ComponentSavingsProduct">
-              <PropertyRef Name="ComponentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ComponentSavingsProduct_Product">
-          <End Role="SavingsProduct" Type="Self.SavingsProduct" Multiplicity="1" />
-          <End Role="ComponentSavingsProduct" Type="Self.ComponentSavingsProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SavingsProduct">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ComponentSavingsProduct">
+            <Dependent Role="ComponentProduct">
               <PropertyRef Name="ProductId" />
             </Dependent>
           </ReferentialConstraint>
@@ -571,6 +557,34 @@
             </Principal>
             <Dependent Role="AccDayOpenClose">
               <PropertyRef Name="CloseRequestBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -830,6 +844,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Product_ProductType">
+          <End Role="ProductType" Type="Self.ProductType" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Thana_Union">
           <End Role="SysUnion" Type="Self.SysUnion" Multiplicity="1" />
           <End Role="SysThana" Type="Self.SysThana" Multiplicity="*" />
@@ -943,6 +969,8 @@
           <EntitySet Name="AccDayCloseProgress" EntityType="Self.AccDayCloseProgress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AccDayOpenClose" EntityType="Self.AccDayOpenClose" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserBranch" EntityType="Self.UserBranch" Schema="dbo" store:Type="Tables" />
@@ -951,19 +979,18 @@
           <EntitySet Name="Branch" EntityType="Self.Branch" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="BranchComponent" EntityType="Self.BranchComponent" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="Component" EntityType="Self.Component" Schema="lnsav" store:Type="Tables" />
-          <EntitySet Name="ComponentLoanProduct" EntityType="Self.ComponentLoanProduct" Schema="lnsav" store:Type="Tables" />
-          <EntitySet Name="ComponentSavingsProduct" EntityType="Self.ComponentSavingsProduct" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="ComponentProduct" EntityType="Self.ComponentProduct" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="ComponentType" EntityType="Self.ComponentType" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="EmployeeType" EntityType="Self.EmployeeType" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="GlobalPolicy" EntityType="Self.GlobalPolicy" Schema="lnsav" store:Type="Tables" />
-          <EntitySet Name="LoanProduct" EntityType="Self.LoanProduct" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="Member" EntityType="Self.Member" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="MemberDoc" EntityType="Self.MemberDoc" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="Organization" EntityType="Self.Organization" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="OrgCategory" EntityType="Self.OrgCategory" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="OrgCreditOfficer" EntityType="Self.OrgCreditOfficer" Schema="lnsav" store:Type="Tables" />
-          <EntitySet Name="SavingsProduct" EntityType="Self.SavingsProduct" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="lnsav" store:Type="Tables" />
+          <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="SysColcOption" EntityType="Self.SysColcOption" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="SysDistrict" EntityType="Self.SysDistrict" Schema="lnsav" store:Type="Tables" />
           <EntitySet Name="SysDivision" EntityType="Self.SysDivision" Schema="lnsav" store:Type="Tables" />
@@ -998,21 +1025,13 @@
             <End Role="SysDonor" EntitySet="SysDonor" />
             <End Role="Component" EntitySet="Component" />
           </AssociationSet>
-          <AssociationSet Name="FK_ComponentLoanProduct_Component" Association="Self.FK_ComponentLoanProduct_Component">
+          <AssociationSet Name="FK_ComponentProduct_Component" Association="Self.FK_ComponentProduct_Component">
             <End Role="Component" EntitySet="Component" />
-            <End Role="ComponentLoanProduct" EntitySet="ComponentLoanProduct" />
+            <End Role="ComponentProduct" EntitySet="ComponentProduct" />
           </AssociationSet>
-          <AssociationSet Name="FK_ComponentLoanProduct_Product" Association="Self.FK_ComponentLoanProduct_Product">
-            <End Role="LoanProduct" EntitySet="LoanProduct" />
-            <End Role="ComponentLoanProduct" EntitySet="ComponentLoanProduct" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ComponentSavingsProduct_Component" Association="Self.FK_ComponentSavingsProduct_Component">
-            <End Role="Component" EntitySet="Component" />
-            <End Role="ComponentSavingsProduct" EntitySet="ComponentSavingsProduct" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ComponentSavingsProduct_Product" Association="Self.FK_ComponentSavingsProduct_Product">
-            <End Role="SavingsProduct" EntitySet="SavingsProduct" />
-            <End Role="ComponentSavingsProduct" EntitySet="ComponentSavingsProduct" />
+          <AssociationSet Name="FK_ComponentProduct_Product" Association="Self.FK_ComponentProduct_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ComponentProduct" EntitySet="ComponentProduct" />
           </AssociationSet>
           <AssociationSet Name="FK_DayOpenClose_Branch" Association="Self.FK_DayOpenClose_Branch">
             <End Role="Branch" EntitySet="Branch" />
@@ -1021,6 +1040,14 @@
           <AssociationSet Name="FK_DayOpenClose_UserProfile" Association="Self.FK_DayOpenClose_UserProfile">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="AccDayOpenClose" EntitySet="AccDayOpenClose" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
@@ -1106,6 +1133,10 @@
             <End Role="Organization" EntitySet="Organization" />
             <End Role="OrgCreditOfficer" EntitySet="OrgCreditOfficer" />
           </AssociationSet>
+          <AssociationSet Name="FK_Product_ProductType" Association="Self.FK_Product_ProductType">
+            <End Role="ProductType" EntitySet="ProductType" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
           <AssociationSet Name="FK_Thana_Union" Association="Self.FK_Thana_Union">
             <End Role="SysUnion" EntitySet="SysUnion" />
             <End Role="SysThana" EntitySet="SysThana" />
@@ -1152,6 +1183,8 @@
           <EntitySet Name="AccDayCloseProgresses" EntityType="ScopoMFinanceModel.AccDayCloseProgress" />
           <EntitySet Name="AccDayOpenCloses" EntityType="ScopoMFinanceModel.AccDayOpenClose" />
           <EntitySet Name="AspNetRoles" EntityType="ScopoMFinanceModel.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="ScopoMFinanceModel.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="ScopoMFinanceModel.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="ScopoMFinanceModel.AspNetUser" />
           <EntitySet Name="UserBranches" EntityType="ScopoMFinanceModel.UserBranch" />
           <EntitySet Name="UserLoginAudits" EntityType="ScopoMFinanceModel.UserLoginAudit" />
@@ -1162,12 +1195,13 @@
           <EntitySet Name="Employees" EntityType="ScopoMFinanceModel.Employee" />
           <EntitySet Name="EmployeeTypes" EntityType="ScopoMFinanceModel.EmployeeType" />
           <EntitySet Name="GlobalPolicies" EntityType="ScopoMFinanceModel.GlobalPolicy" />
-          <EntitySet Name="LoanProducts" EntityType="ScopoMFinanceModel.LoanProduct" />
           <EntitySet Name="Members" EntityType="ScopoMFinanceModel.Member" />
           <EntitySet Name="MemberDocs" EntityType="ScopoMFinanceModel.MemberDoc" />
           <EntitySet Name="Organizations" EntityType="ScopoMFinanceModel.Organization" />
           <EntitySet Name="OrgCategories" EntityType="ScopoMFinanceModel.OrgCategory" />
-          <EntitySet Name="SavingsProducts" EntityType="ScopoMFinanceModel.SavingsProduct" />
+          <EntitySet Name="OrgCreditOfficers" EntityType="ScopoMFinanceModel.OrgCreditOfficer" />
+          <EntitySet Name="Products" EntityType="ScopoMFinanceModel.Product" />
+          <EntitySet Name="ProductTypes" EntityType="ScopoMFinanceModel.ProductType" />
           <EntitySet Name="SysColcOptions" EntityType="ScopoMFinanceModel.SysColcOption" />
           <EntitySet Name="SysDistricts" EntityType="ScopoMFinanceModel.SysDistrict" />
           <EntitySet Name="SysDivisions" EntityType="ScopoMFinanceModel.SysDivision" />
@@ -1193,6 +1227,14 @@
           <AssociationSet Name="FK_DayOpenClose_UserProfile" Association="ScopoMFinanceModel.FK_DayOpenClose_UserProfile">
             <End Role="UserProfile" EntitySet="UserProfiles" />
             <End Role="AccDayOpenClose" EntitySet="AccDayOpenCloses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="ScopoMFinanceModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="ScopoMFinanceModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
           </AssociationSet>
           <AssociationSet Name="FK_UserProfile_AspNetUser" Association="ScopoMFinanceModel.FK_UserProfile_AspNetUser">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
@@ -1226,6 +1268,10 @@
             <End Role="Branch" EntitySet="Branches" />
             <End Role="Organization" EntitySet="Organizations" />
           </AssociationSet>
+          <AssociationSet Name="FK_OrgCO_Branch" Association="ScopoMFinanceModel.FK_OrgCO_Branch">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="OrgCreditOfficer" EntitySet="OrgCreditOfficers" />
+          </AssociationSet>
           <AssociationSet Name="FK_Component_ComponentType" Association="ScopoMFinanceModel.FK_Component_ComponentType">
             <End Role="ComponentType" EntitySet="ComponentTypes" />
             <End Role="Component" EntitySet="Components" />
@@ -1249,6 +1295,10 @@
           <AssociationSet Name="FK_Org_CreditOfficer" Association="ScopoMFinanceModel.FK_Org_CreditOfficer">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrgCO_Employee" Association="ScopoMFinanceModel.FK_OrgCO_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="OrgCreditOfficer" EntitySet="OrgCreditOfficers" />
           </AssociationSet>
           <AssociationSet Name="FK_Member_Gender" Association="ScopoMFinanceModel.FK_Member_Gender">
             <End Role="SysGender" EntitySet="SysGenders" />
@@ -1282,6 +1332,14 @@
             <End Role="SysVillage" EntitySet="SysVillages" />
             <End Role="Organization" EntitySet="Organizations" />
           </AssociationSet>
+          <AssociationSet Name="FK_OrgCO_Org" Association="ScopoMFinanceModel.FK_OrgCO_Org">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="OrgCreditOfficer" EntitySet="OrgCreditOfficers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_ProductType" Association="ScopoMFinanceModel.FK_Product_ProductType">
+            <End Role="ProductType" EntitySet="ProductTypes" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
           <AssociationSet Name="FK_District_Division" Association="ScopoMFinanceModel.FK_District_Division">
             <End Role="SysDivision" EntitySet="SysDivisions" />
             <End Role="SysDistrict" EntitySet="SysDistricts" />
@@ -1310,28 +1368,11 @@
             <End Role="Branch" EntitySet="Branches" />
             <End Role="Component" EntitySet="Components" />
           </AssociationSet>
-          <AssociationSet Name="ComponentLoanProduct" Association="ScopoMFinanceModel.ComponentLoanProduct">
+          <AssociationSet Name="ComponentProduct" Association="ScopoMFinanceModel.ComponentProduct">
             <End Role="Component" EntitySet="Components" />
-            <End Role="LoanProduct" EntitySet="LoanProducts" />
+            <End Role="Product" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="ComponentSavingsProduct" Association="ScopoMFinanceModel.ComponentSavingsProduct">
-            <End Role="Component" EntitySet="Components" />
-            <End Role="SavingsProduct" EntitySet="SavingsProducts" />
-          </AssociationSet>
-          <EntitySet Name="OrgCreditOfficers" EntityType="ScopoMFinanceModel.OrgCreditOfficer" />
-          <AssociationSet Name="FK_OrgCO_Branch" Association="ScopoMFinanceModel.FK_OrgCO_Branch">
-            <End Role="Branch" EntitySet="Branches" />
-            <End Role="OrgCreditOfficer" EntitySet="OrgCreditOfficers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrgCO_Employee" Association="ScopoMFinanceModel.FK_OrgCO_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="OrgCreditOfficer" EntitySet="OrgCreditOfficers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrgCO_Org" Association="ScopoMFinanceModel.FK_OrgCO_Org">
-            <End Role="Organization" EntitySet="Organizations" />
-            <End Role="OrgCreditOfficer" EntitySet="OrgCreditOfficers" />
-          </AssociationSet>
-          </EntityContainer>
+        </EntityContainer>
         <EntityType Name="AccDayCloseProcess">
           <Key>
             <PropertyRef Name="Id" />
@@ -1380,6 +1421,27 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUsers" Relationship="ScopoMFinanceModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
         </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="ScopoMFinanceModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="ScopoMFinanceModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+        </EntityType>
         <EntityType Name="AspNetUser">
           <Key>
             <PropertyRef Name="Id" />
@@ -1399,6 +1461,8 @@
           <Property Name="LastPasswordChangedDate" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="PasswordResetToken" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="PasswordResetTokenExpireDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="ScopoMFinanceModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="ScopoMFinanceModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
           <NavigationProperty Name="UserProfile" Relationship="ScopoMFinanceModel.FK_UserProfile_AspNetUser" FromRole="AspNetUser" ToRole="UserProfile" />
           <NavigationProperty Name="AspNetRoles" Relationship="ScopoMFinanceModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
         </EntityType>
@@ -1456,8 +1520,8 @@
           <NavigationProperty Name="Employees" Relationship="ScopoMFinanceModel.FK_Employee_Branch" FromRole="Branch" ToRole="Employee" />
           <NavigationProperty Name="Members" Relationship="ScopoMFinanceModel.FK_Member_Branch" FromRole="Branch" ToRole="Member" />
           <NavigationProperty Name="Organizations" Relationship="ScopoMFinanceModel.FK_Org_Branch" FromRole="Branch" ToRole="Organization" />
-          <NavigationProperty Name="Components" Relationship="ScopoMFinanceModel.BranchComponent" FromRole="Branch" ToRole="Component" />
           <NavigationProperty Name="OrgCreditOfficers" Relationship="ScopoMFinanceModel.FK_OrgCO_Branch" FromRole="Branch" ToRole="OrgCreditOfficer" />
+          <NavigationProperty Name="Components" Relationship="ScopoMFinanceModel.BranchComponent" FromRole="Branch" ToRole="Component" />
         </EntityType>
         <EntityType Name="Component">
           <Key>
@@ -1477,8 +1541,7 @@
           <NavigationProperty Name="SysDonor" Relationship="ScopoMFinanceModel.FK_Component_Donor" FromRole="Component" ToRole="SysDonor" />
           <NavigationProperty Name="Members" Relationship="ScopoMFinanceModel.FK_Member_Component" FromRole="Component" ToRole="Member" />
           <NavigationProperty Name="Branches" Relationship="ScopoMFinanceModel.BranchComponent" FromRole="Component" ToRole="Branch" />
-          <NavigationProperty Name="LoanProducts" Relationship="ScopoMFinanceModel.ComponentLoanProduct" FromRole="Component" ToRole="LoanProduct" />
-          <NavigationProperty Name="SavingsProducts" Relationship="ScopoMFinanceModel.ComponentSavingsProduct" FromRole="Component" ToRole="SavingsProduct" />
+          <NavigationProperty Name="Products" Relationship="ScopoMFinanceModel.ComponentProduct" FromRole="Component" ToRole="Product" />
         </EntityType>
         <EntityType Name="ComponentType">
           <Key>
@@ -1537,20 +1600,6 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NoOfMaxLoan" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="LoanProduct">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="InterestRate" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Components" Relationship="ScopoMFinanceModel.ComponentLoanProduct" FromRole="LoanProduct" ToRole="Component" />
         </EntityType>
         <EntityType Name="Member">
           <Key>
@@ -1635,7 +1684,27 @@
           <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Organizations" Relationship="ScopoMFinanceModel.FK_Org_OrgCategory" FromRole="OrgCategory" ToRole="Organization" />
         </EntityType>
-        <EntityType Name="SavingsProduct">
+        <EntityType Name="OrgCreditOfficer">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="BranchId" />
+            <PropertyRef Name="EmployeeId" />
+            <PropertyRef Name="OrganizationId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+          <Property Name="AssignedDate" Type="DateTime" Precision="3" />
+          <Property Name="ReleaseDate" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_OrgCO_Branch" FromRole="OrgCreditOfficer" ToRole="Branch" />
+          <NavigationProperty Name="Employee" Relationship="ScopoMFinanceModel.FK_OrgCO_Employee" FromRole="OrgCreditOfficer" ToRole="Employee" />
+          <NavigationProperty Name="Organization" Relationship="ScopoMFinanceModel.FK_OrgCO_Org" FromRole="OrgCreditOfficer" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -1643,11 +1712,25 @@
           <Property Name="ProductCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="InterestRate" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ProductTypeId" Type="Int32" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Components" Relationship="ScopoMFinanceModel.ComponentSavingsProduct" FromRole="SavingsProduct" ToRole="Component" />
+          <NavigationProperty Name="ProductType" Relationship="ScopoMFinanceModel.FK_Product_ProductType" FromRole="Product" ToRole="ProductType" />
+          <NavigationProperty Name="Components" Relationship="ScopoMFinanceModel.ComponentProduct" FromRole="Product" ToRole="Component" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Products" Relationship="ScopoMFinanceModel.FK_Product_ProductType" FromRole="ProductType" ToRole="Product" />
         </EntityType>
         <EntityType Name="SysColcOption">
           <Key>
@@ -1829,6 +1912,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="ScopoMFinanceModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ScopoMFinanceModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="ScopoMFinanceModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ScopoMFinanceModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserProfile_AspNetUser">
           <End Type="ScopoMFinanceModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
           <End Type="ScopoMFinanceModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
@@ -1925,6 +2036,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OrgCO_Branch">
+          <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.OrgCreditOfficer" Role="OrgCreditOfficer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrgCreditOfficer">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Component_ComponentType">
           <End Type="ScopoMFinanceModel.ComponentType" Role="ComponentType" Multiplicity="1" />
           <End Type="ScopoMFinanceModel.Component" Role="Component" Multiplicity="*" />
@@ -1994,6 +2117,18 @@
             </Principal>
             <Dependent Role="Organization">
               <PropertyRef Name="CreditOfficerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrgCO_Employee">
+          <End Type="ScopoMFinanceModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.OrgCreditOfficer" Role="OrgCreditOfficer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrgCreditOfficer">
+              <PropertyRef Name="EmployeeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2093,6 +2228,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OrgCO_Org">
+          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.OrgCreditOfficer" Role="OrgCreditOfficer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrgCreditOfficer">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_ProductType">
+          <End Type="ScopoMFinanceModel.ProductType" Role="ProductType" Multiplicity="1" />
+          <End Type="ScopoMFinanceModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_District_Division">
           <End Type="ScopoMFinanceModel.SysDivision" Role="SysDivision" Multiplicity="1" />
           <End Type="ScopoMFinanceModel.SysDistrict" Role="SysDistrict" Multiplicity="*" />
@@ -2161,69 +2320,9 @@
           <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="*" />
           <End Type="ScopoMFinanceModel.Component" Role="Component" Multiplicity="*" />
         </Association>
-        <Association Name="ComponentLoanProduct">
+        <Association Name="ComponentProduct">
           <End Type="ScopoMFinanceModel.Component" Role="Component" Multiplicity="*" />
-          <End Type="ScopoMFinanceModel.LoanProduct" Role="LoanProduct" Multiplicity="*" />
-        </Association>
-        <Association Name="ComponentSavingsProduct">
-          <End Type="ScopoMFinanceModel.Component" Role="Component" Multiplicity="*" />
-          <End Type="ScopoMFinanceModel.SavingsProduct" Role="SavingsProduct" Multiplicity="*" />
-        </Association>
-        <EntityType Name="OrgCreditOfficer">
-          <Key>
-            <PropertyRef Name="Id" />
-            <PropertyRef Name="BranchId" />
-            <PropertyRef Name="EmployeeId" />
-            <PropertyRef Name="OrganizationId" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BranchId" Type="Int32" Nullable="false" />
-          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
-          <Property Name="OrganizationId" Type="Int32" Nullable="false" />
-          <Property Name="AssignedDate" Type="DateTime" Precision="3" />
-          <Property Name="ReleaseDate" Type="DateTime" Precision="3" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="SystemDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="SetDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Branch" Relationship="ScopoMFinanceModel.FK_OrgCO_Branch" FromRole="OrgCreditOfficer" ToRole="Branch" />
-          <NavigationProperty Name="Employee" Relationship="ScopoMFinanceModel.FK_OrgCO_Employee" FromRole="OrgCreditOfficer" ToRole="Employee" />
-          <NavigationProperty Name="Organization" Relationship="ScopoMFinanceModel.FK_OrgCO_Org" FromRole="OrgCreditOfficer" ToRole="Organization" />
-        </EntityType>
-        <Association Name="FK_OrgCO_Branch">
-          <End Type="ScopoMFinanceModel.Branch" Role="Branch" Multiplicity="1" />
-          <End Type="ScopoMFinanceModel.OrgCreditOfficer" Role="OrgCreditOfficer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Branch">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="OrgCreditOfficer">
-              <PropertyRef Name="BranchId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_OrgCO_Employee">
-          <End Type="ScopoMFinanceModel.Employee" Role="Employee" Multiplicity="1" />
-          <End Type="ScopoMFinanceModel.OrgCreditOfficer" Role="OrgCreditOfficer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="OrgCreditOfficer">
-              <PropertyRef Name="EmployeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_OrgCO_Org">
-          <End Type="ScopoMFinanceModel.Organization" Role="Organization" Multiplicity="1" />
-          <End Type="ScopoMFinanceModel.OrgCreditOfficer" Role="OrgCreditOfficer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Organization">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="OrgCreditOfficer">
-              <PropertyRef Name="OrganizationId" />
-            </Dependent>
-          </ReferentialConstraint>
+          <End Type="ScopoMFinanceModel.Product" Role="Product" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -2273,6 +2372,25 @@
               <MappingFragment StoreEntitySet="AspNetRoles">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2413,20 +2531,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="LoanProducts">
-            <EntityTypeMapping TypeName="ScopoMFinanceModel.LoanProduct">
-              <MappingFragment StoreEntitySet="LoanProduct">
-                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
-                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="InterestRate" ColumnName="InterestRate" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Members">
             <EntityTypeMapping TypeName="ScopoMFinanceModel.Member">
               <MappingFragment StoreEntitySet="Member">
@@ -2498,16 +2602,44 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SavingsProducts">
-            <EntityTypeMapping TypeName="ScopoMFinanceModel.SavingsProduct">
-              <MappingFragment StoreEntitySet="SavingsProduct">
+          <EntitySetMapping Name="OrgCreditOfficers">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.OrgCreditOfficer">
+              <MappingFragment StoreEntitySet="OrgCreditOfficer">
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+                <ScalarProperty Name="AssignedDate" ColumnName="AssignedDate" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.Product">
+              <MappingFragment StoreEntitySet="Product">
                 <ScalarProperty Name="SetDate" ColumnName="SetDate" />
                 <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ProductTypeId" ColumnName="ProductTypeId" />
                 <ScalarProperty Name="InterestRate" ColumnName="InterestRate" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTypes">
+            <EntityTypeMapping TypeName="ScopoMFinanceModel.ProductType">
+              <MappingFragment StoreEntitySet="ProductType">
+                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
+                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2653,37 +2785,14 @@
               <ScalarProperty Name="Id" ColumnName="BranchId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="ComponentLoanProduct" TypeName="ScopoMFinanceModel.ComponentLoanProduct" StoreEntitySet="ComponentLoanProduct">
-            <EndProperty Name="LoanProduct">
+          <AssociationSetMapping Name="ComponentProduct" TypeName="ScopoMFinanceModel.ComponentProduct" StoreEntitySet="ComponentProduct">
+            <EndProperty Name="Product">
               <ScalarProperty Name="Id" ColumnName="ProductId" />
             </EndProperty>
             <EndProperty Name="Component">
               <ScalarProperty Name="Id" ColumnName="ComponentId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="ComponentSavingsProduct" TypeName="ScopoMFinanceModel.ComponentSavingsProduct" StoreEntitySet="ComponentSavingsProduct">
-            <EndProperty Name="SavingsProduct">
-              <ScalarProperty Name="Id" ColumnName="ProductId" />
-            </EndProperty>
-            <EndProperty Name="Component">
-              <ScalarProperty Name="Id" ColumnName="ComponentId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <EntitySetMapping Name="OrgCreditOfficers">
-            <EntityTypeMapping TypeName="ScopoMFinanceModel.OrgCreditOfficer">
-              <MappingFragment StoreEntitySet="OrgCreditOfficer">
-                <ScalarProperty Name="SetDate" ColumnName="SetDate" />
-                <ScalarProperty Name="SystemDate" ColumnName="SystemDate" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
-                <ScalarProperty Name="AssignedDate" ColumnName="AssignedDate" />
-                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

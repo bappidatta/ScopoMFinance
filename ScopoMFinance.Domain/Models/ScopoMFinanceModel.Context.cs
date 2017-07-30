@@ -29,6 +29,8 @@ namespace ScopoMFinance.Domain.Models
         public virtual DbSet<AccDayCloseProgress> AccDayCloseProgresses { get; set; }
         public virtual DbSet<AccDayOpenClose> AccDayOpenCloses { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<UserBranch> UserBranches { get; set; }
         public virtual DbSet<UserLoginAudit> UserLoginAudits { get; set; }
@@ -39,12 +41,13 @@ namespace ScopoMFinance.Domain.Models
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<EmployeeType> EmployeeTypes { get; set; }
         public virtual DbSet<GlobalPolicy> GlobalPolicies { get; set; }
-        public virtual DbSet<LoanProduct> LoanProducts { get; set; }
         public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<MemberDoc> MemberDocs { get; set; }
         public virtual DbSet<Organization> Organizations { get; set; }
         public virtual DbSet<OrgCategory> OrgCategories { get; set; }
-        public virtual DbSet<SavingsProduct> SavingsProducts { get; set; }
+        public virtual DbSet<OrgCreditOfficer> OrgCreditOfficers { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductType> ProductTypes { get; set; }
         public virtual DbSet<SysColcOption> SysColcOptions { get; set; }
         public virtual DbSet<SysDistrict> SysDistricts { get; set; }
         public virtual DbSet<SysDivision> SysDivisions { get; set; }
@@ -55,6 +58,5 @@ namespace ScopoMFinance.Domain.Models
         public virtual DbSet<SysUnion> SysUnions { get; set; }
         public virtual DbSet<SysUpazila> SysUpazilas { get; set; }
         public virtual DbSet<SysVillage> SysVillages { get; set; }
-        public virtual DbSet<OrgCreditOfficer> OrgCreditOfficers { get; set; }
     }
 }

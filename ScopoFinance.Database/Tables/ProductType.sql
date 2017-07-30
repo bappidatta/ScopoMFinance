@@ -1,0 +1,10 @@
+﻿CREATE TABLE [lnsav].[ProductType]
+(
+	[Id] INT NOT NULL IDENTITY,
+	[Name] NVARCHAR(256) NOT NULL,
+	[IsActive] BIT NOT NULL DEFAULT 1, 
+    [UserId] NVARCHAR(128) NOT NULL, 
+	[SystemDate] DATETIME NOT NULL,
+    [SetDate] DATETIME NOT NULL,
+	CONSTRAINT [PK_ProductType] PRIMARY KEY ([Id])
+)

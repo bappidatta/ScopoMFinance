@@ -19,8 +19,7 @@ namespace ScopoMFinance.Domain.Models
         {
             this.Members = new HashSet<Member>();
             this.Branches = new HashSet<Branch>();
-            this.LoanProducts = new HashSet<LoanProduct>();
-            this.SavingsProducts = new HashSet<SavingsProduct>();
+            this.Products = new HashSet<Product>();
         }
     
         public int Id { get; set; }
@@ -41,8 +40,6 @@ namespace ScopoMFinance.Domain.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Branch> Branches { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LoanProduct> LoanProducts { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SavingsProduct> SavingsProducts { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

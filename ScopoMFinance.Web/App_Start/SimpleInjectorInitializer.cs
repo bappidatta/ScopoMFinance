@@ -52,8 +52,8 @@ namespace ScopoMFinance.Web.App_Start
             container.Register<IEmployeeTypeService, EmployeeTypeService>();
             container.Register<IComponentTypeService, ComponentTypeService>();
             container.Register<IComponentService, ComponentService>();
-            container.Register<ILoanProductService, LoanProductService>();
-            container.Register<ISavingsProductService, SavingsProductService>();
+            container.Register<IProductService, ProductService>();
+            container.Register<IProductTypeService, ProductTypeService>();
             container.Register<IEmployeeService, EmployeeService>();
             container.Register<IDonorService, DonorService>();
 
