@@ -71,6 +71,9 @@ namespace ScopoMFinance.Web
             bundles.Add(new ScriptBundle("~/bundles/HO/Scripts/Component/MapBranch").Include(
                     "~/Areas/HO/Scripts/Component/map-branch.js"
               ));
+            bundles.Add(new ScriptBundle("~/bundles/HO/Scripts/ProductType/Index").Include(
+                    "~/Areas/HO/Scripts/ProductType/index.js"
+              ));
         }
     }
 }

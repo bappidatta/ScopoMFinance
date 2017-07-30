@@ -142,11 +142,56 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Product Type.
+        /// </summary>
+        public static string Product_Type_Create_Title {
+            get {
+                return ResourceManager.GetString("Product_Type_Create_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Type has been created successfully.
+        /// </summary>
+        public static string Product_Type_Edit_Create_Success_Msg {
+            get {
+                return ResourceManager.GetString("Product_Type_Edit_Create_Success_Msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Product Type.
+        /// </summary>
+        public static string Product_Type_Edit_Title {
+            get {
+                return ResourceManager.GetString("Product_Type_Edit_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Type has been updated successfully.
+        /// </summary>
+        public static string Product_Type_Edit_Update_Success_Msg {
+            get {
+                return ResourceManager.GetString("Product_Type_Edit_Update_Success_Msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product Type Name.
         /// </summary>
         public static string Product_Type_List_DN_Name {
             get {
                 return ResourceManager.GetString("Product_Type_List_DN_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Type.
+        /// </summary>
+        public static string Product_Type_List_Title {
+            get {
+                return ResourceManager.GetString("Product_Type_List_Title", resourceCulture);
             }
         }
         
