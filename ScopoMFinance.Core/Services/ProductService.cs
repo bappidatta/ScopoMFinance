@@ -4,6 +4,7 @@ using ScopoMFinance.Core.Helpers;
 using ScopoMFinance.Domain.Models;
 using ScopoMFinance.Domain.Repositories;
 using ScopoMFinance.Domain.ViewModels.Common;
+using ScopoMFinance.Domain.ViewModels.Component;
 using ScopoMFinance.Domain.ViewModels.Product;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace ScopoMFinance.Core.Services
 {
     public interface IProductService
     {
-        List<DropDownViewModel> GetLoanProductDropDown();
+        List<DropDownViewModel> GetProductDropDown();
         ProductSetupViewModel GetProductById(int productId);
         PList<ProductListViewModel> GetProductList(int pageNumber, Expression<Func<Product, object>> orderBy = null, SortDirection sortDir = SortDirection.Asc, Expression<Func<Product, bool>> filter = null);
         List<ProductListViewModel> GetProductTypeList(Expression<Func<Product, object>> orderBy = null, SortDirection sortDir = SortDirection.Asc, Expression<Func<Product, bool>> filter = null);
@@ -24,6 +25,8 @@ namespace ScopoMFinance.Core.Services
         bool UpdateProduct(ProductSetupViewModel vm);
         bool IsProductActive(int productId);
         bool IsProductCodeAvailable(string productCode, int productId);
+        List<MappedComponentViewModel> GetMappedComponentList(int id);
+        bool MapComponent(ProductComponentMappingViewModel vm);
     }
 
     public class ProductService : IProductService
@@ -44,7 +47,7 @@ namespace ScopoMFinance.Core.Services
                     select c).SingleOrDefault();
         }
 
-        public List<DropDownViewModel> GetLoanProductDropDown()
+        public List<DropDownViewModel> GetProductDropDown()
         {
             var loanProductDropDown = from c in _uow.ProductRepository.Get(x => x.IsActive == true)
                                       select new DropDownViewModel()
@@ -182,6 +185,59 @@ namespace ScopoMFinance.Core.Services
             {
                 return false;
             }
+        }
+
+        public List<MappedComponentViewModel> GetMappedComponentList(int id)
+        {
+            try
+            {
+                var mappedList = (from c in _uow.ComponentRepository.Get(x => x.IsActive).Order(x => x.Name, SortDirection.Asc)
+                                  select new MappedComponentViewModel
+                                  {
+                                      ComponentId = c.Id,
+                                      ComponentName = c.Name,
+                                      Checked = c.Products.Any(x => x.Id == id)
+                                  }).ToList();
+
+                return mappedList;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public bool MapComponent(ProductComponentMappingViewModel vm)
+        {
+            Product product = GetProduct(vm.ProductId);
+
+            if (product != null)
+            {
+                foreach (var i in vm.MappedComponentList)
+                {
+                    Component component = _uow.ComponentRepository.Get(x => x.Id == i.ComponentId && x.IsActive).SingleOrDefault();
+                    if (component != null)
+                    {
+                        if (i.Checked)
+                            product.Components.Add(component);
+
+                        if (!i.Checked)
+                            product.Components.Remove(component);
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+            _uow.Save();
+
+            return true;
         }
     }
 }

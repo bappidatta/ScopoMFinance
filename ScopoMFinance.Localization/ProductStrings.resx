@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Product_Component_DN_Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="Product_Component_Map_Setup_Title" xml:space="preserve">
+    <value>Product &amp; Component Mapping</value>
+  </data>
+  <data name="Product_Component_Map_Successfull_Msg" xml:space="preserve">
+    <value>Product &amp; Component Mapping have been successfully mapped</value>
+  </data>
+  <data name="Product_Component_Map_Validation_InvalidProduct" xml:space="preserve">
+    <value>Please provide valid product to map with components</value>
+  </data>
   <data name="Product_Create_Success_Msg" xml:space="preserve">
     <value>Product has been created successfully</value>
   </data>

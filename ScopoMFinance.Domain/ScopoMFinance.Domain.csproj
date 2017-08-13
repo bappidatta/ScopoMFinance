@@ -214,6 +214,7 @@
     <Compile Include="ViewModels\Policy\BranchListViewModel.cs" />
     <Compile Include="ViewModels\Policy\ComponentTypeListViewModel.cs" />
     <Compile Include="ViewModels\Policy\ComponentTypeSetupViewModel.cs" />
+    <Compile Include="ViewModels\Product\ProductComponentMappingViewModel.cs" />
     <Compile Include="ViewModels\Product\ProductListViewModel.cs" />
     <Compile Include="ViewModels\Product\ProductSetupViewModel.cs" />
     <Compile Include="ViewModels\Product\ProductTypeListViewModel.cs" />

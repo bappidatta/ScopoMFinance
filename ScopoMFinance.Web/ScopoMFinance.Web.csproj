@@ -222,6 +222,7 @@
     <Content Include="Areas\HO\Scripts\EmployeeType\index.js" />
     <Content Include="Areas\HO\Scripts\ProductType\index.js" />
     <Content Include="Areas\HO\Scripts\Product\index.js" />
+    <Content Include="Areas\HO\Scripts\Product\map-component.js" />
     <Content Include="Content\assets\common\css\main.min.css" />
     <Content Include="Content\assets\common\css\source\apps\calendar.css" />
     <Content Include="Content\assets\common\css\source\apps\gallery.css" />
@@ -780,6 +781,8 @@
     <Content Include="Areas\HO\Views\Shared\EditorTemplates\ProductTypeSetupViewModel.cshtml" />
     <Content Include="Areas\HO\Views\Product\Index.cshtml" />
     <Content Include="Areas\HO\Views\Product\Setup.cshtml" />
+    <Content Include="Areas\HO\Views\Product\MapComponent.cshtml" />
+    <Content Include="Areas\HO\Views\Product\_ComponentMappedList.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\common-system-messages.js" />
     <Content Include="Scripts\init.js" />

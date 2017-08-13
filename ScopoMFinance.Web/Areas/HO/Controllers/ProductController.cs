@@ -1,4 +1,5 @@
 ﻿using NtitasCommon.Core.Common;
+using NtitasCommon.Core.Helpers;
 using NtitasCommon.Localization;
 using ScopoMFinance.Core.Common;
 using ScopoMFinance.Core.Services;
@@ -22,11 +23,13 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
     {
         private IProductTypeService _productTypeService;
         private IProductService _productService;
+        private IComponentService _componentService;
 
-        public ProductController(IProductTypeService productTypeService, IProductService productService)
+        public ProductController(IProductTypeService productTypeService, IProductService productService, IComponentService componentService)
         {
             _productTypeService = productTypeService;
             _productService = productService;
+            _componentService = componentService;
         }
 
         [HttpGet]
@@ -138,5 +141,84 @@ namespace ScopoMFinance.Web.Areas.HO.Controllers
         {
             return Json(!string.IsNullOrWhiteSpace(productCode) && _productService.IsProductCodeAvailable(productCode, id) == true, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public ActionResult MapComponent()
+        {
+            ViewBag.Title = ProductStrings.Product_Component_Map_Setup_Title;
+            ViewBag.ProductDropDown = new SelectList(_productService.GetProductDropDown(), "Value", "Text");
+
+            return View("MapComponent");
+        }
+
+        [HttpGet]
+        public ActionResult ComponentMappedList(int id)
+        {
+            if (_componentService.GetComponentList(filter: x => x.IsActive).Count == 0)
+            {
+                SystemMessages.Add(CommonStrings.No_Record, true, true);
+                return new XHR_JSON_Redirect();
+            }
+
+            var mappedList = _productService.GetMappedComponentList(id);
+
+            return PartialView("_ComponentMappedList", mappedList);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult MapComponent(ProductComponentMappingViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (_componentService.GetComponentList(filter: x => x.IsActive).Count == 0)
+                    {
+                        SystemMessages.Add(CommonStrings.No_Record, true, true);
+                        return RedirectToAction("MapComponent");
+                    }
+
+                    ProductSetupViewModel productVM = _productService.GetProductById(vm.ProductId);
+                    if (productVM == null || !productVM.IsActive)
+                    {
+                        SystemMessages.Add(ProductStrings.Product_Component_Map_Validation_InvalidProduct, true, true);
+                        return RedirectToAction("MapComponent"); ;
+                    }
+
+                    foreach (var i in vm.MappedComponentList)
+                    {
+                        if (!_componentService.GetComponentById(i.ComponentId).IsActive)
+                        {
+                            SystemMessages.Add(String.Format(ComponentStrings.Component_Map_Branch_Validation_InvalidComponent, i.ComponentName), true, true);
+                            return RedirectToAction("MapComponent");
+                        }
+                    }
+
+                    if (!_productService.MapComponent(vm))
+                    {
+                        SystemMessages.Add(CommonStrings.Server_Error, true, true);
+                        return RedirectToAction("MapComponent");
+                    }
+                    else
+                    {
+                        SystemMessages.Add(ProductStrings.Product_Component_Map_Successfull_Msg, false, true);
+                        return RedirectToAction("MapComponent");
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    SystemMessages.Add(CommonStrings.Server_Error, true, true);
+                    return RedirectToAction("MapComponent");
+                }
+            }
+
+            ViewBag.Title = ProductStrings.Product_Component_Map_Setup_Title;
+            ViewBag.ProductDropDown = new SelectList(_productService.GetProductDropDown(), "Value", "Text");
+
+            return View("MapComponent");
+        }
+
     }
 }

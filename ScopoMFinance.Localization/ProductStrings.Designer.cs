@@ -61,6 +61,42 @@ namespace ScopoMFinance.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product.
+        /// </summary>
+        public static string Product_Component_DN_Product {
+            get {
+                return ResourceManager.GetString("Product_Component_DN_Product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product &amp; Component Mapping.
+        /// </summary>
+        public static string Product_Component_Map_Setup_Title {
+            get {
+                return ResourceManager.GetString("Product_Component_Map_Setup_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product &amp; Component Mapping have been successfully mapped.
+        /// </summary>
+        public static string Product_Component_Map_Successfull_Msg {
+            get {
+                return ResourceManager.GetString("Product_Component_Map_Successfull_Msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please provide valid product to map with components.
+        /// </summary>
+        public static string Product_Component_Map_Validation_InvalidProduct {
+            get {
+                return ResourceManager.GetString("Product_Component_Map_Validation_InvalidProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product has been created successfully.
         /// </summary>
         public static string Product_Create_Success_Msg {
